@@ -1,5 +1,6 @@
 using Content.Client._Moffstation.Preferences; // Moffstation - Multi-character selection
 
+using Content.Client._Floof.Consent.Managers;
 using Content.Client.Administration.Managers;
 using Content.Client.Audio.Midi;
 using Content.Client.Changelog;
@@ -74,6 +75,7 @@ namespace Content.Client.IoC
             collection.Register<ClientFeedbackManager>();
             collection.Register<ISharedFeedbackManager, ClientFeedbackManager>();
             collection.Register<MidiFileCollectionManager>();
+            collection.Register<IClientConsentManager, ClientConsentManager>(); // Floof - Consent System
         }
     }
 }
