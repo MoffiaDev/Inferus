@@ -185,6 +185,7 @@ namespace Content.Server.Preferences.Managers
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
                 profile.FlavorText,
+                profile.ConsentText, // Floof: Added consent.
                 species,
                 profile.Age,
                 sex,

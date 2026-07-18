@@ -41,13 +41,8 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
-        private readonly IClientConsentManager _consentManager; // Floof: Consent management system
 
         private readonly SpriteSystem _sprite;
-
-
-        private ConsentEditor? _consentEditor;
-        private TextEdit? _consentTextEdit;
 
         // CCvar.
         private int _maxNameLength;
@@ -113,7 +108,6 @@ namespace Content.Client.Lobby.UI
             _preferencesManager = preferencesManager;
             _resManager = resManager;
             _requirements = requirements;
-            _consentManager = consentManager; // Floof
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
             _sprite = _entManager.System<SpriteSystem>();
 
@@ -325,11 +319,7 @@ namespace Content.Client.Lobby.UI
             #endregion Markings
 
             RefreshFlavorText();
-
-            // Floof
-            RefreshConsentMenu();
-            UpdateConsentTextEdit();
-            _consentManager.OnServerDataLoaded += UpdateConsentTextEdit;
+            RefreshConsentText();
 
             #region Dummy
 
@@ -552,8 +542,7 @@ namespace Content.Client.Lobby.UI
         {
             // If it equals default then reset the button.
             if (Profile == null
-                || _preferencesManager.Preferences?.SelectedCharacter.MemberwiseEquals(Profile) == true
-                && _consentManager.GetConsent().Freetext == ConsentText) // Floof: Check if consent has changed
+                || _preferencesManager.Preferences?.SelectedCharacter.MemberwiseEquals(Profile) == true) // Floof: Check if consent has changed
             {
                 IsDirty = false;
                 return;
@@ -602,6 +591,7 @@ namespace Content.Client.Lobby.UI
 
             UpdateNameEdit();
             UpdateFlavorTextEdit();
+            UpdateConsentTextEdit(); // Floof: Added consent.
             UpdateSexControls();
             UpdateVoiceControls();
             UpdateSpeechBlipControls(); // Inferus
@@ -621,7 +611,7 @@ namespace Content.Client.Lobby.UI
             // RefreshTraits(); // DeltaV
 
             RefreshFlavorText();
-            RefreshConsentMenu();
+            RefreshConsentText(); // Floof: Added consent.
             ReloadPreview();
 
             if (Profile != null)
@@ -641,16 +631,6 @@ namespace Content.Client.Lobby.UI
             SpriteView.ReloadProfilePreview(Profile);
 
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.
-            SetDirty();
-        }
-
-        // Nebulous: Updates save button for consent text
-        private void OnConsentTextChange(string content)
-        {
-            if (Profile is null)
-                return;
-
-            ConsentText = content;
             SetDirty();
         }
 
@@ -679,22 +659,6 @@ namespace Content.Client.Lobby.UI
         private void SetPreviewRotation(Direction direction)
         {
             SpriteView.OverrideDirection = (Direction)((int)direction % 4 * 2);
-        }
-
-        /// <summary>
-        /// Floof: Refreshes the consent text editor status.
-        /// </summary>
-        public void RefreshConsentMenu()
-        {
-            if (_consentEditor != null)
-                return;
-
-            _consentEditor = new ConsentEditor();
-            TabContainer.AddChild(_consentEditor);
-            TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("consent-examine-verb"));
-            _consentTextEdit = _consentEditor.CConsentEditorInput;
-
-            _consentEditor.OnConsentTextChanged += OnConsentTextChange;
         }
     }
 }
