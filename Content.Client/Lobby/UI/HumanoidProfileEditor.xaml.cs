@@ -23,7 +23,6 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Direction = Robust.Shared.Maths.Direction;
-using Content.Client._Floof.Consent.Managers;
 using Content.Client._Floof.Consent.UI;
 
 namespace Content.Client.Lobby.UI
@@ -61,7 +60,6 @@ namespace Content.Client.Lobby.UI
         /// The work in progress profile being edited.
         /// </summary>
         public HumanoidCharacterProfile? Profile;
-        public string? ConsentText; // Nebulous: Current consent text
 
         private Direction _previewRotation = Direction.North;
 
@@ -94,8 +92,7 @@ namespace Content.Client.Lobby.UI
             IPrototypeManager prototypeManager,
             IResourceManager resManager,
             JobRequirementsManager requirements,
-            MarkingManager markings,
-            IClientConsentManager consentManager)
+            MarkingManager markings)
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");

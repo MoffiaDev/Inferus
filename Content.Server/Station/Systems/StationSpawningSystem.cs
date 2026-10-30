@@ -149,6 +149,9 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
             {
                 AddComp<ConsentExaminableComponent>(entity.Value).Content = profile.ConsentText;
             }
+
+            if (profile.ConsentToggles.Count > 0) // Floof - Consent toggles
+                EnsureComp<ConsentTogglesComponent>(entity.Value).Toggles = new(profile.ConsentToggles);
         }
 
         if (loadout != null)

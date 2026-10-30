@@ -20,7 +20,6 @@ namespace Content.Server.Database
 
         public DbSet<Preference> Preference { get; set; } = null!;
         public DbSet<Profile> Profile { get; set; } = null!;
-        public DbSet<ConsentSettings> ConsentSettings { get; set; } = null!; // Floof - Consent System
         public DbSet<AssignedUserId> AssignedUserId { get; set; } = null!;
         public DbSet<Player> Player { get; set; } = default!;
         public DbSet<Admin> Admin { get; set; } = null!;
@@ -71,11 +70,11 @@ namespace Content.Server.Database
                 .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.TraitName})
                 .IsUnique();
 
-            // Floof - Code related to consent
-            modelBuilder.Entity<ConsentSettings>()
-                .HasIndex(c => c.UserId)
+            // Floof Section - Consent toggles
+            modelBuilder.Entity<ConsentToggle>()
+                .HasIndex(c => new {c.ProfileId, c.ToggleId})
                 .IsUnique();
-            // End Floof - Consent System
+            // Floof Section End - Consent toggles
 
             modelBuilder.Entity<ProfileRoleLoadout>()
                 .HasOne(e => e.Profile)
@@ -360,6 +359,7 @@ namespace Content.Server.Database
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
+        public List<ConsentToggle> ConsentToggles { get; } = new(); // Floof - Consent toggles
 
         public List<ProfileRoleLoadout> Loadouts { get; } = new();
 
@@ -370,15 +370,16 @@ namespace Content.Server.Database
         public MoffModel.MoffProfile? MoffProfile { get; set; } // Inferus: multi-character selection
     }
 
-    // Floof - Consent System
-    public class ConsentSettings
+    // Floof Section - Consent toggles
+    public class ConsentToggle
     {
         public int Id { get; set; }
-        public Guid UserId { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
 
-        public string ConsentFreetext { get; set; } = null!;
+        public string ToggleId { get; set; } = null!;
     }
-    // End Floof - Consent System
+    // Floof Section End - Consent toggles
 
     public class Job
     {

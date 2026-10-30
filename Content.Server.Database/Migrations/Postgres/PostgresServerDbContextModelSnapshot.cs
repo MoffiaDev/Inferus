@@ -849,31 +849,31 @@ namespace Content.Server.Database.Migrations.Postgres
                         });
                 });
 
-            modelBuilder.Entity("Content.Server.Database.ConsentSettings", b =>
+            modelBuilder.Entity("Content.Server.Database.ConsentToggle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("consent_settings_id");
+                        .HasColumnName("consent_toggle_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ConsentFreetext")
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("integer")
+                        .HasColumnName("profile_id");
+
+                    b.Property<string>("ToggleId")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("consent_freetext");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("user_id");
+                        .HasColumnName("toggle_id");
 
                     b.HasKey("Id")
-                        .HasName("PK_consent_settings");
+                        .HasName("PK_consent_toggle");
 
-                    b.HasIndex("UserId")
+                    b.HasIndex("ProfileId", "ToggleId")
                         .IsUnique();
 
-                    b.ToTable("consent_settings", (string)null);
+                    b.ToTable("consent_toggle", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.CustomVoteLog", b =>
@@ -2016,6 +2016,18 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Navigation("Server");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.ConsentToggle", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithMany("ConsentToggles")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_consent_toggle_profile_profile_id");
+
+                    b.Navigation("Profile");
+                });
+
             modelBuilder.Entity("Content.Server.Database.CustomVoteLog", b =>
                 {
                     b.HasOne("Content.Server.Database.Player", "Initiator")
@@ -2357,6 +2369,8 @@ namespace Content.Server.Database.Migrations.Postgres
             modelBuilder.Entity("Content.Server.Database.Profile", b =>
                 {
                     b.Navigation("Antags");
+
+                    b.Navigation("ConsentToggles");
 
                     b.Navigation("Jobs");
 

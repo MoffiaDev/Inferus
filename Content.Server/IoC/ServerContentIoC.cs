@@ -1,5 +1,4 @@
 using Content.Server._MACRO.Announcements;
-using Content.Server._Floof.Consent.Managers;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -89,6 +88,5 @@ internal static class ServerContentIoC
         deps.Register<AnnouncerManager>(); // Macrocosm edit
         deps.Register<WhitelistManager>();
         deps.Register<Content.Server._Moffstation.Preferences.MoffCharacterSelectionManager>(); // Inferus: Moffstation PR #1737
-        deps.Register<IServerConsentManager, ServerConsentManager>(); // Floof - Consent System
     }
 }
