@@ -1,11 +1,11 @@
-<!-- Guidelines: https://docs.macrocosm.cool/docs/intro -->
+<!-- Guidelines: https://github.com/MoffiaDev/Inferus/blob/master/CONTRIBUTING.md -->
 
 ## About the PR
 <!-- What did you change? -->
 
 ### How to enable / disable
 <!--
-    According to our Conventions, all new content added should be easy for a downstream to disable or opt-out of.
+    According to our Conventions, all new content added should be easy for a downstream (or, upstream, if it comes to it) to disable or opt-out of.
     Content can be opt-out (or opt-in) through the use of CVars, simple YML changes, or simply by not using a feature (if it is made optional in some way, like a mapped entity or an admin-only commmand).
 
     Explain below how to enable or disable this content. If this is a bugfix, tweak, or a "non-content" change,
@@ -28,14 +28,13 @@ Describe how you tested the pull request, and how someone reviewing this PR can 
 
 ## Requirements
 <!-- Confirm the following by placing an X in the brackets without spaces inside (for example: [X] ): -->
-- [ ] I have read and am following the Macrocosm [Pull Request Conventions](https://docs.macrocosm.cool/docs/Conventions/pull-requests/).
+- [ ] I have read and am following the Inferus [Contributor Guidelines](https://github.com/MoffiaDev/Inferus/blob/master/CONTRIBUTING.md).
 - [ ] I have tested this pull request and written instructions on how to test it
 - [ ] I have added media to this PR or it does not require an in-game showcase.
 <!-- You should understand that not following the above may get your PR closed at maintainer’s discretion -->
 
 ## Breaking changes
-<!-- List any breaking changes, including namespaces, public class/method/field changes, prototype renames; and provide instructions for fixing them.
-Also, include instructions on how to enable/disable the content for the benefit of downstreams.-->
+<!-- List any breaking changes, including namespaces, public class/method/field changes, prototype renames; and provide instructions for fixing them. -->
 
 ## Changelog
 <!-- Add a Changelog entry to make players aware of new features or changes that could affect gameplay.
@@ -48,8 +47,8 @@ The name that appears on the changelog will be your GitHub username by default. 
 
 <!--
 :cl:
-- add: Crowbars now randomly spawn in maintenance lockers.
-- remove: Crowbars no longer spawn in maintenance crates.
-- tweak: Crowbar spawn rates have been increased for tool lockers.
-- fix: Crowbars no longer accidentally spawn in microwaves.
+- add: Mothroaches now randomly spawn in maintenance lockers.
+- remove: Mothroaches no longer spawn in maintenance crates.
+- tweak: Mothroach spawn rates have been increased for tool lockers.
+- fix: Mothroaches no longer accidentally spawn in microwaves.
 -->
