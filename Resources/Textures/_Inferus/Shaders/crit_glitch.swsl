@@ -1,0 +1,43 @@
+// glitchy player censorship, fuck the metagamers
+
+light_mode unshaded;
+
+uniform highp float critLevel;
+
+const highp float BandCount = 48.0;
+const highp float MaxTear = 0.5;
+const highp float TearChance = 0.65;
+const highp float CensorBlocksMax = 12.0;
+const highp float CensorBlocksMin = 36.0;
+const highp float Desaturation = 1;
+const highp float Darken = 0.05;
+
+highp float hash12(highp vec2 p) {
+    highp vec3 p3 = fract(vec3(p.x, p.y, p.x) * 0.1031);
+    highp float d = dot(p3, p3.yzx + 33.33);
+    p3 += vec3(d);
+    return fract((p3.x + p3.y) * p3.z);
+}
+
+void fragment() {
+    highp vec2 uv = UV;
+    highp float t = floor(TIME * 15.0);
+
+    highp float band = floor(uv.y * BandCount);
+    highp float roll = hash12(vec2(band, t));
+    if (roll > 1.0 - TearChance * critLevel) {
+        uv.x += (hash12(vec2(band, t + 7.0)) - 0.5) * MaxTear * critLevel;
+    }
+    uv = clamp(uv, vec2(0.0), vec2(1.0));
+
+    highp float blocks = mix(CensorBlocksMin, CensorBlocksMax, critLevel);
+    uv = (floor(uv * blocks) + 0.5) / blocks;
+
+    highp vec4 col = zTexture(uv);
+
+    highp float lum = dot(col.rgb, vec3(0.299, 0.587, 0.114));
+    col.rgb = mix(col.rgb, vec3(lum), Desaturation);
+    col.rgb *= Darken;
+
+    COLOR = col;
+}

@@ -1,0 +1,4 @@
+- type: shader
+  id: InferusCritGlitch
+  kind: source
+  path: "/Textures/_Inferus/Shaders/crit_glitch.swsl"
