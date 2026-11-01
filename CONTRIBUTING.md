@@ -34,6 +34,10 @@ HOWEVER! The _MACRO subfolder is an exception, as our upstream *is* Macrocosm.
 
 Primarily, **add comments on or around all new or changed lines** in upstream files. Explain what was changed to make resolving merge conflicts easier; we regularly merge new upstream changes into our project. If it's a small change, a simple ```// Inferus``` will do!
 
+## Changes to other namespace files
+
+Similar to above, if you are porting anything from, say, Funky Station, and their content is within a _Funkystation folder, you need to try and keep that naming convention, otherwise everything gets messed up and confusing!
+
 ### Changing Upstream YAML .yml Files
 
 **Add comments on or around any changed lines.**
