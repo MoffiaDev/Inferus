@@ -856,7 +856,7 @@
   parent: ComputerComms
   id: CentcommComputerComms
   name: central command communications computer
-  description: A computer used to make world wide announcements via keyboard. The superior cousin of the regular communications computer.
+  description: A computer used to make sector-wide announcements via keyboard. The superior cousin of the regular communications computer.
   components:
   - type: Sprite
     layers:
@@ -874,15 +874,18 @@
     access: [[ "CentralCommand" ]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-centcom
-    color: "#1d8bad"
+    color: "#f7663e" # Inferus - redcomm
     canShuttle: false
     global: true
+    canAlertLevel: true # Inferus - this is centcom come on
+    canConfigureScreens: true # Inferus - this is centcom come on
+    canKeycardAuthenticationDevice: true # Inferus - this is centcom come on
   - type: Computer
     board: CentcommCommsComputerCircuitboard
   - type: PointLight
     radius: 1.5
     energy: 4.0
-    color: "#00FF00"
+    color: "#f7663e" # Inferus - redcomm
 
 - type: entity
   parent: BaseComputerAiAccess

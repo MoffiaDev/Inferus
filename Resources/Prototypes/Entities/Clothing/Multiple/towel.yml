@@ -65,7 +65,8 @@
 
 - type: entity
   id: TowelColorNT
-  name: NanoTrasen brand towel
+  name: Aetheris brand towel # Inferus - Death to NT!
+  description: Now, you may be asking, "Why would anyone want a towel with the Aetheris logo on it?". To that, I answer; fuck you, why not? # Inferus - Death to NT!
   parent: BaseTowel
   components:
   - type: Sprite
@@ -106,30 +107,30 @@
   - type: Sprite
     layers:
     - state: icon
-      color: "#29722e"
+      color: "#db461d" # Inferus - redcomm
     - state: iconstripe
-      color: "#F7C430"
+      color: "#f5896c" # Inferus - redcomm
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#29722e"
+        color: "#db461d" # Inferus - redcomm
       right:
       - state: inhand-right
-        color: "#29722e"
+        color: "#db461d" # Inferus - redcomm
   - type: Clothing
     clothingVisuals:
       head:
       - state: equipped-HELMET
-        color: "#29722e"
+        color: "#db461d" # Inferus - redcomm
       jumpsuit:
       - state: equipped-INNERCLOTHING
-        color: "#29722e"
+        color: "#db461d" # Inferus - redcomm
       belt:
       - state: equipped-BELT
-        color: "#29722e"
+        color: "#db461d" # Inferus - redcomm
   - type: Fiber
-    fiberColor: fibers-green
+    fiberColor: fibers-red # Inferus - redcomm
 
 - type: entity
   id: TowelColorSyndicate

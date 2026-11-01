@@ -1,0 +1,96 @@
+// crit distortion shader
+
+uniform sampler2D SCREEN_TEXTURE;
+
+uniform highp float critLevel;
+uniform highp float zoom;
+
+const highp float MaxTear = 0.014;
+const highp float MaxWobble = 0.005;
+const highp float MaxAberration = 0.004;
+const highp float MaxDarkness = 0.6;
+const highp float MaxDesaturation = 0.9;
+
+const highp float BandMinSpeed = 0.15;
+const highp float BandMaxSpeed = 0.40;
+
+const highp float VisionRadiusMax = 0.25;
+const highp float VisionRadiusMin = 0.10;
+const highp float VisionRampStart = 0.25;
+const highp float VisionRampEnd = 0.85;
+const highp float VisionEdgeSoftness = 0.025;
+
+const highp float MaxTendrilDepth = 0.13;
+
+const highp float VisionFadeEnd = 0.025;
+
+highp float hash12(highp vec2 p) {
+    highp vec3 p3 = fract(vec3(p.x, p.y, p.x) * 0.1031);
+    highp float d = dot(p3, p3.yzx + 33.33);
+    p3 += vec3(d);
+    return fract((p3.x + p3.y) * p3.z);
+}
+
+void fragment() {
+    highp vec2 coord = FRAGCOORD.xy * SCREEN_PIXEL_SIZE.xy;
+    highp float t = TIME;
+
+    highp float band = floor(coord.y * 72.0);
+    highp float phase = hash12(vec2(band, 0.0)) * 6.2831853;
+    highp float freq = mix(BandMinSpeed, BandMaxSpeed, hash12(vec2(band, 1.0)));
+    highp float amp = mix(0.35, 1.0, hash12(vec2(band, 2.0))); // varied per-band strength
+    highp float tear = sin(t * freq + phase) * 0.7 + sin(t * freq * 0.37 + phase * 1.7) * 0.3;
+    tear *= MaxTear * critLevel * amp;
+
+    highp vec2 wobble = vec2(
+        sin(t * 1.5 + coord.y * 6.0),
+        cos(t * 1.1 + coord.x * 4.0) * 0.5
+    ) * MaxWobble * critLevel;
+
+    highp vec2 offset = vec2(tear, 0.0) + wobble;
+
+    highp float ab = MaxAberration * critLevel;
+    highp vec4 rSample = zTextureSpec(SCREEN_TEXTURE, coord + offset + vec2(-ab, 0.0));
+    highp vec4 gSample = zTextureSpec(SCREEN_TEXTURE, coord + offset);
+    highp vec4 bSample = zTextureSpec(SCREEN_TEXTURE, coord + offset + vec2(ab, 0.0));
+
+    highp vec4 color = vec4(rSample.r, gSample.g, bSample.b, gSample.a);
+
+    highp float grey = zGrayscale(color.rgb);
+    highp float desat = critLevel * MaxDesaturation;
+
+    highp float redness = color.r - max(color.g, color.b);
+    highp float keepRed = smoothstep(0.1, 0.25, redness);
+    desat *= 1.0 - keepRed;
+
+    color.rgb = mix(color.rgb, vec3(grey), desat);
+
+    highp float darkness = mix(1.0, 1.0 - MaxDarkness, critLevel);
+    color.rgb *= darkness;
+
+    highp float aspect = SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x;
+    highp vec2 p = (coord - 0.5) * vec2(aspect, 1.0);
+    highp float dist = length(p);
+
+    highp float ramp = smoothstep(VisionRampStart, VisionRampEnd, critLevel);
+    highp float zoomScale = 1.0 / zoom;
+    highp float visionRadius = mix(VisionRadiusMax, VisionRadiusMin, ramp) * zoomScale;
+
+    highp float theta = atan(p.y, p.x);
+    highp float tendrilNoise = sin(theta * 3.0 + t * 0.30)
+                             + sin(theta * 7.0 - t * 0.18 + 1.7) * 0.5
+                             + sin(theta * 13.0 + t * 0.11 + 3.2) * 0.25;
+    tendrilNoise = clamp(tendrilNoise / 1.75 * 0.5 + 0.5, 0.0, 1.0);
+    tendrilNoise = tendrilNoise * tendrilNoise; // sharpen into distinct fingers
+    highp float tendrilDepth = MaxTendrilDepth * ramp * zoomScale;
+    highp float edge = visionRadius - tendrilDepth * tendrilNoise;
+
+    highp float vision = 1.0 - smoothstep(edge, edge + VisionEdgeSoftness * zoomScale, dist);
+
+    highp float visionFade = smoothstep(0.0, VisionFadeEnd, critLevel);
+    vision = mix(1.0, vision, visionFade);
+
+    color.rgb *= vision;
+
+    COLOR = color;
+}
