@@ -88,8 +88,11 @@ jobs:
       env:
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
+        ROBUST_CDN_URL: ${{ vars.ROBUST_CDN_URL }} # Inferus - publish
+        FORK_ID: ${{ vars.FORK_ID }} # Inferus - publish
 
     - name: Publish changelog (Discord)
+      continue-on-error: true # Inferus - publish
       run: Tools/actions_changelogs_since_last_run.py
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
