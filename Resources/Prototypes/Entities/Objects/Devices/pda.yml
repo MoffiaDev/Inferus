@@ -937,7 +937,7 @@
   parent: BaseSecurityPDA
   id: CentcomPDA
   name: CentComm PDA
-  description: Light green sign of walking bureaucracy.
+  description: Blood-orange sign of walking bureaucracy. # Inferus - redcomm
   components:
   - type: Pda
     id: CentcomIDCard
@@ -953,7 +953,7 @@
        !type:String
        pda-centcom
   - type: PdaBorderColor
-    borderColor: "#00842e"
+    borderColor: "#db461d" # Inferus - redcomm
   - type: Icon
     state: pda-centcom
   - type: EntityTableContainerFill

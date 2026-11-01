@@ -1,0 +1,9 @@
+- type: shader
+  id: InferusCritDistortion
+  kind: source
+  path: "/Textures/_Inferus/Shaders/crit_distortion.swsl"
+
+- type: shader
+  id: InferusPainStatic
+  kind: source
+  path: "/Textures/_Inferus/Shaders/pain_static.swsl"
