@@ -35,8 +35,8 @@
         - MobMask
         layer:
         - MobLayer
-  - type: Injurable # "Injurable" what the fuck bro
-    damageContainer: Silicon # silicon? ig? this is technically a robot
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:
