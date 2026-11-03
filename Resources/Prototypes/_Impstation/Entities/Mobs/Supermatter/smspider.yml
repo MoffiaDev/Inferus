@@ -36,7 +36,7 @@
         layer:
         - MobLayer
   - type: Injurable # "Injurable" what the fuck bro
-    damageContainer: StructuralInorganic
+    damageContainer: Silicon # silicon? ig? this is technically a robot
   - type: Destructible
     thresholds:
     - trigger:
