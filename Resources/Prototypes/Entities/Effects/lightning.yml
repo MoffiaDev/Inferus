@@ -27,6 +27,7 @@
   - type: Tag
     tags:
       - HideContextMenu
+  - type: SupermatterImmune # Inferus - supermatter
   # At least one fixture is needed for the CanCollide field of the PhysicsComponent to not always be false.
   - type: Fixtures
     fixtures:

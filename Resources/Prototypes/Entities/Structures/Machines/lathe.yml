@@ -259,6 +259,7 @@
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
+    - SuperMatterEngineeringStatic # Inferus
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards
