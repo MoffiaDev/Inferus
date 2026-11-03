@@ -36,7 +36,7 @@
         layer:
         - MobLayer
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -89,12 +89,7 @@
   - type: TypingIndicator
     proto: robot
   - type: Vocal
-    sounds:
-      Male: Suppy
-      Female: Suppy
-      Unsexed: Suppy
-  # Inferus - AnimatedEmotes not present in Macrocosm
-  # - type: AnimatedEmotes
+    emoteSounds: Suppy
   - type: Buckle
   - type: Climbing
   - type: CombatMode
@@ -103,14 +98,7 @@
   - type: MobState
   - type: Pullable
   - type: SupermatterImmune
-  # Inferus - LanguageKnowledge not present in Macrocosm
-  # - type: LanguageKnowledge # Floofstation
-  #   speaks:
-  #   - Arachnic
-  #   understands:
-  #   - Arachnic
-  #   - Xeno
-  #   - TauCetiBasic
+  # Inferus - TODO: put language here
 
 - type: entity
   parent: MobSupermatterSpider

@@ -55,3 +55,5 @@ supermatter-collide-insert-unremoveable-user =
 
 supermatter-paracusia-player-message =
     You feel your head throb with otherworldly visions...
+
+location-supermatter = supermatter engine
