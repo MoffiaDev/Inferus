@@ -19,7 +19,7 @@ namespace Content.Client._Inferus.CritGlitch;
 /// While the local player is in crit, applies a glitch/censor shader to the
 /// sprites of other characters in view
 /// </summary>
-public sealed class CritGlitchSystem : EntitySystem
+public sealed partial class CritGlitchSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _proto = default!;
