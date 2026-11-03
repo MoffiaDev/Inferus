@@ -35,8 +35,8 @@
         - MobMask
         layer:
         - MobLayer
-  - type: Damageable
-    damageModifierSet: StructuralInorganic
+  - type: Injurable # "Injurable" what the fuck bro
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
