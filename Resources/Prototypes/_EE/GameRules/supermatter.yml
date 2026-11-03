@@ -31,5 +31,6 @@
     weight: 5
     duration: 60
   - type: VentCrittersRule
-    table:
-      id: MobSupermatterSpider
+    entries:
+    - id: MobSupermatterSpider
+      prob: 0.02
