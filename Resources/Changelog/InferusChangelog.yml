@@ -1,2 +1,8 @@
 Order: -100
-Entries: []
+Entries:
+- author: Tarazicon
+  changes:
+    - type: Add
+      message: Nuclear reactors are now shipping to the Inferus sector.
+  id: 1
+  time: '2026-11-04T17:13:34.0000000+00:00'
