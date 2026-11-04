@@ -71,6 +71,7 @@
           amount: 2
         - id: GeigerCounter
           amount: 2
+        - id: RadiationBlockingProjector # Far Horizons
 
 - type: entity
   parent: CratePlastic
