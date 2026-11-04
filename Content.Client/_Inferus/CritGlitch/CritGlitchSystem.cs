@@ -19,20 +19,20 @@ namespace Content.Client._Inferus.CritGlitch;
 /// While the local player is in crit, applies a glitch/censor shader to the
 /// sprites of other characters in view
 /// </summary>
-public sealed class CritGlitchSystem : EntitySystem
+public sealed partial class CritGlitchSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
-    private static readonly ProtoId<ShaderPrototype> ShaderId = "InferusCritGlitch";
+    private static ProtoId<ShaderPrototype> ShaderId = "InferusCritGlitch";
 
     private const float RefreshInterval = 1.0f;
 
     private ShaderInstance _shader = default!;
-    private readonly HashSet<EntityUid> _glitched = new();
+    private HashSet<EntityUid> _glitched = new();
 
     private bool _enabled; // local player is currently in crit
     private bool _allowed = true; // CVar

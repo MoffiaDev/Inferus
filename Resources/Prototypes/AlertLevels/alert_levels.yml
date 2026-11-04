@@ -105,3 +105,5 @@
   color: PaleVioletRed
   emergencyLightColor: PaleVioletRed
   forceEnableEmergencyLights: true
+
+# todo: orange alert for station-ending engineering fuck-ups
