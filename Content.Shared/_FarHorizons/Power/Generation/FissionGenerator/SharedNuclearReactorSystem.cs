@@ -11,7 +11,7 @@ namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 // CC-BY-NC-SA-3.0
 // https://github.com/goonstation/goonstation/blob/ff86b044/code/obj/nuclearreactor/nuclearreactor.dm
 
-public abstract class SharedNuclearReactorSystem : EntitySystem
+public abstract partial class SharedNuclearReactorSystem : EntitySystem
 {
     [Dependency] private ItemSlotsSystem _slotsSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;

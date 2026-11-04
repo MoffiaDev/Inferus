@@ -23,16 +23,16 @@ namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 // CC-BY-NC-SA-3.0
 // https://github.com/goonstation/goonstation/blob/ff86b044/code/obj/nuclearreactor/turbine.dm
 
-public abstract class SharedTurbineSystem : EntitySystem
+public abstract partial class SharedTurbineSystem : EntitySystem
 {
-    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    // [Dependency] private ISharedAdminLogManager _adminLogger = default!; // Inferus - unused
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] protected SharedAudioSystem _audio = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private SharedToolSystem _toolSystem = default!;
     [Dependency] private EntityManager _entityManager = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
-    [Dependency] private IPrototypeManager _proto = default!;
+    // [Dependency] private IPrototypeManager _proto = default!; // Inferus - unused
 
     public override void Initialize()
     {
