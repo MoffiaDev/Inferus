@@ -20,16 +20,16 @@ namespace Content.Client._FarHorizons.Power.UI;
 [GenerateTypedNameReferences]
 public sealed partial class NuclearReactorWindow : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = null!;
-    private readonly LockSystem _lock;
+    [Dependency] private IEntityManager _entityManager = null!;
+    private LockSystem _lock;
 
-    private readonly Dictionary<Vector2i, StyleBoxFlat> _reactorGrid = [];
-    private readonly Dictionary<Vector2i, TextureRect> _reactorRect = [];
-    private readonly Dictionary<Vector2i, Button> _reactorButton = [];
+    private Dictionary<Vector2i, StyleBoxFlat> _reactorGrid = [];
+    private Dictionary<Vector2i, TextureRect> _reactorRect = [];
+    private Dictionary<Vector2i, Button> _reactorButton = [];
 
-    private readonly StyleBoxFlat _temperatureBar = new(Color.Black);
-    private readonly StyleBoxFlat _radiationBar = new(Color.Black);
-    private readonly StyleBoxFlat _powerBar = new(Color.Black);
+    private StyleBoxFlat _temperatureBar = new(Color.Black);
+    private StyleBoxFlat _radiationBar = new(Color.Black);
+    private StyleBoxFlat _powerBar = new(Color.Black);
 
     private Dictionary<Vector2i, ReactorSlotBUIData> _data = [];
     private int _gridWidth = 0;
@@ -211,7 +211,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
                 {
                     case (byte)DisplayModes.Temperature:
                         box.BackgroundColor = GetColor(293.15, 1200, exists ? _data[vect].Temperature : 0);
-                        ViewLabel.Text = Loc.GetString("comp-nuclear-reactor-ui-view-temp"); 
+                        ViewLabel.Text = Loc.GetString("comp-nuclear-reactor-ui-view-temp");
                         break;
                     case (byte)DisplayModes.Neutron:
                         box.BackgroundColor = GetColor(0, 7, exists ? _data[vect].NeutronCount : 0);
@@ -229,7 +229,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
                 var icon = exists ? _data[vect].IconName : "base";
                 _reactorRect[vect].TexturePath = "/Textures/_FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_part_inserted/" +  icon + ".png";
-                
+
                 _reactorButton[vect].ToolTip = exists && _data[vect].SpentFuel > 0
                     ? "Fuel Level: " + (int)Math.Round(GetFuelLevel(_data[vect]) * 100) + "%"
                     : "";

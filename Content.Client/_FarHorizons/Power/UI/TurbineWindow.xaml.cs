@@ -22,12 +22,12 @@ namespace Content.Client._FarHorizons.Power.UI;
 public sealed partial class TurbineWindow : FancyWindow
 {
     // Dependencies
-    [Dependency] private readonly IEntityManager _entityManager = null!;
-    private readonly LockSystem _lock;
+    [Dependency] private IEntityManager _entityManager = null!;
+    private LockSystem _lock;
 
     #region Variables
     //Colors for the RPM meter. (lit)
-    private static readonly Color[] _speedColors = [
+    private static Color[] _speedColors = [
         Color.FromHex("#BB3232"),
         Color.FromHex("#BB3232"),
         Color.FromHex("#BB3232"),
@@ -43,7 +43,7 @@ public sealed partial class TurbineWindow : FancyWindow
     ];
 
     //Colors for the RPM meter. (unlit)
-    private static readonly Color[] _speedColorsDim =
+    private static Color[] _speedColorsDim =
     [
         DimGaugeColor(_speedColors[0]),
         DimGaugeColor(_speedColors[1]),
@@ -209,7 +209,7 @@ public sealed partial class TurbineWindow : FancyWindow
         {
             BladeEntityView.SetEntity(msg.Blade!.Value);
             BladeInfoName.Text = Identity.Name(_entityManager.GetEntity(msg.Blade!.Value), _entityManager);
-        }  
+        }
 
         BladeInfo.Visible = bladeExists;
         BladeInfoIntegrity.Text = Math.Round(msg.Health * 100 / msg.HealthMax).ToString() + "%";
