@@ -54,7 +54,7 @@ public sealed partial class TurbineSystem : SharedTurbineSystem
     [Dependency] private SharedContainerSystem _containerSystem = default!;
     [Dependency] private AmbientSoundSystem _ambientSoundSystem = default!;
 
-    public event Action<string>? TurbineRepairMessage;
+    // public event Action<string>? TurbineRepairMessage; // Inferus - unused
 
     private List<string> _damageSoundList = [
         "/Audio/_FarHorizons/Effects/engine_grump1.ogg",
