@@ -18,7 +18,7 @@ namespace Content.Client._FarHorizons.Power.Generation.FissionGenerator;
 // CC-BY-NC-SA-3.0
 // https://github.com/goonstation/goonstation/blob/ff86b044/code/obj/nuclearreactor/turbine.dm
 
-public sealed class TurbineSystem : SharedTurbineSystem
+public sealed partial class TurbineSystem : SharedTurbineSystem
 {
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly AnimationPlayerSystem _animationPlayer = default!;
@@ -42,7 +42,7 @@ public sealed class TurbineSystem : SharedTurbineSystem
    protected override void OnRepairTurbineDoAfter(EntityUid uid, TurbineComponent comp, RepairDoAfterEvent args)
 {
 
-    
+
     _popupSystem.PopupClient(Loc.GetString("turbine-repair", ("target", uid), ("tool", "repair tool")), uid, args.User);
 }
 
@@ -85,7 +85,7 @@ public sealed class TurbineSystem : SharedTurbineSystem
             return;
         }
 
-        if (Math.Abs(comp.RPM - comp.AnimRPM) > comp.BestRPM * 0.1) 
+        if (Math.Abs(comp.RPM - comp.AnimRPM) > comp.BestRPM * 0.1)
             _animationPlayer.Stop(uid, state); // Current anim is stale, time for a new one
 
         if (_animationPlayer.HasRunningAnimation(uid, state))

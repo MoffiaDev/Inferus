@@ -14,7 +14,7 @@ namespace Content.Client._FarHorizons.Power.UI;
 /// Initializes a <see cref="TurbineWindow"/> and updates it when new server messages are received.
 /// </summary>
 [UsedImplicitly]
-public sealed class TurbineBoundUserInterface : BoundUserInterface, IBuiPreTickUpdate
+public sealed partial class TurbineBoundUserInterface : BoundUserInterface, IBuiPreTickUpdate
 {
     [Dependency] private readonly IClientGameTiming _gameTiming = null!;
     [Dependency] private readonly IEntityManager _entityManager = null!;
@@ -35,7 +35,7 @@ public sealed class TurbineBoundUserInterface : BoundUserInterface, IBuiPreTickU
     {
         EntityUid? turbineUid = null;
         if (_entityManager.TryGetComponent<GasTurbineMonitorComponent>(Owner, out var turbineMonitorComponent))
-            if (!_entityManager.TryGetEntity(turbineMonitorComponent.turbine, out turbineUid) || turbineUid == null 
+            if (!_entityManager.TryGetEntity(turbineMonitorComponent.turbine, out turbineUid) || turbineUid == null
                 || !_entityManager.HasComponent<TurbineComponent>(turbineUid))
                 return;
 
