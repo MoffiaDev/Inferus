@@ -87,7 +87,6 @@
         - HighImpassable
   - type: Injurable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralReactorCasing
   - type: Destructible
     thresholds:
     - trigger:

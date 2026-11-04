@@ -54,7 +54,6 @@
         - MachineLayer
   - type: Injurable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
   - type: Anchorable
     delay: 10
   - type: NodeContainer
