@@ -85,7 +85,7 @@
         layer:
         - MachineLayer
         - HighImpassable
-  - type: Damageable
+  - type: Injurable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralReactorCasing
   - type: Destructible
@@ -158,10 +158,6 @@
   - type: Lock
     unlockOnClick: false
   - type: WarpPoint
-    location: Nuclear Reactor
-    blacklist:
-      tags:
-      - GhostOnlyWarp
 
 - type: entity
   id: NuclearReactorNormal
