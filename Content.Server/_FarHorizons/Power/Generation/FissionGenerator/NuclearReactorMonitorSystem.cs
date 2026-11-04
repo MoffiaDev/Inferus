@@ -21,7 +21,7 @@ public sealed partial class NuclearReactorMonitorSystem : EntitySystem
     [Dependency] private DeviceLinkSystem _signal = default!;
     [Dependency] private UserInterfaceSystem _uiSystem = null!;
 
-    private readonly float _threshold = 0.5f;
+    private float _threshold = 0.5f;
     private float _accumulator = 0f;
 
     public override void Initialize()

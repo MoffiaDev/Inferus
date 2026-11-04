@@ -33,9 +33,9 @@ public sealed partial class NuclearReactorComponent : Component
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public int ReactorGridHeight = 7;
 
-    public readonly int ReactorOverheatTemp = 1200;
-    public readonly int ReactorFireTemp = 1500;
-    public readonly int ReactorMeltdownTemp = 2000;
+    public int ReactorOverheatTemp = 1200;
+    public int ReactorFireTemp = 1500;
+    public int ReactorMeltdownTemp = 2000;
 
     // Making this a DataField causes the game to explode, neat
     /// <summary>

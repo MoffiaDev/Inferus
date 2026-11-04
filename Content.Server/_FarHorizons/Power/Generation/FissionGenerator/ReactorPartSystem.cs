@@ -34,36 +34,36 @@ public sealed partial class ReactorPartSystem : SharedReactorPartSystem
     /// <summary>
     /// Changes the overall rate of events
     /// </summary>
-    private readonly float _rate = 5;
+    private float _rate = 5;
 
     /// <summary>
     /// Changes the likelyhood of neutron interactions
     /// </summary>
-    private readonly float _bias = 1.5f;
+    private float _bias = 1.5f;
 
     /// <summary>
     /// The amount of a property consumed by a reaction
     /// </summary>
-    private readonly float _reactant = 0.01f;
+    private float _reactant = 0.01f;
 
     /// <summary>
     /// The amount of a property resultant from a reaction
     /// </summary>
-    private readonly float _product = 0.005f;
+    private float _product = 0.005f;
 
     /// <summary>
     /// Temperature (in C) when people's hands can be burnt
     /// </summary>
-    private readonly static float _hotTemp = 80;
+    private static float _hotTemp = 80;
 
     /// <summary>
     /// Temperature (in C) when insulated gloves can no longer protect
     /// </summary>
-    private readonly static float _burnTemp = 400;
+    private static float _burnTemp = 400;
 
-    private readonly static float _burnDiv = (_burnTemp - _hotTemp) / 5; // The 5 is how much heat damage insulated gloves protect from
+    private static float _burnDiv = (_burnTemp - _hotTemp) / 5; // The 5 is how much heat damage insulated gloves protect from
 
-    private readonly float _threshold = 1f;
+    private float _threshold = 1f;
     private float _accumulator = 0f;
 
     #region Item Methods

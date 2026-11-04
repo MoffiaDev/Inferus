@@ -56,7 +56,7 @@ public sealed partial class TurbineSystem : SharedTurbineSystem
 
     public event Action<string>? TurbineRepairMessage;
 
-    private readonly List<string> _damageSoundList = [
+    private List<string> _damageSoundList = [
         "/Audio/_FarHorizons/Effects/engine_grump1.ogg",
         "/Audio/_FarHorizons/Effects/engine_grump2.ogg",
         "/Audio/_FarHorizons/Effects/engine_grump3.ogg",

@@ -24,9 +24,9 @@ public sealed partial class NuclearCentrifugeSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
 
-    private readonly float _threshold = 1f;
+    private float _threshold = 1f;
     private float _accumulator = 0f;
-    private readonly int _stackSize = 30;
+    private int _stackSize = 30;
 
     public override void Initialize()
     {

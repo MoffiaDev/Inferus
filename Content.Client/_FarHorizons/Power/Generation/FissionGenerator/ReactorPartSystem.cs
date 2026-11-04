@@ -9,8 +9,8 @@ namespace Content.Client._FarHorizons.Power.Generation.FissionGenerator;
 
 public sealed partial class ReactorPartSystem : SharedReactorPartSystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public override void Initialize()
     {
