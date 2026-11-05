@@ -1,4 +1,3 @@
-speech-blip-standard = Standard Speech
 speech-blip-silent = Silent
 speech-blip-bass = Bass
 speech-blip-baritone = Baritone

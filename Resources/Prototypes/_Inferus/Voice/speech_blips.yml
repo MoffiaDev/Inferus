@@ -1,10 +1,4 @@
 - type: speechBlip
-  id: Standard
-  name: speech-blip-standard
-  order: -2
-  typewriter: false
-
-- type: speechBlip
   id: Silent
   name: speech-blip-silent
   order: -1
