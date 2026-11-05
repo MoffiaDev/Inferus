@@ -16,7 +16,7 @@
   </Box>
 
   <Box>
-    <GuideEntityEmbed Entity="AmeController" Caption=""/>  <Box>
+    <GuideEntityEmbed Entity="AmeController" Caption=""/>
     <GuideEntityEmbed Entity="NuclearReactorNormal" Caption=""/>
     <GuideEntityEmbed Entity="Turbine" Caption=""/>
   </Box>

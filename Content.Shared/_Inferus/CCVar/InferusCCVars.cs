@@ -20,4 +20,16 @@ public sealed class InferusCCVars : CVars
     /// </summary>
     public static readonly CVarDef<bool> CritGlitchOthers =
         CVarDef.Create("inferus.crit_glitch_others", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// If true, speech bubbles always appear instantly instead of typing out letter by letter.
+    /// </summary>
+    public static readonly CVarDef<bool> InstantSpeechBubbles =
+        CVarDef.Create("inferus.instant_speech_bubbles", false, CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Volume multiplier for speech blips. 0 mutes them.
+    /// </summary>
+    public static readonly CVarDef<float> SpeechBlipVolume =
+        CVarDef.Create("inferus.speech_blip_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

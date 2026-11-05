@@ -117,6 +117,11 @@ public sealed partial class ChatUIController : UIController
     private const float BubbleDelayFactor = 0.8f / SingleBubbleCharLimit;
 
     /// <summary>
+    ///     The longest a typing speech bubble can hold up the next queued one.
+    /// </summary>
+    private const float MaxTypewriterQueueDelay = 2f; // Inferus
+
+    /// <summary>
     ///     The max amount of speech bubbles over a single entity at once.
     /// </summary>
     private const int SpeechBubbleCap = 4;
@@ -458,6 +463,7 @@ public sealed partial class ChatUIController : UIController
             foreach (var existingBubble in existing)
             {
                 existingBubble.VerticalOffset += bubble.ContentSize.Y;
+                existingBubble.FinishTypewriter(); // Inferus
             }
         }
         else
@@ -468,6 +474,10 @@ public sealed partial class ChatUIController : UIController
 
         existing.Add(bubble);
         _speechBubbleRoot.AddChild(bubble);
+
+        // Inferus
+        if (_queuedSpeechBubbles.TryGetValue(entity, out var queueData))
+            queueData.TimeLeft = MathF.Max(queueData.TimeLeft, MathF.Min(bubble.TypewriterDuration, MaxTypewriterQueueDelay));
 
         if (existing.Count > SpeechBubbleCap)
         {

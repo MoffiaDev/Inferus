@@ -193,6 +193,7 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
         {
+            SpeechBlip = other.SpeechBlip; // Inferus
         }
 
         /// <summary>
@@ -369,6 +370,7 @@ namespace Content.Shared.Preferences
             profile.Age = (randomizeCfg & RandomizeCfg.Age) != 0 ? RandomAge(speciesProto) : baseProfile.Age;
 
             profile.Appearance = HumanoidCharacterAppearance.Random(speciesProto, profile.Sex, randomizeCfg, baseProfile.Appearance);
+            profile.SpeechBlip = baseProfile.SpeechBlip; // Inferus
 
             return profile;
         }
@@ -616,6 +618,7 @@ namespace Content.Shared.Preferences
             if (Age != other.Age) return false;
             if (Sex != other.Sex) return false;
             if (Voice != other.Voice) return false;
+            if (SpeechBlip != other.SpeechBlip) return false; // Inferus
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
@@ -764,6 +767,7 @@ namespace Content.Shared.Preferences
             Gender = gender;
             Appearance = appearance;
             SpawnPriority = spawnPriority;
+            EnsureValidSpeechBlip(prototypeManager); // Inferus
 
             _jobPriorities.Clear();
 
@@ -882,6 +886,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(Age);
             hashCode.Add((int)Sex);
             hashCode.Add(Voice);
+            hashCode.Add(SpeechBlip); // Inferus
             hashCode.Add((int)Gender);
             hashCode.Add(Appearance);
             hashCode.Add((int)SpawnPriority);

@@ -1,3 +1,4 @@
+using Content.Shared._Inferus.Speech; // Inferus
 using Content.Shared.Examine;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
@@ -10,6 +11,7 @@ namespace Content.Shared.Humanoid;
 public sealed partial class HumanoidProfileSystem : EntitySystem
 {
     [Dependency] private GrammarSystem _grammar = default!;
+    [Dependency] private SpeechBlipSystem _speechBlip = default!; // Inferus
 
     public override void Initialize()
     {
@@ -37,6 +39,8 @@ public sealed partial class HumanoidProfileSystem : EntitySystem
         {
             _grammar.SetGender((ent, grammar), profile.Gender);
         }
+
+        _speechBlip.SetBlip(ent, profile.SpeechBlip); // Inferus
     }
 
     private void OnExamined(Entity<HumanoidProfileComponent> ent, ref ExaminedEvent args)

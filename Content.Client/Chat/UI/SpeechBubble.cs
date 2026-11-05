@@ -99,11 +99,13 @@ namespace Content.Client.Chat.UI
             AddChild(bubble);
 
             ForceRunStyleUpdate();
+            InitializeTypewriter(speechStyleClass); // Inferus
 
             bubble.Measure(Vector2Helpers.Infinity);
             ContentSize = bubble.DesiredSize;
             _verticalOffsetAchieved = -ContentSize.Y;
             _deathTime = _timing.RealTime + TotalTime;
+            _deathTime += TimeSpan.FromSeconds(TypewriterDuration); // Inferus
         }
 
         protected abstract Control BuildBubble(ChatMessage message, string speechStyleClass, Color? fontColor = null);
@@ -119,6 +121,8 @@ namespace Content.Client.Chat.UI
                 Timer.Spawn(0, Die);
                 return;
             }
+
+            UpdateTypewriter(args.DeltaSeconds); // Inferus
 
             // Lerp to our new vertical offset if it's been modified.
             if (MathHelper.CloseToPercent(_verticalOffsetAchieved - VerticalOffset, 0, 0.1))
@@ -248,7 +252,11 @@ namespace Content.Client.Chat.UI
                     OutlineColorOverride = TextOutline.Default.Color,
                 };
 
-                label.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor), tagsAllowed: null);
+                // Inferus
+                var unfanciedMessage = ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor);
+                label.SetMessage(unfanciedMessage, tagsAllowed: null);
+                SetTypewriterTarget(label, unfanciedMessage);
+                // Inferus end
 
                 var unfanciedPanel = new PanelContainer
                 {
@@ -277,7 +285,11 @@ namespace Content.Client.Chat.UI
 
             //We'll be honest. *Yes* this is hacky. Doing this in a cleaner way would require a bottom-up refactor of how saycode handles sending chat messages. -Myr
             bubbleHeader.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleHeader", fontColor), tagsAllowed:null);
-            bubbleContent.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor), tagsAllowed:null);
+            // Inferus
+            var contentMessage = ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor);
+            bubbleContent.SetMessage(contentMessage, tagsAllowed:null);
+            SetTypewriterTarget(bubbleContent, contentMessage);
+            // Inferus end
 
             //As for below: Some day this could probably be converted to xaml. But that is not today. -Myr
             var mainPanel = new PanelContainer

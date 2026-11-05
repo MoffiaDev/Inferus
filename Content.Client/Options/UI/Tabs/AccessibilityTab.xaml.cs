@@ -14,6 +14,7 @@ public sealed partial class AccessibilityTab : Control
         RobustXamlLoader.Load(this);
 
         Control.AddOptionCheckBox(InferusCCVars.LegacyDamageOverlays, LegacyDamageOverlaysCheckBox); // Inferus - toggle for the old pain/crit overlays
+        Control.AddOptionCheckBox(InferusCCVars.InstantSpeechBubbles, InstantSpeechBubblesCheckBox); // Inferus
         Control.AddOptionCheckBox(CCVars.ChatEnableColorName, EnableColorNameCheckBox);
         Control.AddOptionCheckBox(CCVars.AccessibilityColorblindFriendly, ColorblindFriendlyCheckBox);
 

@@ -1,0 +1,145 @@
+- type: speechBlip
+  id: Silent
+  name: speech-blip-silent
+  order: -1
+
+- type: speechBlip
+  id: Bass
+  name: speech-blip-bass
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/bass.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Baritone
+  name: speech-blip-baritone
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/baritone.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Tenor
+  name: speech-blip-tenor
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/tenor.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Alto
+  name: speech-blip-alto
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/alto.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Vox
+  name: speech-blip-vox
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/vox.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Arachnic
+  name: speech-blip-arachnic
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/arachnic.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Vulp
+  name: speech-blip-vulp
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/vulp.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Slimy
+  name: speech-blip-slimy
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/slimy.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Synthetic
+  name: speech-blip-synthetic
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/synthetic.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Lizard
+  name: speech-blip-lizard
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/lizard.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Soprano
+  name: speech-blip-soprano
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/alto.ogg
+    params:
+      volume: 1
+      pitch: 1.3
+      variation: 0.04
+
+- type: speechBlip
+  id: MothSpeak
+  name: speech-blip-moth
+  sounds:
+  - path: /Audio/_Inferus/Voice/Blips/Moth/speak1.ogg
+    params:
+      volume: 1.25
+      pitch: 1
+  - path: /Audio/_Inferus/Voice/Blips/Moth/speak2.ogg
+    params:
+      volume: 1.25
+      pitch: 1
+  - path: /Audio/_Inferus/Voice/Blips/Moth/speak3.ogg
+    params:
+      volume: 1.25
+      pitch: 1
+  - path: /Audio/_Inferus/Voice/Blips/Moth/speak4.ogg
+    params:
+      volume: 1.25
+      pitch: 1
+  - path: /Audio/_Inferus/Voice/Blips/Moth/speak5.ogg
+    params:
+      volume: 1.25
+      pitch: 1
+  - path: /Audio/_Inferus/Voice/Blips/Moth/speak6.ogg
+    params:
+      volume: 1.25
+      pitch: 1
+  - path: /Audio/_Inferus/Voice/Blips/Moth/speak7.ogg
+    params:
+      volume: 1.25
+      pitch: 1
+  - path: /Audio/_Inferus/Voice/Blips/Moth/speak8.ogg
+    params:
+      volume: 1.25
+      pitch: 1
+  - path: /Audio/_Inferus/Voice/Blips/Moth/speak9.ogg
+    params:
+      volume: 1.25
+      pitch: 1

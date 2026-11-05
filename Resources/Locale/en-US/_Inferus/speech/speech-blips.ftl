@@ -1,0 +1,14 @@
+speech-blip-silent = Silent
+speech-blip-bass = Bass
+speech-blip-baritone = Baritone
+speech-blip-tenor = Tenor
+speech-blip-alto = Alto
+speech-blip-soprano = Soprano
+speech-blip-moth = Moth
+speech-blip-babble = Babble
+speech-blip-vulp = Vulpkanin
+speech-blip-lizard = Reptilian
+speech-blip-synthetic = Synthetic
+speech-blip-slimy = Slimy
+speech-blip-arachnic = Arachnic
+speech-blip-vox = Vox

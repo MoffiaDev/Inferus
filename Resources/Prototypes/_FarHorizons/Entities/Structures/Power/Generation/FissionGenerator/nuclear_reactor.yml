@@ -85,6 +85,7 @@
         layer:
         - MachineLayer
         - HighImpassable
+  - type: Damageable # Inferus
   - type: Injurable
     damageContainer: StructuralInorganic
   - type: Destructible
