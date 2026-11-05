@@ -52,6 +52,7 @@
         - MachineMask
         layer:
         - MachineLayer
+  - type: Damageable # Inferus
   - type: Injurable
     damageContainer: StructuralInorganic
   - type: Anchorable

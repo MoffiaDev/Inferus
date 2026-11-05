@@ -199,6 +199,7 @@ public sealed partial class ReactorPartSystem : SharedReactorPartSystem
                 gasMix.Temperature += DeltaT;
 
             var burncomp = EnsureComp<DamageOnInteractComponent>(uid);
+            burncomp.Damage ??= new(); // Inferus
 
             burncomp.IsDamageActive = component.Temperature > Atmospherics.T0C + _hotTemp;
 

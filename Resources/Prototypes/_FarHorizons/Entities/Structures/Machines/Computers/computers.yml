@@ -7,8 +7,6 @@
   name: nuclear reactor monitor
   description: A device that monitors the state of a connected nuclear reactor.
   components:
-  - type: ApcPowerReceiver
-    powerLoad: 500
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -51,8 +49,6 @@
   name: gas turbine monitor
   description: A device that monitors the state of a connected gas turbine.
   components:
-  - type: ApcPowerReceiver
-    powerLoad: 500
   - type: PointLight
     radius: 1.5
     energy: 1.6
