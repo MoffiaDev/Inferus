@@ -89,7 +89,7 @@
                                     <OptionButton Name="SexButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
                                 <!-- Voice -->
-                                <BoxContainer HorizontalExpand="True">
+                                <BoxContainer HorizontalExpand="True" Visible="False"> <!-- Inferus -->
                                     <Label Text="{Loc 'humanoid-profile-editor-voice-label'}" />
                                     <Control HorizontalExpand="True" />
                                     <OptionButton Name="VoiceButton" HorizontalAlignment="Right" />
