@@ -1,0 +1,8 @@
+- type: entity
+  parent: BaseFlatpack
+  id: FlatpackDocumentPrinter
+  name: Model XF-880 document printer flatpack
+  description: A robust piece of bureaucratic equipment, mechanically compressed into a small flatpack.
+  components:
+  - type: Flatpack
+    entity: DocumentPrinterPublic

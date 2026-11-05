@@ -1,0 +1,14 @@
+- type: entity
+  id: CrateServiceDocumentPrinterSet
+  parent: CratePlastic
+  name: DIY document printer kit
+  description: A Model XF-880 document printer, disassembled and ready for shipping. Does not contain ink refills.
+  components:
+  - type: StorageFill
+    contents:
+    - id: SheetSteel1
+      amount: 6
+    - id: CableApcStack10
+    - id: MicroManipulatorStockPart
+      amount: 2
+    - id: DocumentPrinterBridgeCircuitboard

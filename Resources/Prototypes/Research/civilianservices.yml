@@ -68,6 +68,7 @@
     - DawInstrumentMachineCircuitboard
     - MassMediaCircuitboard
     - JukeboxCircuitBoard
+    - DocumentPrinterCircuitboard # Inferus
 
 - type: technology
   id: MeatManipulation
