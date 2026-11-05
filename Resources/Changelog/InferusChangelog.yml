@@ -6,3 +6,17 @@ Entries:
       message: Nuclear reactors are now shipping to the Inferus sector.
   id: 1
   time: '2026-11-04T17:13:34.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Add
+      message: >-
+        Speech bubbles now type out letter by letter with voice blips. Pick your
+        character's blip in the character editor.
+    - type: Add
+      message: >-
+        Voice blips rise in pitch when asking questions and fall when
+        exclaiming, and text briefly pauses on punctuation.
+    - type: Remove
+      message: Choosing "Voice" is no longer an option (it didnt even work anyway)
+  id: 2
+  time: '2026-11-05T20:45:03.0000000+00:00'
