@@ -1,0 +1,24 @@
+# Inferus - changelog: posts new changelog entries to Discord daily (ported from Floof-Station)
+name: Discord Changelog
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+  publish_changelog:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+        with:
+          ref: master
+
+      - name: Publish changelog
+        run: Tools/actions_changelogs_since_last_run.py
+        env:
+          CHANGELOG_DIR: ${{ vars.CHANGELOG_DIR }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
