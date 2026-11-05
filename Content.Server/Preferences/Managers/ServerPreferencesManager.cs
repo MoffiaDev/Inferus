@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Afk;
 using Content.Server.Database;
+using Content.Shared._Inferus.Speech; // Inferus
 using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
@@ -122,6 +123,11 @@ namespace Content.Server.Preferences.Managers
             if (!_prototypeManager.HasIndex(voice))
                 voice = speciesPrototype.DefaultSoundsBySex[(int)sex];
 
+            // Inferus
+            ProtoId<SpeechBlipPrototype> speechBlip = SpeechBlipSystem.DefaultBlip;
+            if (profile.SpeechBlip != null && _prototypeManager.HasIndex<SpeechBlipPrototype>(profile.SpeechBlip))
+                speechBlip = profile.SpeechBlip;
+
             if (profile.OrganMarkings?.RootElement is { } element)
             {
                 var data = element.ToDataNode();
@@ -196,7 +202,10 @@ namespace Content.Server.Preferences.Managers
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts
-            );
+            )
+            {
+                SpeechBlip = speechBlip, // Inferus
+            };
         }
 
         private async void HandleSelectCharacterMessage(MsgSelectCharacter message)

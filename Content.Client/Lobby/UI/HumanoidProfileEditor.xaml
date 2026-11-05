@@ -94,6 +94,17 @@
                                     <Control HorizontalExpand="True" />
                                     <OptionButton Name="VoiceButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
+                                <!-- Inferus -->
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Text="{Loc 'humanoid-profile-editor-speech-blip-label'}" />
+                                    <Control HorizontalExpand="True" />
+                                    <Button Name="SpeechBlipPreviewButton"
+                                            Text="{Loc 'humanoid-profile-editor-speech-blip-preview'}"
+                                            ToolTip="{Loc 'humanoid-profile-editor-speech-blip-preview-tooltip'}"
+                                            Margin="0 0 4 0" />
+                                    <OptionButton Name="SpeechBlipButton" HorizontalAlignment="Right" />
+                                </BoxContainer>
+                                <!-- Inferus end -->
                                 <!-- Pronouns -->
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-pronouns-label'}" />
