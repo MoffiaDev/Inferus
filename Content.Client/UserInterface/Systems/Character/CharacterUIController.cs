@@ -46,6 +46,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
 
     public void OnStateEntered(GameplayState state)
     {
+        return; // Inferus - replaced by ESCharacterUIController
         DebugTools.Assert(_window == null);
 
         _window = UIManager.CreateWindow<CharacterWindow>();

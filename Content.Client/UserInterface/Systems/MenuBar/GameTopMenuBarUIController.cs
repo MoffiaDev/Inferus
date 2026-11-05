@@ -10,6 +10,7 @@ using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Client.UserInterface.Systems.Sandbox;
 using Robust.Client.UserInterface.Controllers;
+using Content.Client._ES.Mind.Ui; // Inferus
 
 namespace Content.Client.UserInterface.Systems.MenuBar;
 
@@ -24,6 +25,7 @@ public sealed partial class GameTopMenuBarUIController : UIController
     [Dependency] private SandboxUIController _sandbox = default!;
     [Dependency] private GuidebookUIController _guidebook = default!;
     [Dependency] private EmotesUIController _emotes = default!;
+    [Dependency] private ESCharacterUIController _esCharacter = default!; // Inferus
 
     private GameTopMenuBar? GameTopMenuBar => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>();
 
@@ -47,6 +49,7 @@ public sealed partial class GameTopMenuBarUIController : UIController
         _action.UnloadButton();
         _sandbox.UnloadButton();
         _emotes.UnloadButton();
+        _esCharacter.UnloadButton(); // Inferus
     }
 
     public void LoadButtons()
@@ -60,5 +63,6 @@ public sealed partial class GameTopMenuBarUIController : UIController
         _action.LoadButton();
         _sandbox.LoadButton();
         _emotes.LoadButton();
+        _esCharacter.LoadButton(); // Inferus
     }
 }

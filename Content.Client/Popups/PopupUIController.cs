@@ -26,9 +26,14 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
         base.Initialize();
         var cache = IoCManager.Resolve<IResourceCache>();
 
-        _smallFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Italic.ttf"), 10);
-        _mediumFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Italic.ttf"), 12);
-        _largeFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-BoldItalic.ttf"), 14);
+        // Begin Inferus
+        // _smallFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Italic.ttf"), 10);
+        // _mediumFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Italic.ttf"), 12);
+        // _largeFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-BoldItalic.ttf"), 14);
+        _smallFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Tomorrow/Tomorrow-Italic.ttf"), 10);
+        _mediumFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Tomorrow/Tomorrow-Italic.ttf"), 12);
+        _largeFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Tomorrow/Tomorrow-BoldItalic.ttf"), 14);
+        // End Inferus
     }
 
     public void OnStateEntered(GameplayState state)
