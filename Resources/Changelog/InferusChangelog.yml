@@ -20,3 +20,54 @@ Entries:
       message: Choosing "Voice" is no longer an option (it didnt even work anyway)
   id: 2
   time: '2026-11-05T20:45:03.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Add
+      message: >-
+        The late-join spawn menu has been revamped (ported from Ephemeral
+        Space).
+    - type: Tweak
+      message: >-
+        The main UI font is now Tomorrow, and window titles use Geo (ported from
+        Ephemeral Space).
+    - type: Tweak
+      message: Popups now use the new Tomorrow font.
+    - type: Add
+      message: >-
+        Footsteps have been reworked with new sounds for plating, hull, carpet,
+        catwalks, concrete, glass, grass, wood, tiles and asteroid floors
+        (ported from Starlight).
+    - type: Add
+      message: >-
+        Bare feet now make their own sounds on glass, grass, carpet, gravel,
+        grates, metal, wood and other hard floors.
+    - type: Add
+      message: Hardsuits and active magboots now have their own footstep sounds.
+    - type: Tweak
+      message: Different shoes and boots now have different footstep volume and pitch.
+    - type: Add
+      message: >-
+        New space wind and ash storm sounds, with separate sounds for weak and
+        strong storms (ported from Starlight).
+    - type: Add
+      message: Hull breaches now make a rushing wind sound.
+    - type: Add
+      message: >-
+        Rooms now echo based on where you are, including maintenance, the
+        chapel, hallways and other large rooms (ported from Starlight).
+    - type: Add
+      message: Added 13 new voice options.
+    - type: Add
+      message: Sound is muffled while wearing a hardsuit helmet.
+    - type: Add
+      message: Sound no longer carries through space or rooms open to space.
+    - type: Tweak
+      message: >-
+        The audio settings tab now groups options into Music, Environment,
+        Voices, Other and Device tabs on the left.
+    - type: Add
+      message: Added a "Room echo" volume slider to the audio settings.
+    - type: Add
+      message: This isn't even all of it. Good god.
+  id: 3
+  time: '2026-11-06T06:20:18.0000000+00:00'
