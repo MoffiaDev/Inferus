@@ -75,7 +75,7 @@ public sealed partial class RoomReverbSystem : EntitySystem
 
         UpdatesOutsidePrediction = true;
         Subs.CVar(_cfg, StarlightCCVars.ReverbVolume, value => _volume = value, true);
-        SubscribeLocalEvent<LocalPlayerDetachedEvent>(_ => Clear());
+        SubscribeLocalEvent<LocalPlayerDetachedEvent>(_ => ClearAndDelete()); // Inferus
         RebuildDryFiles();
     }
 
@@ -118,11 +118,19 @@ public sealed partial class RoomReverbSystem : EntitySystem
     public override void Shutdown()
     {
         base.Shutdown();
+        ClearAndDelete(); // Inferus
+    }
+
+    // Inferus: also delete the slot entities when the local player detaches, so they don't outlive the session
+    // (and leak client-side entities, which fails MindTests.DeleteAllThenGhost). EnsureSlot recreates them on demand.
+    private void ClearAndDelete()
+    {
         Clear();
         Delete(_auxiliary, _effect);
         _auxiliary = null;
         _effect = null;
     }
+    // End Inferus
 
     public override void FrameUpdate(float frameTime)
     {
