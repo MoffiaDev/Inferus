@@ -1,6 +1,7 @@
 using Content.Client.Audio;
 using Content.Client.GameTicking.Managers;
 using Content.Client.LateJoin;
+using Content.Client._ES.Spawning.Ui; // Inferus
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
 using Content.Client.Playtime;
@@ -114,7 +115,8 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            new LateJoinGui().OpenCentered();
+            // new LateJoinGui().OpenCentered(); // Inferus - replaced with the ES spawn menu
+            new ESSpawningWindow().OpenCentered(); // Inferus
         }
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)

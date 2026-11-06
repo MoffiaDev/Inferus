@@ -1,63 +1,127 @@
 - type: soundCollection
   id: FootstepCarpet
   files:
-  - /Audio/Effects/Footsteps/carpet1.ogg
-  - /Audio/Effects/Footsteps/carpet2.ogg
-  - /Audio/Effects/Footsteps/carpet3.ogg
-  - /Audio/Effects/Footsteps/carpet4.ogg
-  - /Audio/Effects/Footsteps/carpet5.ogg
+  # Begin Inferus
+  # - /Audio/Effects/Footsteps/carpet1.ogg
+  # - /Audio/Effects/Footsteps/carpet2.ogg
+  # - /Audio/Effects/Footsteps/carpet3.ogg
+  # - /Audio/Effects/Footsteps/carpet4.ogg
+  # - /Audio/Effects/Footsteps/carpet5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/carpet1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/carpet2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/carpet3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/carpet4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/carpet5.ogg
+  # End Inferus
 
 - type: soundCollection
   id: FootstepWood
   files:
-  - /Audio/Effects/Footsteps/wood1.ogg
-  - /Audio/Effects/Footsteps/wood2.ogg
-  - /Audio/Effects/Footsteps/wood3.ogg
-  - /Audio/Effects/Footsteps/wood4.ogg
-  - /Audio/Effects/Footsteps/wood5.ogg
+  # Begin Inferus
+  # - /Audio/Effects/Footsteps/wood1.ogg
+  # - /Audio/Effects/Footsteps/wood2.ogg
+  # - /Audio/Effects/Footsteps/wood3.ogg
+  # - /Audio/Effects/Footsteps/wood4.ogg
+  # - /Audio/Effects/Footsteps/wood5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood9.ogg
+  # End Inferus
 
 - type: soundCollection
   id: FootstepCatwalk
   files:
-  - /Audio/Effects/Footsteps/catwalk1.ogg
-  - /Audio/Effects/Footsteps/catwalk2.ogg
-  - /Audio/Effects/Footsteps/catwalk3.ogg
-  - /Audio/Effects/Footsteps/catwalk4.ogg
-  - /Audio/Effects/Footsteps/catwalk5.ogg
+  # Begin Inferus
+  # - /Audio/Effects/Footsteps/catwalk1.ogg
+  # - /Audio/Effects/Footsteps/catwalk2.ogg
+  # - /Audio/Effects/Footsteps/catwalk3.ogg
+  # - /Audio/Effects/Footsteps/catwalk4.ogg
+  # - /Audio/Effects/Footsteps/catwalk5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk8.ogg
+  # End Inferus
 
 - type: soundCollection
   id: FootstepFloor
   files:
-  - /Audio/Effects/Footsteps/floor1.ogg
-  - /Audio/Effects/Footsteps/floor2.ogg
-  - /Audio/Effects/Footsteps/floor3.ogg
-  - /Audio/Effects/Footsteps/floor4.ogg
-  - /Audio/Effects/Footsteps/floor5.ogg
+  # Begin Inferus
+  # - /Audio/Effects/Footsteps/floor1.ogg
+  # - /Audio/Effects/Footsteps/floor2.ogg
+  # - /Audio/Effects/Footsteps/floor3.ogg
+  # - /Audio/Effects/Footsteps/floor4.ogg
+  # - /Audio/Effects/Footsteps/floor5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor9.ogg
+  # End Inferus
 
 - type: soundCollection
   id: FootstepHull
   files:
-  - /Audio/Effects/Footsteps/hull1.ogg
-  - /Audio/Effects/Footsteps/hull2.ogg
-  - /Audio/Effects/Footsteps/hull3.ogg
-  - /Audio/Effects/Footsteps/hull4.ogg
-  - /Audio/Effects/Footsteps/hull5.ogg
+  # Begin Inferus
+  # - /Audio/Effects/Footsteps/hull1.ogg
+  # - /Audio/Effects/Footsteps/hull2.ogg
+  # - /Audio/Effects/Footsteps/hull3.ogg
+  # - /Audio/Effects/Footsteps/hull4.ogg
+  # - /Audio/Effects/Footsteps/hull5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/hull1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/hull2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/hull3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/hull4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/hull5.ogg
+  # End Inferus
 
 - type: soundCollection
   id: FootstepPlating
   files:
-  - /Audio/Effects/Footsteps/plating1.ogg
-  - /Audio/Effects/Footsteps/plating2.ogg
-  - /Audio/Effects/Footsteps/plating3.ogg
-  - /Audio/Effects/Footsteps/plating4.ogg
-  - /Audio/Effects/Footsteps/plating5.ogg
+  # Begin Inferus
+  # - /Audio/Effects/Footsteps/plating1.ogg
+  # - /Audio/Effects/Footsteps/plating2.ogg
+  # - /Audio/Effects/Footsteps/plating3.ogg
+  # - /Audio/Effects/Footsteps/plating4.ogg
+  # - /Audio/Effects/Footsteps/plating5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/plating1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/plating2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/plating3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/plating4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/plating5.ogg
+  # End Inferus
 
 - type: soundCollection
   id: FootstepTile
   files:
-  - /Audio/Effects/Footsteps/tile1.ogg
-  - /Audio/Effects/Footsteps/tile2.ogg
-  - /Audio/Effects/Footsteps/tile3.ogg
+  # Begin Inferus
+  # - /Audio/Effects/Footsteps/tile1.ogg
+  # - /Audio/Effects/Footsteps/tile2.ogg
+  # - /Audio/Effects/Footsteps/tile3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile9.ogg
+  # End Inferus
 
 - type: soundCollection
   id: FootstepSlime
@@ -97,11 +161,22 @@
 - type: soundCollection
   id: FootstepAsteroid
   files:
-  - /Audio/Effects/Footsteps/asteroid1.ogg
-  - /Audio/Effects/Footsteps/asteroid2.ogg
-  - /Audio/Effects/Footsteps/asteroid3.ogg
-  - /Audio/Effects/Footsteps/asteroid4.ogg
-  - /Audio/Effects/Footsteps/asteroid5.ogg
+  # Begin Inferus
+  # - /Audio/Effects/Footsteps/asteroid1.ogg
+  # - /Audio/Effects/Footsteps/asteroid2.ogg
+  # - /Audio/Effects/Footsteps/asteroid3.ogg
+  # - /Audio/Effects/Footsteps/asteroid4.ogg
+  # - /Audio/Effects/Footsteps/asteroid5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid9.ogg
+  # End Inferus
 
 - type: soundCollection
   id: FootstepSnow
@@ -114,10 +189,21 @@
 - type: soundCollection
   id: FootstepGrass
   files:
-  - /Audio/Effects/Footsteps/grass1.ogg
-  - /Audio/Effects/Footsteps/grass2.ogg
-  - /Audio/Effects/Footsteps/grass3.ogg
-  - /Audio/Effects/Footsteps/grass4.ogg
+  # Begin Inferus
+  # - /Audio/Effects/Footsteps/grass1.ogg
+  # - /Audio/Effects/Footsteps/grass2.ogg
+  # - /Audio/Effects/Footsteps/grass3.ogg
+  # - /Audio/Effects/Footsteps/grass4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass9.ogg
+  # End Inferus
 
 - type: soundCollection
   id: FootstepWater
@@ -130,29 +216,57 @@
 - type: soundCollection
   id: BarestepHard
   files:
-  - /Audio/Effects/Footsteps/hardbarefoot1.ogg
-  - /Audio/Effects/Footsteps/hardbarefoot2.ogg
-  - /Audio/Effects/Footsteps/hardbarefoot3.ogg
-  - /Audio/Effects/Footsteps/hardbarefoot4.ogg
-  - /Audio/Effects/Footsteps/hardbarefoot5.ogg
+  # Begin Inferus
+  # - /Audio/Effects/Footsteps/hardbarefoot1.ogg
+  # - /Audio/Effects/Footsteps/hardbarefoot2.ogg
+  # - /Audio/Effects/Footsteps/hardbarefoot3.ogg
+  # - /Audio/Effects/Footsteps/hardbarefoot4.ogg
+  # - /Audio/Effects/Footsteps/hardbarefoot5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barehard1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barehard2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barehard3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barehard4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barehard5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barehard6.ogg
+  # End Inferus
 
 - type: soundCollection
   id: BarestepCarpet
   files:
-  - /Audio/Effects/Footsteps/carpetbarefoot1.ogg
-  - /Audio/Effects/Footsteps/carpetbarefoot2.ogg
-  - /Audio/Effects/Footsteps/carpetbarefoot3.ogg
-  - /Audio/Effects/Footsteps/carpetbarefoot4.ogg
-  - /Audio/Effects/Footsteps/carpetbarefoot5.ogg
+  # Begin Inferus
+  # - /Audio/Effects/Footsteps/carpetbarefoot1.ogg
+  # - /Audio/Effects/Footsteps/carpetbarefoot2.ogg
+  # - /Audio/Effects/Footsteps/carpetbarefoot3.ogg
+  # - /Audio/Effects/Footsteps/carpetbarefoot4.ogg
+  # - /Audio/Effects/Footsteps/carpetbarefoot5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet8.ogg
+  # End Inferus
 
 - type: soundCollection
   id: BarestepWood
   files:
-  - /Audio/Effects/Footsteps/woodbarefoot1.ogg
-  - /Audio/Effects/Footsteps/woodbarefoot2.ogg
-  - /Audio/Effects/Footsteps/woodbarefoot3.ogg
-  - /Audio/Effects/Footsteps/woodbarefoot4.ogg
-  - /Audio/Effects/Footsteps/woodbarefoot5.ogg
+  # Begin Inferus
+  # - /Audio/Effects/Footsteps/woodbarefoot1.ogg
+  # - /Audio/Effects/Footsteps/woodbarefoot2.ogg
+  # - /Audio/Effects/Footsteps/woodbarefoot3.ogg
+  # - /Audio/Effects/Footsteps/woodbarefoot4.ogg
+  # - /Audio/Effects/Footsteps/woodbarefoot5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood8.ogg
+  # End Inferus
 
 - type: soundCollection
   id: FootstepBounce

@@ -137,7 +137,7 @@ public abstract partial class SpeechBubble
 
     /// <summary>
     /// Works out the pitch of each letter, sentence by sentence.
-    /// Questions start at the normal pitch and rise, exclamations start high and fall back down.
+    /// Questions start at the normal pitch and rise, exclamations arc up towards the middle and fall back down by the end.
     /// </summary>
     private void CalculateTypewriterPitches(float intonation)
     {
@@ -170,7 +170,7 @@ public abstract partial class SpeechBubble
                 if (question)
                     _typewriterPitches[j] = 1f + intonation * progress;
                 else if (exclaim)
-                    _typewriterPitches[j] = 1f + intonation * (1f - progress);
+                    _typewriterPitches[j] = 1f + intonation * MathF.Sin(progress * MathF.PI);
                 else
                     _typewriterPitches[j] = 1f;
             }

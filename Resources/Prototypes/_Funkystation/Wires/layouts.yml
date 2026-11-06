@@ -1,0 +1,10 @@
+- type: wireLayout
+  id: DocumentPrinter
+  dummyWires: 1
+  wires:
+  - !type:PowerWireAction
+  - !type:PowerWireAction
+    pulseTimeout: 15
+  - !type:DocumentPrinterAccessWireAction
+  - !type:AiInteractWireAction
+  - !type:DocumentPrinterManagerWireAction

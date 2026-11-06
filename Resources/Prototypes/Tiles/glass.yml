@@ -3,8 +3,12 @@
   parent: BaseStationTile
   name: tiles-glass-floor
   sprite: /Textures/Tiles/Glass/glass.png
+  # Begin Inferus
+  # footstepSounds:
+  #   collection: FootstepTile
   footstepSounds:
-    collection: FootstepTile
+    collection: FootstepGlass
+  # End Inferus
   itemDrop: SheetGlass1
 
 - type: tile
@@ -12,8 +16,12 @@
   parent: BaseStationTile
   name: tiles-reinforced-glass-floor
   sprite: /Textures/Tiles/Glass/glass-reinf.png
+  # Begin Inferus
+  # footstepSounds:
+  #   collection: FootstepTile
   footstepSounds:
-    collection: FootstepTile
+    collection: FootstepGlass
+  # End Inferus
   itemDrop: SheetRGlass1
 
 - type: tile
@@ -21,8 +29,12 @@
   parent: BaseStationTile
   name: tiles-plasma-glass-floor
   sprite: /Textures/Tiles/Glass/glass-plasma.png
+  # Begin Inferus
+  # footstepSounds:
+  #   collection: FootstepTile
   footstepSounds:
-    collection: FootstepTile
+    collection: FootstepGlass
+  # End Inferus
   itemDrop: SheetPlasma1
 
 - type: tile
@@ -30,8 +42,12 @@
   parent: BaseStationTile
   name: tiles-uranium-glass-floor
   sprite: /Textures/Tiles/Glass/glass-uranium.png
+  # Begin Inferus
+  # footstepSounds:
+  #   collection: FootstepTile
   footstepSounds:
-    collection: FootstepTile
+    collection: FootstepGlass
+  # End Inferus
   itemDrop: SheetUranium1
 
 - type: tile

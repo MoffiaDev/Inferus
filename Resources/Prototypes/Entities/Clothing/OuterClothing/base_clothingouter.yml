@@ -167,6 +167,14 @@
   id: ClothingOuterHardsuitBase
   name: base hardsuit
   components:
+  # Begin Inferus
+  - type: FootstepLayer
+    sound:
+      collection: FootstepLayerHeavy
+      params:
+        volume: -4
+        variation: 0.08
+  # End Inferus
   - type: PressureProtection
     highPressureMultiplier: 0.3
   - type: ClothingSpeedModifier

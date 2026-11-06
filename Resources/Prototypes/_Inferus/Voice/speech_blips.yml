@@ -85,6 +85,105 @@
       variation: 0.04
 
 - type: speechBlip
+  id: Allulalo
+  name: speech-blip-allulalo
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/allulalo.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Anomalocarid
+  name: speech-blip-anomalocarid
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/anomalocarid.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Borg
+  name: speech-blip-borg
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/borg.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Cluwne
+  name: speech-blip-cluwne
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/cluwne.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Gray
+  name: speech-blip-gray
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/gray.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Kodepiia
+  name: speech-blip-kodepiia
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/kodepiia.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Leafy
+  name: speech-blip-leafy
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/leafy.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Sheepish
+  name: speech-blip-ovinia
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/ovinia.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Snail
+  name: speech-blip-snail
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/snail.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: SyndieBorg
+  name: speech-blip-syndieborg
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/syndieborg.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
+  id: Ungu
+  name: speech-blip-ungu
+  sound:
+    path: /Audio/_Inferus/Voice/Blips/ungu.ogg
+    params:
+      volume: 1
+      variation: 0.04
+
+- type: speechBlip
   id: Lizard
   name: speech-blip-lizard
   sound:
