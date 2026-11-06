@@ -345,13 +345,18 @@ public abstract partial class SharedMoverController : VirtualController
             }
 
             if (!weightless && MobMoverQuery.TryGetComponent(uid, out var mobMover) &&
-                TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, tileDef: tileDef))
+                // TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, tileDef: tileDef)) // Inferus - replaced
+                TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, out var surfaceSound, tileDef: tileDef)) // Inferus
             {
                 var soundModifier = mover.Sprinting ? InputMoverComponent.SprintingSoundModifier : InputMoverComponent.WalkingSoundModifier;
 
                 var audioParams = sound.Params
                     .AddVolume(sound.Params.Volume + soundModifier)
                     .WithVariation(sound.Params.Variation ?? mobMover.FootstepVariation);
+                // Begin Inferus
+                if (surfaceSound)
+                    audioParams = ApplyStepTimbre(uid, audioParams);
+                // End Inferus
 
                 // If we're a relay target then predict the sound for all relays.
                 if (relaySource != null)
@@ -362,6 +367,8 @@ public abstract partial class SharedMoverController : VirtualController
                 {
                     _audio.PlayPredicted(sound, uid, uid, audioParams);
                 }
+
+                PlayFootstepLayers(uid, relaySource ?? uid, audioParams); // Inferus
             }
         }
     }
@@ -506,9 +513,11 @@ public abstract partial class SharedMoverController : VirtualController
         MobMoverComponent mobMover,
         TransformComponent xform,
         [NotNullWhen(true)] out SoundSpecifier? sound,
+        out bool surfaceSound, // Inferus
         ContentTileDefinition? tileDef = null)
     {
         sound = null;
+        surfaceSound = false; // Inferus
 
         if (!CanSound() || !_tags.HasTag(uid, FootstepSoundTag))
             return false;
@@ -558,6 +567,7 @@ public abstract partial class SharedMoverController : VirtualController
             return sound != null;
         }
 
+        surfaceSound = true; // Inferus
         return TryGetFootstepSound(uid, xform, shoes != null, out sound, tileDef: tileDef);
     }
 
@@ -616,7 +626,8 @@ public abstract partial class SharedMoverController : VirtualController
         if (tileDef == null)
             return false;
 
-        sound = haveShoes ? tileDef.FootstepSounds : tileDef.BarestepSounds;
+        // sound = haveShoes ? tileDef.FootstepSounds : tileDef.BarestepSounds; // Inferus - replaced
+        sound = GetTileStepSound(tileDef, haveShoes); // Inferus
         return sound != null;
     }
 

@@ -3,6 +3,11 @@
   parent: [SolutionFood, SolutionToolNormal, Clothing]
   id: ClothingShoesBase
   components:
+  # Begin Inferus
+  - type: FootstepTimbre
+    pitch: 1.04
+    volume: -1.5
+  # End Inferus
   - type: Clothing
     slots:
     - FEET
@@ -43,6 +48,11 @@
   parent: [ClothingShoesBase, ClothingSlotBase]
   id: ClothingShoesMilitaryBase
   components:
+  # Begin Inferus
+  - type: FootstepTimbre
+    pitch: 0.9
+    volume: 1.5
+  # End Inferus
   - type: Matchbox
   - type: ItemSlots
     slots:
@@ -70,3 +80,9 @@
   parent: [ ClothingShoesBaseButcherable, TemperatureProtectionMinimal ]
   id: ClothingShoesBaseWinterBoots
   description: Fluffy boots to help survive even the coldest of winters.
+  # Begin Inferus
+  components:
+  - type: FootstepTimbre
+    pitch: 0.94
+    volume: -0.5
+  # End Inferus

@@ -4,6 +4,11 @@
   name: workboots
   description: Engineering lace-up work boots for the especially blue-collar.
   components:
+  # Begin Inferus
+  - type: FootstepTimbre
+    pitch: 0.92
+    volume: 1
+  # End Inferus
   - type: Sprite
     sprite: Clothing/Shoes/Boots/workboots.rsi
   - type: Clothing
@@ -29,6 +34,11 @@
   name: salvage boots
   description: Steel-toed salvage boots for salvaging in hazardous environments.
   components:
+  # Begin Inferus
+  - type: FootstepTimbre
+    pitch: 0.91
+    volume: 1
+  # End Inferus
   - type: Sprite
     sprite: Clothing/Shoes/Boots/explorer.rsi
   - type: Clothing
@@ -99,6 +109,11 @@
   name: laceup shoes
   description: The height of fashion, and they're pre-polished!
   components:
+  # Begin Inferus
+  - type: FootstepTimbre
+    pitch: 1.1
+    volume: 0.5
+  # End Inferus
   - type: Sprite
     sprite: Clothing/Shoes/Boots/laceups.rsi
   - type: Clothing
