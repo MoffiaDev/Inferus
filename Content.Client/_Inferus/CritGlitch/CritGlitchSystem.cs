@@ -21,7 +21,7 @@ namespace Content.Client._Inferus.CritGlitch;
 /// </summary>
 public sealed partial class CritGlitchSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
