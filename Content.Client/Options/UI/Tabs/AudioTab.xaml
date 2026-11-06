@@ -2,6 +2,7 @@
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:ui="clr-namespace:Content.Client.Options.UI">
     <BoxContainer Orientation="Vertical">
+        <!-- Begin Inferus - master volume on top, the rest split into vertical sub-tabs (see AudioTab.xaml.cs)
         <BoxContainer Orientation="Vertical" Margin="8 8 8 8" VerticalExpand="True">
             <Label Text="{Loc 'ui-options-volume-label'}"
                    StyleClasses="LabelKeyText"/>
@@ -15,7 +16,7 @@
                 <ui:OptionSlider Name="SliderVolumeAmbience" Title="{Loc 'ui-options-ambience-volume'}" />
                 <ui:OptionSlider Name="SliderVolumeLobby" Title="{Loc 'ui-options-lobby-volume'}" />
                 <ui:OptionSlider Name="SliderVolumeInterface" Title="{Loc 'ui-options-interface-volume'}" />
-                <ui:OptionSlider Name="SliderVolumeSpeechBlip" Title="{Loc 'ui-options-speech-blip-volume'}" /> <!-- Inferus -->
+                <ui:OptionSlider Name="SliderVolumeSpeechBlip" Title="{Loc 'ui-options-speech-blip-volume'}" />
                 <ui:OptionSlider Name="SliderMaxAmbienceSounds" Title="{Loc 'ui-options-ambience-max-sounds'}"
                                  Margin="0 0 0 8" />
                 <CheckBox Name="LobbyMusicCheckBox" Text="{Loc 'ui-options-lobby-music'}" />
@@ -27,6 +28,49 @@
                 <CheckBox Name="MuteUnfocusedCheckBox" Text="{Loc 'ui-options-mute-unfocused'}" />
             </BoxContainer>
         </BoxContainer>
+        -->
+        <BoxContainer Orientation="Vertical" Margin="8 8 8 4">
+            <ui:OptionSlider Name="SliderVolumeMaster" Title="{Loc 'ui-options-master-volume'}" />
+        </BoxContainer>
+
+        <VerticalTabContainer Name="Sections" VerticalExpand="True" HorizontalExpand="True" />
+
+        <!-- Pages, moved into Sections by code. Kept here so every option keeps its name. -->
+        <BoxContainer Name="Pages" Visible="False">
+            <BoxContainer Name="MusicPage" Orientation="Vertical">
+                <ui:OptionSlider Name="SliderVolumeAmbientMusic" Title="{Loc 'ui-options-ambient-music-volume'}" />
+                <ui:OptionSlider Name="SliderVolumeLobby" Title="{Loc 'ui-options-lobby-volume'}" />
+                <CheckBox Name="LobbyMusicCheckBox" Text="{Loc 'ui-options-lobby-music'}" Margin="0 8 0 0" />
+                <CheckBox Name="EventMusicCheckBox" Text="{Loc 'ui-options-event-music'}" />
+                <CheckBox Name="RestartSoundsCheckBox" Text="{Loc 'ui-options-restart-sounds'}" />
+            </BoxContainer>
+
+            <BoxContainer Name="EnvironmentPage" Orientation="Vertical">
+                <ui:OptionSlider Name="SliderVolumeAmbience" Title="{Loc 'ui-options-ambience-volume'}" />
+                <ui:OptionSlider Name="SliderReverb" Title="{Loc 'ui-options-reverb-volume'}" />
+                <ui:OptionSlider Name="SliderMaxAmbienceSounds" Title="{Loc 'ui-options-ambience-max-sounds'}"
+                                 Margin="0 8 0 0" />
+            </BoxContainer>
+
+            <BoxContainer Name="VoicesPage" Orientation="Vertical">
+                <ui:OptionSlider Name="SliderVolumeSpeechBlip" Title="{Loc 'ui-options-speech-blip-volume'}" />
+            </BoxContainer>
+
+            <BoxContainer Name="OtherPage" Orientation="Vertical">
+                <ui:OptionSlider Name="SliderVolumeInterface" Title="{Loc 'ui-options-interface-volume'}" />
+                <ui:OptionSlider Name="SliderVolumeMidi" Title="{Loc 'ui-options-midi-volume'}" />
+                <CheckBox Name="AdminSoundsCheckBox" Text="{Loc 'ui-options-admin-sounds'}" Margin="0 8 0 0" />
+                <CheckBox Name="BwoinkSoundCheckBox" Text="{Loc 'ui-options-bwoink-sound'}" />
+            </BoxContainer>
+
+            <BoxContainer Name="DevicePage" Orientation="Vertical">
+                <ui:OptionDropDown Name="DropDownAudioDevice" Title="{Loc 'ui-options-audio-device'}"
+                                   Margin="0 0 0 8" />
+                <CheckBox Name="AudioHrtfCheckBox" Text="{Loc 'ui-options-audio-hrtf'}" />
+                <CheckBox Name="MuteUnfocusedCheckBox" Text="{Loc 'ui-options-mute-unfocused'}" />
+            </BoxContainer>
+        </BoxContainer>
+        <!-- End Inferus -->
         <ui:OptionsTabControlRow Name="Control" Access="Public" />
     </BoxContainer>
 </Control>
