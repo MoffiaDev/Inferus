@@ -99,7 +99,7 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
         if (!TryComp<MobStateComponent>(attached, out var state))
             return false;
 
-        return state.CurrentState is MobState.Alive or MobState.Critical;
+        return state.CurrentState is MobState.Alive or MobState.Critical or MobState.SoftCritical or MobState.HardCritical; // Inferus: softcrit
     }
 
     public IEnumerable<string> GetTimedRoles(EntityUid mindId)

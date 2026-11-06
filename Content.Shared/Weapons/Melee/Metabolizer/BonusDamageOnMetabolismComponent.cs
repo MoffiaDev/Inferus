@@ -34,5 +34,5 @@ public sealed partial class BonusDamageOnMetabolismComponent : Component
     /// Will only do damage to mobs in one of these states. If null, doesn't care about the state of the mob.
     /// </summary>
     [DataField]
-    public HashSet<MobState> ValidMobStates = [ MobState.Alive, MobState.Critical ];
+    public HashSet<MobState> ValidMobStates = [ MobState.Alive, MobState.Critical, MobState.SoftCritical, MobState.HardCritical ]; // Inferus: softcrit
 }

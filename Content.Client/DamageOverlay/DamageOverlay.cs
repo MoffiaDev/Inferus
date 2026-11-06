@@ -225,8 +225,8 @@ public sealed partial class DamageOverlay : Overlay
             _oldPainLevel = PainLevel;
         }
 
-        // Inferus
-        level = State != MobState.Critical ? _oldOxygenLevel : (_legacy ? 1f : 0f);
+        // Inferus: soft and hard crit both count as crit for the overlay
+        level = State is not (MobState.Critical or MobState.SoftCritical or MobState.HardCritical) ? _oldOxygenLevel : (_legacy ? 1f : 0f);
 
         if (level > 0f)
         {

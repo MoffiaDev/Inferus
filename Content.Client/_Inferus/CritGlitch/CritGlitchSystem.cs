@@ -85,7 +85,7 @@ public sealed partial class CritGlitchSystem : EntitySystem
         SetActive(false);
 
         if (TryComp<MobStateComponent>(args.Entity, out var mobState) &&
-            mobState.CurrentState == MobState.Critical)
+            mobState.CurrentState is MobState.Critical or MobState.SoftCritical or MobState.HardCritical)
         {
             SetActive(true);
             UpdateCritLevel();
@@ -102,7 +102,7 @@ public sealed partial class CritGlitchSystem : EntitySystem
         if (args.Target != _player.LocalEntity)
             return;
 
-        if (args.NewMobState != MobState.Critical)
+        if (args.NewMobState is not (MobState.Critical or MobState.SoftCritical or MobState.HardCritical))
         {
             SetActive(false);
             return;

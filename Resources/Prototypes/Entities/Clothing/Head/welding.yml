@@ -26,6 +26,8 @@
   - type: ImageOverlay
     pathToOverlayImage: "/Textures/Clothing/Head/Welding/weldingTexture.png"
     additionalColorOverlay: "#000000A0"
+  - type: ESViewconeModifier # Funky
+    angleModifier: -160
 
 - type: entity
   parent: WeldingMaskBase

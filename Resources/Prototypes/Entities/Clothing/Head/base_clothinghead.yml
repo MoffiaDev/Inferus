@@ -143,6 +143,8 @@
     - HeadTop
     - HeadSide
     - FacialHair
+  - type: ESViewconeModifier # Funky
+    angleModifier: -90
 
 - type: entity
   abstract: true
@@ -199,6 +201,9 @@
   abstract: true
   parent: [ TemperatureProtection, ClothingHeadHardsuitBase ]
   id: ClothingHeadHardsuitInsulatedBase
+  components: # Funky
+  - type: ESViewconeModifier # Funky
+    angleModifier: -60
 
 - type: entity
   abstract: true

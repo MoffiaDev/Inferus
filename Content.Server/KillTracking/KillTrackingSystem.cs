@@ -42,8 +42,12 @@ public sealed partial class KillTrackingSystem : EntitySystem
 
     private void OnMobStateChanged(EntityUid uid, KillTrackerComponent component, MobStateChangedEvent args)
     {
-        if (args.NewMobState != component.KillState || args.OldMobState >= args.NewMobState)
+        // Inferus: soft and hard crit count as critical, so a kill registers once on the way into crit
+        var newState = args.NewMobState is MobState.SoftCritical or MobState.HardCritical ? MobState.Critical : args.NewMobState;
+        var oldState = args.OldMobState is MobState.SoftCritical or MobState.HardCritical ? MobState.Critical : args.OldMobState;
+        if (newState != component.KillState || oldState >= newState)
             return;
+        // End Inferus
 
         // impulse is the entity that did the finishing blow.
         var killImpulse = GetKillSource(args.Origin);

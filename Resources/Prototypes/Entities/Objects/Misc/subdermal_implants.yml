@@ -353,6 +353,8 @@
     - type: TriggerOnMobstateChange
       mobState:
       - Critical
+      - SoftCritical # Inferus
+      - HardCritical # Inferus
       - Dead
     - type: RattleOnTrigger
       targetUser: true

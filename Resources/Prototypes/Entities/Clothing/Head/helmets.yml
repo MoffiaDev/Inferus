@@ -154,6 +154,8 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+  - type: ESViewconeModifier # Funky
+    angleModifier: -35
 
 #Bombsuit Helmet
 - type: entity
@@ -179,6 +181,8 @@
     layers:
       Hair: HEAD
       Snout: HEAD
+  - type: ESViewconeModifier # Funky
+    angleModifier: -90
 
 #Janitorial Bombsuit Helmet
 - type: entity
@@ -258,6 +262,8 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+  - type: ESViewconeModifier # Funky
+    angleModifier: -90
 
 #Thunderdome Helmet
 - type: entity
@@ -333,6 +339,8 @@
       - state: inhand-left
       right:
       - state: inhand-right
+  - type: ESViewconeModifier # Funky
+    angleModifier: -90
 
 #Atmos Fire Helmet
 - type: entity
@@ -376,6 +384,8 @@
       - state: inhand-left
       right:
       - state: inhand-right
+  - type: ESViewconeModifier # Funky
+    angleModifier: -90
 
 #Chitinous Helmet
 - type: entity
