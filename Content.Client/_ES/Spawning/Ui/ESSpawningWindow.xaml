@@ -5,9 +5,6 @@
     Title="{Loc 'es-spawn-menu-title'}"
     MinSize="950 530">
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="10">
-        <ScrollContainer VScrollEnabled="False" HorizontalExpand="True" MinHeight="30" ReserveScrollbarSpace="True">
-            <BoxContainer Name="StationCheckboxContainer" Orientation="Horizontal" SeparationOverride="20"/>
-        </ScrollContainer>
         <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
             <BoxContainer Orientation="Vertical" HorizontalExpand="True">
                 <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">

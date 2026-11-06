@@ -34,8 +34,6 @@ public sealed partial class ESSpawningWindow : FancyWindow
     private readonly ClientGameTicker _gameTicker;
     private readonly SpriteSystem _sprites;
 
-    private readonly List<ESJobButton> _jobButtons = new();
-
     public ESSpawningWindow()
     {
         RobustXamlLoader.Load(this);
@@ -44,7 +42,7 @@ public sealed partial class ESSpawningWindow : FancyWindow
         _sprites = _entitySystem.GetEntitySystem<SpriteSystem>();
         _gameTicker = _entitySystem.GetEntitySystem<ClientGameTicker>();
 
-        Rebuild();
+        RebuildJobLists();
 
         _jobRequirements.Updated += RebuildJobLists;
         _gameTicker.LobbyJobsAvailableUpdated += OnJobsAvailableUpdated;
@@ -60,45 +58,12 @@ public sealed partial class ESSpawningWindow : FancyWindow
 
     private void OnJobsAvailableUpdated(IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> _)
     {
-        // Stations may have been added or removed, so rebuild everything if they don't match.
-        var known = StationCheckboxContainer.Children.OfType<ESStationCheckbox>().Select(c => c.Station).ToHashSet();
-        if (!known.SetEquals(_gameTicker.JobsAvailable.Keys))
-        {
-            Rebuild();
-            return;
-        }
-
-        foreach (var button in _jobButtons)
-        {
-            GetJobCount(button.Job, out var count, out var filteredCount);
-            button.RefreshLabel(count, filteredCount);
-        }
-    }
-
-    private void Rebuild()
-    {
-        StationCheckboxContainer.Children.Clear();
-        foreach (var station in _gameTicker.JobsAvailable.Keys)
-        {
-            var name = _gameTicker.StationNames.GetValueOrDefault(station) ?? string.Empty;
-            var ctrl = new ESStationCheckbox(station, name);
-            ctrl.SetPressedSilent(true); // All checkboxes are ticked by default
-            ctrl.OnPressed += OnStationFiltered;
-
-            StationCheckboxContainer.AddChild(ctrl);
-        }
-
-        RebuildJobLists();
-    }
-
-    private void OnStationFiltered(NetEntity obj)
-    {
+        // Stations or jobs may have been added or removed, so just rebuild the lists.
         RebuildJobLists();
     }
 
     private void RebuildJobLists()
     {
-        _jobButtons.Clear();
         JobContainer.Children.Clear();
         JobContainer2.Children.Clear();
 
@@ -113,8 +78,8 @@ public sealed partial class ESSpawningWindow : FancyWindow
 
         departments.Sort(DepartmentUIComparer.Instance);
 
-        // Inferus - use the job weights of the first selected station for sorting, same as the stock late-join menu does per-station.
-        var weights = GetSelectedStations().Select(s => _gameTicker.JobWeightsByStation.GetValueOrDefault(s)).FirstOrDefault();
+        // Inferus - use the job weights of the first station for sorting, same as the stock late-join menu does per-station.
+        var weights = _gameTicker.JobsAvailable.Keys.Select(s => _gameTicker.JobWeightsByStation.GetValueOrDefault(s)).FirstOrDefault();
         JobUIComparer.TryCreate(_prototypeManager, weights, out var comparer);
 
         foreach (var department in departments)
@@ -157,15 +122,15 @@ public sealed partial class ESSpawningWindow : FancyWindow
                 if (!JobIsSupported(job))
                     continue;
 
-                GetJobCount(job, out var count, out var filteredCount);
+                var count = GetJobCount(job);
 
-                var button = new ESJobButton(job, count, filteredCount, _prototypeManager, _sprites)
+                var button = new ESJobButton(job, count, _prototypeManager, _sprites)
                 {
                     HorizontalExpand = true,
                 };
                 button.OnPressed += _ =>
                 {
-                    var ev = new ESSpawnPlayerEvent(GetSelectedStations().ToList(), job.ID);
+                    var ev = new ESSpawnPlayerEvent(job.ID);
                     _entityManager.EntityNetManager.SendSystemNetworkMessage(ev);
                     Close();
                 };
@@ -199,7 +164,6 @@ public sealed partial class ESSpawningWindow : FancyWindow
                     button.Disabled = true;
                 }
 
-                _jobButtons.Add(button);
                 category.AddChild(button);
             }
 
@@ -213,52 +177,39 @@ public sealed partial class ESSpawningWindow : FancyWindow
         }
     }
 
+    /// <summary>
+    /// Gets the total number of open slots for a job across all stations.
+    /// </summary>
     /// <remarks>
     /// A null count means the job has unlimited slots.
     /// </remarks>
-    private void GetJobCount(ProtoId<JobPrototype> job, out int? count, out int? filteredCount)
+    private int? GetJobCount(ProtoId<JobPrototype> job)
     {
-        var selected = GetSelectedStations().ToHashSet();
+        int? count = 0;
 
-        count = 0;
-        filteredCount = 0;
-
-        foreach (var (station, jobDict) in _gameTicker.JobsAvailable)
+        foreach (var jobDict in _gameTicker.JobsAvailable.Values)
         {
-            if (!jobDict.TryGetValue(job, out var slots))
-                continue;
-
             // Inferus - null slots are unlimited, and null + int is null, so this carries through.
-            if (selected.Contains(station))
+            if (jobDict.TryGetValue(job, out var slots))
                 count += slots;
-            else
-                filteredCount += slots;
         }
+
+        return count;
     }
 
     private bool JobIsSupported(JobPrototype job)
     {
         return _gameTicker.JobsAvailable.Any(p => p.Value.ContainsKey(job.ID));
     }
-
-    private IEnumerable<NetEntity> GetSelectedStations()
-    {
-        foreach (var child in StationCheckboxContainer.Children)
-        {
-            if (child is ESStationCheckbox checkBox && checkBox.Pressed)
-                yield return checkBox.Station;
-        }
-    }
 }
 
 public sealed class ESJobButton : ContainerButton
 {
     public Label JobAmountLabel { get; }
-    public RichTextLabel JobFilteredAmountLabel { get; }
 
     public ProtoId<JobPrototype> Job;
 
-    public ESJobButton(JobPrototype job, int? amount, int? filteredAmount, IPrototypeManager protoMan, SpriteSystem sys)
+    public ESJobButton(JobPrototype job, int? amount, IPrototypeManager protoMan, SpriteSystem sys)
     {
         HorizontalExpand = true;
         VerticalExpand = true;
@@ -295,32 +246,20 @@ public sealed class ESJobButton : ContainerButton
             HorizontalAlignment = HAlignment.Right,
         };
 
-        JobFilteredAmountLabel = new RichTextLabel
-        {
-            HorizontalAlignment = HAlignment.Right,
-            Margin = new Thickness(5, 0, 0, 0),
-        };
-
-        RefreshLabel(amount, filteredAmount);
+        RefreshLabel(amount);
 
         box.AddChild(icon);
         box.AddChild(jobNameLabel);
         box.AddChild(ctrl);
         box.AddChild(JobAmountLabel);
-        box.AddChild(JobFilteredAmountLabel);
         AddChild(box);
         AddStyleClass("button");
     }
 
-    public void RefreshLabel(int? amount, int? filteredAmount)
+    public void RefreshLabel(int? amount)
     {
         JobAmountLabel.Text = amount != null
             ? Loc.GetString("es-spawn-menu-job-slot-capped", ("amount", amount))
             : Loc.GetString("es-spawn-menu-job-slot-uncapped");
-
-        JobFilteredAmountLabel.Visible = filteredAmount != 0;
-        JobFilteredAmountLabel.Text = filteredAmount != null
-            ? Loc.GetString("es-spawn-menu-job-slot-excluded", ("amount", filteredAmount))
-            : Loc.GetString("es-spawn-menu-job-slot-excluded-uncapped");
     }
 }

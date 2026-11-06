@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Station.Components;
@@ -56,15 +55,13 @@ public sealed partial class ESSpawningSystem : EntitySystem
             return;
 
         var stations = new List<EntityUid>();
-        foreach (var netStation in msg.Stations.Distinct())
+        var query = EntityQueryEnumerator<StationJobsComponent>();
+        while (query.MoveNext(out var station, out _))
         {
-            if (!TryGetEntity(netStation, out var station) || !HasComp<StationJobsComponent>(station))
+            if (!_stationJobs.TryGetJobSlot(station, job, out var slots) || slots == 0)
                 continue;
 
-            if (!_stationJobs.TryGetJobSlot(station.Value, job, out var slots) || slots == 0)
-                continue;
-
-            stations.Add(station.Value);
+            stations.Add(station);
         }
 
         if (stations.Count == 0)
