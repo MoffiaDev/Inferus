@@ -183,28 +183,36 @@ public sealed partial class CritGlitchSystem : EntitySystem
 
     private void TryApply(EntityUid uid)
     {
-        if (uid == _player.LocalEntity || _glitched.Contains(uid))
+        if (uid == _player.LocalEntity)
             return;
 
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
-        // Don't explode other sprite effects (stealth cloaks, holograms, etc.)
-        if (sprite.PostShader != null)
+        if (sprite.PostShader == _shader)
+        {
+            _glitched.Add(uid);
             return;
+        }
 
+        if (sprite.PostShader != null)
+        {
+            _glitched.Remove(uid);
+            return;
+        }
+
+        // Free slot – apply.
         sprite.PostShader = _shader;
         _glitched.Add(uid);
     }
 
     private void ClearAll()
     {
-        foreach (var uid in _glitched)
+        // Full scan so we never leave the shader stuck on an entity that
+        // is no longer in the tracking set (PVS leave, deletion, set desync, …).
+        var query = EntityQueryEnumerator<HumanoidProfileComponent, SpriteComponent>();
+        while (query.MoveNext(out var uid, out _, out var sprite))
         {
-            if (!TryComp<SpriteComponent>(uid, out var sprite))
-                continue;
-
-            // Only restore if nobody else has taken the slot since
             if (sprite.PostShader == _shader)
                 sprite.PostShader = null;
         }
