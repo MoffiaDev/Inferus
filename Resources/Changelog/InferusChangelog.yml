@@ -71,3 +71,17 @@ Entries:
       message: This isn't even all of it. Good god.
   id: 3
   time: '2026-11-06T06:20:18.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Add
+      message: Apids are now playable.
+    - type: Add
+      message: Ungu are now playable.
+    - type: Add
+      message: Ovinia are now playable.
+    - type: Add
+      message: Gastropoids are now playable.
+    - type: Add
+      message: Allulalo are now playable.
+  id: 4
+  time: '2026-11-07T19:28:22.0000000+00:00'
