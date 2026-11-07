@@ -126,6 +126,7 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
     }
 
     // black control sits in the popup root so it covers all the ui. this is a great idea and can have no negative repercussions :godo:
+    // inferus: ^ yeah lets not do that? thanks
     private void UpdatePanel()
     {
         if (_level <= 0f)
@@ -148,13 +149,14 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
         }
 
         if (_panel.Parent == null)
-            _ui.PopupRoot.AddChild(_panel);
+            _ui.WindowRoot.AddChild(_panel); // Inferus: window root instead of popup root
 
         if (!_panel.Visible)
         {
             _panel.Visible = true;
 
-            _panel.SetPositionInParent(_ui.PopupRoot.ChildCount - 1);
+            // Inferus: bottom of the window stack so it blacks out the game view but not the ui
++           _panel.SetPositionInParent(0);
         }
 
         _panel.Modulate = Color.White.WithAlpha(_level);
