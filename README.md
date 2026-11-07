@@ -4,6 +4,8 @@ Inferus is an open source adult-oriented project aimed at creating unique gamepl
 
 The primary purpose of [Macrocosm](https://github.com/syndicate-ss14/macrocosm) is to collate content from member communities (Microcosms) to facilitate ease of development and share content that is universally desired or that requires a larger maintenance burden.
 
+![Alt](https://repobeats.axiom.co/api/embed/032d11f7f5e813a5f11e82e09d05328976ecefdc.svg "Repobeats analytics image")
+
 ## Links
 
 <div class="header" align="center">
