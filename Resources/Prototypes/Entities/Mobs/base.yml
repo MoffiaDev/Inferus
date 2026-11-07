@@ -112,6 +112,9 @@
     lightningExplode: false
   - type: GhostOnMove
     mustBeDead: true
+  - type: ESViewcone # ES
+  - type: ESViewconeOccludable # ES
+  - type: ViewconeBlindness # Funky
 
 # Used as a simple default for mob destruction
 - type: entity

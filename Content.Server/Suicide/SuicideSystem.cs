@@ -71,7 +71,16 @@ public sealed partial class SuicideSystem : SharedSuicideSystem
         // This is a handled event, but the result is never used
         // It looks like TriggerOnMobstateChange is supposed to prevent you from suiciding
         var suicideEvent = new SuicideEvent(victim);
+        // Inferus: the relative dispatch order of the SuicideEvent handlers depends on the
+        // victim's component-add order, which is not deterministic (it follows prototype
+        // component-map iteration, which varies per process). When the default-damage handler
+        // runs first it pre-empts the held-item path, so a mob suiciding with an
+        // execution-capable weapon would randomly die from Bloodloss instead of the weapon
+        // (this also made TestSuicideByHeldItemSpreadDamage flaky). Run the environmental
+        // attempt explicitly before raising the event so it always gets first pick.
+        TryEnvironmentalSuicide((victim, mobState), ref suicideEvent);
         RaiseLocalEvent(victim, suicideEvent);
+        // End Inferus
 
         // Since the player is already dead the log will not contain their username.
         if (session != null)
@@ -114,6 +123,15 @@ public sealed partial class SuicideSystem : SharedSuicideSystem
     /// Raise event to attempt to use held item, or surrounding entities to attempt to commit suicide
     /// </summary>
     private void OnEnvironmentalSuicide(Entity<MobStateComponent> victim, ref SuicideEvent args)
+    {
+        // Inferus: extracted to TryEnvironmentalSuicide so Suicide() can run it deterministically
+        // before the SuicideEvent is raised (see Suicide() for why handler order can't be relied on).
+        TryEnvironmentalSuicide(victim, ref args);
+        // End Inferus
+    }
+
+    // Inferus: body moved from OnEnvironmentalSuicide
+    private void TryEnvironmentalSuicide(Entity<MobStateComponent> victim, ref SuicideEvent args)
     {
         if (args.Handled || _mobState.IsCritical(victim))
             return;
