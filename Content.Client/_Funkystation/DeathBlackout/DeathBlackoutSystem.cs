@@ -156,7 +156,7 @@ public sealed partial class DeathBlackoutSystem : EntitySystem
             _panel.Visible = true;
 
             // Inferus: bottom of the window stack so it blacks out the game view but not the ui
-+           _panel.SetPositionInParent(0);
+            _panel.SetPositionInParent(0);
         }
 
         _panel.Modulate = Color.White.WithAlpha(_level);
