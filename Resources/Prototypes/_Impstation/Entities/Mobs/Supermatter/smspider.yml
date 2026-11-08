@@ -35,6 +35,7 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Damageable # Inferus
   - type: Injurable
     damageContainer: Inorganic
   - type: Destructible
