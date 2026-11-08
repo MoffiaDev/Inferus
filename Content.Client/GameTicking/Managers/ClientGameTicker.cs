@@ -148,6 +148,9 @@ namespace Content.Client.GameTicking.Managers
 
         private void JoinGame(TickerJoinGameEvent message)
         {
+            if (GoobJoinGameAttempt()) // Goob
+                return; // Goob
+
             _stateManager.RequestStateChange<GameplayState>();
         }
 
