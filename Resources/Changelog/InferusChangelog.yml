@@ -85,3 +85,11 @@ Entries:
       message: Allulalo are now playable.
   id: 4
   time: '2026-11-07T19:28:22.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Add
+      message: Supermatter's back in action!
+    - type: Remove
+      message: Removed Herobrine.
+  id: 5
+  time: '2026-11-08T17:15:38.0000000+00:00'
