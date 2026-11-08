@@ -82,6 +82,11 @@ public sealed partial class BeamSystem : SharedBeamSystem
         if (!TryComp<BeamComponent>(ent, out var beam))
             return;
 
+        // Inferus - start non-randomized lightning sprites
+        if (!beam.AllowSpriteOverwrite)
+            bodyState = null;
+        // Inferus - end non-randomized lightning sprites
+
         if (TryComp<PhysicsComponent>(ent, out var physics) && physics.CanCollide)
         {
             _fixture.TryCreateFixture(
@@ -145,34 +150,71 @@ public sealed partial class BeamSystem : SharedBeamSystem
         if (Deleted(user) || Deleted(target))
             return;
 
-        var userMapPos = _transform.GetMapCoordinates(user);
-        var targetMapPos = _transform.GetMapCoordinates(target);
-
-        if (userMapPos.MapId != targetMapPos.MapId)
+        // Inferus - Beam creation was changed to a coordinate-to-coordinate method to allow for more flexibility.
+        if (!TryCreateBeam(_transform.GetMapCoordinates(user), _transform.GetMapCoordinates(target), bodyPrototype, bodyState, shader, controller))
             return;
 
-        //The distance between the target and the user.
-        var calculatedDistance = targetMapPos.Position - userMapPos.Position;
-        var userAngle = calculatedDistance.ToWorldAngle();
-
-        //Don't divide by zero
-        if (calculatedDistance.Length() == 0)
-            return;
-
-        //Where the start of the beam will spawn
-        var beamStartPos = userMapPos.Offset(calculatedDistance.Normalized());
-
-        if (TryComp<BeamComponent>(controller, out var controllerBeamComp))
+        if (controller != null && TryComp<BeamComponent>(controller, out var controllerBeamComp))
         {
             controllerBeamComp.HitTargets.Add(user);
             controllerBeamComp.HitTargets.Add(target);
         }
 
+        var ev = new CreateBeamSuccessEvent(user, target);
+        RaiseLocalEvent(user, ev);
+    }
+
+    /// <summary>
+    /// Called where you want an entity to create a beam from one set of coordinates to another.
+    /// Tries to create the beam and does calculations like the distance, angle, and offset.
+    /// </summary>
+    /// <param name="coordinates">The coordinates that the beam is being fired from</param>
+    /// <param name="targetCoordinates">The coordinates that are being targeted</param>
+    /// <param name="bodyPrototype">The prototype spawned when this beam is created</param>
+    /// <param name="bodyState">Optional sprite state for the <see cref="bodyPrototype"/> if a default one is not given</param>
+    /// <param name="shader">Optional shader for the <see cref="bodyPrototype"/> and <see cref="bodyState"/> if a default one is not given</param>
+    /// <param name="controller"></param>
+    public bool TryCreateBeam(MapCoordinates coordinates, MapCoordinates targetCoordinates, string bodyPrototype, string? bodyState = null, string shader = "unshaded", EntityUid? controller = null)
+    {
+        //The distance between the target and the user.
+        var calculatedDistance = targetCoordinates.Position - coordinates.Position;
+        var userAngle = calculatedDistance.ToWorldAngle();
+
+        if (coordinates.MapId != targetCoordinates.MapId)
+            return false;
+
+        //Where the start of the beam will spawn
+        var beamStartPos = coordinates.Offset(calculatedDistance.Normalized());
+
+        //Don't divide by zero
+        if (calculatedDistance.Length() == 0)
+            return false;
+
         var distanceCorrection = calculatedDistance - calculatedDistance.Normalized();
 
         CreateBeam(bodyPrototype, userAngle, calculatedDistance, beamStartPos, distanceCorrection, controller, bodyState, shader);
+        return true;
+    }
 
-        var ev = new CreateBeamSuccessEvent(user, target);
-        RaiseLocalEvent(user, ev);
+    /// <summary>
+    /// Called where you want an entity to create a beam from a set of coordinates to an entity.
+    /// Tries to create the beam and does calculations like the distance, angle, and offset.
+    /// </summary>
+    /// <param name="coordinates">The coordinates that the beam is being fired from</param>
+    /// <param name="target">The entity that's being targeted by the user</param>
+    /// <param name="bodyPrototype">The prototype spawned when this beam is created</param>
+    /// <param name="bodyState">Optional sprite state for the <see cref="bodyPrototype"/> if a default one is not given</param>
+    /// <param name="shader">Optional shader for the <see cref="bodyPrototype"/> and <see cref="bodyState"/> if a default one is not given</param>
+    /// <param name="controller"></param>
+    public void TryCreateBeam(MapCoordinates coordinates, EntityUid target, string bodyPrototype, string? bodyState = null, string shader = "unshaded", EntityUid? controller = null)
+    {
+        if (Deleted(target))
+            return;
+
+        if (TryCreateBeam(coordinates, _transform.GetMapCoordinates(target), bodyPrototype, bodyState, shader, controller))
+        {
+            if (controller != null && TryComp<BeamComponent>(controller, out var controllerBeamComp))
+                controllerBeamComp.HitTargets.Add(target);
+        }
     }
 }

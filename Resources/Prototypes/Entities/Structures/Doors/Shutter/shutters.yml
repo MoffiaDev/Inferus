@@ -144,7 +144,7 @@
   parent: ShuttersNormal
   id: ShuttersRadiation
   name: radiation shutters
-  description: These come with extra-radiation-resistant paint.
+  description: A relatively fragile set of shutters, made of radiation blocking lead plates. # Inferus - supermatter
   components:
   - type: Sprite
     sprite: Structures/Doors/Shutters/shutters-radiation.rsi
@@ -161,6 +161,15 @@
     - board
   - type: RadiationBlocker
     resistance: 4
+  # Inferus - destructible radiation shutters
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   id: ShuttersRadiationOpen

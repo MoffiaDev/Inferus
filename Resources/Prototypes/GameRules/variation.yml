@@ -46,6 +46,8 @@
     tilesPerEntityStdDev: 4
     entities:
     - id: RandomSpawner
+    componentBlacklist: # Inferus - stop spawning trash near the SM
+    - type: Supermatter
 
 - type: entity
   id: BasicDecalDirtVariationPass

@@ -379,6 +379,11 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+  # Inferus
+  - type: SupermatterImmune
+  - type: ClothingGrantComponent
+    component:
+    - type: SupermatterImmune
 
 #Chief Medical Officer's Hardsuit
 - type: entity
