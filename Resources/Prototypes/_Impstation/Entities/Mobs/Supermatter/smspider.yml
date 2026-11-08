@@ -71,7 +71,7 @@
         Radiation: 3
   - type: NpcFactionMember
     factions:
-    - SimpleNeutral
+    - SimpleHostile
   # Inferus - NPCRetaliation not present in Macrocosm
   # - type: NPCRetaliation
   #   attackMemoryLength: 10
@@ -145,6 +145,6 @@
       40: Dead
   - type: NpcFactionMember
     factions:
-    - AllHostile
+    - SimpleHostile
   - type: PointLight
     color: "#ff5555"
