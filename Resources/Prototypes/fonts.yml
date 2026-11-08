@@ -1,18 +1,22 @@
 - type: font
   id: Default
-  path: /Fonts/NotoSans/NotoSans-Regular.ttf
+  # path: /Fonts/NotoSans/NotoSans-Regular.ttf # Inferus - replaced with Tomorrow
+  path: /Fonts/_ES/Tomorrow/Tomorrow-Regular.ttf # Inferus
 
 - type: font
   id: DefaultItalic
-  path: /Fonts/NotoSans/NotoSans-Italic.ttf
+  # path: /Fonts/NotoSans/NotoSans-Italic.ttf # Inferus - replaced with Tomorrow
+  path: /Fonts/_ES/Tomorrow/Tomorrow-Italic.ttf # Inferus
 
 - type: font
   id: DefaultBold
-  path: /Fonts/NotoSans/NotoSans-Bold.ttf
+  # path: /Fonts/NotoSans/NotoSans-Bold.ttf # Inferus - replaced with Tomorrow
+  path: /Fonts/_ES/Tomorrow/Tomorrow-Bold.ttf # Inferus
 
 - type: font
   id: DefaultBoldItalic
-  path: /Fonts/NotoSans/NotoSans-BoldItalic.ttf
+  # path: /Fonts/NotoSans/NotoSans-BoldItalic.ttf # Inferus - replaced with Tomorrow
+  path: /Fonts/_ES/Tomorrow/Tomorrow-BoldItalic.ttf # Inferus
 
 - type: font
   id: NotoSansDisplay

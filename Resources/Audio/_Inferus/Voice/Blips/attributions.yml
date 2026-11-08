@@ -1,0 +1,72 @@
+- files: ["bass.ogg", "baritone.ogg", "tenor.ogg", "alto.ogg", "lizard.ogg", "slime.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Goonstation, Modified by Whisper, modified by Tarazicon"
+  source: "https://github.com/goonstation/goonstation/tree/eb3e7df6292d23f6af2f18b4372d3a8ba4b0fda7/sound/misc/talk"
+
+- files: ["synthetic.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "hubismal on GitHub, modified by Tarazicon"
+  source: "https://github.com/space-wizards/space-station-14/commit/3421e4f4de2613df1e92a4169a778335bc9faac4"
+
+- files: ["arachnid.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Recorded by https://github.com/PixelTheKermit, modified by Tarazicon"
+  source: "https://github.com/space-wizards/space-station-14/pull/13945"
+
+- files: ["vulp.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "pug.ogg (Renamed to vulp.ogg), pug_ask.ogg (Renamed to vulp_ask.ogg, pug_exclaim.ogg (Renamed to vulp_exclaim.ogg) all taken from: https://github.com/goonstation/goonstation/commit/da7c8965c4552ca53af367e6c83a83da2affe790, modified by Tarazicon"
+  source: "https://github.com/goonstation/goonstation/commit/da7c8965c4552ca53af367e6c83a83da2affe790"
+
+- files: ["vox.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Derived from shriek1.ogg (originally from Paradise Station) by Errant, modified by Tarazicon."
+  source: "https://github.com/ParadiseSS13/Paradise/commit/43e60ab01eda88fe30eb93612614bde836e55fe4"
+
+- files:
+    - cluwne.ogg
+  license: "CC-BY-4.0"
+  copyright: "Evil Laughs 3 Pack by Nanakisan. Modified by brainfood1183 (Github), shortened, converted from WAV to OGG and downmixed to 1 channel. Modified by Tarazicon"
+  source: "https://freesound.org/people/Nanakisan/packs/15544/"
+
+- files: ["leafy.ogg"]
+  license: "CC0-1.0"
+  copyright: "Made by nicoproson on freesound.org. The three files were cropped out of the source file and re-encoded to Ogg Vorbis. Modified by Tarazicon"
+  source: "https://freesound.org/people/nicoproson/sounds/631406/"
+
+- files: ["allulalo.ogg"]
+  license: "CC0-1.0"
+  copyright: "Made by TRP on freesound.org. Modified by Tarazicon"
+  source: "https://freesound.org/s/616995/"
+
+- files:
+  - "anomalocarid.ogg"
+  license: "CC-BY-SA-4.0"
+  copyright: "created by Skeepo in bosca ceoil. Modified by Tarazicon"
+  source: "https://yurisizov.itch.io/boscaceoil-blue"
+
+- files:
+  - snail.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Widgetbeck. Modified by Tarazicon"
+  source: "https://github.com/impstation/imp-station-14/pull/184"
+
+- files:
+  - "gray.ogg"
+  license: "Custom"
+  copyright: "Clipped from video uploaded by TikTok user rockdum with Fortnite and TTS audio distorted by a filter. Modified by Tarazicon"
+  source: "https://www.tiktok.com/@rockdum/video/7301824973323259167"
+
+- files:
+  - "kodepiia.ogg"
+  license: "CC-BY-SA-4.0"
+  copyright: "created by adrianornhagen, edited by credley. Modified by Tarazicon"
+  source: "https://freesound.org/people/adrianornhagen/sounds/777766/"
+
+# ovinia talk ogg origin is unknown
+
+- files:
+  - ungu.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "quicksounds, modified by Tarazicon"
+  source: "https://quicksounds.com/sound/3854/lion-chuff-roar-calm"

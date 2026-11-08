@@ -123,7 +123,7 @@ public sealed partial class DamageForceSaySystem : EntitySystem
 
     private void OnMobStateChanged(EntityUid uid, DamageForceSayComponent component, MobStateChangedEvent args)
     {
-        if (args is not { OldMobState: MobState.Alive, NewMobState: MobState.Critical or MobState.Dead })
+        if (args is not { OldMobState: MobState.Alive, NewMobState: MobState.Critical or MobState.SoftCritical or MobState.HardCritical or MobState.Dead }) // Inferus: softcrit
             return;
 
         // no suffix for the drama

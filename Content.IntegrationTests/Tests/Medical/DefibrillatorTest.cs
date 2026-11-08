@@ -105,8 +105,14 @@ public sealed class DefibrillatorTest : InteractionTest
         await RunSeconds((float)cooldown.TotalSeconds);
         await Interact();
 
-        // The target should be revived, but in crit.
-        Assert.That(targetMobState.CurrentState, Is.EqualTo(MobState.Critical), "Target mob was not revived from being defibrillated.");
+        // Inferus: the target should be revived into a critical state, softcrit or hardcrit (ported from funky-station/forky-station#325)
+        var mobStateSystem = SEntMan.System<MobStateSystem>();
+        Assert.Multiple(() =>
+        {
+            Assert.That(mobStateSystem.IsCritical(STarget.Value, targetMobState), Is.True, "Target mob was not in critical state after being defibrillated.");
+            Assert.That(mobStateSystem.IsDead(STarget.Value, targetMobState), Is.False, "Target mob was still dead after being defibrillated.");
+        });
+        // End Inferus
     }
 
     /// <summary>
@@ -157,7 +163,7 @@ public sealed class DefibrillatorTest : InteractionTest
         // ZAP!
         await Interact();
 
-        Assert.That(targetMobState.CurrentState, Is.EqualTo(MobState.Critical), "Buckled target mob was not revived from being defibrillated.");
+        Assert.That(SEntMan.System<MobStateSystem>().IsCritical(STarget.Value, targetMobState), Is.True, "Buckled target mob was not revived from being defibrillated."); // Inferus: softcrit or hardcrit
 
         // The dummy has no mind, so the defib complains about that. It must not also complain about the bed.
         var spoken = GetEvents<EntitySpokeEvent>(sDefib).Select(ev => ev.Message).ToList();

@@ -46,6 +46,9 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
 
     public void OnStateEntered(GameplayState state)
     {
+        // Inferus: replaced by ESCharacterUIController
+#pragma warning disable CS0162 // Unreachable code detected
+        return;
         DebugTools.Assert(_window == null);
 
         _window = UIManager.CreateWindow<CharacterWindow>();
@@ -59,6 +62,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
                 InputCmdHandler.FromDelegate(_ => ToggleWindow()))
             .Register<CharacterUIController>();
     }
+#pragma warning restore CS0162 // End Inferus
 
     public void OnStateExited(GameplayState state)
     {

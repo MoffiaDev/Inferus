@@ -288,7 +288,7 @@ public sealed partial class GuardianSystem : EntitySystem
             !_guardianQuery.TryComp(ent.Comp.HostedGuardian, out GuardianComponent? guardianComp))
             return;
 
-        if (args.NewMobState == MobState.Critical)
+        if (args.NewMobState is MobState.Critical or MobState.SoftCritical or MobState.HardCritical) // Inferus: softcrit
         {
             _popup.PopupEntity(Loc.GetString(ent.Comp.GuardianHostCritWarn),
                 ent.Comp.HostedGuardian.Value,

@@ -32,7 +32,8 @@
       sprite: /Textures/Effects/weather.rsi
       state: ashfall
     sound:
-      path: /Audio/Effects/Weather/snowstorm_weak.ogg
+      # path: /Audio/Effects/Weather/snowstorm_weak.ogg # Inferus - replaced
+      path: /Audio/_Starlight/Effects/Weather/ashstorm_weak.ogg # Inferus
       params:
         loop: true
         volume: -6
@@ -46,7 +47,8 @@
       sprite: /Textures/Effects/weather.rsi
       state: ashfall_light
     sound:
-      path: /Audio/Effects/Weather/snowstorm_weak.ogg
+      # path: /Audio/Effects/Weather/snowstorm_weak.ogg # Inferus - replaced
+      path: /Audio/_Starlight/Effects/Weather/ashstorm_weak.ogg # Inferus
       params:
         loop: true
         volume: -6
@@ -60,7 +62,8 @@
       sprite: /Textures/Effects/weather.rsi
       state: ashfall_heavy
     sound:
-      path: /Audio/Effects/Weather/snowstorm.ogg
+      # path: /Audio/Effects/Weather/snowstorm.ogg # Inferus - replaced
+      path: /Audio/_Starlight/Effects/Weather/ashstorm.ogg # Inferus
       params:
         loop: true
         volume: -6
@@ -74,7 +77,8 @@
       sprite: /Textures/Effects/weather.rsi
       state: fallout
     sound:
-      path: /Audio/Effects/Weather/snowstorm_weak.ogg
+      # path: /Audio/Effects/Weather/snowstorm_weak.ogg # Inferus - replaced
+      path: /Audio/_Starlight/Effects/Weather/ashstorm_weak.ogg # Inferus
       params:
         loop: true
         volume: -6
@@ -102,7 +106,8 @@
       sprite: /Textures/Effects/weather.rsi
       state: sandstorm
     sound:
-      path: /Audio/Effects/Weather/snowstorm_weak.ogg
+      # path: /Audio/Effects/Weather/snowstorm_weak.ogg # Inferus - replaced
+      path: /Audio/_Starlight/Effects/Weather/ashstorm_weak.ogg # Inferus
       params:
         loop: true
         volume: -6
@@ -116,7 +121,8 @@
       sprite: /Textures/Effects/weather.rsi
       state: sandstorm_heavy
     sound:
-      path: /Audio/Effects/Weather/snowstorm.ogg
+      # path: /Audio/Effects/Weather/snowstorm.ogg # Inferus - replaced
+      path: /Audio/_Starlight/Effects/Weather/ashstorm.ogg # Inferus
       params:
         loop: true
         volume: -6

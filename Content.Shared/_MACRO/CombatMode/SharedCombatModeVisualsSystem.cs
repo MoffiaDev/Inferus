@@ -26,7 +26,7 @@ public abstract partial class SharedCombatModeVisualsSystem : EntitySystem
 
     private void OnMobStateChanged(Entity<CombatModeVisualsComponent> ent, ref MobStateChangedEvent args)
     {
-        if (args.NewMobState == MobState.Critical || args.NewMobState == MobState.Dead)
+        if (args.NewMobState is MobState.Critical or MobState.SoftCritical or MobState.HardCritical or MobState.Dead) // Inferus: softcrit
             _appearance.SetData(ent, CombatModeVisualLayers.Combat, false);
     }
 

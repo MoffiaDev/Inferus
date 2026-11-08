@@ -4,6 +4,8 @@ Inferus is an open source adult-oriented project aimed at creating unique gamepl
 
 The primary purpose of [Macrocosm](https://github.com/syndicate-ss14/macrocosm) is to collate content from member communities (Microcosms) to facilitate ease of development and share content that is universally desired or that requires a larger maintenance burden.
 
+![Alt](https://repobeats.axiom.co/api/embed/032d11f7f5e813a5f11e82e09d05328976ecefdc.svg "Repobeats analytics image")
+
 ## Links
 
 <div class="header" align="center">
@@ -61,5 +63,7 @@ Build the server using `dotnet build`.
 All code for the content repository is licensed under the [MIT license](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT).
 
 Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and copyright specified in the metadata file. For example, see the [metadata for a crowbar](https://github.com/space-wizards/space-station-14/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
+
+Code taken from [Project Starlight](https://github.com/ss14Starlight/space-station-14) was taken in accordance with the [Starlight License](./LICENSE-Starlight.txt).
 
 > Some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.

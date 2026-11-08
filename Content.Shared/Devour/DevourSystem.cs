@@ -70,6 +70,8 @@ public sealed partial class DevourSystem : EntitySystem
             switch (targetState.CurrentState)
             {
                 case MobState.Critical:
+                case MobState.SoftCritical: // Inferus
+                case MobState.HardCritical: // Inferus
                 case MobState.Dead:
 
                     _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent.Owner, ent.Comp.DevourTime, new DevourDoAfterEvent(), ent.Owner, target: target, used: ent.Owner)

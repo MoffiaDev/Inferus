@@ -4,8 +4,12 @@
   name: tiles-white-marble
   sprite: /Textures/Tiles/Marble/white-marble.png
   variants: 6
+  # Begin Inferus
+  # footstepSounds:
+  #   collection: FootstepTile
   footstepSounds:
-    collection: FootstepTile
+    collection: FootstepConcrete
+  # End Inferus
   friction: 0.8
   itemDrop: FloorTileItemWhiteMarble
 

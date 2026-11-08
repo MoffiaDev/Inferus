@@ -173,6 +173,8 @@ namespace Content.Client.Lobby.UI
 
             #endregion
 
+            InitializeSpeechBlip(); // Inferus
+
             #region Age
 
             AgeEdit.OnTextChanged += args =>
@@ -379,6 +381,7 @@ namespace Content.Client.Lobby.UI
             UpdateFlavorTextEdit();
             UpdateSexControls();
             UpdateVoiceControls();
+            UpdateSpeechBlipControls(); // Inferus
             UpdateGenderControls();
             UpdateSkinColor();
             UpdateSpawnPriorityControls();

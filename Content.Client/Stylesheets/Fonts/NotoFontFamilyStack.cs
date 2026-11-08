@@ -23,7 +23,8 @@ public sealed class NotoFontFamilyStack(IResourceCache resCache, string variant 
     ///     0 is the font kind.
     ///     1 is the font kind with BoldItalic replaced with Bold when it occurs.
     /// </remarks>
-    private string _fontPrimary = $"/Fonts/NotoSans{variant}/NotoSans{variant}-{{0}}.ttf";
+    // private string _fontPrimary = $"/Fonts/NotoSans{variant}/NotoSans{variant}-{{0}}.ttf"; // Inferus - replaced with Tomorrow
+    private string _fontPrimary = $"/Fonts/_ES/Tomorrow{variant}/Tomorrow{variant}-{{0}}.ttf"; // Inferus
 
     /// <summary>
     ///     The symbols font path, with string substitution markers.

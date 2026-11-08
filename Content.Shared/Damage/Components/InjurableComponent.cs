@@ -33,6 +33,8 @@ public sealed partial class InjurableComponent : Component
     {
         { MobState.Alive, "HealthIconFine" },
         { MobState.Critical, "HealthIconCritical" },
+        { MobState.SoftCritical, "HealthIconCritical" }, // Inferus
+        { MobState.HardCritical, "HealthIconCritical" }, // Inferus
         { MobState.Dead, "HealthIconDead" },
     };
 

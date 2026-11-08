@@ -1,3 +1,4 @@
+using Content.Shared._ES.Viewcone.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Atmos;
 using Content.Shared.Chat;
@@ -25,6 +26,9 @@ using Content.Shared.Throwing;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Collections;
 using Robust.Shared.Player;
+// ES START
+using Content.Shared.Weapons.Melee.Events;
+// ES END
 
 namespace Content.Shared.StatusEffectNew;
 
@@ -74,6 +78,11 @@ public sealed partial class StatusEffectsSystem
 
         SubscribeLocalEvent<StatusEffectContainerComponent, TargetHandcuffedEvent>(RefRelayStatusEffectEvent);
         SubscribeLocalEvent<StatusEffectContainerComponent, BeforeTargetHandcuffedEvent>(RefRelayStatusEffectEvent);
+
+        // ES START
+        SubscribeLocalEvent<StatusEffectContainerComponent, GetMeleeDamageEvent>(RefRelayStatusEffectEvent);
+        SubscribeLocalEvent<StatusEffectContainerComponent, ESViewconeGetAngleModifierEvent>(RelayStatusEffectEvent);
+        // ES END
     }
 
     private void RefRelayStatusEffectEvent<T>(EntityUid uid, StatusEffectContainerComponent component, ref T args) where T : struct

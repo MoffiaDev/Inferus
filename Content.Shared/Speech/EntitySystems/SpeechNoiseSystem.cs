@@ -1,8 +1,12 @@
+using Content.Shared._Inferus.CCVar; // Inferus
+using Content.Shared._Inferus.Speech; // Inferus
 using Content.Shared.Chat;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration; // Inferus
 using Robust.Shared.Network;
+using Robust.Shared.Player; // Inferus
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -13,6 +17,8 @@ public sealed partial class SpeechSoundSystem : EntitySystem
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private INetConfigurationManager _netConfig = default!; // Inferus
+    [Dependency] private SpeechBlipSystem _speechBlip = default!; // Inferus
 
     [SubscribeLocalEvent]
     private void OnEntitySpoke(Entity<SpeechComponent> ent, ref EntitySpokeEvent args)
@@ -30,7 +36,20 @@ public sealed partial class SpeechSoundSystem : EntitySystem
         var sound = GetSpeechSound(ent, args.Message);
         ent.Comp.LastTimeSoundPlayed = currentTime;
         if (_net.IsServer) // TODO: replace this call with PlayPredicted when chat is predicted.
+        {
+            // Inferus start
+            if (_speechBlip.UsesTypewriter(ent))
+            {
+                var filter = Filter.Pvs(ent, entityManager: EntityManager)
+                    .RemoveWhere(session => !_netConfig.GetClientCVar(session.Channel, InferusCCVars.InstantSpeechBubbles));
+
+                _audio.PlayEntity(sound, filter, ent, true);
+                return;
+            }
+            // Inferus end
+
             _audio.PlayPvs(sound, ent);
+        }
     }
 
     /// <summary>

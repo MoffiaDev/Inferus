@@ -21,18 +21,23 @@ namespace Content.Client._Inferus.CritGlitch;
 /// </summary>
 public sealed partial class CritGlitchSystem : EntitySystem
 {
+    [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private MobThresholdSystem _mobThreshold = default!;
     [Dependency] private DamageableSystem _damageable = default!;
 
-    private static readonly ProtoId<ShaderPrototype> ShaderId = "InferusCritGlitch";
+    private static ProtoId<ShaderPrototype> ShaderId = "InferusCritGlitch";
+
+    // Stable post-shader id so we only ever add/remove our own entry and never
+    // clobber or miss entries owned by other systems (interaction outlines, cloaks, ...).
+    private const string PostShaderId = "inferus-crit-glitch";
 
     private const float RefreshInterval = 1.0f;
 
     private ShaderInstance _shader = default!;
-    private readonly HashSet<EntityUid> _glitched = new();
+    private HashSet<EntityUid> _glitched = new();
 
     private bool _enabled; // local player is currently in crit
     private bool _allowed = true; // CVar
@@ -85,7 +90,7 @@ public sealed partial class CritGlitchSystem : EntitySystem
         SetActive(false);
 
         if (TryComp<MobStateComponent>(args.Entity, out var mobState) &&
-            mobState.CurrentState == MobState.Critical)
+            mobState.CurrentState is MobState.Critical or MobState.SoftCritical or MobState.HardCritical)
         {
             SetActive(true);
             UpdateCritLevel();
@@ -102,7 +107,7 @@ public sealed partial class CritGlitchSystem : EntitySystem
         if (args.Target != _player.LocalEntity)
             return;
 
-        if (args.NewMobState != MobState.Critical)
+        if (args.NewMobState is not (MobState.Critical or MobState.SoftCritical or MobState.HardCritical))
         {
             SetActive(false);
             return;
@@ -189,11 +194,18 @@ public sealed partial class CritGlitchSystem : EntitySystem
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
-        // Don't explode other sprite effects (stealth cloaks, holograms, etc.)
-        if (sprite.PostShader != null)
+        // Already glitched (e.g. after the entity re-entered PVS) – just keep tracking it
+        if (_sprite.HasPostShader((uid, sprite), PostShaderId))
+        {
+            _glitched.Add(uid);
+            return;
+        }
+
+        // Don't interfere with other sprite effects (stealth cloaks, holograms, outlines, ...)
+        if (_sprite.GetPostShaders((uid, sprite)).Count > 0)
             return;
 
-        sprite.PostShader = _shader;
+        _sprite.SetPostShader((uid, sprite), new SpriteComponent.PostShaderArgs(PostShaderId, _shader));
         _glitched.Add(uid);
     }
 
@@ -204,9 +216,8 @@ public sealed partial class CritGlitchSystem : EntitySystem
             if (!TryComp<SpriteComponent>(uid, out var sprite))
                 continue;
 
-            // Only restore if nobody else has taken the slot since
-            if (sprite.PostShader == _shader)
-                sprite.PostShader = null;
+            // Removal by stable id can't disturb post-shaders owned by other systems
+            _sprite.RemovePostShader((uid, sprite), PostShaderId);
         }
 
         _glitched.Clear();

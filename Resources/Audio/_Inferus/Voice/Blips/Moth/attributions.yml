@@ -1,0 +1,4 @@
+- files: ["speak1.ogg, speak2.ogg, speak3.ogg, speak4.ogg, speak5.ogg, speak6.ogg, speak7.ogg, speak8.ogg, speak9.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from https://github.com/tgstation/tgstation/commit/31c19654e0f641166ecd80c672ea05362fd19488, modified by Tarazicon"
+  source: "https://github.com/BeeStation/BeeStation-Hornet/blob/11ba3fa04105c93dd96a63ad4afaef4b20c02d0d/sound/emotes/"

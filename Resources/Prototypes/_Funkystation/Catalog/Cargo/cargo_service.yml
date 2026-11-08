@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: ServiceDocumentPrinterKit
+  icon:
+    sprite: _Funkystation/Structures/Machines/document_printer.rsi
+    state: icon
+  product: CrateServiceDocumentPrinterSet
+  cost: 900
+  category: cargoproduct-category-name-service
+  group: market

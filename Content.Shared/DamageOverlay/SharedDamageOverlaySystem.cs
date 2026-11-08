@@ -122,6 +122,8 @@ public abstract partial class SharedDamageOverlaySystem : EntitySystem
                 break;
             }
             case MobState.Critical:
+            case MobState.SoftCritical: // Inferus
+            case MobState.HardCritical: // Inferus
             {
                 if (!_mobThresholdSystem.TryGetDeadPercentage(entity,
                         FixedPoint2.Max(0.0, _damageable.GetTotalDamage((entity, damageable))),

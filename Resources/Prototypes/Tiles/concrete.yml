@@ -3,8 +3,12 @@
   parent: BaseStationTile
   name: tiles-concrete-tile
   sprite: /Textures/Tiles/Concrete/concrete.png
+  # Begin Inferus
+  # footstepSounds:
+  #   collection: FootstepTile
   footstepSounds:
-    collection: FootstepTile
+    collection: FootstepConcrete
+  # End Inferus
   itemDrop: FloorTileItemConcrete
 
 - type: tile
@@ -13,8 +17,12 @@
   name: tiles-concrete-slab
   sprite: /Textures/Tiles/Concrete/concrete-mono.png
   variants: 2
+  # Begin Inferus
+  # footstepSounds:
+  #   collection: FootstepTile
   footstepSounds:
-    collection: FootstepTile
+    collection: FootstepConcrete
+  # End Inferus
   itemDrop: FloorTileItemConcreteMono
 
 - type: tile
@@ -23,6 +31,10 @@
   name: tiles-concrete-smooth
   sprite: /Textures/Tiles/Concrete/concrete-smooth.png
   variants: 2
+  # Begin Inferus
+  # footstepSounds:
+  #   collection: FootstepTile
   footstepSounds:
-    collection: FootstepTile
+    collection: FootstepConcrete
+  # End Inferus
   itemDrop: FloorTileItemConcreteSmooth

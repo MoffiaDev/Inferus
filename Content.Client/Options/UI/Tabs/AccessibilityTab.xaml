@@ -38,9 +38,15 @@
                 <Label Text="{Loc 'ui-options-accessibility-header-visuals'}"
                        StyleClasses="LabelKeyText"/>
                 <CheckBox Name="LegacyDamageOverlaysCheckBox" Text="{Loc 'ui-options-legacy-damage-overlays'}" ToolTip="{Loc 'ui-options-legacy-damage-overlays-tooltip'}" /> <!-- Inferus - toggle for the old pain/crit overlays -->
+                <CheckBox Name="InstantSpeechBubblesCheckBox" Text="{Loc 'ui-options-instant-speech-bubbles'}" ToolTip="{Loc 'ui-options-instant-speech-bubbles-tooltip'}" /> <!-- Inferus -->
+                <!-- funky viewcone options -->
+                <CheckBox Name="DisableViewconeGrainCheckBox" Text="{Loc 'ui-options-disable-viewcone-grain'}" />
+                <ui:OptionSlider Name="ViewconeOcclusionOpacitySlider" Title="{Loc 'ui-options-viewcone-occlusion-opacity'}" />
                 <CheckBox Name="EnableColorNameCheckBox" Text="{Loc 'ui-options-enable-color-name'}" />
                 <CheckBox Name="ColorblindFriendlyCheckBox" Text="{Loc 'ui-options-colorblind-friendly'}" />
                 <ui:OptionSlider Name="ScreenShakeIntensitySlider" Title="{Loc 'ui-options-screen-shake-intensity'}" />
+                <!-- Funky pain flash intensity -->
+                <ui:OptionSlider Name="FunkyPainFlashIntensitySlider" Title="{Loc 'ui-options-es-pain-flash-intensity'}" />
                 <ui:OptionSlider Name="ChatWindowOpacitySlider" Title="{Loc 'ui-options-chat-window-opacity'}" />
                 <ui:OptionSlider Name="SpeechBubbleTextOpacitySlider" Title="{Loc 'ui-options-speech-bubble-text-opacity'}" />
                 <ui:OptionSlider Name="SpeechBubbleSpeakerOpacitySlider" Title="{Loc 'ui-options-speech-bubble-speaker-opacity'}" />
