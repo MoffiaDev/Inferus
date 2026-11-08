@@ -183,18 +183,21 @@ public sealed partial class RoundIntroSystem : EntitySystem
             if (!ContainsMind(selection, mindId))
                 continue;
 
-            foreach (var (otherMind, _) in selection.AssignedMinds)
+            foreach (var minds in selection.AssignedMinds.Values)
             {
-                if (teammates.Count >= MaxCoworkers)
-                    return teammates;
+                foreach (var (otherMind, _) in minds)
+                {
+                    if (teammates.Count >= MaxCoworkers)
+                        return teammates;
 
-                if (otherMind == mindId
-                    || !TryComp<MindComponent>(otherMind, out var mind)
-                    || mind.OwnedEntity is not { } body
-                    || TerminatingOrDeleted(body))
-                    continue;
+                    if (otherMind == mindId
+                        || !TryComp<MindComponent>(otherMind, out var mind)
+                        || mind.OwnedEntity is not { } body
+                        || TerminatingOrDeleted(body))
+                        continue;
 
-                teammates.Add((body, new RoundIntroCoworker(GetNetEntity(body), Name(body), null, GetAntag(otherMind))));
+                    teammates.Add((body, new RoundIntroCoworker(GetNetEntity(body), Name(body), null, GetAntag(otherMind))));
+                }
             }
         }
 
@@ -203,10 +206,13 @@ public sealed partial class RoundIntroSystem : EntitySystem
 
     private static bool ContainsMind(AntagSelectionComponent selection, EntityUid mindId)
     {
-        foreach (var (assigned, _) in selection.AssignedMinds)
+        foreach (var minds in selection.AssignedMinds.Values)
         {
-            if (assigned == mindId)
-                return true;
+            foreach (var (assigned, _) in minds)
+            {
+                if (assigned == mindId)
+                    return true;
+            }
         }
 
         return false;
