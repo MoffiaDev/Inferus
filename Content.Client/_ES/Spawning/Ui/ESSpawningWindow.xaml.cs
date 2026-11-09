@@ -42,6 +42,8 @@ public sealed partial class ESSpawningWindow : FancyWindow
         _sprites = _entitySystem.GetEntitySystem<SpriteSystem>();
         _gameTicker = _entitySystem.GetEntitySystem<ClientGameTicker>();
 
+        // Inferus: select the explicit late-join character before checking job requirements
+        InitializeCharacterPicker();
         RebuildJobLists();
 
         _jobRequirements.Updated += RebuildJobLists;
@@ -52,6 +54,8 @@ public sealed partial class ESSpawningWindow : FancyWindow
     {
         base.Close();
 
+        // Inferus: release the preference notification subscription with the window
+        _preferencesManager.OnServerDataLoaded -= RefreshCharacterPicker;
         _jobRequirements.Updated -= RebuildJobLists;
         _gameTicker.LobbyJobsAvailableUpdated -= OnJobsAvailableUpdated;
     }
@@ -130,7 +134,12 @@ public sealed partial class ESSpawningWindow : FancyWindow
                 };
                 button.OnPressed += _ =>
                 {
-                    var ev = new ESSpawnPlayerEvent(job.ID);
+                    // Inferus: never submit an absent or stale character slot
+                    if (_selectedCharacterSlot is not { } slot ||
+                        _preferencesManager.Preferences?.Characters.ContainsKey(slot) != true)
+                        return;
+
+                    var ev = new ESSpawnPlayerEvent(job.ID, slot);
                     _entityManager.EntityNetManager.SendSystemNetworkMessage(ev);
                     Close();
                 };
@@ -139,7 +148,7 @@ public sealed partial class ESSpawningWindow : FancyWindow
                     JobDisplay.SetJob(job.ID);
                 };
 
-                if (!_jobRequirements.IsAllowed(job, (HumanoidCharacterProfile?) _preferencesManager.Preferences?.SelectedCharacter, out var reason))
+                if (!_jobRequirements.IsAllowed(job, GetSelectedCharacterProfile(), out var reason)) // Inferus: check the character selected in this window
                 {
                     button.Disabled = true;
 

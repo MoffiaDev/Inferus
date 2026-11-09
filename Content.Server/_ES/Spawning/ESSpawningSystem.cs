@@ -27,6 +27,10 @@ public sealed partial class ESSpawningSystem : EntitySystem
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private StationJobsSystem _stationJobs = default!;
 
+    // Inferus: use server-owned profiles and the existing explicit-choice spawn path
+    [Dependency] private Content.Server.Preferences.Managers.IServerPreferencesManager _characterPreferences = default!;
+    [Dependency] private Content.Server._Moffstation.Station.MoffCharacterPickerSystem _characterPicker = default!;
+
     private ISawmill _securitySawmill = default!;
 
     public override void Initialize()
@@ -67,9 +71,24 @@ public sealed partial class ESSpawningSystem : EntitySystem
         if (stations.Count == 0)
             return;
 
+        // Inferus: reject stale/forged slots instead of silently rolling another character
+        if (msg.CharacterSlot is not { } slot ||
+            _characterPreferences.GetPreferencesOrNull(player.UserId) is not { } preferences ||
+            !preferences.Characters.TryGetValue(slot, out var profile))
+            return;
+
         if (_admin.IsAdmin(player) && _config.GetCVar(CCVars.AdminDeadminOnJoin))
             _admin.DeAdmin(player);
 
-        _gameTicker.MakeJoinGame(player, _random.Pick(stations), job.ID);
+        // Inferus: pin only this request; clean up even when spawning exits early
+        _characterPicker.SetExplicitChoice(player.UserId, profile);
+        try
+        {
+            _gameTicker.MakeJoinGame(player, _random.Pick(stations), job.ID);
+        }
+        finally
+        {
+            _characterPicker.ClearExplicitChoice(player.UserId);
+        }
     }
 }
