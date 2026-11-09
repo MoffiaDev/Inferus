@@ -6,7 +6,7 @@ namespace Content.Client._DV.CustomObjectiveSummary;
 
 public sealed partial class CustomObjectiveSummaryUIController : UIController // Inferus: target dependency generator.
 {
-    [Dependency] private readonly IClientNetManager _net = default!;
+    [Dependency] private IClientNetManager _net = default!;
 
     private CustomObjectiveSummaryWindow? _window;
 
