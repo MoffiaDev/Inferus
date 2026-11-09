@@ -198,6 +198,14 @@ public sealed partial class VisualBodySystem : SharedVisualBodySystem
             if (!_marking.TryGetMarking(marking, out var proto))
                 continue;
 
+            // Inferus - organ-based rendering
+            if (proto.Layering != null)
+            {
+                ApplyLayeredMarking(ent, target, proto, marking);
+                applied.Add(marking);
+                continue;
+            }
+
             if (!_sprite.LayerMapTryGet(target, proto.BodyPart, out var index, true)
                 || !_sprite.TryGetLayer(target, index, out var bodypartLayer, true))
                 continue;
@@ -230,10 +238,8 @@ public sealed partial class VisualBodySystem : SharedVisualBodySystem
                     _sprite.LayerSetVisible(target, spriteLayer, bodypartLayer.Visible);
                 }
 
-                if (marking.MarkingColors is not null && i < marking.MarkingColors.Count)
-                    _sprite.LayerSetColor(target, spriteLayer, marking.MarkingColors[i]);
-                else
-                    _sprite.LayerSetColor(target, spriteLayer, Color.White);
+                // Inferus - linked colors also apply to markings without custom layers
+                _sprite.LayerSetColor(target, spriteLayer, proto.GetSpriteColor(marking.MarkingColors, i));
 
                 if (displacement != null && proto.CanBeDisplaced)
                 {

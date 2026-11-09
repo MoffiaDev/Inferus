@@ -155,6 +155,7 @@ public sealed partial class LayerMarkingItem : BoxContainer, ISearchableControl
             {
                 Orientation = LayoutOrientation.Vertical,
                 HorizontalExpand = true,
+                Visible = _markingPrototype.GetColorIndex(i) == i, // Inferus
             };
 
             ColorsContainer.AddChild(container);
@@ -162,7 +163,8 @@ public sealed partial class LayerMarkingItem : BoxContainer, ISearchableControl
             var selector = new ColorSelectorSliders();
             selector.SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv;
 
-            var label = _markingPrototype.Sprites[i] switch
+            // Inferus - hidden linked children use their parent's label as well
+            var label = _markingPrototype.Sprites[_markingPrototype.GetColorIndex(i)] switch
             {
                 SpriteSpecifier.Rsi rsi => Loc.GetString($"marking-{_markingPrototype.ID}-{rsi.RsiState}"),
                 SpriteSpecifier.Texture texture => Loc.GetString($"marking-{_markingPrototype.ID}-{texture.TexturePath.Filename}"),
