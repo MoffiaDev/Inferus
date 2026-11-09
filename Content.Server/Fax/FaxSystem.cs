@@ -22,6 +22,7 @@ using Content.Shared.NameModifier.Components;
 using Content.Shared.Paper;
 using Content.Shared.Power;
 using Content.Shared.Tools;
+using Content.Shared._Goobstation.Fax; // Inferus
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -299,6 +300,17 @@ public sealed partial class FaxSystem : EntitySystem
 
     private void OnCopyButtonPressed(EntityUid uid, FaxMachineComponent component, FaxCopyMessage args)
     {
+        // Goobstation start
+        if (component.PaperSlot.Item != null)
+        {
+            var copiedEv = new GettingFaxedCopiedEvent((uid, component), args);
+            RaiseLocalEvent(component.PaperSlot.Item.Value, ref copiedEv);
+
+            if (copiedEv.Handled)
+                return;
+        }
+        // Goobstation end
+
         if (HasComp<MobStateComponent>(component.PaperSlot.Item))
             _faxecute.Faxecute(uid, component); // when button pressed it will hurt the mob.
         else

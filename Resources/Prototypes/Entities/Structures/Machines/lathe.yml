@@ -125,6 +125,7 @@
     unlitRunningState: unlit-building
     staticPacks:
     - ToolsStatic
+    - LatheMiscStatic
     - PartsStatic
     - AtmosStatic
     - CablesStatic
@@ -256,6 +257,7 @@
     staticPacks:
     - ScienceBoardsStatic
     - ServiceBoardsStatic
+    - ServiceBoardsStaticGoob
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
