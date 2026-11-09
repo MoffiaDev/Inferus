@@ -173,6 +173,9 @@
   parent: [BaseDeltaPressureGlassQuarter, BaseWindoorGeneric]
   id: BaseWindoor
   components:
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2
   - type: Sprite
     sprite: Structures/Doors/Windoors/windoor.rsi
   - type: Destructible

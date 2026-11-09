@@ -177,7 +177,7 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
 
     private void OnStationJobsGetCandidates(ref StationJobsGetCandidatesEvent ev)
     {
-        RemoveDisallowedJobs(ev.Player, ev.Jobs);
+        RemoveMoffDisallowedJobs(ev.Player, ev.Jobs, ev.IgnorePreferences); // Inferus: Moffstation PR #1737; check every eligible character.
     }
 
     private void OnIsRoleAllowed(ref IsRoleAllowedEvent ev)
@@ -188,7 +188,7 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
 
     private void OnGetDisallowedJobs(ref GetDisallowedJobsEvent ev)
     {
-        ev.Jobs.UnionWith(GetDisallowedJobs(ev.Player));
+        ev.Jobs.UnionWith(GetMoffDisallowedJobs(ev.Player)); // Inferus: Moffstation PR #1737; consider every active character.
     }
 
     /// <summary>

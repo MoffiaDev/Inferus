@@ -54,6 +54,7 @@
   prefRoles:
   - GenericTeamAntagonist # For antag ban purposes
   roleLoadout:
+  - JobNukeops
   - RoleSurvivalNukie
   components:
   - type: NukeOperative
@@ -66,6 +67,10 @@
   id: NukeopsCommander
   prefRoles:
   - NukeopsCommander
+  # Inferus: preserve species survival equipment after the selected outfit.
+  roleLoadout:
+  - JobNukeopsCommander
+  - RoleSurvivalNukie
   spawnerPrototype: SpawnPointNukeopsCommander
   startingGear: SyndicateCommanderGearFull
   components:
@@ -81,6 +86,9 @@
   id: NukeopsMedic
   prefRoles:
   - NukeopsMedic
+  roleLoadout:
+  - JobNukeopsMedic
+  - RoleSurvivalNukie
   spawnerPrototype: SpawnPointNukeopsMedic
   startingGear: SyndicateOperativeMedicFull
   components:
@@ -124,12 +132,14 @@
 - type: startingGear
   id: SyndicateOperativeGearFullNoUplink
   equipment:
-    jumpsuit: ClothingUniformJumpsuitOperative
-    back: ClothingBackpackDuffelSyndicate
+    # Moffstation - Begin - Removing items duplicated by the loadout
+#   jumpsuit: ClothingUniformJumpsuitOperative
+#   back: ClothingBackpackDuffelSyndicate
+    #Moffstation - End
     mask: ClothingMaskGasSyndicate
     eyes: ClothingEyesHudSyndicate
     ears: ClothingHeadsetAltSyndicate
-    gloves: ClothingHandsGlovesCombat
+#   gloves: ClothingHandsGlovesCombat # Moffstation - Removing items duplicated by the loadout
     outerClothing: ClothingOuterHardsuitSyndie
     shoes: ClothingShoesBootsCombatFilled
     id: SyndiOperativePDA
@@ -140,6 +150,17 @@
     - WeaponPistolViper
     - PinpointerSyndicateNuclear
     - DeathAcidifierImplanter
+
+# Moffstation - Begin - Gear for reinforcements, needs to add the stuff that is normally covered by loadouts
+#Nukie Reinforcement Gear
+- type: startingGear
+  id: SyndicateOperativeReinforcementGear
+  parent: SyndicateOperativeGearFullNoUplink
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackDuffelSyndicate
+    gloves: ClothingHandsGlovesCombat
+# Moffstation - End
 
 #Nuclear Operative Gear
 - type: startingGear
@@ -154,6 +175,9 @@
   startingGear: SyndicateOperativeGearFullNoUplink
   icon: "JobIconSyndicateOperative"
   equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative # Inferus: retain the chameleon outfit without loadouts.
+    back: ClothingBackpackDuffelSyndicate # Inferus
+    gloves: ClothingHandsGlovesCombat # Inferus
     head: ClothingHeadHelmetHardsuitSyndie
     neck: ClothingNeckScarfStripedSyndieRed
 
@@ -174,6 +198,9 @@
   startingGear: SyndicateCommanderGearFull
   icon: "JobIconSyndicateCommander"
   equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative # Inferus: chameleon compatibility.
+    back: ClothingBackpackDuffelSyndicate # Inferus
+    gloves: ClothingHandsGlovesCombat # Inferus
     head: ClothingHeadHelmetHardsuitSyndieCommander
     neck: ClothingNeckScarfStripedSyndieGreen
 
@@ -205,6 +232,9 @@
   startingGear: SyndicateOperativeMedicFull
   icon: "JobIconSyndicateCorpsman"
   equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative # Inferus: chameleon compatibility.
+    back: ClothingBackpackDuffelSyndicate # Inferus
+    gloves: ClothingHandsGlovesCombat # Inferus
     head: ClothingHeadHelmetHardsuitSyndieMedic
     neck: ClothingNeckScarfStripedLightBlue
 

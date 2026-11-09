@@ -87,5 +87,6 @@ internal static class ServerContentIoC
         deps.Register<ISharedFeedbackManager, ServerFeedbackManager>();
         deps.Register<AnnouncerManager>(); // Macrocosm edit
         deps.Register<WhitelistManager>();
+        deps.Register<Content.Server._Moffstation.Preferences.MoffCharacterSelectionManager>(); // Inferus: Moffstation PR #1737
     }
 }

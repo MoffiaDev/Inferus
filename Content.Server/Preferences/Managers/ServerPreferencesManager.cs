@@ -15,7 +15,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Content.Shared.Traits;
+using Content.Shared._DV.Traits; // Inferus: Moffstation PR #1485
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -554,7 +554,7 @@ namespace Content.Server.Preferences.Managers
 
         void IPostInjectInit.PostInject()
         {
-            _userDb.AddOnLoadPlayer(LoadData);
+            _userDb.AddOnLoadPlayer(LoadDataWithCharacterSelection); // Inferus: sequence initial preferences before
             _userDb.AddOnFinishLoad(FinishLoad);
             _userDb.AddOnPlayerDisconnect(OnClientDisconnected);
         }

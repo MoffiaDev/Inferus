@@ -43,6 +43,7 @@ public sealed partial class RCDSystem : EntitySystem
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TagSystem _tags = default!;
+    [Dependency] private Content.Shared._ES.Sparks.ESSparksSystem _esSparks = default!; // Inferus
 
     private readonly int _instantConstructionDelay = 0;
     private readonly EntProtoId _instantConstructionFx = "EffectRCDConstruct0";
@@ -107,6 +108,7 @@ public sealed partial class RCDSystem : EntitySystem
 
         // Set the current RCD prototype to the one supplied
         component.ProtoId = args.ProtoId;
+        _esSparks.DoSparks(uid, 1, user: args.Actor); // Inferus: construction-tool mode feedback.
 
         _adminLogger.Add(LogType.RCD, LogImpact.Low, $"{args.Actor} set RCD mode to: {prototype.Mode} : {prototype.Prototype}");
 

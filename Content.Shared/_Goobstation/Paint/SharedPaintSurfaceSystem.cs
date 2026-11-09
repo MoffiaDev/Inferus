@@ -36,11 +36,11 @@ public abstract partial class SharedPaintSurfaceSystem : EntitySystem
     {
         // Inferus: force a full state for updates spanning initialization, even when CreationTick was cleared.
         ent.Comp.InitialStateTick = Timing.CurTick;
-        // End Inferus
+
 
         // Inferus: image creation moved to EnsureImage so GetState/HandleState can never see a null image
         EnsureImage(ent);
-        // End Inferus
+
     }
 
     // Inferus: lazily creates the image. The client builds its implicit baseline state (GetState with
@@ -57,7 +57,7 @@ public abstract partial class SharedPaintSurfaceSystem : EntitySystem
         ent.Comp.ChunkModified = new GameTick[PaintChunks.Count(ent.Comp.Size)];
         return image;
     }
-    // End Inferus
+
 
     private void OnGetState(Entity<PaintSurfaceComponent> ent, ref ComponentGetState args)
     {
@@ -77,7 +77,7 @@ public abstract partial class SharedPaintSurfaceSystem : EntitySystem
                 ent.Comp.Artist);
             return;
         }
-        // End Inferus
+
 
         var palette = ent.Comp.PaletteModified >= args.FromTick ? image.Palette.ToArray() : null;
         var chunks = new Dictionary<int, byte[]>();

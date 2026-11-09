@@ -133,11 +133,7 @@ public sealed partial class DoorSystem : SharedDoorSystem
                 if (_animationSystem.HasRunningAnimation(entity, DoorComponent.OpenKey))
                     return;
 
-                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.CloseKey))
-                {
-                    _animationSystem.Stop(entity, null, DoorComponent.CloseKey);
-                    _animationSystem.Play(entity, (Animation)entity.Comp.OpeningAnimation, DoorComponent.OpenKey);
-                }
+                // Inferus: do not restart an opening animation from a closed-state appearance update.
 
                 foreach (var (layer, layerState) in entity.Comp.OpenSpriteStates)
                 {
@@ -152,11 +148,7 @@ public sealed partial class DoorSystem : SharedDoorSystem
                 if (_animationSystem.HasRunningAnimation(entity, DoorComponent.CloseKey))
                     return;
 
-                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.OpenKey))
-                {
-                    _animationSystem.Stop(entity, null, DoorComponent.OpenKey);
-                    _animationSystem.Play(entity, (Animation)entity.Comp.OpeningAnimation, DoorComponent.CloseKey);
-                }
+                // Inferus: let the closing animation complete without restarting it.
 
                 foreach (var (layer, layerState) in entity.Comp.ClosedSpriteStates)
                 {

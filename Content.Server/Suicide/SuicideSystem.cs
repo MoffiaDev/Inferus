@@ -80,7 +80,7 @@ public sealed partial class SuicideSystem : SharedSuicideSystem
         // attempt explicitly before raising the event so it always gets first pick.
         TryEnvironmentalSuicide((victim, mobState), ref suicideEvent);
         RaiseLocalEvent(victim, suicideEvent);
-        // End Inferus
+
 
         // Since the player is already dead the log will not contain their username.
         if (session != null)
@@ -127,7 +127,7 @@ public sealed partial class SuicideSystem : SharedSuicideSystem
         // Inferus: extracted to TryEnvironmentalSuicide so Suicide() can run it deterministically
         // before the SuicideEvent is raised (see Suicide() for why handler order can't be relied on).
         TryEnvironmentalSuicide(victim, ref args);
-        // End Inferus
+
     }
 
     // Inferus: body moved from OnEnvironmentalSuicide

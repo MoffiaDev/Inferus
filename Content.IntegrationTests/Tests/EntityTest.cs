@@ -242,6 +242,11 @@ namespace Content.IntegrationTests.Tests
                 "MapGrid",
                 "StationEvent",
                 "TimedDespawn",
+                // Inferus - these prototypes intentionally despawn or spawn effects
+                "ESTimedDespawn",
+                "ESSparkOnTrigger",
+                "ESSparkOnDespawn",
+
 
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",

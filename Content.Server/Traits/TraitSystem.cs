@@ -1,8 +1,13 @@
+// DeltaV - Traits rework
+// This file has been completely rewritten and moved under DV namespace
+// Accept any upstream changes
+/*
+
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Roles;
-using Content.Shared.Traits;
+using Content.Shared._DV.Traits; // Inferus: Moffstation PR #1485
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 
@@ -69,3 +74,4 @@ public sealed partial class TraitSystem : EntitySystem
         }
     }
 }
+*/

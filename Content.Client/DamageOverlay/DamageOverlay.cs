@@ -39,7 +39,7 @@ public sealed partial class DamageOverlay : Overlay
     private readonly ShaderInstance _bruteShader;
     private readonly ShaderInstance _critShader;
     private bool _legacy;
-    // END Inferus
+
 
     public MobState State = MobState.Alive;
 
@@ -301,7 +301,7 @@ public sealed partial class DamageOverlay : Overlay
                 handle.DrawRect(viewport, Color.White);
             }
             else
-            // END Inferus
+
             {
                 // Inferus
                 if (ScreenTexture == null)

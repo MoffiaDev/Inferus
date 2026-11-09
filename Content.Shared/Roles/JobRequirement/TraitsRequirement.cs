@@ -1,8 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using Content.Shared._DV.Traits; // DV
+
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
-using Content.Shared.Traits;
+using Content.Shared._DV.Traits; // Inferus: Moffstation PR #1485
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;

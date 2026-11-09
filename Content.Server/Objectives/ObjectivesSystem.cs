@@ -13,6 +13,8 @@ using System.Linq;
 using System.Text;
 using Content.Server.Objectives.Commands;
 using Content.Shared.CCVar;
+using Content.Shared._DV.CustomObjectiveSummary; // DeltaV
+
 using Content.Shared.Prototypes;
 using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
@@ -115,7 +117,8 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
                 // add space between the start text and player list
                 result.AppendLine();
 
-                AddSummary(result, agent, minds);
+                AddSummary(result, agent, minds, ev);   // Moffstation - Custom objective summary
+
             }
 
             ev.AddLine(result.AppendLine().ToString());
@@ -126,7 +129,8 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
     /// Generates a summary for a list of antag minds based on their agent.
     /// Contains the objective issuer, objectives and completion rate.
     /// </summary>
-    private void AddSummary(StringBuilder result, string agent, List<(EntityUid, string)> minds)
+    private void AddSummary(StringBuilder result, string agent, List<(EntityUid, string)> minds, RoundEndTextAppendEvent ev) // Moffstation - custom objective summary
+
     {
         var agentSummaries = new List<(string summary, float successRate, int completedObjectives)>();
 
@@ -215,6 +219,14 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
             }
 
             var successRate = totalObjectives > 0 ? (float) completedObjectives / totalObjectives : 0f;
+            // Moffstation - Start - Pinktexting
+            if (TryComp<CustomObjectiveSummaryComponent>(mindId, out var customComp) && customComp.ObjectiveSummary != "")
+            {
+                var customObjective = Loc.GetString("custom-objective-format", ("line", FormattedMessage.EscapeText(customComp.ObjectiveSummary))); // Inferus: preserve newlines and escape player markup.
+                agentSummary.AppendLine(customObjective);
+            }
+            // Moffstation - End
+
             agentSummaries.Add((agentSummary.ToString(), successRate, completedObjectives));
         }
 

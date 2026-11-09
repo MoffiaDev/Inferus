@@ -65,6 +65,7 @@ public abstract partial class SharedStackSystem : EntitySystem
             return; // if nothing transferred, leave without a pop-up
 
         args.Handled = true;
+        args.InteractionParticle = false; // Inferus - stacking already animates the pickup
 
         // interaction is done, the rest is just generating a pop-up
 

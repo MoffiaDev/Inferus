@@ -1,4 +1,6 @@
 using Content.Server._MACRO.Announcements;
+using Content.Server._Moffstation.Station; // Moffstation - Multi-character selection
+
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -32,6 +34,7 @@ namespace Content.Server.GameTicking
 {
     public sealed partial class GameTicker : SharedGameTicker
     {
+        [Dependency] private MoffCharacterPickerSystem _moffCharacterPicker = default!; // Inferus: Moffstation PR #1737
         [Dependency] private IAdminLogManager _adminLogger = default!;
         [Dependency] private IBanManager _banManager = default!;
         [Dependency] private IBaseServer _baseServer = default!;

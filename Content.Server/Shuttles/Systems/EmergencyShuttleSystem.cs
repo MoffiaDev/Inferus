@@ -17,6 +17,8 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
+using Content.Shared._DV.CustomObjectiveSummary; // DeltaV
+
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -205,6 +207,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     /// </summary>
     private void OnEmergencyFTL(EntityUid uid, EmergencyShuttleComponent component, ref FTLStartedEvent args)
     {
+        RaiseLocalEvent(new EvacShuttleLeftEvent()); // Inferus
         var ftlTime = TimeSpan.FromSeconds
         (
             TryComp<FTLComponent>(uid, out var ftlComp) ? ftlComp.TravelTime : _shuttle.DefaultTravelTime

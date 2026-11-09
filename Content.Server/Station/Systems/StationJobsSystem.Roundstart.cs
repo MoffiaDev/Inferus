@@ -1,4 +1,7 @@
 using System.Linq;
+using Content.Server._Moffstation.Preferences; // Moffstation - Multi-character selection
+using Content.Server._Moffstation.Station;
+
 using Content.Server.Administration.Managers;
 using Content.Server.Antag;
 using Content.Server.Station.Components;
@@ -21,6 +24,7 @@ public sealed partial class StationJobsSystem
     [Dependency] private IBanManager _banManager = default!;
     [Dependency] private SharedJobSystem _jobs = default!;
     [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private MoffCharacterSelectionManager _moffCharacterSelection = default!; // Inferus: Moffstation PR #1737
 
     private int GetJobWeight(EntityUid station, JobPrototype job)
     {
@@ -344,8 +348,12 @@ public sealed partial class StationJobsSystem
 
             foreach (var jobId in profileJobs)
             {
-                if (!profile.JobPriorities.TryGetValue(jobId, out var priority) || priority == JobPriority.Never)
+                                // Inferus: candidacy can come from any enabled profile, with player-global priority.
+                var priority = _moffCharacterSelection.GetEffectivePriority(player, jobId, profile);
+                if (priority == JobPriority.Never)
+
                     continue;
+
 
                 if (!ProtoMan.Resolve(jobId, out _))
                     continue;
@@ -418,10 +426,18 @@ public sealed partial class StationJobsSystem
             return false;
         }
 
+        // Inferus: every active character can volunteer the player for its department.
         var matchingProfiles = profiles
-            .Where(pair => pair.Value.JobPriorities.Any(preference =>
-                preference.Value != JobPriority.Never && department.Roles.Contains(preference.Key)))
+            .Where(pair =>
+            {
+                var priorities = _moffCharacterSelection.TryGetState(pair.Key, out _)
+                    ? EntityManager.System<MoffJobCandidateSystem>().GetJobPriorities(pair.Key, pair.Value)
+                    : pair.Value.JobPriorities;
+                return priorities.Any(preference =>
+                    preference.Value != JobPriority.Never && department.Roles.Contains(preference.Key));
+            })
             .ToDictionary();
+
         return TryPickCandidateIgnoringPreferences(job, matchingProfiles, out player);
     }
 
@@ -452,7 +468,7 @@ public sealed partial class StationJobsSystem
                 continue;
 
             var jobs = new List<ProtoId<JobPrototype>> { job };
-            var ev = new StationJobsGetCandidatesEvent(userId, jobs);
+            var ev = new StationJobsGetCandidatesEvent(userId, jobs, IgnorePreferences: true); // Inferus: Moffstation PR #1737; retain configured minimum-role fallback.
             RaiseLocalEvent(ref ev);
 
             if (!jobs.Contains(job))

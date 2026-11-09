@@ -299,6 +299,7 @@ namespace Content.Server.Database
 
             ModelBan.OnModelCreating(modelBuilder);
             ModelCustomVoteLog.OnModelCreating(modelBuilder);
+            MoffModel.Configure(modelBuilder); // Inferus
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -322,6 +323,9 @@ namespace Content.Server.Database
         public string AdminOOCColor { get; set; } = null!;
         public List<string> ConstructionFavorites { get; set; } = new();
         public List<Profile> Profiles { get; } = new();
+
+        public MoffModel.MoffPreference? MoffPreference { get; set; } // Moff - Multi-character selection
+
     }
 
     public class Profile
@@ -355,6 +359,7 @@ namespace Content.Server.Database
 
         public int PreferenceId { get; set; }
         public Preference Preference { get; set; } = null!;
+        public MoffModel.MoffProfile? MoffProfile { get; set; } // Inferus: multi-character selection
     }
 
     public class Job

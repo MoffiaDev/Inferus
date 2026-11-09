@@ -80,6 +80,7 @@
   suffix: Always powered
   description: "An always powered light."
   components:
+  - type: ESSparkOnHit
   - type: Construction
     graph: LightFixture
     node: tubeLight

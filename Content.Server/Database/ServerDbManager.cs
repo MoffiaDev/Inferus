@@ -9,6 +9,8 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
+using Content.Shared._Moffstation.Preferences; // Moff - Multi-character selection
+
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Microsoft.Data.Sqlite;
@@ -308,6 +310,16 @@ namespace Content.Server.Database
         Task<bool> CleanIPIntelCache(TimeSpan range);
 
         #endregion
+
+                #region Multi-Character Selection
+        // Moffstation - Everything in this region is moff
+
+        Task<MoffCharacterSelectionState> GetMoffCharacterSelection(NetUserId userId, CancellationToken cancel = default);
+        Task SaveMoffJobPriorities(NetUserId userId, Dictionary<ProtoId<JobPrototype>, JobPriority> priorities);
+        Task SaveMoffCharacterEnabled(NetUserId userId, int slot, bool enabled);
+
+        #endregion
+
 
         #region DB Notifications
 

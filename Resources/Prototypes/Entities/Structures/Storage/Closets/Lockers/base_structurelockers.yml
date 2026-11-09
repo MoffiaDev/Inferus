@@ -52,3 +52,6 @@
             max: 2
   - type: StaticPrice
     price: 300
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2

@@ -90,7 +90,7 @@
     openSound:
       path: /Audio/Machines/airlock_open.ogg
     closeSound:
-      path: /Audio/Machines/airlock_close.ogg
+      path: /Audio/_ES/Machines/airlock_close.ogg # Ephemeral Space - better door timings
     denySound:
       path: /Audio/Machines/airlock_deny.ogg
   - type: Weldable
@@ -192,6 +192,9 @@
     lastSignals:
       DoorStatus: false
   - type: SoundOnOverload
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2
   - type: SpawnOnOverload
   - type: RCDDeconstructable
     cost: 6
