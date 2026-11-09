@@ -34,19 +34,34 @@ public abstract partial class SharedPaintSurfaceSystem : EntitySystem
 
     private void OnInit(Entity<PaintSurfaceComponent> ent, ref ComponentInit args)
     {
-        if (ent.Comp.Image != null)
-            return;
-
-        ent.Comp.Image = new PaintImage(ent.Comp.Size.X, ent.Comp.Size.Y, ent.Comp.Background);
-        ent.Comp.ChunkModified = new GameTick[PaintChunks.Count(ent.Comp.Size)];
+        // Inferus: image creation moved to EnsureImage so GetState/HandleState can never see a null image
+        EnsureImage(ent);
+        // End Inferus
     }
+
+    // Inferus: lazily creates the image. The client builds its implicit baseline state (GetState with
+    // GameTick.Zero) and the server may send deltas before/without OnInit having run; returning no state
+    // there leaves the client without a full state and trips "Received delta state without having received
+    // or constructed an implicit full state" (SpawnAndDirtyAllEntities).
+    private PaintImage EnsureImage(Entity<PaintSurfaceComponent> ent)
+    {
+        if (ent.Comp.Image is { } existing)
+            return existing;
+
+        var image = new PaintImage(ent.Comp.Size.X, ent.Comp.Size.Y, ent.Comp.Background);
+        ent.Comp.Image = image;
+        ent.Comp.ChunkModified = new GameTick[PaintChunks.Count(ent.Comp.Size)];
+        return image;
+    }
+    // End Inferus
 
     private void OnGetState(Entity<PaintSurfaceComponent> ent, ref ComponentGetState args)
     {
-        if (ent.Comp.Image is not { } image)
-            return;
+        // Inferus: always produce a state (was: return when Image is null)
+        var image = EnsureImage(ent);
 
-        if (args.FromTick <= ent.Comp.CreationTick)
+        // Inferus: also send a full state if the chunk tracking was never initialised
+        if (args.FromTick <= ent.Comp.CreationTick || ent.Comp.ChunkModified.Length == 0)
         {
             args.State = new PaintSurfaceComponentState(image.Size,
                 image.Palette.ToArray(),
@@ -74,8 +89,8 @@ public abstract partial class SharedPaintSurfaceSystem : EntitySystem
         {
             case PaintSurfaceComponentDeltaState delta:
             {
-                if (ent.Comp.Image is not { } image)
-                    return;
+                // Inferus: was: return when Image is null, which silently dropped the delta
+                var image = EnsureImage(ent);
 
                 ent.Comp.Finished = delta.Finished;
                 ent.Comp.Title = delta.Title;
