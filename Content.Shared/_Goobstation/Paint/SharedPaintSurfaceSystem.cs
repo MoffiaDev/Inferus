@@ -34,6 +34,10 @@ public abstract partial class SharedPaintSurfaceSystem : EntitySystem
 
     private void OnInit(Entity<PaintSurfaceComponent> ent, ref ComponentInit args)
     {
+        // Inferus: force a full state for updates spanning initialization, even when CreationTick was cleared.
+        ent.Comp.InitialStateTick = Timing.CurTick;
+        // End Inferus
+
         // Inferus: image creation moved to EnsureImage so GetState/HandleState can never see a null image
         EnsureImage(ent);
         // End Inferus
@@ -60,8 +64,10 @@ public abstract partial class SharedPaintSurfaceSystem : EntitySystem
         // Inferus: always produce a state (was: return when Image is null)
         var image = EnsureImage(ent);
 
-        // Inferus: also send a full state if the chunk tracking was never initialised
-        if (args.FromTick <= ent.Comp.CreationTick || ent.Comp.ChunkModified.Length == 0)
+        // Inferus: prototype components can have CreationTick zeroed before their first network update.
+        if (args.FromTick <= ent.Comp.InitialStateTick
+            || args.FromTick <= ent.Comp.CreationTick
+            || ent.Comp.ChunkModified.Length == 0)
         {
             args.State = new PaintSurfaceComponentState(image.Size,
                 image.Palette.ToArray(),
@@ -71,6 +77,7 @@ public abstract partial class SharedPaintSurfaceSystem : EntitySystem
                 ent.Comp.Artist);
             return;
         }
+        // End Inferus
 
         var palette = ent.Comp.PaletteModified >= args.FromTick ? image.Palette.ToArray() : null;
         var chunks = new Dictionary<int, byte[]>();
