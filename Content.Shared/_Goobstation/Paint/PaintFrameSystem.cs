@@ -19,7 +19,8 @@ public sealed partial class PaintFrameSystem : EntitySystem
         if (args.Handled || !HasComp<PaintingFrameComponent>(args.Used))
             return;
 
-        args.Handled = TryFrame(ent, args.Used, args.User);
+        // Inferus: Entity<T> nullability mismatch with TryFrame signature
+        args.Handled = TryFrame((ent.Owner, ent.Comp), args.Used, args.User);
     }
 
     public bool TryFrame(Entity<PaintCanvasVisualsComponent?> painting, EntityUid frameUid, EntityUid user)

@@ -168,8 +168,10 @@ public abstract partial class SharedPaintSurfaceSystem : EntitySystem
         if (tool.Comp.ColorMode == PaintColorMode.Crayon && TryComp<CrayonComponent>(tool, out var crayon))
             return PaintImage.Quantize(crayon.Color);
 
+        // Inferus: Solution is string?; TryGetSolution requires non-null name
         if (tool.Comp.ColorMode == PaintColorMode.Solution
-            && Solutions.TryGetSolution(tool.Owner, tool.Comp.Solution, out _, out var solution)
+            && tool.Comp.Solution is { } solutionName
+            && Solutions.TryGetSolution(tool.Owner, solutionName, out _, out var solution)
             && solution.Volume > 0)
             return PaintImage.Quantize(solution.GetColor(_proto));
 
@@ -181,7 +183,10 @@ public abstract partial class SharedPaintSurfaceSystem : EntitySystem
         if (tool.Comp.ColorMode != PaintColorMode.Solution)
             return true;
 
-        return Solutions.TryGetSolution(tool.Owner, tool.Comp.Solution, out _, out var solution) && solution.Volume > 0;
+        // Inferus: Solution is string?; TryGetSolution requires non-null name
+        return tool.Comp.Solution is { } solutionName
+            && Solutions.TryGetSolution(tool.Owner, solutionName, out _, out var solution)
+            && solution.Volume > 0;
     }
 
     public virtual bool SetImage(Entity<PaintSurfaceComponent> ent, PaintImage image)

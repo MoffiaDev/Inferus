@@ -115,9 +115,11 @@ public sealed partial class PaintSurfaceSystem : SharedPaintSurfaceSystem
 
     private void UsePaint(Entity<PaintToolComponent> tool, int pixels)
     {
+        // Inferus: Solution is string?; TryGetSolution requires non-null name
         if (tool.Comp.ColorMode != PaintColorMode.Solution
             || tool.Comp.PixelsPerUnit <= 0
-            || !Solutions.TryGetSolution(tool.Owner, tool.Comp.Solution, out var solution, out _))
+            || tool.Comp.Solution is not { } solutionName
+            || !Solutions.TryGetSolution(tool.Owner, solutionName, out var solution, out _))
             return;
 
         tool.Comp.PixelDebt += pixels;

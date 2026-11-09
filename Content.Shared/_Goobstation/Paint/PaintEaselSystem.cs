@@ -23,7 +23,8 @@ public sealed partial class PaintEaselSystem : EntitySystem
 
     public EntityUid? GetCanvas(Entity<PaintEaselComponent> easel)
     {
-        return _itemSlots.GetItemOrNull(easel, easel.Comp.Slot);
+        // Inferus: ItemSlots API takes Entity<ItemSlotsComponent?>
+        return _itemSlots.GetItemOrNull((easel.Owner, null), easel.Comp.Slot);
     }
 
     public bool TryGetEasel(EntityUid canvas, out Entity<PaintEaselComponent> easel)

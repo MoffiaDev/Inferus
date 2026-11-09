@@ -22,6 +22,7 @@ using Content.Shared.NameModifier.Components;
 using Content.Shared.Paper;
 using Content.Shared.Power;
 using Content.Shared.Tools;
+using Content.Shared._Goobstation.Fax; // Inferus
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;

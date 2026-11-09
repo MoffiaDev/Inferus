@@ -13,18 +13,10 @@ public sealed partial class PaintFaxSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<PaintSurfaceComponent, GettingFaxedCopiedEvent>(OnFaxCopied);
-        SubscribeLocalEvent<PaintSurfaceComponent, GettingFaxedSentEvent>(OnFaxSent);
+        // Inferus: GettingFaxedSentEvent was not ported with the Goob fax hooks; only block copy for now.
     }
 
     private void OnFaxCopied(Entity<PaintSurfaceComponent> ent, ref GettingFaxedCopiedEvent args)
-    {
-        args.Handled = true;
-
-        if (args.Args.Actor.IsValid())
-            _popup.PopupEntity(Loc.GetString("paint-fax-use-photocopier"), args.Fax, args.Args.Actor);
-    }
-
-    private void OnFaxSent(Entity<PaintSurfaceComponent> ent, ref GettingFaxedSentEvent args)
     {
         args.Handled = true;
 
