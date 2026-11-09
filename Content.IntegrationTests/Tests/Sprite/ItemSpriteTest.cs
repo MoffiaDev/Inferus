@@ -25,6 +25,13 @@ namespace Content.IntegrationTests.Tests.Sprite;
 [TestFixture]
 public sealed class PrototypeSaveTest : GameTest
 {
+    // Inferus: body-based items also need a synchronized server/client rendering check
+    public override PoolSettings PoolSettings => new()
+    {
+        Connected = true,
+        Dirty = true
+    };
+
     private static readonly HashSet<string> Ignored = new()
     {
         // The only prototypes that should get ignored are those that REQUIRE setup to get a sprite. At that point it is
@@ -51,6 +58,44 @@ public sealed class PrototypeSaveTest : GameTest
                 pair.Client.EntMan.DeleteEntity(dummy);
             }
         });
+
+        // Inferus: retry initialized bodies through the normal networked rendering path, without exempting them
+        var bodyPrototypes = badPrototypes.FindAll(proto => proto.Components.ContainsKey("InitialBody"));
+        if (bodyPrototypes.Count > 0)
+        {
+            var map = await pair.CreateTestMap();
+            foreach (var proto in bodyPrototypes)
+            {
+                EntityUid serverEntity = default;
+                NetEntity netEntity = default;
+                await pair.Server.WaitPost(() =>
+                {
+                    serverEntity = pair.Server.EntMan.SpawnEntity(proto.ID, map.GridCoords);
+                    netEntity = pair.Server.EntMan.GetNetEntity(serverEntity);
+                });
+
+                try
+                {
+                    await pair.RunUntilSynced();
+                    await pair.Client.WaitPost(() =>
+                    {
+                        var clientEntity = pair.Client.EntMan.GetEntity(netEntity);
+                        var sprite = pair.Client.EntMan.GetComponentOrNull<SpriteComponent>(clientEntity);
+                        if (sprite?.Icon != null)
+                            badPrototypes.Remove(proto);
+                    });
+                }
+                finally
+                {
+                    await pair.Server.WaitPost(() =>
+                    {
+                        if (pair.Server.EntMan.EntityExists(serverEntity))
+                            pair.Server.EntMan.DeleteEntity(serverEntity);
+                    });
+                    await pair.RunUntilSynced();
+                }
+            }
+        }
 
         Assert.Multiple(() =>
         {
