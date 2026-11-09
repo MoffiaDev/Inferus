@@ -228,7 +228,7 @@
   parent: CrateGenericSteel
   id: CrateFunArtSupplies
   name: art supplies
-  description: Make some happy little accidents with lots of crayons!
+  description: Make some happy little accidents with lots of crayons and paint!
   components:
   - type: EntityTableContainerFill
     containers:
