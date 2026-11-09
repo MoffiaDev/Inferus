@@ -594,6 +594,9 @@
     stateBaseClosed: clown
     stateDoorOpen: clown_open
     stateDoorClosed: clown_door
+  - type: StorageFill
+    contents:
+    - id: PaintingFrameClown # Goobstation
 
 # Mime
 - type: entity
@@ -608,6 +611,9 @@
     stateBaseClosed: mime
     stateDoorOpen: mime_open
     stateDoorClosed: mime_door
+  - type: StorageFill # Goobstation
+    contents:
+    - id: PaintingFrameFrog
 
 # Representative
 - type: entity

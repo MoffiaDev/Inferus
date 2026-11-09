@@ -488,4 +488,9 @@ public enum LogType
     /// Silicon law changes.
     /// </summary>
     SiliconLaw = 105,
+
+    /// <summary>
+    /// Paintings.
+    /// <summary>
+    Paint = 106, // Goobstation
 }

@@ -1,0 +1,5 @@
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: PhotocopierMachineCircuitboard
+  icon: { sprite: _Goobstation/Structures/Machines/photocopier.rsi, state: icon }
+  result: PhotocopierMachineCircuitboard
