@@ -1,18 +1,23 @@
 ﻿<Document>
   # Species
 
-  Nanotrasen employs a variety of sapient species.
+  Aetheris employs a variety of sapient species!
   <Box>
     <GuideEntityEmbed Entity="MobHuman" Caption="Human"/>
     <GuideEntityEmbed Entity="MobMoth" Caption="Moth Person"/>
     <GuideEntityEmbed Entity="MobReptilian" Caption="Reptilian"/>
     <GuideEntityEmbed Entity="MobSlimePerson" Caption="Slime Person"/>
-    <!--<GuideEntityEmbed Entity="MobUngu" Caption="Ungu"/>!--> <!--Macrocosm-->
     <GuideEntityEmbed Entity="MobVox" Caption="Vox"/>
-  </Box>
-  <Box>
     <GuideEntityEmbed Entity="MobArachnid" Caption="Arachnid"/>
     <GuideEntityEmbed Entity="MobDiona" Caption="Diona"/>
     <GuideEntityEmbed Entity="MobDwarf" Caption="Dwarf"/>
   </Box>
+  <Box>
+    <GuideEntityEmbed Entity="MobUngu" Caption="Ungu"/>! <!--Macrocosm-->
+    <GuideEntityEmbed Entity="MobApid" Caption="Apid"/>! <!--Macrocosm-->
+    <GuideEntityEmbed Entity="MobOvinia" Caption="Ovinia"/>! <!--Macrocosm-->
+    <GuideEntityEmbed Entity="MobApid" Caption="Apid"/>! <!--Macrocosm-->
+    <GuideEntityEmbed Entity="MobGastropoid" Caption="Gastropoid"/>! <!--Macrocosm-->
+    <GuideEntityEmbed Entity="MobAllulalo" Caption="Allulalo"/>! <!--Macrocosm-->
+  </box>
 </Document>
