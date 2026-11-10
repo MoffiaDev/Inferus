@@ -2,12 +2,9 @@ using Content.Client._Floof.Consent.UI.Windows;
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
-using Content.Shared.Input;
 using JetBrains.Annotations;
-using Robust.Client.Input;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Input.Binding;
 
 namespace Content.Client._Floof.Consent.UI;
 
@@ -17,8 +14,6 @@ namespace Content.Client._Floof.Consent.UI;
 [UsedImplicitly]
 public sealed class ConsentUiController : UIController, IOnStateChanged<GameplayState>
 {
-    [Dependency] private IInputManager _input = default!;
-
     private ConsentWindow? _window;
 
     private MenuButton? ConsentButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.ConsentButton;
@@ -26,9 +21,6 @@ public sealed class ConsentUiController : UIController, IOnStateChanged<Gameplay
     public void OnStateEntered(GameplayState state)
     {
         EnsureWindow();
-
-        _input.SetInputCommand(ContentKeyFunctions.OpenConsentWindow,
-            InputCmdHandler.FromDelegate(_ => ToggleWindow()));
     }
 
     public void OnStateExited(GameplayState state)

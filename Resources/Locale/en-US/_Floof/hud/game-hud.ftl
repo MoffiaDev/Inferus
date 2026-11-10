@@ -9,7 +9,6 @@ consent-window-freetext-placeholder = Put consent info here, such as:
 
 # UI
 game-hud-open-consent-window-button-tooltip = Open consent window.
-ui-options-function-open-consent-window = Open consent window
 consent-window-title = OOC Consent & Preferences
 consent-window-text = This information is shown to other players to help with RP preferences.
 consent-window-unsaved-changes = You have unsaved changes
