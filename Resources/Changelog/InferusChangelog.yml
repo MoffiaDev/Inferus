@@ -192,3 +192,9 @@ Entries:
       message: Better user feedback (clear tooltips) for the "Ready/Not Ready" button.
   id: 9
   time: '2026-11-10T02:06:36.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Tweak
+      message: The R&D console has been reworked into a new tech tree.
+  id: 10
+  time: '2026-11-10T04:21:36.0000000+00:00'
