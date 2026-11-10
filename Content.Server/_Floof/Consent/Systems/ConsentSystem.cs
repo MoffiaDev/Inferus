@@ -11,7 +11,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Floof.Consent.Systems;
 
-public sealed class ConsentSystem : SharedConsentSystem
+public sealed partial class ConsentSystem : SharedConsentSystem // Inferus
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
