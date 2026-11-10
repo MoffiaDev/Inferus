@@ -26,6 +26,7 @@
   spawnerPrototype: SpawnPointGhostWizard
   startingGear: WizardBlueGear
   roleLoadout:
+  - JobWizard
   - RoleSurvivalExtendedAntag
   briefing:
     text: wizard-role-greeting

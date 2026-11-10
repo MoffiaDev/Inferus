@@ -112,7 +112,7 @@ public sealed class DefibrillatorTest : InteractionTest
             Assert.That(mobStateSystem.IsCritical(STarget.Value, targetMobState), Is.True, "Target mob was not in critical state after being defibrillated.");
             Assert.That(mobStateSystem.IsDead(STarget.Value, targetMobState), Is.False, "Target mob was still dead after being defibrillated.");
         });
-        // End Inferus
+
     }
 
     /// <summary>

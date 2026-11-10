@@ -3,8 +3,14 @@
     xmlns:controls="clr-namespace:Content.Client._ES.Spawning.Ui"
     xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
     Title="{Loc 'es-spawn-menu-title'}"
-    MinSize="950 530">
+    MinSize="950 635"> <!-- Inferus: room for the character strip. -->
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="10">
+        <!-- Inferus: horizontal character selection above the existing job layout. -->
+        <ScrollContainer MinHeight="75" MaxHeight="75" HorizontalExpand="True" HScrollEnabled="True" VScrollEnabled="False">
+            <BoxContainer Name="CharacterList" Orientation="Horizontal" SeparationOverride="10"/>
+        </ScrollContainer>
+        <customControls:HSeparator Margin="5 4 5 4"/>
+        <!-- End Inferus -->
         <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
             <BoxContainer Orientation="Vertical" HorizontalExpand="True">
                 <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">

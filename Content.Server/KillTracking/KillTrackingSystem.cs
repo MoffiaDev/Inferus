@@ -47,7 +47,7 @@ public sealed partial class KillTrackingSystem : EntitySystem
         var oldState = args.OldMobState is MobState.SoftCritical or MobState.HardCritical ? MobState.Critical : args.OldMobState;
         if (newState != component.KillState || oldState >= newState)
             return;
-        // End Inferus
+
 
         // impulse is the entity that did the finishing blow.
         var killImpulse = GetKillSource(args.Origin);

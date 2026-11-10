@@ -41,6 +41,7 @@ public sealed partial class DamageOverlay : Overlay
     private bool _legacy;
     // END Inferus
 
+
     public MobState State = MobState.Alive;
 
     /// <summary>
@@ -301,7 +302,7 @@ public sealed partial class DamageOverlay : Overlay
                 handle.DrawRect(viewport, Color.White);
             }
             else
-            // END Inferus
+
             {
                 // Inferus
                 if (ScreenTexture == null)

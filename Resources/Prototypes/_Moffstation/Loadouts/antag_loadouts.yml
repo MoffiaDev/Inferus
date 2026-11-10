@@ -1,0 +1,38 @@
+# Nukeops
+- type: roleLoadout
+  id: JobNukeopsCommander
+  canCustomizeName: true
+  groups:
+  - NukieJumpsuit
+  - NukieBackpack
+  - NukieGloves
+  - Trinkets # Inferus: use Inferus's existing job-agnostic trinket group.
+
+- type: roleLoadout
+  id: JobNukeops
+  canCustomizeName: true
+  groups:
+  - NukieJumpsuit
+  - NukieBackpack
+  - NukieGloves
+  - Trinkets # Inferus
+
+- type: roleLoadout
+  id: JobNukeopsMedic
+  canCustomizeName: true
+  groups:
+  - NukieJumpsuit
+  - NukieMedicalBackpack
+  - NukieGloves
+  - Trinkets # Inferus
+
+# Wizard
+- type: roleLoadout
+  id: JobWizard
+  canCustomizeName: true
+  groups:
+    - WizardJumpsuit
+    - WizardRobes
+    - WizardHat
+    - CommonBackpack
+    - Trinkets # Inferus

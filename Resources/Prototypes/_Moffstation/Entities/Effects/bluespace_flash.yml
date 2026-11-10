@@ -1,0 +1,15 @@
+- type: entity
+  id: EffectFlashBluespace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ESTimedDespawn
+    lifetime: 1
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/Lightning/lightningbolt.ogg
+  - type: TriggerOnSpawn
+  - type: ESSparkOnTrigger
+    count: 8
+    sparkPrototype: MoffEffectSparksBluespace
+  # spawns on portals, should stay in the same spot
+  - type: PortalBlacklist

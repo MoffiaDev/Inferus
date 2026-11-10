@@ -31,7 +31,7 @@ public sealed partial class PaintSurfaceComponent : Component
     // Inferus: CreationTick is cleared for prototype components; retain the initial full-state boundary.
     [ViewVariables]
     public GameTick InitialStateTick;
-    // End Inferus
+
 
     [ViewVariables]
     public GameTick[] ChunkModified = Array.Empty<GameTick>();

@@ -4,6 +4,7 @@ using System.Numerics;
 using System.Text;
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
+using Content.Shared._ES.Core.Timer.Components; // Inferus
 using Robust.Shared;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Configuration;
@@ -242,6 +243,11 @@ namespace Content.IntegrationTests.Tests
                 "MapGrid",
                 "StationEvent",
                 "TimedDespawn",
+                // Inferus - these prototypes intentionally despawn or spawn effects
+                "ESTimedDespawn",
+                "ESSparkOnTrigger",
+                "ESSparkOnDespawn",
+
 
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",
@@ -323,10 +329,11 @@ namespace Content.IntegrationTests.Tests
             });
         }
 
+        // Inferus: include ES transient effects in the existing baseline-preserving cleanup
         /// <summary>
-        /// Deletes any entities with <see cref="TimedDespawnComponent"/> that were not present in the baseline snapshot.
+        /// Deletes entities with TimedDespawn or ESTimedDespawn that were not present in the baseline snapshot.
         /// Some entities spawn transient side-effects on deletion (e.g. explosion visuals). These side-effect entities
-        /// use TimedDespawn and would persist across test iterations, corrupting baseline entity counts and causing
+        /// use either timed despawn component and would persist across test iterations, corrupting baseline entity counts and causing
         /// cascading assertion failures.
         /// </summary>
         private static async Task CleanupTransientEntities(Pair.TestPair pair, HashSet<EntityUid> baselineEntities)
@@ -334,7 +341,7 @@ namespace Content.IntegrationTests.Tests
             var server = pair.Server;
             await server.WaitPost(() =>
             {
-                var toRemove = new List<EntityUid>();
+                var toRemove = new HashSet<EntityUid>(); // Inferus: deduplicate entities with both despawn components
                 var query = server.EntMan.AllEntityQueryEnumerator<TimedDespawnComponent>();
                 while (query.MoveNext(out var uid, out _))
                 {
@@ -342,9 +349,19 @@ namespace Content.IntegrationTests.Tests
                         toRemove.Add(uid);
                 }
 
+                // Inferus: ES sparks use a separate networked lifetime component
+                var esQuery = server.EntMan.AllEntityQueryEnumerator<ESTimedDespawnComponent>();
+                while (esQuery.MoveNext(out var uid, out _))
+                {
+                    if (!baselineEntities.Contains(uid))
+                        toRemove.Add(uid);
+                }
+
                 foreach (var uid in toRemove)
                 {
-                    server.EntMan.DeleteEntity(uid);
+                    // Inferus: deleting a parent may already have deleted a collected child
+                    if (server.EntMan.EntityExists(uid))
+                        server.EntMan.DeleteEntity(uid);
                 }
             });
             await pair.RunTicksSync(3);

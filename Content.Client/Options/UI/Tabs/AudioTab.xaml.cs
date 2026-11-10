@@ -33,7 +33,7 @@ public sealed partial class AudioTab : Control
         AddSection(DevicePage, "ui-options-device-label");
         Pages.Orphan();
         CollectSectionButtons();
-        // End Inferus
+
 
         Control.AddOptionDropDown(CVars.AudioDevice, DropDownAudioDevice, BuildAudioDeviceOptions());
 
@@ -198,5 +198,5 @@ public sealed partial class AudioTab : Control
                 _sectionButtons[i].Pressed = true;
         }
     }
-    // End Inferus
+
 }

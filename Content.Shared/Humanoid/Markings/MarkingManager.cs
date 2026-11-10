@@ -149,6 +149,12 @@ public sealed partial class MarkingManager
                 }
 
                 var existingColors = markings[i].MarkingColors;
+                // Inferus: preserve existing palettes when porting the split moth wings.
+                if (marking.TryMapLegacyColors(existingColors, out var mappedColors))
+                {
+                    markings[i] = new Marking(marking.ID, mappedColors) { Forced = markings[i].Forced };
+                    continue;
+                }
                 // If there are less colors than sprites, fill missing spots with the last existing color,
                 // or white, if there are no existing colors
                 // This will occur if an existing marking is edited to have additional layers

@@ -788,7 +788,14 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (prototype.StartingGear is not null)
             gear.Add(prototype.StartingGear.Value);
 
-        _loadout.Equip(antag, gear, prototype.RoleLoadout);
+        // Inferus: use the character that spawned, not just the lobby-selected character.
+        if (MoffCharacterPicker.GetSpawnedProfile(player.UserId) is { } profile)
+            _loadout.LoadoutAwareEquip(antag, player, gear, prototype.RoleLoadout, profile);
+        else if (_pref.TryGetCachedPreferences(player.UserId, out var preferences))
+            _loadout.LoadoutAwareEquip(antag, player, gear, prototype.RoleLoadout, preferences.SelectedCharacter);
+        else
+            _loadout.LoadoutAwareEquip(antag, player, gear, prototype.RoleLoadout, _loadout.GetProfile(antag));
+
 
         // Ensure that we have the right mind for our entity.
         if (!_mind.TryGetMind(player, out var mind, out var mindComp) || mindComp.OwnedEntity != antag)

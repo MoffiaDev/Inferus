@@ -79,6 +79,7 @@ namespace Content.Server.Entry
         [Dependency] private ServerUpdateManager _updateManager = default!;
         [Dependency] private ServerFeedbackManager _feedbackManager = null!;
         [Dependency] private PreWrittenDocumentManager _documentManager = default!; // Inferus
+        [Dependency] private Content.Server._Moffstation.Preferences.MoffCharacterSelectionManager _moffCharacterSelection = default!; // Inferus: Moffstation PR #1737
 
         public override void PreInit()
         {
@@ -124,6 +125,8 @@ namespace Content.Server.Entry
             _connection.Initialize();
             _dbManager.Init();
             _preferences.Init();
+                        _moffCharacterSelection.Init(); // Moffstation - Multi-character selection
+
             _nodeFactory.Initialize();
             _netResMan.Initialize();
             _ghostKick.Initialize();

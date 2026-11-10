@@ -1,13 +1,17 @@
 #nullable enable
 using System.IO;
+using System.Collections.Generic; // Inferus
 using System.Linq;
 using Content.Server.GameTicking;
+using Content.Server._Moffstation.Preferences; // Inferus
 using Content.Server.Preferences.Managers;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Preferences;
+using Content.Shared.Roles; // Inferus
+using Robust.Shared.Prototypes; // Inferus
 using Robust.Shared.Player;
 
 namespace Content.IntegrationTests.Pair;
@@ -26,7 +30,15 @@ public sealed partial class TestPair
         var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
         foreach (var user in _modifiedProfiles)
         {
-            await Server.WaitPost(() => prefMan.SetProfile(user, 0, new HumanoidCharacterProfile()).Wait());
+            // Inferus: SetJobPriorities changes both stores, so reset both before reusing the pair
+            var profile = new HumanoidCharacterProfile();
+            await Server.WaitPost(() =>
+            {
+                prefMan.SetProfile(user, 0, profile).Wait();
+                var selection = Server.ResolveDependency<MoffCharacterSelectionManager>();
+                selection.SetJobPriorities(user,
+                    new Dictionary<ProtoId<JobPrototype>, JobPriority>(profile.JobPriorities)).Wait();
+            });
         }
 
         _modifiedProfiles.Clear();

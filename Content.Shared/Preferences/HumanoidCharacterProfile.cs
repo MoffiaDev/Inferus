@@ -10,7 +10,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Speech.Components;
-using Content.Shared.Traits;
+using Content.Shared._DV.Traits; // Inferus: Moffstation PR #1485
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -556,12 +556,14 @@ namespace Content.Shared.Preferences
             // Category not found so dump it.
             TraitCategoryPrototype? traitCategory = null;
 
-            if (category != null && !protoManager.Resolve(category, out traitCategory))
+                        if (!protoManager.Resolve(category, out traitCategory)) // DeltaV 13/01/26 - Traits: Category is no longer nullable
+
                 return new(this);
 
             var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences) { traitId };
 
-            if (traitCategory == null || traitCategory.MaxTraitPoints < 0)
+                        if (traitCategory.MaxPoints < 0) // DeltaV 13/01/26 - Traits: Changed to MaxPoints
+
             {
                 return new(this)
                 {
@@ -582,7 +584,8 @@ namespace Content.Shared.Preferences
                 count += otherProto.Cost;
             }
 
-            if (count > traitCategory.MaxTraitPoints && traitProto.Cost != 0)
+                        if (count > traitCategory.MaxPoints && traitProto.Cost != 0) // DeltaV 13/01/26 - Traits: Changed to MaxPoints
+
             {
                 return new(this);
             }
@@ -822,11 +825,12 @@ namespace Content.Shared.Preferences
                     continue;
 
                 // Always valid.
-                if (traitProto.Category == null)
-                {
-                    result.Add(trait);
-                    continue;
-                }
+                                // if (traitProto.Category == null) // DeltaV 13/01/26 - Traits rework
+                // {
+                //     result.Add(trait);
+                //     continue;
+                // }
+
 
                 // No category so dump it.
                 if (!protoManager.Resolve(traitProto.Category, out var category))
@@ -836,7 +840,8 @@ namespace Content.Shared.Preferences
                 existing += traitProto.Cost;
 
                 // Too expensive.
-                if (existing > category.MaxTraitPoints)
+                                if (existing > category.MaxPoints) // DeltaV 13/01/26 - Traits:  Was MaxTraitPoints
+
                     continue;
 
                 groups[category.ID] = existing;

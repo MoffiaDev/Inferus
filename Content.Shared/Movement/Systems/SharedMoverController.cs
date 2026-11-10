@@ -388,7 +388,7 @@ public abstract partial class SharedMoverController : VirtualController
                 // Begin Inferus
                 if (surfaceSound)
                     audioParams = ApplyStepTimbre(uid, audioParams);
-                // End Inferus
+
 
                 // If we're a relay target then predict the sound for all relays.
                 if (relaySource != null)

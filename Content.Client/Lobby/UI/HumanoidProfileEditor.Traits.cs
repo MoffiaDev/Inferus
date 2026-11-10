@@ -1,7 +1,11 @@
+// DV - File Completely rewritten
+// Accept any upstream changes
+/*
+
 using System.Linq;
 using Content.Client.Lobby.UI.Roles;
 using Content.Client.Stylesheets;
-using Content.Shared.Traits;
+using Content.Shared._DV.Traits; // Inferus: Moffstation PR #1485
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Utility;
 
@@ -122,3 +126,5 @@ public sealed partial class HumanoidProfileEditor
         }
     }
 }
+*/
+

@@ -1,5 +1,7 @@
 ﻿using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+
 
 namespace Content.Shared.Teleportation.Components;
 
@@ -53,4 +55,9 @@ public sealed partial class PortalComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public bool RandomTeleport = true;
+
+    // Inferus
+    [DataField]
+    public EntProtoId TeleportEffect = "EffectFlashBluespace";
+
 }

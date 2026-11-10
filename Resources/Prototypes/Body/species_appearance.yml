@@ -4,6 +4,8 @@
   components:
   - type: Sprite
     layers:
+    # Inferus
+    - map: [ "enum.HumanoidVisualLayers.TailBehind" ]
     # Torso
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
 
@@ -40,6 +42,9 @@
     - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "outerClothing" ]
+    # Inferus
+    - map: [ "enum.HumanoidVisualLayers.TailOversuit" ]
+    - map: [ "enum.HumanoidVisualLayers.TailBehindBackpack" ]
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "suitstorage" ]

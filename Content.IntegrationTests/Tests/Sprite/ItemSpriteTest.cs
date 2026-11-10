@@ -25,6 +25,13 @@ namespace Content.IntegrationTests.Tests.Sprite;
 [TestFixture]
 public sealed class PrototypeSaveTest : GameTest
 {
+    // Inferus: body-based items also need a synchronized server/client rendering check
+    public override PoolSettings PoolSettings => new()
+    {
+        Connected = true,
+        Dirty = true
+    };
+
     private static readonly HashSet<string> Ignored = new()
     {
         // The only prototypes that should get ignored are those that REQUIRE setup to get a sprite. At that point it is
@@ -46,11 +53,53 @@ public sealed class PrototypeSaveTest : GameTest
                 var dummy = pair.Client.EntMan.Spawn(proto.ID);
                 pair.Client.EntMan.RunMapInit(dummy, pair.Client.MetaData(dummy));
                 var spriteComponent = pair.Client.EntMan.GetComponentOrNull<SpriteComponent>(dummy);
-                if (spriteComponent?.Icon == null)
+                // Inferus: visualizers normally run next frame, apply their real appearance data before checking layers
+                pair.Client.System<AppearanceSystem>().OnChangeData(dummy, spriteComponent);
+                if (!HasVisibleSprite(spriteComponent)) // Inferus: inspect all renderable layers
                     badPrototypes.Add(proto);
                 pair.Client.EntMan.DeleteEntity(dummy);
             }
         });
+
+        // Inferus: retry initialized bodies through the normal networked rendering path, without exempting them
+        var bodyPrototypes = badPrototypes.FindAll(proto => proto.Components.ContainsKey("InitialBody"));
+        if (bodyPrototypes.Count > 0)
+        {
+            var map = await pair.CreateTestMap();
+            foreach (var proto in bodyPrototypes)
+            {
+                EntityUid serverEntity = default;
+                NetEntity netEntity = default;
+                await pair.Server.WaitPost(() =>
+                {
+                    serverEntity = pair.Server.EntMan.SpawnEntity(proto.ID, map.GridCoords);
+                    netEntity = pair.Server.EntMan.GetNetEntity(serverEntity);
+                });
+
+                try
+                {
+                    await pair.RunUntilSynced();
+                    await pair.Client.WaitPost(() =>
+                    {
+                        var clientEntity = pair.Client.EntMan.GetEntity(netEntity);
+                        var sprite = pair.Client.EntMan.GetComponentOrNull<SpriteComponent>(clientEntity);
+                        // Inferus: flush appearance-driven visibility on the synchronized entity too
+                        pair.Client.System<AppearanceSystem>().OnChangeData(clientEntity, sprite);
+                        if (HasVisibleSprite(sprite)) // Inferus: inspect the initialized body layers
+                            badPrototypes.Remove(proto);
+                    });
+                }
+                finally
+                {
+                    await pair.Server.WaitPost(() =>
+                    {
+                        if (pair.Server.EntMan.EntityExists(serverEntity))
+                            pair.Server.EntMan.DeleteEntity(serverEntity);
+                    });
+                    await pair.RunUntilSynced();
+                }
+            }
+        }
 
         Assert.Multiple(() =>
         {
@@ -59,5 +108,30 @@ public sealed class PrototypeSaveTest : GameTest
                 Assert.Fail($"Item prototype has no sprite: {proto.ID}. It should probably either be marked as abstract, not be an item, or have a valid sprite");
             }
         });
+    }
+
+    // Inferus: a layered sprite may have blank leading slots; require actual visible texture/state data
+    private static bool HasVisibleSprite(SpriteComponent? sprite)
+    {
+        if (sprite == null)
+            return false;
+
+        foreach (var layer in sprite.AllLayers)
+        {
+            if (!layer.Visible)
+                continue;
+
+            if (layer.Texture != null)
+                return true;
+
+            if (!layer.RsiState.IsValid)
+                continue;
+
+            var rsi = layer.Rsi ?? sprite.BaseRSI;
+            if (rsi != null && rsi.TryGetState(layer.RsiState, out _))
+                return true;
+        }
+
+        return false;
     }
 }

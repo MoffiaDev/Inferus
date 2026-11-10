@@ -36,6 +36,9 @@
   - type: StaticPrice
     price: 75
   - type: RequireProjectileTarget
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2
 
 - type: entity
   parent: [ BaseCrate, StructureHealthContainerWeak ]

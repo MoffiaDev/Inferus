@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Client._DV.CustomObjectiveSummary; // DeltaV
+
 using Content.Client.CharacterInfo;
 using Content.Client.Gameplay;
 using Content.Client.Stylesheets;
@@ -30,6 +32,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
     [Dependency] private IEntityManager _ent = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private CustomObjectiveSummaryUIController _objective = default!; // Inferus: Moffstation PR #271
 
     [UISystemDependency] private readonly CharacterInfoSystem _characterInfo = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
@@ -62,7 +65,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
                 InputCmdHandler.FromDelegate(_ => ToggleWindow()))
             .Register<CharacterUIController>();
     }
-#pragma warning restore CS0162 // End Inferus
+#pragma warning restore CS0162
 
     public void OnStateExited(GameplayState state)
     {
@@ -183,6 +186,20 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
 
             _window.Objectives.AddChild(objectiveControl);
         }
+        // Begin DeltaV Additions - Custom objective summary
+        if (objectives.Count > 0)
+        {
+            var button = new Button
+            {
+                Text = Loc.GetString("custom-objective-button-text"),
+                Margin = new Thickness(0, 10, 0, 10)
+            };
+            button.OnPressed += _ => _objective.OpenWindow();
+
+            _window.Objectives.AddChild(button);
+        }
+        // End DeltaV Additions
+
 
         if (briefing != null)
         {

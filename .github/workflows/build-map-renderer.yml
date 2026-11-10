@@ -49,6 +49,10 @@ jobs:
         run: dotnet build Content.MapRenderer --configuration Release --no-restore /m
 
       - name: Run Map Renderer
+        # Inferus: avoid concurrent writes to the pinned engine's prototype-variant dictionary
+        # scope this workaround to rendering and leave restore/build parallelism unchanged
+        env:
+          DOTNET_PROCESSOR_COUNT: "1"
         run: dotnet run --project Content.MapRenderer Dev
 
   ci-success:

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Content.Shared.Movement.Pulling.Components;
+using Content.Shared._Moffstation.Teleportation.Components; // Inferus
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
@@ -95,6 +96,10 @@ public abstract partial class SharedPortalSystem : EntitySystem
             return;
 
         var subject = args.OtherEntity;
+
+                if (HasComp<PortalBlacklistComponent>(subject)) // Inferus: do not teleport spark particles.
+            return;
+
 
         if (_tag.HasTag(args.OtherEntity, PreventCollisionTag))
             return;
@@ -247,7 +252,14 @@ public abstract partial class SharedPortalSystem : EntitySystem
             return;
 
         _audio.PlayPredicted(departureSound, ent, subject);
-        _audio.PlayPredicted(arrivalSound, subject, subject);
+                // Moffstation - Start - Sparks and fx
+        if (!HasComp<PortalComponent>(targetEntity))
+            PredictedSpawnAtPosition(ent.Comp.TeleportEffect, Transform(subject).Coordinates);
+        else
+            _audio.PlayPredicted(arrivalSound, subject, subject);
+        // Moffstation - End
+
+
     }
 
     /// <summary>

@@ -1,5 +1,7 @@
 using System.Linq;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Chat;
+
 using Content.Shared.CombatMode;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
@@ -324,7 +326,8 @@ public abstract partial class SharedStrippableSystem : EntitySystem
         var prefix = stealth ? "stealthily " : "";
         _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):actor} is trying to {prefix}strip the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s {slot} slot");
 
-        _interactionSystem.DoContactInteraction(user, item);
+                //_interactionSystem.DoContactInteraction(user, item); // ES, removed, interaction handled through new interaction system
+
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, time, new StrippableDoAfterEvent(false, true, slot), user, target, item)
         {
@@ -418,6 +421,7 @@ public abstract partial class SharedStrippableSystem : EntitySystem
 
         if (!stealth)
         {
+            _interactionSystem.DoContactInteraction(user, target, null, true); // Inferus
             _popupSystem.PopupEntity(
                 Loc.GetString("strippable-component-alert-owner-insert-hand",
                     ("user", Identity.Entity(user, EntityManager)),
@@ -539,7 +543,8 @@ public abstract partial class SharedStrippableSystem : EntitySystem
         var prefix = stealth ? "stealthily " : "";
         _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):actor} is trying to {prefix}strip the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s hands");
 
-        _interactionSystem.DoContactInteraction(user, item);
+                //_interactionSystem.DoContactInteraction(user, item); // ES, removed, interaction handled through new interaction system
+
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, time, new StrippableDoAfterEvent(false, false, handName), user, target, item)
         {
@@ -673,6 +678,21 @@ public abstract partial class SharedStrippableSystem : EntitySystem
 
         if (!HasComp<StrippingComponent>(user))
             return false;
+
+                // Moffstation - Start - Interaction particles and strip menu notification
+        // Do this check to make it harder to spam the chat
+        var (_, stealth) = GetStripTimeModifiers(user, target, null, target.Comp.HandStripDelay);
+        if (!stealth && !_ui.IsUiOpen(target.Owner, StrippingUiKey.Key))
+        {
+            _interactionSystem.DoContactInteraction(user, target, null, true);
+            _popupSystem.PopupCoordinates(
+                Loc.GetString("strip-menu-viewing-message", ("user", Identity.Entity(user, EntityManager))),
+                Transform(user).Coordinates,
+                target.Owner
+                );
+        }
+        // Moffstation - end
+
 
         _ui.OpenUi(target.Owner, StrippingUiKey.Key, user);
         return true;

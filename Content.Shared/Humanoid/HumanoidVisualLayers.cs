@@ -35,5 +35,9 @@ namespace Content.Shared.Humanoid
         Ensnare,
         Fire,
 
+        // Inferus - append to preserve existing enum values
+        TailBehind,
+        TailOversuit,
+        TailBehindBackpack,
     }
 }

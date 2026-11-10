@@ -14,10 +14,12 @@
     requiredCharge: 50
   - type: ItemToggle
     onActivate: false
-    soundActivate:
-      collection: sparks
-      params:
-        variation: 0.250
+  # ES START
+#    soundActivate:
+#      collection: sparks
+#      params:
+#        variation: 0.250
+  # ES END
     soundDeactivate:
       collection: sparks
       params:
@@ -68,6 +70,8 @@
     - Belt
   - type: DisarmMalus
     malus: 0.225
+  - type: ESSparkOnItemToggle
+    count: 1
   - type: Appearance
   - type: GenericVisualizer
     visuals:
