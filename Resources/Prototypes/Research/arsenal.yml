@@ -13,6 +13,7 @@
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
   # These are roundstart but not replenishable for salvage
+  position: 1,0 # Goobstation R&D Console rework
 
 - type: technology
   id: DraconicMunitions
@@ -35,6 +36,11 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
+  # Goobstation R&D Console rework start
+  position: 2,2
+  technologyPrerequisites:
+  - SalvageWeapons
+  # Goobstation R&D Console rework end
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -47,6 +53,11 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
+  # Goobstation R&D Console rework start
+  position: 4,0
+  technologyPrerequisites:
+  - DraconicMunitions # Floof - Tech Tree
+  # Goobstation R&D Console rework end
 
 - type: technology
   id: NonlethalAmmunition
@@ -63,6 +74,11 @@
   - BoxBeanbag
   - WeaponDisabler
   - WeaponDisablerSMG
+  # Goobstation R&D Console rework start
+  position: 2,3
+  technologyPrerequisites:
+  - SalvageWeapons
+  # Goobstation R&D Console rework end
 
 - type: technology
   id: UraniumMunitions
@@ -84,6 +100,11 @@
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
+  # Goobstation R&D Console rework start
+  position: 3,2
+  technologyPrerequisites:
+  - DraconicMunitions
+  # Goobstation R&D Console rework end
 
 - type: technology
   id: ExplosiveTechnology
@@ -104,6 +125,9 @@
   - ChemicalPayload
   - CableDetStack1
   - EmptyDetonator
+  technologyPrerequisites:
+  - SalvageWeapons # Goobstation R&D Console rework
+  position: 2,-1  # Goobstation R&D Console rework
 
 - type: technology
   id: SpecialMeans
@@ -116,6 +140,11 @@
   cost: 5000
   recipeUnlocks:
   - ClothingBackpackElectropack
+  # Goobstation R&D Console rework start
+  position: 4,3
+  technologyPrerequisites:
+  - AdvancedRiotControl
+  # Goobstation R&D Console rework end
 
 # Tier 2
 
@@ -132,6 +161,11 @@
   - Truncheon
   - TelescopicShield
   - HoloprojectorSecurity
+  # Goobstation R&D Console rework start
+  position: 3,3
+  technologyPrerequisites:
+  - NonlethalAmmunition
+  # Goobstation R&D Console rework end
 
 - type: technology
   id: ConcentratedLaserWeaponry
@@ -144,6 +178,11 @@
   cost: 10000
   recipeUnlocks:
   - WeaponLaserCannon
+  # Goobstation R&D Console rework start
+  position: 5,0
+  technologyPrerequisites:
+  - WeaponizedLaserManipulation
+  # Goobstation R&D Console rework end
 
 - type: technology
   id: WaveParticleHarnessing
@@ -156,6 +195,9 @@
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
+  position: 4,1 # Floof - Tech Tree
+  technologyPrerequisites: # Floof - Tech Tree
+  - WeaponizedLaserManipulation # Floof - Tech Tree
 
 - type: technology
   id: KineticModifications
@@ -170,6 +212,9 @@
   - PKAUpgradeDamage
   - PKAUpgradeRange
   - PKAUpgradeFireRate
+  position: 1,-2 # Floof - Tech Tree
+  technologyPrerequisites: # Floof - Tech Tree
+  - SalvageWeapons # Floof - Tech Tree
 
 - type: technology
   id: BasicShuttleArmament
@@ -191,7 +236,9 @@
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunFriendshipCircuitboard
   technologyPrerequisites:
-  - SalvageWeapons
+  - ExplosiveTechnology # Goobstation R&D Console rework
+  - Shuttlecraft  # Goobstation R&D Console rework
+  position: 3,-4  # Goobstation R&D Console rework
 
 - type: technology
   id: DualWieldingTechnology
@@ -204,6 +251,9 @@
   cost: 10000
   recipeUnlocks:
   - ClothingBackpackHarmpack
+  position: 4,2 # Floof - Tech Tree
+  technologyPrerequisites: # Floof - Tech Tree
+  - UraniumMunitions # Floof - Tech Tree
 
 # Tier 3
 
@@ -219,6 +269,11 @@
   recipeUnlocks:
   - WeaponAdvancedLaser
   - PortableRecharger
+  # Goobstation R&D Console rework start
+  position: 6,0
+  technologyPrerequisites:
+  - ConcentratedLaserWeaponry
+  # Goobstation R&D Console rework end
 
 - type: technology
   id: ThermalWeaponry
@@ -231,6 +286,9 @@
   cost: 15000
   recipeUnlocks:
   - WeaponTemperatureGun
+  position: 5,1 # Floof - Tech Tree
+  technologyPrerequisites: # Floof - Tech Tree
+  - WaveParticleHarnessing # Floof - Tech Tree
 
 - type: technology
   id: AdvancedShuttleWeapon
@@ -240,10 +298,12 @@
     state: icon
   discipline: Arsenal
   tier: 3
-  cost: 15000
+  cost: 20000 # Goobstation 15000 -> 20000
   recipeUnlocks:
   - GrenadeEMP
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:
   - BasicShuttleArmament
+  - Shuttlecraft  # Goobstation R&D Console rework
+  position: 4,-4  # Goobstation R&D Console rework

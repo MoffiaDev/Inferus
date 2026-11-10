@@ -32,7 +32,8 @@
     - GasTurbineMonitorComputerCircuitboard
   technologyPrerequisites:
   - PowerGeneration
- 
+  position: 0,-3
+
 - type: technology
   id: NuclearPowerRecycling
   name: research-technology-nuclear-recycling
@@ -57,3 +58,4 @@
     - GoldGasTurbineStator
   technologyPrerequisites:
   - NuclearPowerGeneration
+  position: -1,-3
