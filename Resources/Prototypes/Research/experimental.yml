@@ -11,6 +11,7 @@
   cost: 5000
   recipeUnlocks:
   - ProximitySensor
+  position: -1,1
 
 - type: technology
   id: BasicAnomalousResearch
@@ -43,7 +44,7 @@
   - AnalysisComputerCircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   # Goobstation R&D Console rework start
-  position: -2,0
+  position: -2,1
   technologyPrerequisites:
   - BasicRobotics
   # Goobstation R&D Console rework end
