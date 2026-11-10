@@ -595,7 +595,7 @@
       enum.ResearchConsoleUiKey.Key:
         type: ResearchConsoleBoundUserInterface
       enum.ResearchClientUiKey.Key:
-        type: ResearchClientBoundUserInterface
+        type: FancyResearchConsoleBoundUserInterface # R&D Console rework
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: ApcPowerReceiver
