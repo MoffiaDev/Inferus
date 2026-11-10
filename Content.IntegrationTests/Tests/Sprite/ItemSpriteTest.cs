@@ -53,7 +53,7 @@ public sealed class PrototypeSaveTest : GameTest
                 var dummy = pair.Client.EntMan.Spawn(proto.ID);
                 pair.Client.EntMan.RunMapInit(dummy, pair.Client.MetaData(dummy));
                 var spriteComponent = pair.Client.EntMan.GetComponentOrNull<SpriteComponent>(dummy);
-                if (spriteComponent?.Icon == null)
+                if (!HasVisibleSprite(spriteComponent)) // Inferus: inspect all renderable layers
                     badPrototypes.Add(proto);
                 pair.Client.EntMan.DeleteEntity(dummy);
             }
@@ -81,7 +81,7 @@ public sealed class PrototypeSaveTest : GameTest
                     {
                         var clientEntity = pair.Client.EntMan.GetEntity(netEntity);
                         var sprite = pair.Client.EntMan.GetComponentOrNull<SpriteComponent>(clientEntity);
-                        if (sprite?.Icon != null)
+                        if (HasVisibleSprite(sprite)) // Inferus: inspect the initialized body layers
                             badPrototypes.Remove(proto);
                     });
                 }
@@ -104,5 +104,30 @@ public sealed class PrototypeSaveTest : GameTest
                 Assert.Fail($"Item prototype has no sprite: {proto.ID}. It should probably either be marked as abstract, not be an item, or have a valid sprite");
             }
         });
+    }
+
+    // Inferus: a layered sprite may have blank leading slots; require actual visible texture/state data
+    private static bool HasVisibleSprite(SpriteComponent? sprite)
+    {
+        if (sprite == null)
+            return false;
+
+        foreach (var layer in sprite.AllLayers)
+        {
+            if (!layer.Visible)
+                continue;
+
+            if (layer.Texture != null)
+                return true;
+
+            if (!layer.RsiState.IsValid)
+                continue;
+
+            var rsi = layer.Rsi ?? sprite.BaseRSI;
+            if (rsi != null && rsi.TryGetState(layer.RsiState, out _))
+                return true;
+        }
+
+        return false;
     }
 }
