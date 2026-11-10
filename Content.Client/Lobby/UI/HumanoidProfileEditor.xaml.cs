@@ -23,7 +23,6 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Direction = Robust.Shared.Maths.Direction;
-using Content.Client._Floof.Consent.UI;
 
 namespace Content.Client.Lobby.UI
 {
@@ -135,8 +134,7 @@ namespace Content.Client.Lobby.UI
 
             ResetButton.OnPressed += args =>
             {
-                SetProfile((HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter,
-                    _preferencesManager.Preferences?.SelectedCharacterIndex);
+                SetProfile((HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, _preferencesManager.Preferences?.SelectedCharacterIndex);
             };
 
             SaveButton.OnPressed += args =>
@@ -156,8 +154,7 @@ namespace Content.Client.Lobby.UI
             NameEdit.OnTextChanged += args => { SetName(args.Text); };
             NameEdit.IsValid = args => args.Length <= _maxNameLength;
             RandomizeUnlockedButton.OnPressed += args => { RandomizeProfile(); };
-            WarningLabel.SetMarkup(
-                $"[color=red]{Loc.GetString("humanoid-profile-editor-naming-rules-warning")}[/color]");
+            WarningLabel.SetMarkup($"[color=red]{Loc.GetString("humanoid-profile-editor-naming-rules-warning")}[/color]");
 
             #endregion Name
 
@@ -233,8 +230,7 @@ namespace Content.Client.Lobby.UI
             };
 
             RgbSkinColorContainer.AddChild(_rgbSkinColorSelector = new ColorSelectorSliders());
-            _rgbSkinColorSelector.SelectorType =
-                ColorSelectorSliders.ColorSelectorType.Hsv; // defaults color selector to HSV
+            _rgbSkinColorSelector.SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv; // defaults color selector to HSV
             _rgbSkinColorSelector.OnColorChanged += _ =>
             {
                 OnSkinColorOnValueChanged();
@@ -246,9 +242,7 @@ namespace Content.Client.Lobby.UI
 
             foreach (var value in Enum.GetValues<SpawnPriorityPreference>())
             {
-                SpawnPriorityButton.AddItem(
-                    Loc.GetString($"humanoid-profile-editor-preference-spawn-priority-{value.ToString().ToLower()}"),
-                    (int)value);
+                SpawnPriorityButton.AddItem(Loc.GetString($"humanoid-profile-editor-preference-spawn-priority-{value.ToString().ToLower()}"), (int)value);
             }
 
             SpawnPriorityButton.OnItemSelected += args =>
@@ -284,7 +278,7 @@ namespace Content.Client.Lobby.UI
                 (int)PreferenceUnavailableMode.StayInLobby);
             PreferenceUnavailableButton.AddItem(
                 Loc.GetString("humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button",
-                    ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
+                              ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
                 (int)PreferenceUnavailableMode.SpawnAsOverflow);
 
             PreferenceUnavailableButton.OnItemSelected += args =>

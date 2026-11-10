@@ -86,7 +86,6 @@ namespace Content.Client.Entry
         [Dependency] private PreWrittenDocumentManager _documentManager = default!; // Inferus
         [Dependency] private ClientFeedbackManager _feedbackManager = null!;
 
-
         public override void PreInit()
         {
             ClientContentIoC.Register(Dependencies);
@@ -182,7 +181,6 @@ namespace Content.Client.Entry
             _documentParsingManager.Initialize();
             _titleWindowManager.Initialize();
             _feedbackManager.Initialize();
-
 
             _baseClient.RunLevelChanged += (_, args) =>
             {

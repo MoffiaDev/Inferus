@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
-using Content.Shared._Floof.Consent;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
@@ -382,7 +381,6 @@ namespace Content.Server.Database
         Task CustomVoteLogCancel(int voteId);
 
         #endregion
-
     }
 
     /// <summary>
@@ -1090,7 +1088,6 @@ namespace Content.Server.Database
         {
             return RunDbCommand(() => _db.HasPendingModelChanges());
         }
-
 
         // Wrapper functions to run DB commands from the thread pool.
         // This will avoid SynchronizationContext capturing and avoid running CPU work on the main thread.
