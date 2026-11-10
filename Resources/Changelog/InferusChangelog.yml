@@ -111,3 +111,84 @@ Entries:
       message: You can now paint in-game! Have fun, artists!
   id: 8
   time: '2026-11-09T15:54:53.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Add
+      message: >-
+        Adds support for tails (and such) to have more control over their
+        layering, so they'll look good even if you're wearing a skirt.
+    - type: Add
+      message: >-
+        Adds support for markings to have sprites inherit color from other
+        sprites in the marking, so you can change multiple sprite colors with
+        one slider!
+    - type: Add
+      message: >-
+        Ports dozens of tails, snouts, and ears from Skyrat SS13. These use the
+        new layering system, and will layer under skirts properly. (Note,
+        pre-existing tails still use the old system, and will likely layer over
+        skirts)
+    - type: Fix
+      message: >-
+        Moths are no longer shrink-wrapped. you may now wear your poncho in
+        peace.
+    - type: Add
+      message: Moths may now dye their neckfluff no matter their wingtype.
+    - type: Add
+      message: Added interaction particles to add clarity to what people are doing.
+    - type: Add
+      message: Many electrical things will spark when damaged.
+    - type: Add
+      message: Added sparks for RCDs, Bluespace, portals, and welders turning on!
+    - type: Add
+      message: Pulling now has a unique particle effect.
+    - type: Tweak
+      message: Changed the sound for closing airlocks.
+    - type: Tweak
+      message: Doafters now have a smooth fade in and fadeout animation.
+    - type: Add
+      message: Reworked traits and trait UI!
+    - type: Add
+      message: Overhauled the special roles menu!
+    - type: Add
+      message: Added loadouts and customizable names to antags!
+    - type: Add
+      message: Added pinktexting!
+    - type: Add
+      message: Job priorities are now bound to your player
+    - type: Tweak
+      message: Job preferences on characters are "yes" or "no" like antag selection
+    - type: Add
+      message: Characters can be individually enabled or disabled
+    - type: Add
+      message: >-
+        All enabled characters will be considered for round start job assignment
+        (does not affect Antag before job roll)
+    - type: Add
+      message: >-
+        Antag character previews are shown on character customization (if
+        character has no job selected)
+    - type: Add
+      message: Late join window now has a character picker
+    - type: Add
+      message: Show job specific loadout name on character pickers
+    - type: Tweak
+      message: >-
+        Lobby character summary is overhauled to display all of your selected
+        jobs and characters in a hopefully clean and intuitive way!
+    - type: Fix
+      message: >-
+        Age, species, and trait job requirements should now work with role
+        timers turned off
+    - type: Add
+      message: >-
+        Admin verb - "Spawn as ... " lets you spawn a player using any of their
+        profiles.
+    - type: Add
+      message: >-
+        You can drag and drop the icons in the lobby to change your job
+        priorities!
+    - type: Tweak
+      message: Better user feedback (clear tooltips) for the "Ready/Not Ready" button.
+  id: 9
+  time: '2026-11-10T02:06:36.0000000+00:00'
