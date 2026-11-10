@@ -17,7 +17,7 @@ namespace Content.Client._Floof.Consent.UI;
 [UsedImplicitly]
 public sealed class ConsentUiController : UIController, IOnStateChanged<GameplayState>
 {
-    [Dependency] private readonly IInputManager _input = default!;
+    [Dependency] private IInputManager _input = default!;
 
     private ConsentWindow? _window;
 

@@ -87,7 +87,7 @@ namespace Content.Client.Entry
         [Dependency] private PreWrittenDocumentManager _documentManager = default!; // Inferus
         [Dependency] private ClientFeedbackManager _feedbackManager = null!;
 
-        [Dependency] private readonly IClientConsentManager _clientConsentManager = default!; // Floof - Consent system
+        [Dependency] private IClientConsentManager _clientConsentManager = default!; // Floof - Consent system
 
         public override void PreInit()
         {

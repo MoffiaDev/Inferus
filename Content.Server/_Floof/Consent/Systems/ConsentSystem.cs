@@ -12,7 +12,7 @@ namespace Content.Server._Floof.Consent.Systems;
 
 public sealed class ConsentSystem : SharedConsentSystem
 {
-    [Dependency] private readonly IServerConsentManager _consent = default!;
+    [Dependency] private IServerConsentManager _consent = default!;
 
     protected override FormattedMessage GetConsentText(NetUserId userId)
     {

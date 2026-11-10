@@ -849,6 +849,33 @@ namespace Content.Server.Database.Migrations.Postgres
                         });
                 });
 
+            modelBuilder.Entity("Content.Server.Database.ConsentSettings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("consent_settings_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ConsentFreetext")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("consent_freetext");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_consent_settings");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("consent_settings", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.CustomVoteLog", b =>
                 {
                     b.Property<int>("Id")
@@ -980,7 +1007,7 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.ToTable("job", (string)null);
                 });
 
-                        modelBuilder.Entity("Content.Server.Database.MoffModel+MoffJobPriority", b =>
+            modelBuilder.Entity("Content.Server.Database.MoffModel+MoffJobPriority", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1058,7 +1085,6 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     b.ToTable("moff_profile", (string)null);
                 });
-
 
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>
                 {
@@ -2030,7 +2056,7 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Navigation("Profile");
                 });
 
-                        modelBuilder.Entity("Content.Server.Database.MoffModel+MoffJobPriority", b =>
+            modelBuilder.Entity("Content.Server.Database.MoffModel+MoffJobPriority", b =>
                 {
                     b.HasOne("Content.Server.Database.MoffModel+MoffPreference", "MoffPreference")
                         .WithMany("JobPriorities")
@@ -2065,7 +2091,6 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     b.Navigation("Profile");
                 });
-
 
             modelBuilder.Entity("Content.Server.Database.Player", b =>
                 {
@@ -2277,11 +2302,10 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Navigation("Options");
                 });
 
-                        modelBuilder.Entity("Content.Server.Database.MoffModel+MoffPreference", b =>
+            modelBuilder.Entity("Content.Server.Database.MoffModel+MoffPreference", b =>
                 {
                     b.Navigation("JobPriorities");
                 });
-
 
             modelBuilder.Entity("Content.Server.Database.Player", b =>
                 {
@@ -2320,8 +2344,7 @@ namespace Content.Server.Database.Migrations.Postgres
 
             modelBuilder.Entity("Content.Server.Database.Preference", b =>
                 {
-                                        b.Navigation("MoffPreference");
-
+                    b.Navigation("MoffPreference");
 
                     b.Navigation("Profiles");
                 });
@@ -2334,8 +2357,7 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     b.Navigation("Loadouts");
 
-                                        b.Navigation("MoffProfile");
-
+                    b.Navigation("MoffProfile");
 
                     b.Navigation("Traits");
                 });
