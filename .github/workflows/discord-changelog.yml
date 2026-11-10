@@ -4,7 +4,7 @@ name: Discord Changelog
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 6 * * *'
+    - cron: '15 0 * * 0'
 
 jobs:
   publish_changelog:
