@@ -495,4 +495,8 @@ public enum LogType
     /// Paintings.
     /// <summary>
     Paint = 106, // Goobstation
+    /// <summary> Floof
+    /// Events related to players consent.
+    /// </summary>
+    Consent = 21442, // Floof - Consent system
 }

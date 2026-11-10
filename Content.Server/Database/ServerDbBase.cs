@@ -48,6 +48,7 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Jobs)
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
+                .Include(p => p.Profiles).ThenInclude(h => h.ConsentToggles) // Floof - Consent toggles
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
@@ -106,6 +107,7 @@ namespace Content.Server.Database
                 .Include(p => p.Jobs)
                 .Include(p => p.Antags)
                 .Include(p => p.Traits)
+                .Include(p => p.ConsentToggles) // Floof - Consent toggles
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
@@ -212,6 +214,7 @@ namespace Content.Server.Database
 
             profile.CharacterName = humanoid.Name;
             profile.FlavorText = humanoid.FlavorText;
+            profile.ConsentText = humanoid.ConsentText; // Floof: Added consent.
             profile.Species = humanoid.Species;
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
@@ -261,6 +264,14 @@ namespace Content.Server.Database
                 humanoid.TraitPreferences
                         .Select(t => new Trait {TraitName = t})
             );
+
+            // Floof Section - Consent toggles
+            profile.ConsentToggles.Clear();
+            profile.ConsentToggles.AddRange(
+                humanoid.ConsentToggles
+                    .Select(t => new ConsentToggle {ToggleId = t})
+            );
+            // Floof Section End - Consent toggles
 
             profile.Loadouts.Clear();
 

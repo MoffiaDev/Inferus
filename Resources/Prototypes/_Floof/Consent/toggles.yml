@@ -1,0 +1,4 @@
+- type: consentToggle
+  id: Example
+  name: consent-toggle-example
+  description: consent-toggle-example-desc

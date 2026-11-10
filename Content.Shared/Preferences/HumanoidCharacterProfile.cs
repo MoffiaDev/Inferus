@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._Floof.Consent.Prototypes; // Floof - Consent toggles
 using Content.Shared.CCVar;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.EntityEffects.Effects;
@@ -61,6 +62,13 @@ namespace Content.Shared.Preferences
         [DataField]
         private HashSet<ProtoId<TraitPrototype>> _traitPreferences = new();
 
+        // Floof Section - Consent toggles
+        [DataField]
+        private HashSet<ProtoId<ConsentTogglePrototype>> _consentToggles = new();
+
+        public IReadOnlySet<ProtoId<ConsentTogglePrototype>> ConsentToggles => _consentToggles;
+        // Floof Section End - Consent toggles
+
         /// <summary>
         /// <see cref="_loadouts"/>
         /// </summary>
@@ -77,6 +85,13 @@ namespace Content.Shared.Preferences
         /// </summary>
         [DataField]
         public string FlavorText { get; set; } = string.Empty;
+
+        /// <summary>
+        /// FLOOF
+        /// Detailed consent text that can appear for the character.
+        /// </summary>
+        [DataField]
+        public string ConsentText { get; set; } = string.Empty;
 
         /// <summary>
         /// Associated <see cref="SpeciesPrototype"/> for this profile.
@@ -133,6 +148,7 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile(
             string name,
             string flavortext,
+            string consenttext, // Floof: Added consent.
             string species,
             int age,
             Sex sex,
@@ -148,6 +164,7 @@ namespace Content.Shared.Preferences
         {
             Name = name;
             FlavorText = flavortext;
+            ConsentText = consenttext; // Floof: Added consent.
             Species = species;
             Age = age;
             Sex = sex;
@@ -180,6 +197,7 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile(HumanoidCharacterProfile other)
             : this(other.Name,
                 other.FlavorText,
+                other.ConsentText, // Floof: Added consent.
                 other.Species,
                 other.Age,
                 other.Sex,
@@ -194,6 +212,7 @@ namespace Content.Shared.Preferences
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
         {
             SpeechBlip = other.SpeechBlip; // Inferus
+            _consentToggles = new(other._consentToggles); // Floof - Consent toggles
         }
 
         /// <summary>
@@ -399,6 +418,36 @@ namespace Content.Shared.Preferences
         {
             return new(this) { FlavorText = flavorText };
         }
+
+        // Floof: Added consent.
+        public HumanoidCharacterProfile WithConsentText(string consentText)
+        {
+            return new(this) { ConsentText = consentText };
+        }
+
+        // Floof Section - Consent toggles
+        public HumanoidCharacterProfile WithConsentToggle(ProtoId<ConsentTogglePrototype> toggle, bool enabled)
+        {
+            var toggles = new HashSet<ProtoId<ConsentTogglePrototype>>(_consentToggles);
+            if (enabled)
+                toggles.Add(toggle);
+            else
+                toggles.Remove(toggle);
+
+            return new(this) { _consentToggles = toggles };
+        }
+
+        public HumanoidCharacterProfile WithConsentToggles(IEnumerable<ProtoId<ConsentTogglePrototype>> toggles)
+        {
+            return new(this) { _consentToggles = new(toggles) };
+        }
+
+        public static string SanitizeConsentText(string text, int maxLength)
+        {
+            text = FormattedMessage.RemoveMarkupPermissive(text).Trim();
+            return text.Length > maxLength ? text[..maxLength] : text;
+        }
+        // Floof Section End - Consent toggles
 
         public HumanoidCharacterProfile WithAge(int age)
         {
@@ -631,6 +680,8 @@ namespace Content.Shared.Preferences
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
+            if (ConsentText != other.ConsentText) return false; // Floof: Added consent.
+            if (!_consentToggles.SetEquals(other._consentToggles)) return false; // Floof - Consent toggles
             return Appearance.Equals(other.Appearance);
         }
 
@@ -716,6 +767,9 @@ namespace Content.Shared.Preferences
                 flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
             }
 
+            // Floof: Added consent
+            var consentText = SanitizeConsentText(ConsentText, configManager.GetCVar(CCVars.MaxConsentTextLength));
+
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex);
 
             var prefsUnavailableMode = PreferenceUnavailable switch
@@ -764,6 +818,7 @@ namespace Content.Shared.Preferences
 
             Name = name;
             FlavorText = flavortext;
+            ConsentText = consentText;
             Age = age;
             Sex = sex;
             Voice = voice;
@@ -786,6 +841,8 @@ namespace Content.Shared.Preferences
 
             _traitPreferences.Clear();
             _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
+
+            _consentToggles.RemoveWhere(t => !prototypeManager.HasIndex(t)); // Floof - Consent toggles
 
             // Checks prototypes exist for all loadouts and dump / set to default if not.
             var toRemove = new ValueList<string>();
@@ -887,6 +944,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(_loadouts);
             hashCode.Add(Name);
             hashCode.Add(FlavorText);
+            hashCode.Add(ConsentText); // Floof: Added consent.
             hashCode.Add(Species);
             hashCode.Add(Age);
             hashCode.Add((int)Sex);

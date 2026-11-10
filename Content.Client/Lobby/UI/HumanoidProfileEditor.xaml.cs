@@ -310,6 +310,7 @@ namespace Content.Client.Lobby.UI
             #endregion Markings
 
             RefreshFlavorText();
+            RefreshConsentText();
 
             #region Dummy
 
@@ -531,7 +532,8 @@ namespace Content.Client.Lobby.UI
         private void SetDirty()
         {
             // If it equals default then reset the button.
-            if (Profile == null || _preferencesManager.Preferences?.SelectedCharacter.MemberwiseEquals(Profile) == true)
+            if (Profile == null
+                || _preferencesManager.Preferences?.SelectedCharacter.MemberwiseEquals(Profile) == true) // Floof: Check if consent has changed
             {
                 IsDirty = false;
                 return;
@@ -580,6 +582,7 @@ namespace Content.Client.Lobby.UI
 
             UpdateNameEdit();
             UpdateFlavorTextEdit();
+            UpdateConsentTextEdit(); // Floof: Added consent.
             UpdateSexControls();
             UpdateVoiceControls();
             UpdateSpeechBlipControls(); // Inferus
@@ -599,6 +602,7 @@ namespace Content.Client.Lobby.UI
             // RefreshTraits(); // DeltaV
 
             RefreshFlavorText();
+            RefreshConsentText(); // Floof: Added consent.
             ReloadPreview();
 
             if (Profile != null)

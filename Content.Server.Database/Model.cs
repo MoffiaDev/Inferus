@@ -70,6 +70,12 @@ namespace Content.Server.Database
                 .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.TraitName})
                 .IsUnique();
 
+            // Floof Section - Consent toggles
+            modelBuilder.Entity<ConsentToggle>()
+                .HasIndex(c => new {c.ProfileId, c.ToggleId})
+                .IsUnique();
+            // Floof Section End - Consent toggles
+
             modelBuilder.Entity<ProfileRoleLoadout>()
                 .HasOne(e => e.Profile)
                 .WithMany(e => e.Loadouts)
@@ -334,6 +340,7 @@ namespace Content.Server.Database
         public int Slot { get; set; }
         [Column("char_name")] public string CharacterName { get; set; } = null!;
         public string FlavorText { get; set; } = null!;
+        public string ConsentText { get; set; } = null!; // Floof: Added consent.
         public int Age { get; set; }
         public string Sex { get; set; } = null!;
         public string? Voice { get; set; } = null!; // If null, the voice gets defaulted to the sex associated value
@@ -352,6 +359,7 @@ namespace Content.Server.Database
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
+        public List<ConsentToggle> ConsentToggles { get; } = new(); // Floof - Consent toggles
 
         public List<ProfileRoleLoadout> Loadouts { get; } = new();
 
@@ -361,6 +369,17 @@ namespace Content.Server.Database
         public Preference Preference { get; set; } = null!;
         public MoffModel.MoffProfile? MoffProfile { get; set; } // Inferus: multi-character selection
     }
+
+    // Floof Section - Consent toggles
+    public class ConsentToggle
+    {
+        public int Id { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
+
+        public string ToggleId { get; set; } = null!;
+    }
+    // Floof Section End - Consent toggles
 
     public class Job
     {
