@@ -17,5 +17,5 @@ consent-window-char-limit-warning = Character limit exceeded ({$length} / {$maxL
 consent-window-no-body = You need to be in a body to change its consent.
 
 # Consent toggles
-consent-toggle-watersports = Watersports
-consent-toggle-watersports-desc = Peeing into containers and other urine play.
+consent-toggle-example = Example
+consent-toggle-example-desc = An example consent toggle.
