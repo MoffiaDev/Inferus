@@ -53,6 +53,8 @@ public sealed class PrototypeSaveTest : GameTest
                 var dummy = pair.Client.EntMan.Spawn(proto.ID);
                 pair.Client.EntMan.RunMapInit(dummy, pair.Client.MetaData(dummy));
                 var spriteComponent = pair.Client.EntMan.GetComponentOrNull<SpriteComponent>(dummy);
+                // Inferus: visualizers normally run next frame, apply their real appearance data before checking layers
+                pair.Client.System<AppearanceSystem>().OnChangeData(dummy, spriteComponent);
                 if (!HasVisibleSprite(spriteComponent)) // Inferus: inspect all renderable layers
                     badPrototypes.Add(proto);
                 pair.Client.EntMan.DeleteEntity(dummy);
@@ -81,6 +83,8 @@ public sealed class PrototypeSaveTest : GameTest
                     {
                         var clientEntity = pair.Client.EntMan.GetEntity(netEntity);
                         var sprite = pair.Client.EntMan.GetComponentOrNull<SpriteComponent>(clientEntity);
+                        // Inferus: flush appearance-driven visibility on the synchronized entity too
+                        pair.Client.System<AppearanceSystem>().OnChangeData(clientEntity, sprite);
                         if (HasVisibleSprite(sprite)) // Inferus: inspect the initialized body layers
                             badPrototypes.Remove(proto);
                     });

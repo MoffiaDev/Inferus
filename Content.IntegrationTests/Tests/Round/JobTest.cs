@@ -117,6 +117,9 @@ public sealed class JobTest : GameTest
         Assert.That(pair.Client.AttachedEntity, Is.Null);
         Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.NotReadyToPlay));
 
+        // Inferus: explicitly set the expected job in both character and player-global preferences
+        await pair.SetJobPriorities((Passenger, JobPriority.High), (Engineer, JobPriority.Never), (Captain, JobPriority.Never));
+
         // Ready up and start the round
         ticker.ToggleReadyAll(true);
         Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.ReadyToPlay));

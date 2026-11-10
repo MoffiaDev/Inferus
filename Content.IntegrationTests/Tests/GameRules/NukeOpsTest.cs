@@ -7,6 +7,7 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
+using Content.Server.Preferences.Managers; // Inferus
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
@@ -21,6 +22,8 @@ using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.NukeOps;
 using Content.Shared.Pinpointer;
+using Content.Shared.Preferences; // Inferus
+using Content.Shared.Roles; // Inferus
 using Content.Shared.Roles.Components;
 using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
@@ -75,6 +78,15 @@ public sealed class NukeOpsTest : GameTest
         // Add several dummy players
         var dummies = await pair.Server.AddDummySessions(3);
         await pair.RunTicksSync(5);
+
+        // Inferus: faction assertions below require standard human crew, not randomized first-login profiles/jobs
+        var prefMan = server.ResolveDependency<IServerPreferencesManager>();
+        foreach (var user in dummies.Select(session => session.UserId).Append(client.User!.Value))
+        {
+            await server.WaitPost(() =>
+                prefMan.SetProfile(user, 0, HumanoidCharacterProfile.DefaultWithSpecies()).Wait());
+            await pair.SetJobPriority("Passenger", JobPriority.High, user);
+        }
 
         // Opt into the nukies role.
         await pair.SetAntagPreference("NukeopsCommander", true);
