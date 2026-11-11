@@ -4,7 +4,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.Tag;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
+// Inferus: timing is handled by ScreenshakeSystem
 
 namespace Content.Shared._Starlight.Camera;
 
@@ -12,7 +12,7 @@ public sealed partial class ShakeOnStairsSystem : EntitySystem
 {
     [Dependency] private ScreenshakeSystem _shake = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
-    [Dependency] private IGameTiming _timing = default!;
+    // Inferus: use ScreenshakeSystem for cooldown timing
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private TagSystem _tag = default!;
 
@@ -46,7 +46,7 @@ public sealed partial class ShakeOnStairsSystem : EntitySystem
                 if(_lastShakeCoords.TryGetValue(uid, out var coords))
                     if (currentCoords.InRange(coords, 0.22f)) // to prevent slight movements from causing screenshake
                         continue;
-                _shakeCooldowns[uid] = _timing.CurTime + TimeSpan.FromSeconds(0.05f); // just to prevent this from happening every frame
+                // Inferus: Screenshake below owns the keyed 0.05-second cooldown
                 _lastShakeCoords[uid] = currentCoords;
                 var translation = new ScreenshakeParameters
                 {
@@ -69,11 +69,5 @@ public sealed partial class ShakeOnStairsSystem : EntitySystem
 
     private void OnCleanup(RoundRestartCleanupEvent ev) => _lastShakeCoords.Clear();
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        foreach (var shaker in _shakeCooldowns.Where(shaker => shaker.Value < _timing.CurTime))
-            _shakeCooldowns.Remove(shaker.Key);
-    }
+    // Inferus: removed obsolete cooldown Update; ScreenshakeSystem owns cooldowns
 }
