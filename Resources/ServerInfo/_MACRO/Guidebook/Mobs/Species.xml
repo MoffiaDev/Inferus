@@ -19,5 +19,5 @@
     <GuideEntityEmbed Entity="MobApid" Caption="Apid"/>! <!--Macrocosm-->
     <GuideEntityEmbed Entity="MobGastropoid" Caption="Gastropoid"/>! <!--Macrocosm-->
     <GuideEntityEmbed Entity="MobAllulalo" Caption="Allulalo"/>! <!--Macrocosm-->
-  </box>
+  </Box>
 </Document>
