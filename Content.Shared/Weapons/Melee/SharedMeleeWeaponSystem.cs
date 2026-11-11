@@ -43,6 +43,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using ItemToggleMeleeWeaponComponent = Content.Shared.Item.ItemToggle.Components.ItemToggleMeleeWeaponComponent;
+using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
 
 namespace Content.Shared.Weapons.Melee;
 
@@ -68,6 +69,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private DamageExamineSystem _damageExamine = default!;
     [Dependency] private SharedEntityEffectsSystem _effects = default!;
+    [Dependency] private ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
 
     [Dependency] private EntityQuery<DamageableComponent> _damageQuery = default!;
 
@@ -594,6 +596,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             if (damageResult.GetTotal() > FixedPoint2.Zero)
             {
                 DoDamageEffect(targets, user, targetXform);
+                DoScreenshake(user, targets); // Starlight | ES Screenshake
                 ResetUndamagedSwingsCount((meleeUid, component));
             }
             else
@@ -773,6 +776,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             if (appliedDamage.GetTotal() > FixedPoint2.Zero)
             {
                 DoDamageEffect(targets, user, Transform(targets[0]));
+                DoScreenshake(user, targets); // Starlight | ES Screenshake
                 ResetUndamagedSwingsCount((meleeUid, component));
             }
             else
@@ -1095,6 +1099,27 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             }
         }
     }
+
+    //Starlight begin | ES Screenshake
+    private void DoScreenshake(EntityUid uid, List<EntityUid> targets)
+    {
+        var userRotation = new ScreenshakeParameters
+        {
+            Trauma = 0.08f,
+            DecayRate = 1,
+            Frequency = 0.009f,
+        };
+        var otherTranslation = new ScreenshakeParameters
+        {
+            Trauma = 0.45f,
+            DecayRate = 1.1f,
+            Frequency = 0.04f,
+        };
+        _shake.Screenshake(uid, null, userRotation);
+        foreach(var target in targets)
+            _shake.Screenshake(target, otherTranslation, null);
+    }
+    //Starlight end
 
     /// <summary>
     /// Updates <see cref="MeleeWeaponComponent.UndamagedSwings"/> and triggers a message if it meets <see cref="MeleeWeaponComponent.UndamagedAlertThreshold"/>.

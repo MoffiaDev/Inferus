@@ -33,6 +33,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using SharedGunSystem = Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
+using Content.Shared.CCVar; // Starlight | ES Screenshake
 
 namespace Content.Client.Weapons.Ranged.Systems;
 
@@ -225,9 +226,10 @@ public sealed partial class GunSystem : SharedGunSystem
     }
 
     public override void Shoot(Entity<GunComponent> gun, List<(EntityUid? Entity, IShootable Shootable)> ammo,
-        EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, out bool userImpulse, EntityUid? user = null, bool throwItems = false)
+        EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, out bool userImpulse, out bool fired, EntityUid? user = null, bool throwItems = false) // Starlight-edit
     {
         userImpulse = true;
+        fired = false; // Starlight
 
         // Rather than splitting client / server for every ammo provider it's easier
         // to just delete the spawned entities. This is for programmer sanity despite the wasted perf.
@@ -240,6 +242,7 @@ public sealed partial class GunSystem : SharedGunSystem
             if (throwItems)
             {
                 Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                fired = true; // Starlight
                 if (IsClientSide(ent!.Value))
                     Del(ent.Value);
                 else
@@ -257,6 +260,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         MuzzleFlash(gun, cartridge, worldAngle, user);
                         Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                         Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                        fired = true; // Starlight
                         // TODO: Can't predict entity deletions.
                         //if (cartridge.DeleteOnSpawn)
                         //    Del(cartridge.Owner);
@@ -275,6 +279,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     MuzzleFlash(gun, newAmmo, worldAngle, user);
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                     Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                    fired = true; // Starlight
                     if (IsClientSide(ent!.Value))
                         Del(ent.Value);
                     else
@@ -283,6 +288,7 @@ public sealed partial class GunSystem : SharedGunSystem
                 case HitscanAmmoComponent:
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                     Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                    fired = true; // Starlight
                     break;
             }
         }
@@ -293,7 +299,10 @@ public sealed partial class GunSystem : SharedGunSystem
         if (!Timing.IsFirstTimePredicted || user == null || recoil == Vector2.Zero || recoilScalar == 0)
             return;
 
-        _recoil.KickCamera(user.Value, recoil.Normalized() * 0.5f * recoilScalar);
+        //Starlight begin | ES Screenshake
+        var shakeIntensity = _cfg.GetCVar(CCVars.ScreenShakeIntensity);
+        _recoil.KickCamera(user.Value, recoil.Normalized() * (0.5f + ((0.13f - 0.5f) * shakeIntensity)) * recoilScalar);
+        //Starlight end
     }
 
     protected override void CreateEffect(EntityUid gunUid, MuzzleFlashEvent message, EntityUid? tracked = null)
