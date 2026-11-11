@@ -33,7 +33,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using SharedGunSystem = Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
-using Content.Shared.CCVar; // Starlight | ES Screenshake
 
 namespace Content.Client.Weapons.Ranged.Systems;
 
