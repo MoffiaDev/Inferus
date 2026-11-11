@@ -23,11 +23,12 @@ public sealed partial class CP14BasePostProcessOverlay : Overlay
     public override bool RequestScreenTexture => true;
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
     private readonly ShaderInstance _basePostProcessShader;
+    private static readonly ProtoId<ShaderPrototype> BasePostProcessShader = "BasePostProcess"; // Inferus
 
     public CP14BasePostProcessOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _basePostProcessShader = _prototypeManager.Index<ShaderPrototype>("BasePostProcess").InstanceUnique();
+        _basePostProcessShader = _prototypeManager.Index(BasePostProcessShader).InstanceUnique(); // Inferus
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
