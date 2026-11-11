@@ -23,6 +23,7 @@ public sealed partial class GraphicsTab : Control
         var vSync = Control.AddOptionCheckBox(CVars.DisplayVSync, VSyncCheckBox);
         Control.AddOption(new OptionSliderIntInput(Control, _cfg, CVars.DisplayMaxFPS, MaxFpsInput, 0, 500));
         Control.AddOptionCheckBox(CCVars.AmbientOcclusion, AmbientOcclusionCheckBox);
+        Control.AddOptionCheckBox(CCVars.PostProcess, PostProcessCheckBox); // CP14
         Control.AddOption(new OptionFullscreen(Control, _cfg, FullscreenCheckBox));
         Control.AddOption(new OptionLightingQuality(Control, _cfg, DropDownLightingQuality));
         Control.AddOption(new OptionParticleQuality(Control, _cfg, DropDownParticleQuality)); // Inferus

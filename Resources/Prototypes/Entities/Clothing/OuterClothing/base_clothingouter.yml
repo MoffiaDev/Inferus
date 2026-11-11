@@ -160,6 +160,11 @@
     slots:
     - Tail
     - Tenta # macro: for kodes
+  - type: Clothing # Inferus
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 2
+    unequipDelay: 2
 
 - type: entity
   abstract: true

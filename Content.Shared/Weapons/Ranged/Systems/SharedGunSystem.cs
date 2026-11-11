@@ -34,6 +34,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Camera;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -64,6 +65,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected SharedTransformSystem TransformSystem = default!;
     [Dependency] protected TagSystem TagSystem = default!;
     [Dependency] protected ThrowingSystem ThrowingSystem = default!;
+    [Dependency] private ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
 
     /// <summary>
     /// Default projectile speed
@@ -404,9 +406,22 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
 
         // Shoot confirmed - sounds also played here in case it's invalid (e.g. cartridge already spent).
-        Shoot(gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out var userImpulse, user, throwItems: attemptEv.ThrowItems);
+        Shoot(gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out var userImpulse, out var fired, user, throwItems: attemptEv.ThrowItems);
         var shotEv = new GunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gun, ref shotEv);
+
+        //Starlight begin | ES Screenshake
+        if (fired)
+        {
+            var gunShakeRotation = new ScreenshakeParameters()
+            {
+                Trauma = 0.035f * gun.Comp.CameraRecoilScalarModified,
+                DecayRate = 1.2f,
+                Frequency = 0.008f
+            };
+            _shake.Screenshake(user, null, gunShakeRotation);
+        }
+        //Starlight end
 
         if (!userImpulse || !TryComp<PhysicsComponent>(user, out var userPhysics))
             return true;
@@ -425,11 +440,12 @@ public abstract partial class SharedGunSystem : EntitySystem
         EntityCoordinates fromCoordinates,
         EntityCoordinates toCoordinates,
         out bool userImpulse,
+        out bool fired, // Starlight-edit
         EntityUid? user = null,
         bool throwItems = false)
     {
         var shootable = EnsureShootable(ammo);
-        Shoot(gun, new List<(EntityUid? Entity, IShootable Shootable)>(1) { (ammo, shootable) }, fromCoordinates, toCoordinates, out userImpulse, user, throwItems);
+        Shoot(gun, new List<(EntityUid? Entity, IShootable Shootable)>(1) { (ammo, shootable) }, fromCoordinates, toCoordinates, out userImpulse, out fired, user, throwItems); // Inferus
     }
 
     public abstract void Shoot(
@@ -438,6 +454,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         EntityCoordinates fromCoordinates,
         EntityCoordinates toCoordinates,
         out bool userImpulse,
+        out bool fired, // Starlight-edit
         EntityUid? user = null,
         bool throwItems = false);
 
