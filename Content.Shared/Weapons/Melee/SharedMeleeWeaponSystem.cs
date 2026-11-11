@@ -73,6 +73,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
     [Dependency] private EntityQuery<DamageableComponent> _damageQuery = default!;
 
+    private static readonly string BluntDamageName = "Blunt"; // Starlight
     private const int AttackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
 
     /// <summary>
@@ -596,7 +597,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             if (damageResult.GetTotal() > FixedPoint2.Zero)
             {
                 DoDamageEffect(targets, user, targetXform);
-                DoScreenshake(user, targets); // Starlight | ES Screenshake
+                DoScreenshake(meleeUid, damageResult, user, targets); // Starlight | ES Screenshake
                 ResetUndamagedSwingsCount((meleeUid, component));
             }
             else
@@ -776,7 +777,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             if (appliedDamage.GetTotal() > FixedPoint2.Zero)
             {
                 DoDamageEffect(targets, user, Transform(targets[0]));
-                DoScreenshake(user, targets); // Starlight | ES Screenshake
+                DoScreenshake(meleeUid, damage, user, targets); // Starlight | ES Screenshake
                 ResetUndamagedSwingsCount((meleeUid, component));
             }
             else
@@ -1101,23 +1102,33 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
     }
 
     //Starlight begin | ES Screenshake
-    private void DoScreenshake(EntityUid uid, List<EntityUid> targets)
+    private void DoScreenshake(EntityUid weapon, DamageSpecifier damage, EntityUid attacker, List<EntityUid> targets)
     {
+        if(damage.GetTotal()>8) // only show to others if it hurts real bad
+        {
+            var otherTranslation = new ScreenshakeParameters
+            {
+                Trauma = 0.45f,
+                DecayRate = 1.1f,
+                Frequency = 0.04f,
+            };
+            foreach(var target in targets)
+                _shake.Screenshake(target, otherTranslation, null);
+        }
+
+        // only show to attacker if they put real oompf into it, or the weapon is just THAT strong
+        var bluntRequirement = damage.DamageDict.TryGetValue(BluntDamageName, out var blunt) && blunt >= 20;
+        var wieldRequirement = TryComp<WieldableComponent>(weapon, out var wieldable) && wieldable.Wielded;
+
+        if (!bluntRequirement && !wieldRequirement)
+            return;
         var userRotation = new ScreenshakeParameters
         {
             Trauma = 0.08f,
             DecayRate = 1,
             Frequency = 0.009f,
         };
-        var otherTranslation = new ScreenshakeParameters
-        {
-            Trauma = 0.45f,
-            DecayRate = 1.1f,
-            Frequency = 0.04f,
-        };
-        _shake.Screenshake(uid, null, userRotation);
-        foreach(var target in targets)
-            _shake.Screenshake(target, otherTranslation, null);
+        _shake.Screenshake(attacker, null, userRotation);
     }
     //Starlight end
 
