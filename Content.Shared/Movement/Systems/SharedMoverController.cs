@@ -373,9 +373,9 @@ public abstract partial class SharedMoverController : VirtualController
             }
 
             // ES START
-            // no footsteps on walk
+            // funky: footsteps now play on walk too, quieter
             if (!weightless && MobMoverQuery.TryGetComponent(uid, out var mobMover) &&
-                mover.Sprinting && !forceWalk &&
+                !forceWalk &&
                 // TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, tileDef: tileDef)) // Inferus - replaced
                 TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, out var surfaceSound, tileDef: tileDef)) // Inferus
             {
