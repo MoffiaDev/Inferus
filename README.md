@@ -1,8 +1,6 @@
 <p align="center"> <img alt="Inferus" src="https://github.com/MoffiaDev/Inferus/blob/master/Resources/Textures/Logo/logo.png" /></p></div>
 
-Inferus is an open source adult-oriented project aimed at creating unique gameplay and a pleasant roleplaying atmosphere in the game Space Station 14, built off of the [Macrocosm](https://github.com/syndicate-ss14/macrocosm) codebase.
-
-The primary purpose of [Macrocosm](https://github.com/syndicate-ss14/macrocosm) is to collate content from member communities (Microcosms) to facilitate ease of development and share content that is universally desired or that requires a larger maintenance burden.
+Inferus is an open source adult-oriented project aimed at creating unique gameplay and a pleasant roleplaying atmosphere in the game Space Station 14.
 
 ![Alt](https://repobeats.axiom.co/api/embed/032d11f7f5e813a5f11e82e09d05328976ecefdc.svg "Repobeats analytics image")
 
@@ -14,13 +12,9 @@ Inferus
 
 [Discord](https://discord.gg/9Gyj2YNf6z) | [crouton](https://crouton.net/)
 
-Macrocosm
+Space Station 14
 
-[Discord](https://discord.gg/rtmPwXbvrQ) | [Docs](https://docs.macrocosm.cool) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.io/about/nightlies/)
-
-Microcosms
-
-[The Den](https://github.com/TheDenSS14) | [Funkystation](https://github.com/funky-station) | [Impstation](https://github.com/impstation)
+[GitHub](https://github.com/space-wizards/space-station-14) | [Website](https://spacestation14.com/) | [Discord](https://discord.ss14.io/)
 
 </div>
 
