@@ -3,12 +3,15 @@
   id: Moth
   onlyGroupWhitelisted: true
   limits:
+    # Inferus - moths can pick regular hair and facial hair styles
     enum.HumanoidVisualLayers.Hair:
-      limit: 0
+      limit: 1
       required: false
+      onlyGroupWhitelisted: false
     enum.HumanoidVisualLayers.FacialHair:
-      limit: 0
+      limit: 1
       required: false
+      onlyGroupWhitelisted: false
     enum.HumanoidVisualLayers.Tail:
       limit: 1
       required: true
@@ -54,60 +57,58 @@
   categories: [ HideSpawnMenu ]
   name: moth appearance
   components:
+  # Moth displacement maps ported from funky-station
   - type: Inventory
     speciesId: moth
+    displacements:
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Moth/displacement.rsi
+            state: gloves
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Moth/displacement.rsi
+            state: shoes
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Moth/displacement.rsi
+            state: ears
+      back:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Moth/displacement.rsi
+            state: back
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Moth/displacement.rsi
+            state: outerclothing
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: jumpsuit-female
-      back:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: back
-      outerClothing:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: outerclothing
-      gloves:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: hand
-      shoes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: shoes
-    displacements:
+            sprite: _Funkystation/Mobs/Species/Moth/displacement.rsi
+            state: jumpsuit_female
+    maleDisplacements:
       jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: jumpsuit-male
-      back:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: back
-      outerClothing:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: outerclothing
-      gloves:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: hand
-      shoes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: shoes
+            sprite: _Funkystation/Mobs/Species/Moth/displacement.rsi
+            state: jumpsuit_male
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Funkystation/Mobs/Species/Moth/displacement.rsi
+          state: inhand_left
+    rightHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Funkystation/Mobs/Species/Moth/displacement.rsi
+          state: inhand_right
   - type: InitialBody
     organs:
       Torso: OrganMothTorso
@@ -244,6 +245,9 @@
   - type: VisualOrganMarkings
     hideableLayers:
     - enum.HumanoidVisualLayers.HeadTop
+    # Inferus - allow hair / facial hair to be hidden by headgear (hats, helmets)
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.FacialHair
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganMothExternal ]
