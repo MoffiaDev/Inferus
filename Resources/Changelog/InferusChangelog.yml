@@ -204,3 +204,9 @@ Entries:
       message: You now walk by default, and sprint with shift.
   id: 11
   time: '2026-11-12T04:07:47.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Tweak
+      message: Moths look cooler.
+  id: 12
+  time: '2026-11-14T18:45:33.0000000+00:00'
