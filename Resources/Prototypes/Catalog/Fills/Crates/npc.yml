@@ -277,13 +277,18 @@
   parent: CrateLivestock
   id: CrateNPCMothroach
   name: crate of mothroaches
-  description: A crate containing four mothroaches.
+  description: A crate containing five mothroaches of various kinds!
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage:
-        id: MobMothroach
-        amount: 4
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobMothroach
+        - id: MobMothroachMustard
+        - id: MobMothroachLeopard
+        - id: MobMothroachCecropia
+        - id: MobMothroachLunar
+
 
 - type: entity
   parent: CrateLivestock

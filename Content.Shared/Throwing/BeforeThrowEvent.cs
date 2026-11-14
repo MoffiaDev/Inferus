@@ -19,4 +19,5 @@ public struct BeforeThrowEvent
     public EntityUid PlayerUid { get; }
 
     public bool Cancelled = false;
+    public bool GrabThrow; // Goobstation - Grab Intent: thrown entity is a grabbed mob
 }

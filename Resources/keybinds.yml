@@ -44,6 +44,9 @@ binds:
 - function: Walk
   type: State
   key: Shift
+- function: ResistGrab # Goobstation - Grab Intent
+  type: State
+  key: B
 # Shuttle
 - function: ShuttleStrafeUp
   type: State

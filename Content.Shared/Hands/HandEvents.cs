@@ -149,13 +149,54 @@ namespace Content.Shared.Hands
     {
         public EntityUid BlockingEntity;
         public EntityUid User;
+        public EntityUid VirtualItem; // Goobstation - Grab Intent
 
-        public VirtualItemDeletedEvent(EntityUid blockingEntity, EntityUid user)
+        public VirtualItemDeletedEvent(EntityUid blockingEntity, EntityUid user, EntityUid virtualItem) // Goobstation - Grab Intent
         {
             BlockingEntity = blockingEntity;
             User = user;
+            VirtualItem = virtualItem;
         }
     }
+
+    // Goobstation - Grab Intent start
+    /// <summary>
+    ///     Raised directed on both the blocking entity and user when
+    ///     a virtual hand item is thrown (at least attempted to).
+    /// </summary>
+    [ByRefEvent]
+    public record struct VirtualItemThrownEvent(
+        EntityUid BlockingEntity,
+        EntityUid User,
+        EntityUid VirtualItem,
+        Vector2 Direction)
+    {
+        public EntityUid BlockingEntity = BlockingEntity;
+        public EntityUid User = User;
+        public EntityUid VirtualItem = VirtualItem;
+        public Vector2 Direction = Direction;
+    }
+
+    /// <summary>
+    ///     Raised directed on both the blocking entity and user when
+    ///     user tries to drop it by keybind.
+    ///     Cancellable.
+    /// </summary>
+    public sealed class VirtualItemDropAttemptEvent : CancellableEntityEventArgs
+    {
+        public EntityUid BlockingEntity;
+        public EntityUid User;
+        public EntityUid VirtualItem;
+        public bool Throw;
+        public VirtualItemDropAttemptEvent(EntityUid blockingEntity, EntityUid user, EntityUid virtualItem, bool thrown)
+        {
+            BlockingEntity = blockingEntity;
+            User = user;
+            VirtualItem = virtualItem;
+            Throw = thrown;
+        }
+    }
+    // Goobstation - Grab Intent end
 
     /// <summary>
     /// Raised against an item being picked up before it is actually inserted

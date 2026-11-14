@@ -1,4 +1,3 @@
-# Ported from funky-station PR #2553 (https://github.com/funky-station/funky-station/pull/2553)
 # Weevil color slot names fixed (swapped in the source PR).
 #
 # SPDX-FileCopyrightText: 2025 BuildTools <unconfigured@null.spigotmc.org>

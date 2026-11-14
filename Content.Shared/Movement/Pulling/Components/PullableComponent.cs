@@ -39,8 +39,8 @@ public sealed partial class PullableComponent : Component
     [AutoNetworkedField, DataField]
     public bool PrevFixedRotation;
 
-    [DataField]
-    public ProtoId<AlertPrototype> PulledAlert = "Pulled";
+    // Goobstation - Grab Intent: the pulled alert moved to GrabbableComponent
+    // (severity now reflects the grab stage).
 }
 
 public sealed partial class StopBeingPulledAlertEvent : BaseAlertEvent;

@@ -4,4 +4,6 @@ namespace Content.Shared.Weapons.Melee.Events;
 /// Raised directed on a weapon when attempt a melee attack.
 /// </summary>
 [ByRefEvent]
-public record struct AttemptMeleeEvent(EntityUid User, bool Cancelled = false, string? Message = null);
+// Goobstation - added IsHeavyAttack for grab intent (grabbing items block
+// attacks while actively grabbing, except heavy attacks at choke stage)
+public record struct AttemptMeleeEvent(EntityUid User, bool IsHeavyAttack = false, bool Cancelled = false, string? Message = null);

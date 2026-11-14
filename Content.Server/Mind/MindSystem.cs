@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
 using Content.Shared.Database;
+using Content.Shared.Mobs.Components; // Goob Station
 using Content.Shared.Ghost.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -198,6 +199,9 @@ public sealed partial class MindSystem : SharedMindSystem
 
                 alreadyAttached = true;
             }
+
+            if (HasComp<MobStateComponent>(entity.Value)) // Goob Station
+                mind.LastMob = entity.Value;
         }
         else if (createGhost)
         {

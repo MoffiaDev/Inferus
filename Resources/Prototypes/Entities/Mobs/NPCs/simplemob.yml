@@ -29,6 +29,7 @@
     - DoorBumpOpener
     - StunImmune
   - type: Blindable
+  - type: Grabbable # Goobstation - Grab Intent
 
 - type: entity
   abstract: true
