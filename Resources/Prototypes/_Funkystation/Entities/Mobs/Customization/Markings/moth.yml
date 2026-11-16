@@ -6,6 +6,10 @@
     default:
       type:
         !type:EyeColoring
+    layers:
+      eyes_soft_skin:
+        type:
+          !type:SkinColoring
   sprites:
   - sprite: _Funkystation/Mobs/Customization/Moth/moth_parts.rsi
     state: eyes_soft
