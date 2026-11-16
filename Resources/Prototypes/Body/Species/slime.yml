@@ -82,6 +82,9 @@
   id: MobSlimePerson
   name: Urist McWobble
   components:
+  - type: FootprintOwner # Inferus
+    leftBarePrint: footprint-left-bare-slime
+    rightBarePrint: footprint-right-bare-slime
   - type: Storage
     clickInsert: false
     grid:

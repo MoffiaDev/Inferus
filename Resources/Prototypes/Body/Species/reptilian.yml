@@ -118,6 +118,9 @@
   id: MobReptilian
   name: Urist McScales
   components:
+  - type: FootprintOwner # Inferus
+    leftBarePrint: footprint-left-bare-lizard
+    rightBarePrint: footprint-right-bare-lizard
   - type: Puller
     needsHands: false
   - type: Butcherable

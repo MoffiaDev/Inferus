@@ -20,7 +20,7 @@ public sealed partial class SuperBonkComponent : Component
     /// How often should we bonk.
     /// </summary>
     [DataField]
-    public TimeSpan BonkCooldown = TimeSpan.FromMilliseconds(1500);
+    public TimeSpan BonkCooldown = TimeSpan.FromMilliseconds(25);
 
     /// <summary>
     /// Next time when we will bonk.

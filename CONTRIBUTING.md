@@ -5,7 +5,7 @@ Generally we follow [upstream's PR guidelines](https://docs.spacestation14.com/e
 Importantly do not make webedits, copied verbatim from above:
 > Do not use GitHub's web editor to create PRs. PRs submitted through the web editor may be closed without review.
 
-Upstream is the [Macrocosm](https://github.com/syndicate-ss14/macrocosm) repository that we run on.
+Upstream is the [Wizard's Den](https://github.com/space-wizards/space-station-14) repository that we run on.
 
 # Content Specific to Inferus
 
@@ -29,8 +29,6 @@ Follow a few guidelines when modifying non-Inferus files, to help us manage our 
 Upstream files are generally known as **any file that isn't in a namespace.**
 
 These include all files that aren't in any subfolders, like _Inferus.
-
-HOWEVER! The _MACRO subfolder is an exception, as our upstream *is* Macrocosm.
 
 Primarily, **add comments on or around all new or changed lines** in upstream files. Explain what was changed to make resolving merge conflicts easier; we regularly merge new upstream changes into our project. If it's a small change, a simple ```// Inferus``` will do!
 
