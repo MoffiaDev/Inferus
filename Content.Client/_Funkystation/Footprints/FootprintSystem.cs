@@ -31,7 +31,7 @@ public sealed class FootprintSystem : EntitySystem
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
-        var rsiPath = new ResPath("/Textures/_Funkystation/Effects/footprints.rsi");
+        var rsiPath = new ResPath("/Textures/_White/Effects/footprints.rsi");
 
         for (var i = 0; i < component.Prints.Count; i++)
         {
@@ -43,7 +43,9 @@ public sealed class FootprintSystem : EntitySystem
             sprite.LayerSetOffset(i, print.Offset);
             sprite.LayerSetRotation(i, print.Rotation);
             sprite.LayerSetColor(i, print.Color);
-            sprite.LayerSetSprite(i, new SpriteSpecifier.Rsi(rsiPath, print.State));
+            // Inferus
+            var state = print.State == "foot" ? "footprint-shoes" : print.State;
+            sprite.LayerSetSprite(i, new SpriteSpecifier.Rsi(rsiPath, state));
         }
     }
 }

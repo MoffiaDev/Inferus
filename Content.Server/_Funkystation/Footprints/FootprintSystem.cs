@@ -49,12 +49,16 @@ public sealed class FootprintSystem : EntitySystem
         SubscribeLocalEvent<FootprintOwnerComponent, MoveEvent>(OnEntityMoved);
         SubscribeLocalEvent<PuddleComponent, MapInitEvent>(OnPuddleInit);
 
-        // Listen for chemical changes (like Space Cleaner)
-        SubscribeLocalEvent<FootprintComponent, SolutionContainerChangedEvent>(OnSolutionChanged);
+        // Inferus - subscribe to the current chemistry API event
+        SubscribeLocalEvent<FootprintComponent, SolutionChangedEvent>(OnSolutionChanged);
     }
 
-    private void OnSolutionChanged(EntityUid uid, FootprintComponent component, ref SolutionContainerChangedEvent args)
+    private void OnSolutionChanged(EntityUid uid, FootprintComponent component, ref SolutionChangedEvent args)
     {
+        // Inferus - ignore changes to any other solution on this entity
+        if (args.Solution.Comp.Id != PrintSolutionName)
+            return;
+
         UpdatePrintColors(uid, component);
     }
 
@@ -120,8 +124,10 @@ public sealed class FootprintSystem : EntitySystem
         var walkAngle = moveVector.ToAngle();
         var rotation = walkAngle + Angle.FromDegrees(90);
 
-        var stepOffset = isStanding ? component.AlternateStepOffset : 0f;
-        component.AlternateStepOffset = -component.AlternateStepOffset;
+        // Inferus - keep the sprite's handedness aligned with its side of the trail
+        var stepOffset = isStanding
+            ? MathF.Abs(component.AlternateStepOffset) * (component.RightStep ? 1f : -1f)
+            : 0f;
 
         var rightVector = new Angle(walkAngle.Theta - Math.PI / 2).ToVec();
         var offsetPos = newLocal + rightVector * stepOffset;
@@ -145,14 +151,15 @@ public sealed class FootprintSystem : EntitySystem
 
         var maxStorage = isStanding ? component.MaxFootVolume : component.MaxBodyVolume;
 
-        if (!_solutionContainer.EnsureSolutionEntity(uid, PrintSolutionName, out _, out var ownerSolution, FixedPoint2.Max(component.MaxFootVolume, component.MaxBodyVolume)))
-            return false;
+        // Inferus - EnsureSolution creates or finds a non-null solution entity.
+        _solutionContainer.EnsureSolution(uid, PrintSolutionName, out var ownerSolution);
+        _solutionContainer.SetCapacity(ownerSolution, FixedPoint2.Max(component.MaxFootVolume, component.MaxBodyVolume));
 
-        var amountToWash = CalculateTransferVolume(component, ownerSolution.Value, isStanding);
-        _solutionContainer.TryTransferSolution(puddleSolution.Value, ownerSolution.Value.Comp.Solution, amountToWash);
+        var amountToWash = CalculateTransferVolume(component, ownerSolution, isStanding);
+        _solutionContainer.TryTransferSolution(puddleSolution.Value, ownerSolution.Comp.Solution, amountToWash);
 
-        var spaceLeft = FixedPoint2.Max(0, maxStorage - ownerSolution.Value.Comp.Solution.Volume);
-        _solutionContainer.TryTransferSolution(ownerSolution.Value, puddleSolution.Value.Comp.Solution, spaceLeft);
+        var spaceLeft = FixedPoint2.Max(0, maxStorage - ownerSolution.Comp.Solution.Volume);
+        _solutionContainer.TryTransferSolution(ownerSolution, puddleSolution.Value.Comp.Solution, spaceLeft);
 
         _solutionContainer.UpdateChemicals(puddleSolution.Value, false);
         return true;
@@ -173,18 +180,19 @@ public sealed class FootprintSystem : EntitySystem
             printComp = Comp<FootprintComponent>(printUid);
         }
 
-        if (!_solutionContainer.EnsureSolutionEntity(printUid, PrintSolutionName, out _, out var printSolution, MaxVolumePerTile))
-            return;
+        // Inferus - capacity is configured separately in the chemistry API
+        _solutionContainer.EnsureSolution(printUid, PrintSolutionName, out var printSolution);
+        _solutionContainer.SetCapacity(printSolution, MaxVolumePerTile);
 
         var maxVol = isStanding ? component.MaxFootprintVolume : component.MaxBodyprintVolume;
         var alpha = (float)transferAmount / maxVol / 2f;
         var color = ownerSolution.Value.Comp.Solution.GetColor(_prototypeManager).WithAlpha(alpha);
 
-        _solutionContainer.TryTransferSolution(printSolution.Value, ownerSolution.Value.Comp.Solution, transferAmount);
+        _solutionContainer.TryTransferSolution(printSolution, ownerSolution.Value.Comp.Solution, transferAmount);
 
-        if (printSolution.Value.Comp.Solution.Volume >= MaxVolumePerTile)
+        if (printSolution.Comp.Solution.Volume >= MaxVolumePerTile)
         {
-            var solClone = printSolution.Value.Comp.Solution.Clone();
+            var solClone = printSolution.Comp.Solution.Clone();
             QueueDel(printUid);
             _puddle.TrySpillAt(coords, solClone, out _, false);
             return;
@@ -194,12 +202,33 @@ public sealed class FootprintSystem : EntitySystem
         var normX = (localPosition.X / grid.TileSize) - MathF.Floor(localPosition.X / grid.TileSize) - (grid.TileSize / 2f);
         var normY = (localPosition.Y / grid.TileSize) - MathF.Floor(localPosition.Y / grid.TileSize) - (grid.TileSize / 2f);
 
-        var state = isStanding ? "foot" : _random.Pick(DragStates);
+        var state = isStanding ? GetFootprintState(uid, component) : _random.Pick(DragStates); // Inferus
 
         printComp.Prints.Add(new FootprintData(new Vector2(normX, normY), rotation, color, state));
+        // Inferus
+        if (isStanding)
+            component.RightStep = !component.RightStep;
         Dirty(printUid, printComp);
 
         RaiseNetworkEvent(new FootprintStateEvent(GetNetEntity(printUid)), Filter.Pvs(printUid));
+    }
+
+    /// <summary>
+    /// Inferus - snapshot the bare foot's species and handedness into the deposited print
+    /// </summary>
+    private string GetFootprintState(EntityUid uid, FootprintOwnerComponent component)
+    {
+        // Inferus - pressure-protective outerwear takes precedence over shoes and bare feet
+        if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var suit)
+            && HasComp<Content.Server.Atmos.Components.PressureProtectionComponent>(suit))
+        {
+            return "footprint-suit";
+        }
+
+        if (_inventory.TryGetSlotEntity(uid, "shoes", out _))
+            return "footprint-shoes";
+
+        return component.RightStep ? component.RightBarePrint : component.LeftBarePrint;
     }
 
     private void OnPuddleInit(EntityUid uid, PuddleComponent component, ref MapInitEvent args)

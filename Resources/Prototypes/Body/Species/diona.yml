@@ -72,6 +72,9 @@
   id: MobDiona
   name: Urist McPlants
   components:
+  - type: FootprintOwner # Inferus
+    leftBarePrint: footprint-left-bare-diona
+    rightBarePrint: footprint-right-bare-diona
   - type: Respirator
     damage:
       types:

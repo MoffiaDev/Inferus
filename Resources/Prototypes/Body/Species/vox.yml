@@ -163,6 +163,9 @@
   id: MobVox
   name: Urist McVox
   components:
+  - type: FootprintOwner # Inferus
+    leftBarePrint: footprint-left-bare-lizard
+    rightBarePrint: footprint-right-bare-lizard
   - type: Damageable
     damageModifierSet: Vox
   - type: Speech

@@ -74,6 +74,9 @@
   id: MobArachnid
   name: Urist McWebs
   components:
+  - type: FootprintOwner # Inferus
+    leftBarePrint: footprint-left-bare-spider
+    rightBarePrint: footprint-right-bare-spider
   - type: Respirator
     damage:
       types:
