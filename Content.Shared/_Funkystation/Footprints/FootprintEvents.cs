@@ -4,7 +4,7 @@ namespace Content.Shared._Funkystation.Footprints;
 
 // Support events referenced by the existing Funky server and client systems.
 [Serializable, NetSerializable]
-public sealed class FootprintStateEvent : EntityEventArgs
+public sealed partial class FootprintStateEvent : EntityEventArgs
 {
     public NetEntity NetEntity;
 

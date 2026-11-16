@@ -17,15 +17,15 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Funkystation.Footprints;
 
-public sealed class FootprintSystem : EntitySystem
+public sealed partial class FootprintSystem : EntitySystem
 {
-    [Dependency] private readonly TransformSystem _transform = null!;
-    [Dependency] private readonly SharedMapSystem _map = null!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = null!;
-    [Dependency] private readonly SharedPuddleSystem _puddle = null!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = null!;
-    [Dependency] private readonly IRobustRandom _random = null!;
-    [Dependency] private readonly InventorySystem _inventory = null!;
+    [Dependency] private TransformSystem _transform = null!;
+    [Dependency] private SharedMapSystem _map = null!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = null!;
+    [Dependency] private SharedPuddleSystem _puddle = null!;
+    [Dependency] private IPrototypeManager _prototypeManager = null!;
+    [Dependency] private IRobustRandom _random = null!;
+    [Dependency] private InventorySystem _inventory = null!;
 
     private static readonly FixedPoint2 MaxVolumePerTile = 50;
     private static readonly EntProtoId FootprintEntityId = "Footprint";

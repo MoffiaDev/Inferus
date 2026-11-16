@@ -4,7 +4,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Funkystation.Footprints;
 
-public sealed class FootprintSystem : EntitySystem
+public sealed partial class FootprintSystem : EntitySystem
 {
     public override void Initialize()
     {

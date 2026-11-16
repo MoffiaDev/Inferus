@@ -3,15 +3,6 @@
 ## About the PR
 <!-- What did you change? -->
 
-### How to enable / disable
-<!--
-    According to our Conventions, all new content added should be easy for a downstream (or, upstream, if it comes to it) to disable or opt-out of.
-    Content can be opt-out (or opt-in) through the use of CVars, simple YML changes, or simply by not using a feature (if it is made optional in some way, like a mapped entity or an admin-only commmand).
-
-    Explain below how to enable or disable this content. If this is a bugfix, tweak, or a "non-content" change,
-    this section can be omitted.
--->
-
 ## Why / Balance
 <!-- Discuss how this would affect game balance or explain why it was changed. Link any relevant discussions or issues. -->
 
@@ -31,7 +22,9 @@ Describe how you tested the pull request, and how someone reviewing this PR can 
 - [ ] I have read and am following the Inferus [Contributor Guidelines](https://github.com/MoffiaDev/Inferus/blob/master/CONTRIBUTING.md).
 - [ ] I have tested this pull request and written instructions on how to test it
 - [ ] I have added media to this PR or it does not require an in-game showcase.
-<!-- You should understand that not following the above may get your PR closed at maintainer’s discretion -->
+- [ ] I agree to (re)license any code within this PR to MIT. <!-- This one's required to contribute to most SS14 forks, including this one, and is generally a good idea to check to let others freely use your code. -->
+- [ ] I agree to (re)license any code within this PR to AGPL-3.0 <!-- This is for your sake, as AGPL pretty much forbids others from yoinking your feature without asking first! -->
+<!-- You should understand that not following the above may get your PR closed at maintainer’s discretion! -->
 
 ## Breaking changes
 <!-- List any breaking changes, including namespaces, public class/method/field changes, prototype renames; and provide instructions for fixing them. -->
