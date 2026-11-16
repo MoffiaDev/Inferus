@@ -11,6 +11,11 @@
     slots: [mask]
   - type: StaticPrice
     price: 25
+  #- type: SolutionContainerManager # Funky change
+  #  solutions:
+  #    stain:
+  #      maxVol: 5
+  # todo: uncomment when i port clothing stains
 
 - type: entity
   abstract: true

@@ -60,4 +60,13 @@ public sealed partial class AbsorbentComponent : Component
     /// </summary>
     [DataField]
     public bool UseAbsorberSolution = true;
+
+    [DataField]
+    public float FootprintCleaningRange = 0.2f;
+
+    /// <summary>
+    /// How many footprints within FootprintCleaningRange can be cleaned at once.
+    /// </summary>
+    [DataField]
+    public int MaxCleanedFootprints = 64; // Inferus - give janitors a break! was 9
 }
