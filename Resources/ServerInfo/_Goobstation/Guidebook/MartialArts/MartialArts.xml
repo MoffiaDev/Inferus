@@ -38,7 +38,7 @@
   ### Harm intent
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
   </Box>
 
   To perform harm, press [bold] Left Mouse Button [/bold] with [color=Red] Harm Mode [/color] turned ON.
@@ -50,7 +50,7 @@
   ### Disarm intent
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
   </Box>
 
   To perform disarm, press [bold] Right Mouse Button [/bold] with [color=Red] Harm Mode [/color] turned ON.
@@ -63,7 +63,7 @@
   ### Grab intent
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption="Grab"/>
   </Box>
 
   To perform grab, press [bold] Left Mouse Button [/bold] on someone while holding [bold] CTRL [/bold] with [color=Red] Harm Mode [/color] turned ON.

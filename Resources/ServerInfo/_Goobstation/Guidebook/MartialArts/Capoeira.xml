@@ -36,9 +36,9 @@
   ### Push Kick
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption="Grab"/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
   </Box>
 
   Disarms the opponent, pushes them away, as well as knocking them down causing them to be more vulnerable to unarmed melee attacks while they're down.
@@ -47,9 +47,9 @@
   ### Circle Kick
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
   </Box>
 
   Deals Blunt damage and also slows down the opponent significantly.
@@ -57,9 +57,9 @@
   ### Sweep Kick
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
   </Box>
 
   Knocks down and deals Blunt and Stamina damage. Temporarily increases user's attack speed by a bit.
@@ -68,10 +68,10 @@
   ### Spin Kick
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption="Grab"/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
   </Box>
 
   Deals a lot of Blunt damage and knocks the opponent down. Also makes the user flip. Only works on standing opponents.
@@ -80,8 +80,8 @@
   ### Kick Up
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
   </Box>
 
   Needs to be targeted at the user themselves. Can be performed while prone. Removes knock down status effect and forces the user to stand up instantly.

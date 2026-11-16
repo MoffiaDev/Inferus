@@ -44,7 +44,7 @@
   ### Assasinate
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
   </Box>
 
   Deals massive damage to target's chest if Sneak Attack is active. Damage is easily stopped by armor.
@@ -62,7 +62,7 @@
   ### Swift Strike
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
   </Box>
 
   When the foe is knocked down, melee weapon dealing slash strike comes faster than the eye can follow.
@@ -71,8 +71,8 @@
   ### Bite The Dust
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption="Grab"/>
   </Box>
 
   Temporarily knocks the opponent down. As well as dealing blunt damage.
@@ -80,8 +80,8 @@
   ### Dirty Kill
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
   </Box>
 
   Temporarily stuns a knocked down opponent. Target cannot be stunned for longer than they are knocked down.

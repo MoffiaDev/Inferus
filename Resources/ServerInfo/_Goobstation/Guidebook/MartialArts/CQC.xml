@@ -18,18 +18,13 @@
 
   CQC users are better at Disarm intent, as their shoves will deal extra stamina damage to the opponent.
 
-  ### Neck Snap
-
-  There is no escape from a choke grab of a CQC master. If they are out of stamina, with a single Harm action to the head, the victim's neck breaks,
-  killing them instantly. No armor can shield against this deadly precision. The end comes swiftly, and without mercy.
-
   ## Combo attacks
 
   ### Slam
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption="Grab"/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
   </Box>
 
   Slams the opponent, knocking them down while dealing Blunt damage. Only works on standing opponents.
@@ -37,8 +32,8 @@
   ### Kick
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
   </Box>
 
   Knocks the opponent away and deals both Blunt and Stamina damage. If opponent is out of stamina, puts them to sleep.
@@ -46,8 +41,8 @@
   ### Restrain
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption="Grab"/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption="Grab"/>
   </Box>
 
   Locks the opponent into a restraining position, knocking them down while dealing Stamina damage.
@@ -55,8 +50,8 @@
   ### Pressure
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption="Grab"/>
   </Box>
 
   Deals Stamina damage and steals whatever item the opponent is currently holding in their active hand.
@@ -64,9 +59,9 @@
   ### Consecutive
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
   </Box>
 
   Deals a lot of Stamina damage and some Blunt damage to the opponent.
@@ -74,7 +69,7 @@
   ### Leg Sweep
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
   </Box>
 
   Can only be performed while prone. Knocks the opponent down and forces the user back on their feet, even if they are manually crawling.

@@ -26,8 +26,8 @@
   ### Dragon Claw
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
   </Box>
 
   Deals massive Stamina damage and slows the opponent down significantly.
@@ -35,9 +35,9 @@
   ### Dragon Tail
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption="Grab"/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
   </Box>
 
   Deals Blunt and Stamina damage. Knocks the opponent down if they are standing, and applies a short stun otherwise.
@@ -45,9 +45,9 @@
   ### Dragon Strike
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption="Disarm"/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption="Harm"/>
   </Box>
 
   Deals 40 damage and stuns for 2 seconds. Only works on downed opponents.
