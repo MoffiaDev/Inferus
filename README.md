@@ -61,3 +61,19 @@ Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licens
 Code taken from [Project Starlight](https://github.com/ss14Starlight/space-station-14) was taken in accordance with the [Starlight License](./LICENSE-Starlight.txt).
 
 > Some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.
+
+## Attributions
+
+When we pull content from other forks, we try to organize their content to their own subfolders (namespaces) in each of the projects to keep track of attribution and try to prevent merge conflicts.
+
+Content under these subdirectories either originate from their respective fork, or are modifications related to content from their respective fork.
+
+| Subdirectory     | Fork Name           | Fork Repository                                         | License  |
+|------------------|---------------------|---------------------------------------------------------|----------|
+| `_Inferus`       | Inferus             | https://github.com/MoffiaDev/Inferus                    | AGPL 3.0 |
+| `_DV`            | Delta-V             | https://github.com/DeltaV-Station/Delta-v/              | AGPL 3.0 |
+| `_EE`            | Einstein Engines    | https://github.com/Simple-Station/Einstein-Engines/     | AGPL 3.0 |
+| `_Floof`         | Floof Station       | https://github.com/Floof-Station/space-station-14       | AGPL 3.0 |
+| `_Funkystation`  | Funky Station       | https://github.com/funky-station/funky-station          | AGPL 3.0 |
+| `_Goobstation`   | Goob Station        | https://github.com/Goob-Station/Goob-Station/           | AGPL 3.0 |
+| `_White`         | White Dream         | https://github.com/WWhiteDreamProject/wwdpublic/        | AGPL 3.0 |
