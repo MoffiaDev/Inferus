@@ -60,6 +60,14 @@ Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licens
 
 Code taken from [Project Starlight](https://github.com/ss14Starlight/space-station-14) was taken in accordance with the [Starlight License](./LICENSE-Starlight.txt).
 
+Code ported from other forks lives in that fork's `_Namespace` folders and keeps the original license:
+
+| Fork | Namespace | License |
+|------|-----------|---------|
+| [Goob Station](https://github.com/Goob-Station/Goob-Station) | `_Goobstation` | [AGPL-3.0-or-later](./LICENSE-AGPLv3.txt) |
+| [White Dream](https://github.com/WWhiteDreamProject/wwdpublic) | `_White` | [AGPL-3.0-or-later](./LICENSE-AGPLv3.txt) |
+| [Einstein Engines](https://github.com/Simple-Station/Einstein-Engines) | `_EinsteinEngines` | [AGPL-3.0-or-later](./LICENSE-AGPLv3.txt) |
+
 > Some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.
 
 ## Attributions
@@ -77,3 +85,4 @@ Content under these subdirectories either originate from their respective fork, 
 | `_Funkystation`  | Funky Station       | https://github.com/funky-station/funky-station          | AGPL 3.0 |
 | `_Goobstation`   | Goob Station        | https://github.com/Goob-Station/Goob-Station/           | AGPL 3.0 |
 | `_White`         | White Dream         | https://github.com/WWhiteDreamProject/wwdpublic/        | AGPL 3.0 |
+| `_MACRO`         | Macrocosm           | https://github.com/syndicate-ss14/macrocosm             |    MIT   |

@@ -11,8 +11,6 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: mothroach
-  - type: FaxableObject
-    insertingState: inserting_mothroach_mustard
 
 - type: entity
   name: leopard mothroach
@@ -25,8 +23,6 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: mothroach
-  - type: FaxableObject
-    insertingState: inserting_mothroach_leopard
 
 - type: entity
   name: cecropia mothroach
@@ -39,8 +35,6 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: mothroach
-  - type: FaxableObject
-    insertingState: inserting_mothroach_cecropia
 
 - type: entity
   name: lunar mothroach
@@ -53,5 +47,3 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: mothroach
-  - type: FaxableObject
-    insertingState: inserting_mothroach_lunar

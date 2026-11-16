@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ ClothingHandsBase , BaseSecurityContraband ] # Inferus - Inferus has no BaseWardenContraband
+  id: ClothingHandsGlovesKravMaga
+  name: Krav Maga gloves
+  description: These gloves can teach you to perform Krav Maga using nanochips for as long as you're wearing them.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Hands/Gloves/kravgloves.rsi
+  - type: Item
+  - type: Clothing
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-red
+  - type: ClothingGrantComponent
+    component:
+    - type: KravMaga
+  - type: GuideHelp
+    guides:
+    - KravMaga
+
+# Goobstation - Syndicate Krav Maga gloves (Goob-Station#1980)
+- type: entity
+  parent: [ ClothingHandsGlovesKravMaga, BaseSyndicateContraband ] # Inferus - syndicate contraband instead of security
+  id: ClothingHandsGlovesKravMagaStealthy
+  name: black gloves
+  description: Regular black gloves that do not keep you from frying.
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/black.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/black.rsi
+  - type: Fiber
+    fiberColor: fibers-black

@@ -221,6 +221,7 @@ public sealed partial class HumanoidProfileEditor
         UpdateSexControls(); // update sex for new species
         UpdateVoiceControls();
         UpdateSpeciesGuidebookIcon();
+        UpdateHeightWidthSliders(); // Goobstation - port EE height/width sliders, changing species provides inaccurate sliders without this
         ReloadPreview();
     }
 

@@ -1,4 +1,6 @@
 using System.Linq;
+using System.Numerics; // Goobstation - port EE height/width sliders
+using Robust.Client.GameObjects; // Goobstation - port EE height/width sliders
 using Content.Client.Humanoid;
 using Content.Client.Station;
 using Content.Shared.Body;
@@ -28,7 +30,29 @@ public sealed partial class ProfilePreviewSpriteView
             return;
 
         EntMan.System<SharedVisualBodySystem>().ApplyProfileTo(PreviewDummy, humanoid);
+        ApplyPreviewHeightWidth(humanoid); // Goobstation - port EE height/width sliders
     }
+
+    // Goobstation - Start - port EE height/width sliders
+    /// <summary>
+    ///     Scales the preview dummy's sprite by the profile's width and height.
+    /// </summary>
+    private void ApplyPreviewHeightWidth(HumanoidCharacterProfile humanoid)
+    {
+        if (!EntMan.TryGetComponent<SpriteComponent>(PreviewDummy, out var sprite))
+            return;
+
+        var scale = new Vector2(humanoid.Width, humanoid.Height);
+        if (_prototypeManager.TryIndex(humanoid.Species, out var species))
+        {
+            scale = new Vector2(
+                Math.Clamp(scale.X, species.MinWidth, species.MaxWidth),
+                Math.Clamp(scale.Y, species.MinHeight, species.MaxHeight));
+        }
+
+        EntMan.System<SpriteSystem>().SetScale((PreviewDummy, sprite), scale);
+    }
+    // Goobstation - End - port EE height/width sliders
 
     /// <summary>
     /// Loads the profile onto a dummy entity.
@@ -53,6 +77,7 @@ public sealed partial class ProfilePreviewSpriteView
             var dummy = _prototypeManager.Index(humanoid.Species).DollPrototype;
             PreviewDummy = EntMan.SpawnEntity(dummy, MapCoordinates.Nullspace);
             EntMan.System<SharedVisualBodySystem>().ApplyProfileTo(PreviewDummy, humanoid);
+            ApplyPreviewHeightWidth(humanoid); // Goobstation - port EE height/width sliders
         }
         else
         {

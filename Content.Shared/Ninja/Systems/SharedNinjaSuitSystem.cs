@@ -113,7 +113,7 @@ public abstract partial class SharedNinjaSuitSystem : EntitySystem
 
         var uid = ent.Owner;
         var comp = ent.Comp;
-        if (_toggle.TryDeactivate(uid, user) || !disable)
+        if (!_toggle.TryDeactivate(uid, user) || !disable) // Goobstation - Martial Arts - only disable abilities if the ninja was actually cloaked
             return;
 
         // previously cloaked, disable abilities for a short time

@@ -96,13 +96,14 @@ public sealed class GrabThrownSystem : EntitySystem
         EntityUid thrower,
         Vector2 vector,
         float grabThrownSpeed,
-        DamageSpecifier? damageToUid = null)
+        DamageSpecifier? damageToUid = null,
+        bool behavior = true) // Goobstation - Martial Arts - whether the thrown entity drops held items
     {
         var comp = EnsureComp<GrabThrownComponent>(uid);
         comp.IgnoreEntity.Add(thrower);
         comp.DamageOnCollide = damageToUid;
 
-        _stun.TryCrawling(uid);
+        _stun.TryCrawling(uid, drop: behavior); // Goobstation - Martial Arts
         _throwing.TryThrow(uid, vector, grabThrownSpeed, animated: false);
     }
 }

@@ -6,6 +6,7 @@
 
 using System.Linq;
 using Content.Shared._Goobstation.Grab;
+using Content.Shared._Goobstation.MartialArts; // Goobstation - Martial Arts
 using Content.Shared._White.Grab;
 using Content.Shared.Alert;
 using Content.Shared.CombatMode;
@@ -145,6 +146,10 @@ public sealed partial class GrabIntentSystem
         _modifierSystem.RefreshMovementSpeedModifiers(puller.Owner);
         GrabStagePopup(puller, pullable, popupType);
 
+        // Goobstation - Martial Arts
+        var comboEv = new ComboAttackPerformedEvent(puller.Owner, pullable.Owner, puller.Owner, ComboAttackType.Grab);
+        RaiseLocalEvent(puller.Owner, comboEv);
+
         Dirty(pullable.Owner, pullable.Comp2);
         Dirty(puller.Owner, puller.Comp2);
         return true;
@@ -244,6 +249,11 @@ public sealed partial class GrabIntentSystem
         {
             _stamina.TakeStaminaDamage(pullable.Owner,
                 grabIntentComp.SuffocateGrabStaminaDamage);
+
+            // Goobstation - Martial Arts
+            var comboEv =
+                new ComboAttackPerformedEvent(pullerUid, pullable.Owner, pullerUid, ComboAttackType.Grab);
+            RaiseLocalEvent(pullerUid, comboEv);
             _audio.PlayPredicted(_thudswoosh, pullable.Owner, pullerUid);
             return true;
         }
@@ -256,6 +266,16 @@ public sealed partial class GrabIntentSystem
         };
 
         var newStage = grabIntentComp.GrabStage + nextStageAddition;
+
+        // Goobstation - Martial Arts
+        if (HasComp<MartialArtsKnowledgeComponent>(pullerUid)
+            && TryComp<RequireProjectileTargetComponent>(pullable.Owner, out var layingDown)
+            && layingDown.Active)
+        {
+            var ev = new CheckGrabOverridesEvent(newStage);
+            RaiseLocalEvent(pullerUid, ev);
+            newStage = ev.Stage;
+        }
 
         if (grabStageOverride != null)
             newStage = grabStageOverride.Value;

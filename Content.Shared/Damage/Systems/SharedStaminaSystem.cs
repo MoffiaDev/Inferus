@@ -30,6 +30,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared._Goobstation.MartialArts; // Goobstation - Martial Arts
 
 namespace Content.Shared.Damage.Systems;
 
@@ -177,6 +178,13 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         {
             return;
         }
+
+        // Goobstation - Martial Arts
+        if (TryComp<MartialArtsKnowledgeComponent>(args.User, out var knowledgeComp)
+            && TryComp<MartialArtBlockedComponent>(args.Weapon, out var blockedComp)
+            && knowledgeComp.MartialArtsForm == blockedComp.Form && blockedComp.StaminaDmgBlock)
+            return;
+        // Goobstation end
 
         var ev = new StaminaDamageOnHitAttemptEvent();
         RaiseLocalEvent(uid, ref ev);

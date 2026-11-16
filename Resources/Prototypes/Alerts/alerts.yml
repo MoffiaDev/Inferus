@@ -27,6 +27,8 @@
     - alertType: Rooted
     - alertType: Pacified
     - alertType: Stealthy
+    - alertType: DragonPower # Goobstation - Martial Arts
+    - category: Ninjutsu # Goobstation - Martial Arts
 
 - type: entity
   id: AlertSpriteView

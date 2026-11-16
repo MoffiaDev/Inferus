@@ -1,0 +1,69 @@
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
+# SPDX-FileCopyrightText: 2025 Lincoln McQueen <lincoln.mcqueen@gmail.com>
+# SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseAction # Inferus - new action format
+  id: ActionLegSweep
+  name: Leg Sweep
+  description: Sweeps the legs out from under a target to knock them down for a few seconds.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action # Inferus - new action format
+    useDelay: 3
+  - type: Sprite # Also used by the guidebook
+    layers:
+    - sprite: _Goobstation/Actions/kravmaga.rsi
+      state: legsweep
+      map: [ "enum.ActionVisuals.Icon" ]
+  - type: InstantAction
+    event: !type:KravMagaActionEvent { }
+  - type: KravMagaAction
+    configuration: LegSweep
+    name: Leg Sweep
+
+- type: entity
+  parent: BaseAction # Inferus - new action format
+  id: ActionNeckChop
+  name: Neck Chop
+  description: A hard swing with the side of your hand deals some damage and disables the target's ability to speak for twenty seconds
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action # Inferus - new action format
+    useDelay: 3
+  - type: Sprite # Also used by the guidebook
+    layers:
+    - sprite: _Goobstation/Actions/kravmaga.rsi
+      state: neckchop
+      map: [ "enum.ActionVisuals.Icon" ]
+  - type: InstantAction
+    event: !type:KravMagaActionEvent { }
+  - type: KravMagaAction
+    configuration: NeckChop
+    name: Neck Chop
+    effectTime: 20
+
+- type: entity
+  parent: BaseAction # Inferus - new action format
+  id: ActionLungPunch
+  name: Lung Punch
+  description: Deals 30 stamina damage and prevents breathing for ten seconds. Four of those will incapacitate a target less-than-lethally, but beware of the loss of breath you cause.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action # Inferus - new action format
+    useDelay: 3
+  - type: Sprite # Also used by the guidebook
+    layers:
+    - sprite: _Goobstation/Actions/kravmaga.rsi
+      state: lungpunch
+      map: [ "enum.ActionVisuals.Icon" ]
+  - type: InstantAction
+    event: !type:KravMagaActionEvent { }
+  - type: KravMagaAction
+    configuration: LungPunch
+    name: Lung Punch
+    staminaDamage: 40
+    effectTime: 10

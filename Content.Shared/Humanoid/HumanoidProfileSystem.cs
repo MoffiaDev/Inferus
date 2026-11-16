@@ -1,3 +1,5 @@
+using System.Numerics; // Goobstation - port EE height/width sliders
+using Content.Shared._EinsteinEngines.HeightAdjust; // Goobstation - port EE height/width sliders
 using Content.Shared._Inferus.Speech; // Inferus
 using Content.Shared.Examine;
 using Content.Shared.Humanoid.Prototypes;
@@ -12,6 +14,7 @@ public sealed partial class HumanoidProfileSystem : EntitySystem
 {
     [Dependency] private GrammarSystem _grammar = default!;
     [Dependency] private SpeechBlipSystem _speechBlip = default!; // Inferus
+    [Dependency] private HeightAdjustSystem _heightAdjust = default!; // Goobstation - port EE height/width sliders
 
     public override void Initialize()
     {
@@ -30,7 +33,17 @@ public sealed partial class HumanoidProfileSystem : EntitySystem
         ent.Comp.Species = profile.Species;
         ent.Comp.Voice = profile.Voice;
         ent.Comp.Sex = profile.Sex;
+
+        // Goobstation - Start - port EE height/width sliders
+        var oldScale = new Vector2(ent.Comp.Width, ent.Comp.Height);
+        var newScale = ClampScale(profile.Species, new Vector2(profile.Width, profile.Height));
+        ent.Comp.Width = newScale.X;
+        ent.Comp.Height = newScale.Y;
+        // Goobstation - End - port EE height/width sliders
+
         Dirty(ent);
+
+        _heightAdjust.SetScale(ent.Owner, newScale, oldScale); // Goobstation - port EE height/width sliders
 
         var voiceChanged = new VoiceChangedEvent(ent.Comp.Voice, profile.Voice);
         RaiseLocalEvent(ent, ref voiceChanged);
@@ -42,6 +55,42 @@ public sealed partial class HumanoidProfileSystem : EntitySystem
 
         _speechBlip.SetBlip(ent, profile.SpeechBlip); // Inferus
     }
+
+    // Goobstation - Start - port EE height/width sliders
+    /// <summary>
+    ///     Clamps a width (X) / height (Y) scale to the limits of the given species.
+    ///     Non-positive values are replaced with the species defaults.
+    /// </summary>
+    public Vector2 ClampScale(ProtoId<SpeciesPrototype> species, Vector2 scale)
+    {
+        if (!ProtoMan.TryIndex(species, out var proto))
+            return scale.X <= 0 || scale.Y <= 0 ? Vector2.One : scale;
+
+        if (scale.X <= 0 || scale.Y <= 0)
+            return new Vector2(proto.DefaultWidth, proto.DefaultHeight);
+
+        return new Vector2(
+            Math.Clamp(scale.X, proto.MinWidth, proto.MaxWidth),
+            Math.Clamp(scale.Y, proto.MinHeight, proto.MaxHeight));
+    }
+
+    /// <summary>
+    ///     Sets the height and width of a humanoid, clamped to its species limits.
+    /// </summary>
+    public void SetScale(Entity<HumanoidProfileComponent?> ent, Vector2 scale)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
+        var oldScale = new Vector2(ent.Comp.Width, ent.Comp.Height);
+        var newScale = ClampScale(ent.Comp.Species, scale);
+        ent.Comp.Width = newScale.X;
+        ent.Comp.Height = newScale.Y;
+        Dirty(ent);
+
+        _heightAdjust.SetScale(ent.Owner, newScale, oldScale);
+    }
+    // Goobstation - End - port EE height/width sliders
 
     private void OnExamined(Entity<HumanoidProfileComponent> ent, ref ExaminedEvent args)
     {
