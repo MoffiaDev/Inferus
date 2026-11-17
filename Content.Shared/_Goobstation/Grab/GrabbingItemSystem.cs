@@ -17,7 +17,7 @@ using Robust.Shared.Physics.Components;
 
 namespace Content.Shared._Goobstation.Grab;
 
-public sealed class GrabbingItemSystem : EntitySystem
+public sealed partial class GrabbingItemSystem : EntitySystem
 {
     [Dependency] private PullingSystem _pulling = default!;
     [Dependency] private GrabIntentSystem _grabbing = default!;

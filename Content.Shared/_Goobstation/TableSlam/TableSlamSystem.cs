@@ -34,7 +34,7 @@ namespace Content.Shared._Goobstation.TableSlam;
 /// <summary>
 /// This handles the slamming of individuals onto the furniture known as tables.
 /// </summary>
-public sealed class TableSlamSystem : EntitySystem
+public sealed partial class TableSlamSystem : EntitySystem
 {
     [Dependency] private PullingSystem _pullingSystem = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;

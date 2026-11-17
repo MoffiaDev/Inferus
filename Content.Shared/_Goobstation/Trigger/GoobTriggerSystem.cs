@@ -13,7 +13,7 @@ using Content.Shared.Trigger;
 
 namespace Content.Shared._Goobstation.Trigger;
 
-public sealed class GoobTriggerSystem : EntitySystem
+public sealed partial class GoobTriggerSystem : EntitySystem
 {
     [Dependency] private SharedEnsnareableSystem _snare = default!;
     [Dependency] private SharedStunSystem _stun = default!;

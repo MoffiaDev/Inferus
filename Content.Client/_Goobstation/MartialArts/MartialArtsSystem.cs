@@ -6,7 +6,7 @@ using Content.Shared._Goobstation.MartialArts.Components;
 
 namespace Content.Client._Goobstation.MartialArts;
 
-public sealed class MartialArtsSystem : SharedMartialArtsSystem
+public sealed partial class MartialArtsSystem : SharedMartialArtsSystem
 {
     public override void Initialize()
     {

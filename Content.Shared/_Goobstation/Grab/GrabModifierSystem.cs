@@ -9,7 +9,7 @@ using Content.Shared.Inventory;
 
 namespace Content.Shared._Goobstation.Grab;
 
-public sealed class GrabModifierSystem : EntitySystem
+public sealed partial class GrabModifierSystem : EntitySystem
 {
     public override void Initialize()
     {

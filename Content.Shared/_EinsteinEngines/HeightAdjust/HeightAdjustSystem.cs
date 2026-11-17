@@ -15,12 +15,12 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared._EinsteinEngines.HeightAdjust;
 
-public sealed class HeightAdjustSystem : EntitySystem
+public sealed partial class HeightAdjustSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedContentEyeSystem _eye = default!;
-    [Dependency] private readonly SharedScaleVisualsSystem _scaleVisuals = default!; // Inferus - was SharedHumanoidAppearanceSystem
-    [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedContentEyeSystem _eye = default!;
+    [Dependency] private SharedScaleVisualsSystem _scaleVisuals = default!; // Inferus - was SharedHumanoidAppearanceSystem
+    [Dependency] private IConfigurationManager _config = default!;
 
     /// <summary>
     ///     Changes the density of fixtures and zoom of eyes based on a provided float scale
