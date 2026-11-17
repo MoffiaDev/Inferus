@@ -23,6 +23,8 @@ public sealed partial class BackStabSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private StandingStateSystem _standing = default!;
 
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+
     public static readonly SoundSpecifier BackstabSound =
         new SoundPathSpecifier("/Audio/_Goobstation/Weapons/Effects/guillotine.ogg");
 
@@ -47,7 +49,7 @@ public sealed partial class BackStabSystem : EntitySystem
 
         var damage = total * ent.Comp.DamageMultiplier;
 
-        args.BonusDamage += new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Slash"), damage - total);
+        args.BonusDamage += new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>(SlashDamageType), damage - total);
     }
 
     public bool TryBackstab(EntityUid target,

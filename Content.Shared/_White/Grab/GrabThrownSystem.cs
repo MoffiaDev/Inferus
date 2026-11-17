@@ -20,7 +20,7 @@ using Robust.Shared.Physics.Components;
 
 namespace Content.Shared._White.Grab;
 
-public sealed class GrabThrownSystem : EntitySystem
+public sealed partial class GrabThrownSystem : EntitySystem
 {
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private SharedColorFlashEffectSystem _color = default!;
