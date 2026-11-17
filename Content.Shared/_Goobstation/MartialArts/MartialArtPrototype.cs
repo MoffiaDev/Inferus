@@ -8,6 +8,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Goobstation.MartialArts;
 
+[Prototype] // Inferus - register martial arts and enable prototype data definition generation
 public sealed partial class MartialArtPrototype : IPrototype
 {
     [IdDataField]
