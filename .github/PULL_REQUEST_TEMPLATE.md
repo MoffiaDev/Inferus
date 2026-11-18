@@ -19,7 +19,7 @@ If applicable, describe how you tested the pull request, and how someone reviewi
 
 ## Requirements
 <!-- Confirm the following by placing an X in the brackets without spaces inside (for example: [X] ): -->
-- [ ] I have read and am following the Macrocosm [Pull Request Conventions](https://docs.macrocosm.cool/Documents/Conventions/pull-requests).
+- [ ] I have read and am following the Inferus [Contributor Guidelines](https://github.com/MoffiaDev/Inferus/blob/master/CONTRIBUTING.md).
 - [ ] I have tested this pull request and written instructions on how to test it
 - [ ] I have added media to this PR or it does not require an in-game showcase.
 - [ ] If I am porting something, I have done my best to respect the appropriate licenses associated with the presented changes.
