@@ -191,7 +191,9 @@ public sealed partial class ThrowingSystem : EntitySystem
             else
             {
                 Resolve(uid, ref throwingAngle, false);
-                var gridRot = _transform.GetWorldRotation(transform.ParentUid);
+                var gridRot = transform.ParentUid.Valid // Inferus: a root entity has no parent rotation.
+                    ? _transform.GetWorldRotation(transform.ParentUid) // Inferus
+                    : Angle.Zero; // Inferus
                 var angle = direction.ToWorldAngle() - gridRot;
                 var offset = throwingAngle?.Angle ?? Angle.Zero;
                 _transform.SetLocalRotation(uid, angle + offset);
