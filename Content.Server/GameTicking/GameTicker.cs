@@ -1,3 +1,4 @@
+using Content.Shared.Damage.Systems; // Goob Station - End of Round Screen
 using Content.Server._MACRO.Announcements;
 using Content.Server._Moffstation.Station; // Moffstation - Multi-character selection
 
@@ -66,6 +67,7 @@ namespace Content.Server.GameTicking
         [Dependency] private SharedRoleSystem _roles = default!;
         [Dependency] private ServerDbEntryManager _dbEntryManager = default!;
         [Dependency] private AnnouncerManager _announcer = default!; // Macrocosm edit
+        [Dependency] private DamageableSystem _damageable = default!; // Goob Station - End of Round Screen
 
         [ViewVariables] private bool _initialized;
         [ViewVariables] private bool _postInitialized;

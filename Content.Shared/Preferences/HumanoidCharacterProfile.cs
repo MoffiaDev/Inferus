@@ -212,6 +212,8 @@ namespace Content.Shared.Preferences
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
         {
             SpeechBlip = other.SpeechBlip; // Inferus
+            Height = other.Height; // Goobstation - port EE height/width sliders
+            Width = other.Width; // Goobstation - port EE height/width sliders
             _consentToggles = new(other._consentToggles); // Floof - Consent toggles
         }
 
@@ -235,11 +237,15 @@ namespace Content.Shared.Preferences
             species ??= HumanoidCharacterProfile.DefaultSpecies;
             sex ??= Sex.Male;
 
+            IoCManager.Resolve<IPrototypeManager>().TryIndex(species.Value, out var speciesProto); // Goobstation - port EE height/width sliders
+
             return new()
             {
                 Species = species.Value,
                 Sex = sex.Value,
                 Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species.Value, sex.Value),
+                Height = speciesProto?.DefaultHeight ?? 1f, // Goobstation - port EE height/width sliders
+                Width = speciesProto?.DefaultWidth ?? 1f, // Goobstation - port EE height/width sliders
             };
         }
 
@@ -260,6 +266,7 @@ namespace Content.Shared.Preferences
             Eyes = 1 << 5,
             Skin = 1 << 6,
             Markings = 1 << 7,
+            Size = 1 << 8, // Goobstation - port EE height/width sliders
         }
 
         /// <summary>
@@ -273,7 +280,8 @@ namespace Content.Shared.Preferences
             | RandomizeCfg.Gender
             | RandomizeCfg.Eyes
             | RandomizeCfg.Skin
-            | RandomizeCfg.Markings;
+            | RandomizeCfg.Markings
+            | RandomizeCfg.Size; // Goobstation - port EE height/width sliders
 
         /// <summary>
         /// Picks a random species from roundstart species.
@@ -390,6 +398,13 @@ namespace Content.Shared.Preferences
 
             profile.Appearance = HumanoidCharacterAppearance.Random(speciesProto, profile.Sex, randomizeCfg, baseProfile.Appearance);
             profile.SpeechBlip = baseProfile.SpeechBlip; // Inferus
+
+            // Goobstation - Start - port EE height/width sliders
+            if ((randomizeCfg & RandomizeCfg.Size) != 0)
+                (profile.Height, profile.Width) = RandomHeightWidth(speciesProto);
+            else
+                (profile.Height, profile.Width) = (baseProfile.Height, baseProfile.Width);
+            // Goobstation - End - port EE height/width sliders
 
             return profile;
         }
@@ -673,6 +688,8 @@ namespace Content.Shared.Preferences
             if (SpeechBlip != other.SpeechBlip) return false; // Inferus
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
+            if (!MathHelper.CloseTo(Height, other.Height)) return false; // Goobstation - port EE height/width sliders
+            if (!MathHelper.CloseTo(Width, other.Width)) return false; // Goobstation - port EE height/width sliders
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
@@ -826,6 +843,7 @@ namespace Content.Shared.Preferences
             Appearance = appearance;
             SpawnPriority = spawnPriority;
             EnsureValidSpeechBlip(prototypeManager); // Inferus
+            EnsureValidHeightWidth(speciesPrototype); // Goobstation - port EE height/width sliders
 
             _jobPriorities.Clear();
 
@@ -950,6 +968,8 @@ namespace Content.Shared.Preferences
             hashCode.Add((int)Sex);
             hashCode.Add(Voice);
             hashCode.Add(SpeechBlip); // Inferus
+            hashCode.Add(Height); // Goobstation - port EE height/width sliders
+            hashCode.Add(Width); // Goobstation - port EE height/width sliders
             hashCode.Add((int)Gender);
             hashCode.Add(Appearance);
             hashCode.Add((int)SpawnPriority);

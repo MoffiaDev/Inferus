@@ -222,6 +222,8 @@ namespace Content.Client.Lobby.UI
                 OnSkinColorOnValueChanged();
             };
 
+            InitializeHeightWidth(); // Goobstation - port EE height/width sliders
+
             #region Skin
 
             Skin.OnValueChanged += _ =>
@@ -594,6 +596,7 @@ namespace Content.Client.Lobby.UI
             UpdateEyePickers();
             UpdateSaveButton();
             UpdateMarkings();
+            UpdateHeightWidthSliders(); // Goobstation - port EE height/width sliders
 
             RefreshAntags();
             RefreshJobs();

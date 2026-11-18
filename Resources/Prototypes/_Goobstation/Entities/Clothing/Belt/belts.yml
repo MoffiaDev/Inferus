@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: ClothingBeltSecurity
+  id: ClothingBeltCorporateJudo
+  name: Corporate Judo Belt
+  description: Teaches the wearer NT Corporate Judo.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Belt/judobelt.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Belt/judobelt.rsi
+  - type: GrantCorporateJudo
+  - type: Storage
+    grid:
+    - 0,0,5,1 #you're not carrying a batong, if you want pure storage go with secbelt
+    whitelist:
+      tags: # Inferus - limited to tags that exist in Inferus
+      - CigPack
+      - Taser
+      - SecBeltEquip
+      - Radio
+      - Sidearm
+      - MagazinePistol
+      - MagazineMagnum
+      - CombatKnife
+      - HandGrenade
+      components:
+      - FlashOnTrigger
+      - SmokeOnTrigger
+      - Flash
+      - Handcuff
+      - BallisticAmmoProvider
+      - CartridgeAmmo
+      - DoorRemote
+      - Whistle
+      - BalloonPopper
+  - type: GuideHelp
+    guides:
+    - CorporateJudo

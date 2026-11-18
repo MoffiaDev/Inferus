@@ -2,6 +2,9 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
+using Content.Shared._Goobstation.Grab; // Goobstation - Grab Intent
+using Content.Shared._Goobstation.GrabIntent; // Goobstation - Grab Intent
+using Content.Shared._Goobstation.MartialArts; // Goobstation - Martial Arts
 using Content.Shared.Body.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
@@ -104,7 +107,12 @@ public sealed partial class RespiratorSystem : EntitySystem
                 }
             }
 
-            if (respirator.Saturation < respirator.SuffocationThreshold)
+            // Goobstation start - grabbed entities can't breathe
+            if (respirator.Saturation < respirator.SuffocationThreshold
+                || (TryComp<GrabbableComponent>(uid, out var grabbable)
+                    && grabbable.GrabStage == GrabStage.Suffocate)
+                || HasComp<KravMagaBlockedBreathingComponent>(uid)) // Goobstation - Martial Arts
+            // Goobstation end
             {
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
                 {

@@ -75,6 +75,14 @@
       prob: 0.03
     - id: MobMothroach
       prob: 0.008
+    - id: MobMothroachMustard # Goobstation - mothroach variety
+      prob: 0.008
+    - id: MobMothroachLeopard # Goobstation - mothroach variety
+      prob: 0.008
+    - id: MobMothroachCecropia # Goobstation - mothroach variety
+      prob: 0.008
+    - id: MobMothroachLunar # Goobstation - mothroach variety
+      prob: 0.008
     - id: MobMoproach
       prob: 0.004
 
@@ -139,6 +147,10 @@
         children: # Increased chances for special roaches on purpose. Makes it a bit more interesting.
         - id: MobCockroach
         - id: MobMothroach
+        - id: MobMothroachMustard # Goobstation - mothroach variety
+        - id: MobMothroachLeopard # Goobstation - mothroach variety
+        - id: MobMothroachCecropia # Goobstation - mothroach variety
+        - id: MobMothroachLunar # Goobstation - mothroach variety
         - id: MobMoproach
           weight: 0.5
       - !type:GroupSelector

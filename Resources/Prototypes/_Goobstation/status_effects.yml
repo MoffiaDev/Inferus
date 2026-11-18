@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Goobstation - Martial Arts
+
+- type: statusEffect
+  id: BlurryVision
+  alwaysAllowed: true
+
+- type: statusEffect
+  id: DragonPower
+  alert: DragonPower
+  alwaysAllowed: true
+
+- type: statusEffect
+  id: LossOfSurprise
+  alert: LossOfSurprise
+  alwaysAllowed: true
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectStaminaResistanceModifier
+  name: stamina resistance modifier
+  components:
+  - type: StaminaResistanceModifierStatusEffect
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectMeleeVulnerability
+  name: melee vulnerability
+  components:
+  - type: MeleeVulnerabilityStatusEffect
+
+- type: entity
+  parent: StatusEffectSlowdown
+  id: MartialArtsGenericSlowdownEffect
+  name: martial arts slowdown

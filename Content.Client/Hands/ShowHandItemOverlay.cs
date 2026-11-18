@@ -1,14 +1,18 @@
 using System.Numerics;
 using Content.Client.Hands.Systems;
 using Content.Shared.CCVar;
+using Content.Shared._Goobstation.MartialArts; // Goobstation - Martial Arts
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
+using Robust.Client.Player; // Goobstation - Martial Arts
+using Robust.Client.ResourceManagement; // Goobstation - Martial Arts
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Graphics;
 using Robust.Shared.Map;
+using Robust.Shared.Utility; // Goobstation - Martial Arts
 using Direction = Robust.Shared.Maths.Direction;
 
 namespace Content.Client.Hands
@@ -19,6 +23,11 @@ namespace Content.Client.Hands
         [Dependency] private IInputManager _inputManager = default!;
         [Dependency] private IClyde _clyde = default!;
         [Dependency] private IEntityManager _entMan = default!;
+        [Dependency] private IPlayerManager _player = default!; // Goobstation - Martial Arts
+        [Dependency] private IResourceCache _resourceCache = default!; // Goobstation - Martial Arts
+
+        private static readonly ResPath ComboAttackRsi =
+            new ResPath("/Textures/_Goobstation/Interface/Misc/intents.rsi"); // Goobstation - Martial Arts
 
         private HandsSystem? _hands;
         private readonly IRenderTexture _renderBackbuffer;
@@ -50,9 +59,7 @@ namespace Content.Client.Hands
 
         protected override bool BeforeDraw(in OverlayDrawArgs args)
         {
-            if (!_cfg.GetCVar(CCVars.HudHeldItemShow))
-                return false;
-
+            // Goobstation - Martial Arts - the overlay also draws combo inputs, so the held item cvar is checked in Draw instead
             return base.BeforeDraw(in args);
         }
 
@@ -75,7 +82,34 @@ namespace Content.Client.Hands
             }
 
             _hands ??= _entMan.System<HandsSystem>();
-            var handEntity = _hands.GetActiveHandEntity();
+            var handEntity = _cfg.GetCVar(CCVars.HudHeldItemShow) ? _hands.GetActiveHandEntity() : null; // Goobstation - Martial Arts
+
+            // Goobstation start - Martial Arts - draw performed combo inputs next to the cursor
+            if (_player.LocalEntity != null)
+            {
+                var comboEv = new GetPerformedAttackTypesEvent(null);
+                _entMan.EventBus.RaiseLocalEvent(_player.LocalEntity.Value, ref comboEv);
+                if (comboEv.AttackTypes is { Count: > 0 })
+                {
+                    var color = Color.White.WithAlpha(0.75f);
+                    var rsiActual = _resourceCache.GetResource<RSIResource>(ComboAttackRsi).RSI;
+                    for (var i = 0; i < comboEv.AttackTypes.Count; i++)
+                    {
+                        if (!rsiActual.TryGetState(comboEv.AttackTypes[i].ToString().ToLower(), out var state))
+                            continue;
+
+                        var texture = state.Frame0;
+                        var size = texture.Size;
+                        var offsetVec2 = new Vector2(-offsetVec.X,
+                            (2f * i + 1f - comboEv.AttackTypes.Count) * texture.Size.Y / 1.8f);
+
+                        screen.DrawTextureRect(texture,
+                            UIBox2.FromDimensions(mousePos.Position - size / 2 + offsetVec2, size),
+                            color);
+                    }
+                }
+            }
+            // Goobstation end
 
             if (handEntity == null || !_entMan.TryGetComponent(handEntity, out SpriteComponent? sprite))
                 return;

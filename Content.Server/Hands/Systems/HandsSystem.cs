@@ -1,15 +1,19 @@
 using System.Numerics;
 using Content.Server.Stack;
 using Content.Server.Stunnable;
+using Content.Shared._White.Grab; // Goobstation - Grab Intent
 using Content.Shared.ActionBlocker;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Explosion;
+using Content.Shared.Hands; // Goobstation - Grab Intent
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Input;
+using Content.Shared.Inventory.VirtualItem; // Goobstation - Grab Intent
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
+using Robust.Shared.Physics.Systems; // Goobstation - Grab Intent
 using Content.Shared.Stacks;
 using Content.Shared.Standing;
 using Content.Shared.Throwing;
@@ -33,6 +37,8 @@ namespace Content.Server.Hands.Systems
         [Dependency] private PullingSystem _pullingSystem = default!;
         [Dependency] private ThrowingSystem _throwingSystem = default!;
         [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
+        [Dependency] private GrabThrownSystem _grabThrown = default!; // Goobstation - Grab Intent
+        [Dependency] private SharedPhysicsSystem _physics = default!; // Goobstation - Grab Intent
 
         /// <summary>
         /// Items dropped when the holder falls down will be launched in
@@ -128,6 +134,20 @@ namespace Content.Server.Hands.Systems
             if (playerSession?.AttachedEntity is not {Valid: true} player || !Exists(player) || !coordinates.IsValid(EntityManager))
                 return false;
 
+            // Goobstation start
+            if (TryGetActiveItem(player, out var item) && TryComp<VirtualItemComponent>(item, out var virtComp))
+            {
+                var userEv = new VirtualItemDropAttemptEvent(virtComp.BlockingEntity, player, item.Value, true);
+                RaiseLocalEvent(player, userEv);
+
+                var targEv = new VirtualItemDropAttemptEvent(virtComp.BlockingEntity, player, item.Value, true);
+                RaiseLocalEvent(virtComp.BlockingEntity, targEv);
+
+                if (userEv.Cancelled || targEv.Cancelled)
+                    return false;
+            }
+            // Goobstation end
+
             return ThrowHeldItem(player, coordinates);
         }
 
@@ -141,6 +161,18 @@ namespace Content.Server.Hands.Systems
                 !TryGetActiveItem((player, hands), out var throwEnt) ||
                 !_actionBlockerSystem.CanThrow(player, throwEnt.Value))
                 return false;
+
+            // Goobstation start - added throwing for grabbed mobs, moved direction.
+            var direction = _transformSystem.ToMapCoordinates(coordinates).Position - _transformSystem.GetWorldPosition(player);
+
+            if (TryComp<VirtualItemComponent>(throwEnt, out var virt))
+            {
+                var userEv = new VirtualItemThrownEvent(virt.BlockingEntity, player, throwEnt.Value, direction);
+                RaiseLocalEvent(player, ref userEv);
+                var targEv = new VirtualItemThrownEvent(virt.BlockingEntity, player, throwEnt.Value, direction);
+                RaiseLocalEvent(virt.BlockingEntity, ref targEv);
+            }
+            // Goobstation end
 
             if (_timing.CurTime < hands.NextThrowTime)
                 return false;
@@ -156,7 +188,6 @@ namespace Content.Server.Hands.Systems
                 throwEnt = splitStack.Value;
             }
 
-            var direction = _transformSystem.ToMapCoordinates(coordinates).Position - _transformSystem.GetWorldPosition(player);
             if (direction == Vector2.Zero)
                 return true;
 
@@ -168,8 +199,13 @@ namespace Content.Server.Hands.Systems
 
             // Let other systems change the thrown entity (useful for virtual items)
             // or the throw strength.
-            var ev = new BeforeThrowEvent(throwEnt.Value, direction, throwSpeed, player);
+            // Goobstation start - added thrower's velocity for inertia
+            var holderVelocity = _physics.GetMapLinearVelocity(player);
+            var modifier = MathF.Max(0f, Vector2.Dot(direction.Normalized(), holderVelocity));
+            var ev = new BeforeThrowEvent(throwEnt.Value, direction * (1f + modifier * 0.1f), throwSpeed * (1f + modifier * 0.05f), player);
+            // Goobstation end
             RaiseLocalEvent(player, ref ev);
+            RaiseLocalEvent(throwEnt.Value, ref ev); // Goobstation
 
             if (ev.Cancelled)
                 return true;
@@ -178,7 +214,12 @@ namespace Content.Server.Hands.Systems
             if (IsHolding((player, hands), throwEnt, out _) && !TryDrop(player, throwEnt.Value))
                 return false;
 
-            _throwingSystem.TryThrow(ev.ItemUid, ev.Direction, ev.ThrowSpeed, ev.PlayerUid, compensateFriction: !HasComp<LandAtCursorComponent>(ev.ItemUid));
+            // Goobstation start
+            if (!ev.GrabThrow)
+                _throwingSystem.TryThrow(ev.ItemUid, ev.Direction, ev.ThrowSpeed, ev.PlayerUid, compensateFriction: !HasComp<LandAtCursorComponent>(ev.ItemUid));
+            else
+                _grabThrown.Throw(ev.ItemUid, player, ev.Direction, ev.ThrowSpeed);
+            // Goobstation end
 
             return true;
         }

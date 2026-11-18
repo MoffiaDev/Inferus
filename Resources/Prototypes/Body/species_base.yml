@@ -129,6 +129,8 @@
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
   - type: Puller
+  - type: GrabIntent # Goobstation - Grab Intent
+  - type: Grabbable # Goobstation - Grab Intent
   - type: Speech
     speechSounds: Alto
   - type: DamageForceSay

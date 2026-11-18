@@ -105,6 +105,9 @@
     tags:
     - Stunbaton
   - type: PreventForcedThrow
+  - type: MartialArtBlocked # Goobstation - Martial Arts
+    form: CorporateJudo # Goobstation - Martial Arts
+    staminaDmgBlock: True # Goobstation - Martial Arts
 
 - type: entity
   name: truncheon

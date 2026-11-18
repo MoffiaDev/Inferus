@@ -45,6 +45,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using ItemToggleMeleeWeaponComponent = Content.Shared.Item.ItemToggle.Components.ItemToggleMeleeWeaponComponent;
 using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
+using Content.Shared._Goobstation.MartialArts; // Goobstation - Martial Arts
 
 namespace Content.Shared.Weapons.Melee;
 
@@ -277,6 +278,8 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
         var ev = new GetMeleeAttackRateEvent(uid, component.AttackRate, 1, user);
         RaiseLocalEvent(uid, ref ev);
+        if (user != uid) // Goobstation - Martial Arts
+            RaiseLocalEvent(user, ref ev);
 
         return ev.Rate * ev.Multipliers;
     }
@@ -442,7 +445,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.NextAttack));
 
         // Do this AFTER attack so it doesn't spam every tick
-        var ev = new AttemptMeleeEvent();
+        var ev = new AttemptMeleeEvent { User = user, IsHeavyAttack = attack is HeavyAttackEvent }; // Goobstation - grab intent
         RaiseLocalEvent(weaponUid, ref ev);
 
         if (weapon.SwingBeverage)
@@ -532,7 +535,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
                     $"{ToPrettyString(user):actor} melee attacked (light) using {ToPrettyString(meleeUid):tool} and missed");
             }
             var missEvent = new MeleeHitEvent(new List<EntityUid>(), user, meleeUid, damage, null);
-            RaiseLocalEvent(meleeUid, missEvent);
+            RaiseLocalEvent(meleeUid, missEvent, true); // Goobstation - Martial Arts - broadcast
             _meleeSound.PlaySwingSound(user, meleeUid, component);
             return;
         }
@@ -541,7 +544,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
         // Raise event before doing damage so we can cancel damage if the event is handled
         var hitEvent = new MeleeHitEvent(new List<EntityUid> { target.Value }, user, meleeUid, damage, null);
-        RaiseLocalEvent(meleeUid, hitEvent);
+        RaiseLocalEvent(meleeUid, hitEvent, true); // Goobstation - Martial Arts - broadcast
 
         if (hitEvent.Handled)
             return;
@@ -567,8 +570,15 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         RaiseLocalEvent(target.Value, attackedEvent);
 
         var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
+        modifiedDamage = DamageSpecifier.ApplyModifierSets(modifiedDamage, attackedEvent.ModifiersList); // Goobstation
 
-        if (Damageable.TryChangeDamage(target.Value, modifiedDamage, out var damageResult, origin:user, ignoreResistances:resistanceBypass))
+        // Goobstation - Martial Arts - damage is applied before the combo event is raised
+        var hit = Damageable.TryChangeDamage(target.Value, modifiedDamage, out var damageResult, origin:user, ignoreResistances:resistanceBypass);
+        var comboEv = new ComboAttackPerformedEvent(user, target.Value, meleeUid, ComboAttackType.Harm);
+        RaiseLocalEvent(user, comboEv);
+        // Goobstation end
+
+        if (hit) // Goobstation - Martial Arts
         {
             // If the target has stamina and is taking blunt damage, they should also take stamina damage based on their blunt to stamina factor
             if (damageResult.DamageDict.TryGetValue("Blunt", out var bluntDamage))
@@ -644,7 +654,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
                     $"{ToPrettyString(user):actor} melee attacked (heavy) using {ToPrettyString(meleeUid):tool} and missed");
             }
             var missEvent = new MeleeHitEvent(new List<EntityUid>(), user, meleeUid, damage, direction);
-            RaiseLocalEvent(meleeUid, missEvent);
+            RaiseLocalEvent(meleeUid, missEvent, true); // Goobstation - Martial Arts - broadcast
 
             // immediate audio feedback
             _meleeSound.PlaySwingSound(user, meleeUid, component);
@@ -697,7 +707,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
         // Raise event before doing damage so we can cancel damage if the event is handled
         var hitEvent = new MeleeHitEvent(targets, user, meleeUid, damage, direction);
-        RaiseLocalEvent(meleeUid, hitEvent);
+        RaiseLocalEvent(meleeUid, hitEvent, true); // Goobstation - Martial Arts - broadcast
 
         if (hitEvent.Handled)
             return true;
@@ -736,6 +746,12 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             var attackedEvent = new AttackedEvent(meleeUid, user, GetCoordinates(ev.Coordinates));
             RaiseLocalEvent(entity, attackedEvent);
             var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
+            modifiedDamage = DamageSpecifier.ApplyModifierSets(modifiedDamage, attackedEvent.ModifiersList); // Goobstation
+
+            // Goobstation start - Martial Arts
+            var comboEv = new ComboAttackPerformedEvent(user, entity, meleeUid, ComboAttackType.HarmLight);
+            RaiseLocalEvent(user, comboEv);
+            // Goobstation end
 
             var damageResult = Damageable.ChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
 
@@ -887,11 +903,20 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
     {
         var target = GetEntity(ev.Target);
 
-        if (Deleted(target) ||
-            user == target)
+        if (Deleted(target)) // Goobstation - Martial Arts - self disarm handled below
         {
             return false;
         }
+
+        // Goobstation start - Martial Arts - self disarms count as combo inputs
+        if (user == target)
+        {
+            _meleeSound.PlaySwingSound(user, meleeUid, component);
+            var selfComboEv = new ComboAttackPerformedEvent(user, user, meleeUid, ComboAttackType.Disarm);
+            RaiseLocalEvent(user, selfComboEv);
+            return false;
+        }
+        // Goobstation end
 
 
         if (MobState.IsIncapacitated(target.Value))
@@ -923,6 +948,11 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         {
             return false;
         }
+
+        // Goobstation start - Martial Arts
+        var comboEv = new ComboAttackPerformedEvent(user, target.Value, meleeUid, ComboAttackType.Disarm);
+        RaiseLocalEvent(user, comboEv);
+        // Goobstation end
 
         EntityUid? inTargetHand = null;
 

@@ -125,7 +125,7 @@
   parent: BaseSubdermalImplant
   id: FreedomImplant
   name: freedom implant
-  description: This implant lets the user break out of hand restraints up to three times before ceasing to function anymore.
+  description: This implant lets the user break out of hand restraints and snares, stunning whoever is pulling them. # Goobstation - useful freedom
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -133,8 +133,13 @@
     whitelist:
       components:
       - Cuffable # useless if you cant be cuffed
+      - Ensnareable # Goobstation
   - type: TriggerOnActivateImplant
   - type: UncuffOnTrigger
+    targetUser: true
+  - type: RemoveSnareOnTrigger # Goobstation
+    targetUser: true
+  - type: ParalyzePullerOnTrigger # Goobstation
     targetUser: true
 
 - type: entity

@@ -39,6 +39,7 @@
                                 <ui:RandomizeLockButton For="Skin" LabelText="{Loc 'humanoid-profile-editor-randomize-skin-button'}"/>
                                 <ui:RandomizeLockButton For="Eyes" LabelText="{Loc 'humanoid-profile-editor-randomize-eye-button'}"/>
                                 <ui:RandomizeLockButton For="Markings" LabelText="{Loc 'humanoid-profile-editor-randomize-markings-button'}"/>
+                                <ui:RandomizeLockButton For="Size" LabelText="{Loc 'humanoid-profile-editor-randomize-size-button'}"/> <!-- Goobstation - port EE height/width sliders -->
                             </GridContainer>
                             <Button
                                 Name="RandomizeUnlockedButton"
@@ -125,6 +126,24 @@
                                     <Control HorizontalExpand="True"/>
                                     <OptionButton Name="SpawnPriorityButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
+                                <!-- Goobstation - Start - port EE height/width sliders -->
+                                <!-- Height Slider -->
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Name="HeightLabel" MinWidth="110" />
+                                    <Slider Name="HeightSlider" MinValue="0.5" Value="1" MaxValue="1.5" HorizontalExpand="True" Margin="5 0 5 0" />
+                                    <Button Name="HeightReset" Text="{Loc 'ui-options-bind-reset'}" />
+                                </BoxContainer>
+                                <!-- Width Slider -->
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Name="WidthLabel" MinWidth="110" />
+                                    <Slider Name="WidthSlider" MinValue="0.5" Value="1" MaxValue="1.5" HorizontalExpand="True" Margin="5 0 5 0" />
+                                    <Button Name="WidthReset" Text="{Loc 'ui-options-bind-reset'}" />
+                                </BoxContainer>
+                                <!-- Weight (Derived from height and width) -->
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Name="WeightLabel" />
+                                </BoxContainer>
+                                <!-- Goobstation - End - port EE height/width sliders -->
                             </BoxContainer>
                             <!-- Skin -->
                             <BoxContainer Margin="10" HorizontalExpand="True" Orientation="Vertical">

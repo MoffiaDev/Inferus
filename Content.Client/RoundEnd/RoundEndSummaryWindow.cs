@@ -1,6 +1,8 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Message;
+using Content.Client.Stylesheets; // Goob Station - End of Round Screen
+using Content.Shared.Mobs; // Goob Station - End of Round Screen
 using RoundEndPlayerInfo = Content.Shared.GameTicking.RoundEndMessageEvent.RoundEndPlayerInfo;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -196,7 +198,7 @@ public sealed partial class RoundEndSummaryWindow : DefaultWindow
 
         _playerGrid = new GridContainer
         {
-            Columns = 6, // Player Sprite,IC Name,Role,Player Type,OOC Name
+            Columns = 1, // Goob Station - one card per player
             HorizontalExpand = true,
         };
 
@@ -258,87 +260,197 @@ public sealed partial class RoundEndSummaryWindow : DefaultWindow
     /// </summary>
     private void AddPlayerRow(RoundEndPlayerInfo playerInfo)
     {
-        // Player Sprite column
+        // Goob Station - End of Round Screen start
+        // Each player is a card with their sprite, name/role, last words and how they died.
+        var panel = new PanelContainer
+        {
+            StyleClasses = { StyleNano.StyleClassBackgroundBaseDark },
+            Margin = new Thickness(0, 0, 0, 6)
+        };
+
+        var hBox = new BoxContainer
+        {
+            Orientation = LayoutOrientation.Horizontal,
+            VerticalExpand = true
+        };
+
         if (playerInfo.PlayerNetEntity != null)
         {
-            _playerGrid.AddChild(new SpriteView(playerInfo.PlayerNetEntity.Value, _entityManager)
+            hBox.AddChild(new SpriteView(playerInfo.PlayerNetEntity.Value, _entityManager)
             {
                 OverrideDirection = Direction.South,
                 VerticalAlignment = VAlignment.Center,
-                SetSize = new Vector2(32, 32),
+                SetSize = new Vector2(64, 64),
+                VerticalExpand = true,
+                Stretch = SpriteView.StretchMode.Fill,
+                Margin = new Thickness(3, 0, 3, 0)
             });
         }
-        else
+
+        var textVBox = new BoxContainer
         {
-            _playerGrid.AddChild(new Control
+            Orientation = LayoutOrientation.Vertical,
+            VerticalExpand = true,
+            SeparationOverride = 2,
+        };
+
+        var playerTitleBox = new BoxContainer
+        {
+            Orientation = LayoutOrientation.Horizontal,
+        };
+
+        if (playerInfo.PlayerICName != null)
+        {
+            var playerNameText = new Label
             {
-                SetSize = new Vector2(32, 32),
-            });
+                VerticalAlignment = VAlignment.Bottom,
+                StyleClasses = { StyleNano.StyleClassLabelHeading },
+                Margin = new Thickness(0, 0, 6, 0),
+                Text = playerInfo.PlayerICName
+            };
+
+            // Apply color coding for antagonists
+            if (playerInfo.Antag)
+                playerNameText.FontColorOverride = Color.Red;
+
+            playerTitleBox.AddChild(playerNameText);
+
+            var role = Loc.GetString(playerInfo.Role);
+            var playerRoleText = new Label
+            {
+                VerticalAlignment = VAlignment.Bottom,
+                StyleClasses = { StyleNano.StyleClassLabelSubText },
+                Text = Loc.GetString("round-end-summary-window-player-name",
+                    ("player", playerInfo.PlayerOOCName))
+            };
+
+            if (role != "Unknown")
+                playerRoleText.Text = Loc.GetString("round-end-summary-window-player-name-role",
+                        ("role", role), ("player", playerInfo.PlayerOOCName));
+
+            playerTitleBox.AddChild(playerRoleText);
         }
 
-        // IC Name column
-        var icNameLabel = new Label
-        {
-            Text = playerInfo.PlayerICName ?? playerInfo.PlayerOOCName,
-            VerticalAlignment = VAlignment.Center,
-            HorizontalExpand = true,
-            ClipText = true
-        };
+        textVBox.AddChild(playerTitleBox);
 
-        // Apply color coding for antagonists
-        if (playerInfo.Antag)
+        if (!string.IsNullOrWhiteSpace(playerInfo.LastWords))
         {
-            icNameLabel.FontColorOverride = Color.Red;
+            var playerLastWordsText = new RichTextLabel
+            {
+                VerticalAlignment = VAlignment.Center,
+                VerticalExpand = true,
+            };
+
+            playerLastWordsText.SetMarkup(Loc.GetString("round-end-summary-window-last-words",
+                ("lastWords", playerInfo.LastWords)));
+
+            textVBox.AddChild(playerLastWordsText);
         }
 
-        _playerGrid.AddChild(icNameLabel);
-
-        _playerGrid.AddChild(new Control
+        var deathLabel = new RichTextLabel
         {
-            SetSize = new Vector2(32, 32),
-        });
-
-        // Role column
-        var roleLabel = new Label
-        {
-            Text = playerInfo.Observer ? "-" : Loc.GetString(playerInfo.Role),
             VerticalAlignment = VAlignment.Center,
-            HorizontalExpand = true,
-            ClipText = true
-        };
-        _playerGrid.AddChild(roleLabel);
-
-        // Player Type column
-        var playerTypeLabel = new Label
-        {
-            Text = GetPlayerTypeText(playerInfo),
-            VerticalAlignment = VAlignment.Center,
-            HorizontalExpand = true,
-            ClipText = true
+            VerticalExpand = true,
         };
 
-        // Apply color coding based on player type
-        if (playerInfo.Antag)
+        textVBox.AddChild(deathLabel);
+
+        if (playerInfo.EntMobState == MobState.Dead
+            && playerInfo.DamagePerGroup.Values.Any(v => v > 0))
         {
-            playerTypeLabel.FontColorOverride = Color.Red;
+            var totalDamage = playerInfo.DamagePerGroup.Values.Sum(static v => (decimal) v);
+            var severityAdj = totalDamage switch
+            {
+                >= 1000 => "catastrophic",
+                >= 750 => "devastating",
+                >= 500 => "agonizing",
+                >= 300 => "painful",
+                >= 200 => "brutal",
+                _ => "tragic"
+            };
+
+            var highestDamage = playerInfo.DamagePerGroup
+                .OrderByDescending(kvp => kvp.Value)
+                .First();
+            var typeAdj = highestDamage.Key switch
+            {
+                "Burn" => "fiery",
+                "Brute" => "crushing",
+                "Toxin" => "poisonous",
+                "Airloss" => "suffocating",
+                "Genetic" => "twisted",
+                "Metaphysical" => "otherworldly",
+                "Electronic" => "shocking",
+                _ => "mysterious",
+            };
+
+            deathLabel.SetMarkup(
+                Loc.GetString("round-end-summary-window-death",
+                    ("severity", severityAdj),
+                    ("type", typeAdj)));
+
+            var damageTable = new GridContainer
+            {
+                Columns = playerInfo.DamagePerGroup.Count,
+            };
+
+            foreach (var damage in playerInfo.DamagePerGroup)
+            {
+                if (damage.Value <= 0)
+                    continue;
+
+                var color = damage.Key switch
+                {
+                    "Burn" => Color.Orange,
+                    "Brute" => Color.Red,
+                    "Toxin" => Color.Green,
+                    "Airloss" => Color.Blue,
+                    "Genetic" => Color.Cyan,
+                    "Metaphysical" => Color.Purple,
+                    "Electronic" => Color.DarkOrange,
+                    _ => Color.White,
+                };
+                var damagePanel = new PanelContainer
+                {
+                    StyleClasses = { StyleNano.StyleClassBackgroundBaseLight },
+                    Margin = new Thickness(2, 2, 2, 2)
+                };
+                var damageBox = new BoxContainer
+                {
+                    Orientation = LayoutOrientation.Vertical,
+                    Margin = new Thickness(1)
+                };
+                var valueLabel = new Label
+                {
+                    Text = Math.Round((float) damage.Value).ToString(),
+                    FontColorOverride = color,
+                    HorizontalAlignment = HAlignment.Center,
+                    VerticalAlignment = VAlignment.Center,
+                };
+                var headerLabel = new Label
+                {
+                    Text = damage.Key,
+                    FontColorOverride = Color.Gray,
+                    HorizontalAlignment = HAlignment.Center,
+                    VerticalAlignment = VAlignment.Center,
+                };
+                damagePanel.AddChild(damageBox);
+                damageBox.AddChild(valueLabel);
+                damageBox.AddChild(headerLabel);
+                damageTable.AddChild(damagePanel);
+            }
+
+            textVBox.AddChild(damageTable);
         }
-        else if (playerInfo.Observer)
+        else if (playerInfo.EntMobState == MobState.Invalid)
         {
-            playerTypeLabel.FontColorOverride = Color.Gray;
+            deathLabel.SetMarkup(Loc.GetString("round-end-summary-window-death-unknown"));
         }
 
-        _playerGrid.AddChild(playerTypeLabel);
-
-        // OOC Name column
-        var oocNameLabel = new Label
-        {
-            Text = playerInfo.PlayerOOCName,
-            VerticalAlignment = VAlignment.Center,
-            HorizontalExpand = true,
-            ClipText = true
-        };
-
-        _playerGrid.AddChild(oocNameLabel);
+        hBox.AddChild(textVBox);
+        panel.AddChild(hBox);
+        _playerGrid.AddChild(panel);
+        // Goob Station - End of Round Screen end
     }
 
     /// <summary>

@@ -97,8 +97,29 @@ public abstract partial class SharedHandsSystem : EntitySystem
 
     private bool DropPressed(ICommonSession? session, EntityCoordinates coords, EntityUid netEntity)
     {
-        if (TryComp(session?.AttachedEntity, out HandsComponent? hands) && hands.ActiveHandId != null)
-            TryDrop((session.AttachedEntity.Value, hands), hands.ActiveHandId, coords);
+        if (session is not { AttachedEntity: not null })
+            return false;
+
+        var ent = session.AttachedEntity.Value;
+
+        if (!TryComp(ent, out HandsComponent? hands) || hands.ActiveHandId == null)
+            return false;
+
+        // Goobstation - Grab Intent start
+        if (TryGetActiveItem(ent, out var item) && TryComp<VirtualItemComponent>(item.Value, out var virtComp))
+        {
+            var userEv = new VirtualItemDropAttemptEvent(virtComp.BlockingEntity, ent, item.Value, false);
+            RaiseLocalEvent(ent, userEv);
+
+            var targEv = new VirtualItemDropAttemptEvent(virtComp.BlockingEntity, ent, item.Value, false);
+            RaiseLocalEvent(virtComp.BlockingEntity, targEv);
+
+            if (userEv.Cancelled || targEv.Cancelled)
+                return false;
+        }
+        // Goobstation - Grab Intent end
+
+        TryDrop((ent, hands), hands.ActiveHandId, coords);
 
         // always send to server.
         return false;
