@@ -48,9 +48,10 @@ humanoid-profile-editor-preference-spawn-priority-none = None
 humanoid-profile-editor-preference-spawn-priority-arrivals = Arrivals
 humanoid-profile-editor-preference-spawn-priority-cryosleep = Cryosleep
 
+# Inferus - changed "Antags" to "Special Roles"
 humanoid-profile-editor-jobs-amount-in-department-tooltip = Jobs in the {$departmentName} department
 humanoid-profile-editor-department-jobs-label = {$departmentName} jobs
-humanoid-profile-editor-antags-tab = Antags
+humanoid-profile-editor-antags-tab = Special Roles
 humanoid-profile-editor-antag-preference-yes-button = Yes
 humanoid-profile-editor-antag-preference-no-button = No
 
