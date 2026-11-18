@@ -1,4 +1,4 @@
-<!-- Guidelines: https://docs.macrocosm.cool/docs/intro -->
+<!-- Guidelines: https://github.com/MoffiaDev/Inferus/blob/master/CONTRIBUTING.md -->
 
 ## About the PR
 <!-- What did you change? -->
