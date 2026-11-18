@@ -210,3 +210,13 @@ Entries:
       message: Moths look cooler.
   id: 12
   time: '2026-11-14T18:45:33.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Add
+      message: remember the basics of cqc
+    - type: Add
+      message: Four new mothroach types have been spotted! Can you find them all?
+    - type: Fix
+      message: Moth displacement maps have been fixed, hopefully...
+  id: 13
+  time: '2026-11-18T01:33:18.0000000+00:00'
