@@ -211,7 +211,9 @@ public sealed partial class ChatSystem
             !TryEmoteChatInput(source, action))
             return;
 
-        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, author);
+        // Floofstation - check LOS
+        // Inferus - SendEntityEmote is an override here, so emotes always respect LOS instead of exposing a checkLOS parameter
+        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, author, checkLOS: true);
         if (!hideLog)
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {source} as {name}: {action}");

@@ -4,7 +4,7 @@ namespace Content.Shared.Chat
     ///     Represents chat channels that the player can filter chat tabs by.
     /// </summary>
     [Flags]
-    public enum ChatChannel : ushort
+    public enum ChatChannel : uint // Floofstation - expand to uint
     {
         None = 0,
 
@@ -86,9 +86,19 @@ namespace Content.Shared.Chat
         Unspecified = 1 << 14,
 
         /// <summary>
+        ///     Floofstation - Subtle messages. Added at a greater offset to avoid conflicting with future added channels.
+        /// </summary>
+        Subtle = 1u << 31,
+
+        /// <summary>
+        ///     Floofstation - Subtle OOC messages.
+        /// </summary>
+        SubtleOOC = 1u << 30,
+
+        /// <summary>
         ///     Channels considered to be IC.
         /// </summary>
-        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | Notifications,
+        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | Notifications | Subtle, // Floofstation - also add subtle
 
         AdminRelated = Admin | AdminAlert | AdminChat,
     }

@@ -64,13 +64,18 @@ public sealed partial class ChatSystem
     /// <summary>
     ///     Sends a chat message to the given players in range of the source entity.
     /// </summary>
-    private void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null)
+    // Floofstation - add checkLOS
+    private void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null, bool checkLOS = false)
     {
         foreach (var (session, data) in GetRecipients(source, VoiceRange))
         {
             var entRange = MessageRangeCheck(session, data, range);
             if (entRange == MessageRangeCheckResult.Disallowed)
                 continue;
+
+            if (checkLOS && !data.Observer && !data.InLOS)
+                continue; // Floofstation: some things dont go through walls (but they go through windows!)
+
             var entHideChat = entRange == MessageRangeCheckResult.HideChat;
             _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author);
         }
@@ -207,23 +212,33 @@ public sealed partial class ChatSystem
                 continue;
 
             var observer = _ghostHearingQuery.HasComponent(playerEntity);
+            var isDead = HasComp<GhostComponent>(playerEntity); // Euphoria
+
+            // Floofstation edit - check LOS
+            // Inferus - keep the TryDistance result so entities whose distance can't be resolved aren't treated as being at distance 0
+            var hasDistance = sourceCoords.TryDistance(EntityManager, transformEntity.Coordinates, out var distance);
+            var inRange = hasDistance && distance <= voiceGetRange;
+            var isVisible = observer || (inRange && _examineSystem.InRangeUnOccluded(source, playerEntity, voiceGetRange));
+            // Floofstation edit end
 
             // even if they are a ghost hearer, in some situations we still need the range
-            if (sourceCoords.TryDistance(EntityManager, transformEntity.Coordinates, out var distance) && distance < voiceGetRange)
+            if (hasDistance && distance < voiceGetRange && !observer) // Euphoria - observers always go through the out-of-range path
             {
-                recipients.Add(player, new ICChatRecipientData(distance, observer));
+                // Euphoria | Hide Subtle from Non-Admin Ghosts
+                recipients.Add(player, new ICChatRecipientData(distance, observer, Subtle: !isDead, InLOS: isVisible));
                 continue;
             }
 
             if (observer)
-                recipients.Add(player, new ICChatRecipientData(-1, true));
+                recipients.Add(player, new ICChatRecipientData(-1, true, InLOS: isVisible)); // Floofstation - add InLOS
         }
 
         RaiseLocalEvent(new ExpandICChatRecipientsEvent(source, voiceGetRange, recipients));
         return recipients;
     }
 
-    public readonly record struct ICChatRecipientData(float Range, bool Observer, bool? HideChatOverride = null)
+    // Floofstation: add InLOS; Euphoria: add Subtle
+    public readonly record struct ICChatRecipientData(float Range, bool Observer, bool? HideChatOverride = null, bool Subtle = true, bool InLOS = true)
     {
     }
 

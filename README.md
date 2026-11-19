@@ -82,6 +82,7 @@ Content under these subdirectories either originate from their respective fork, 
 | `_DV`            | Delta-V             | https://github.com/DeltaV-Station/Delta-v/              | AGPL 3.0 |
 | `_EE`            | Einstein Engines    | https://github.com/Simple-Station/Einstein-Engines/     | AGPL 3.0 |
 | `_Floof`         | Floof Station       | https://github.com/Floof-Station/space-station-14       | AGPL 3.0 |
+| `_Euphoria`      | Euphoria Station    | https://github.com/Euphoria-Station/Panta-Rhei          | AGPL 3.0 |
 | `_Funkystation`  | Funky Station       | https://github.com/funky-station/funky-station          | AGPL 3.0 |
 | `_Goobstation`   | Goob Station        | https://github.com/Goob-Station/Goob-Station/           | AGPL 3.0 |
 | `_White`         | White Dream         | https://github.com/WWhiteDreamProject/wwdpublic/        | AGPL 3.0 |
