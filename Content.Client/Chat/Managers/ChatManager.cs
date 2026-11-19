@@ -82,6 +82,15 @@ internal sealed partial class ChatManager : IChatManager
                 _consoleHost.ExecuteCommand($"whisper \"{CommandParsing.Escape(str)}\"");
                 break;
 
+            // Floofstation section
+            case ChatSelectChannel.Subtle:
+                _consoleHost.ExecuteCommand($"subtle \"{CommandParsing.Escape(str)}\"");
+                break;
+            case ChatSelectChannel.SubtleOOC:
+                _consoleHost.ExecuteCommand($"sooc \"{CommandParsing.Escape(str)}\"");
+                break;
+            // Floofstation section end
+
             default:
                 throw new ArgumentOutOfRangeException(nameof(channel), channel, null);
         }

@@ -7,7 +7,7 @@
     ///     Maps to <see cref="ChatChannel"/>, giving better names.
     /// </remarks>
     [Flags]
-    public enum ChatSelectChannel : ushort
+    public enum ChatSelectChannel : uint // Floofstation - expand to uint
     {
         None = 0,
 
@@ -50,6 +50,11 @@
         ///     Admin chat
         /// </summary>
         Admin = ChatChannel.AdminChat,
+
+        // Floofstation section - see ChatChannel
+        Subtle = ChatChannel.Subtle,
+        SubtleOOC = ChatChannel.SubtleOOC,
+        // Floofstation section end
 
         Console = ChatChannel.Unspecified
     }
