@@ -18,6 +18,7 @@ using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared._DV.CustomObjectiveSummary; // DeltaV
+using Content.Shared._Funkystation.CCVar;
 
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
@@ -33,6 +34,7 @@ using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
@@ -70,6 +72,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     [Dependency] private StationSystem _station = default!;
     [Dependency] private TransformSystem _transformSystem = default!;
     [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private IConfigurationManager _cfg = null!; // funky - pa announcements cvar
     [Dependency] private AnnouncerManager _announcer = default!; // Macrocosm edit
 
     private const float ShuttleSpawnBuffer = 1f;
@@ -335,18 +338,28 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
         DebugTools.Assert(shuttle != null);
 
+        // BEGIN Funky
+        var paExclusive = PAAnnouncementCVars.IsPAEnabledAndExclusive(_cfg); // funky
+
         if (result.ResultType == ShuttleDockResultType.GoodLuck)
         {
+            // funky - getting this earlier so it can be passed into the announcement
+            _announcer.TryGetAnnouncerSound(stationShuttleComp.FailureAudio, out var sound);
+
             _chatSystem.DispatchStationAnnouncement(
                 result.Station,
                 Loc.GetString(stationShuttleComp.FailureAnnouncement),
-                playDefaultSound: false);
+                sender: Loc.GetString("chat-manager-sender-sistr"),
+                playDefaultSound: paExclusive,
+                announcementSound: paExclusive ? sound : null,
+                colorOverride: Color.FromHex("#f9a524"));
 
             // TODO: Need filter extensions or something don't blame me.
             // Macrocosm edit start - announcer variation
-            _announcer.TryGetAnnouncerSound(stationShuttleComp.FailureAudio, out var sound);
-            _audio.PlayGlobal(sound, Filter.Broadcast(), true);
+            if (!paExclusive) // funky
+                _audio.PlayGlobal(sound, Filter.Broadcast(), true);
             // Macrocosm edit end
+            // END Funky
             return;
         }
 
@@ -370,6 +383,15 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
             ? stationShuttleComp.NearbyAnnouncement
             : stationShuttleComp.DockedAnnouncement;
 
+        // Macrocosm edit start - announcer variation
+        // Funky - getting this earlier so it can be passed into the announcement
+        var audioId = result.ResultType == ShuttleDockResultType.NoDock
+            ? stationShuttleComp.NearbyAudio
+            : stationShuttleComp.DockedAudio;
+
+        _announcer.TryGetAnnouncerSound(audioId, out var audio);
+
+
         _chatSystem.DispatchStationAnnouncement(
             result.Station,
             Loc.GetString(
@@ -378,7 +400,11 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
                 ("direction", direction),
                 ("location", location),
                 ("extended", extendedText)),
-            playDefaultSound: false);
+            sender: Loc.GetString("chat-manager-sender-sistr"),
+            playDefaultSound: paExclusive, // funky
+            announcementSound: audio, // funky
+            colorOverride: Color.FromHex("#f9a524")); // funky
+        // Macrocosm edit end
 
         // Trigger shuttle timers on the shuttle.
 
@@ -400,15 +426,9 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
         // Play announcement audio.
 
-        // Macrocosm edit start - announcer variation
-        var audioId = result.ResultType == ShuttleDockResultType.NoDock
-            ? stationShuttleComp.NearbyAudio
-            : stationShuttleComp.DockedAudio;
-
         // TODO: Need filter extensions or something don't blame me.
-        _announcer.TryGetAnnouncerSound(audioId, out var audio);
-        _audio.PlayGlobal(audio, Filter.Broadcast(), true);
-        // Macrocosm edit end
+        if (!paExclusive) // funky
+            _audio.PlayGlobal(audio, Filter.Broadcast(), true);
     }
 
     private void OnStationInit(EntityUid uid, StationCentcommComponent component, MapInitEvent args)

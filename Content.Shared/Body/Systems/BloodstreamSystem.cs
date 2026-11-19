@@ -20,6 +20,9 @@ using Content.Shared.Popups;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Rejuvenate;
 using Content.Shared.StatusEffectNew;
+using Content.Shared.Inventory;
+using Content.Shared._Funkystation.Fluids;
+using Content.Shared._Funkystation.WallStains;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -41,6 +44,7 @@ public sealed partial class BloodstreamSystem : EntitySystem
     [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private MetabolizerSystem _metabolizer = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     public override void Update(float frameTime)
     {
@@ -220,6 +224,19 @@ public sealed partial class BloodstreamSystem : EntitySystem
         var total = bloodloss.GetTotal();
         var totalFloat = total.Float();
         TryModifyBleedAmount(ent.AsNullable(), totalFloat);
+
+        if (totalFloat >= 2f
+            && _solutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution, out var bloodForSplatter)
+            && bloodForSplatter.Volume > 0)
+        {
+            var splatterAmount = FixedPoint2.Min(FixedPoint2.New(totalFloat * 0.15f), bloodForSplatter.Volume);
+            if (splatterAmount > 0)
+            {
+                var splatterSolution = _solutionContainer.SplitSolution(ent.Comp.BloodSolution.Value, splatterAmount);
+                var splashEv = new SplashOnWallEvent(Transform(ent.Owner).Coordinates, splatterSolution);
+                RaiseLocalEvent(ref splashEv);
+            }
+        }
 
         // Critical hit. Causes target to lose blood, using the bleed rate modifier of the weapon, currently divided by 5
         // The crit chance is currently the bleed rate modifier divided by 25.
@@ -500,6 +517,21 @@ public sealed partial class BloodstreamSystem : EntitySystem
 
         if (tempSolution.Volume > ent.Comp.BleedPuddleThreshold)
         {
+            var stainEv = new SpilledOnEvent(ent.Owner, tempSolution);
+            RaiseLocalEvent(ent.Owner, stainEv);
+
+            var xform = Transform(ent.Owner);
+            foreach (var neighbor in _lookup.GetEntitiesInRange(xform.Coordinates, 1.5f))
+            {
+                if (neighbor == ent.Owner || !HasComp<InventoryComponent>(neighbor))
+                    continue;
+
+                RaiseLocalEvent(neighbor, new SpilledOnEvent(ent.Owner, tempSolution));
+
+                if (tempSolution.Volume <= 0)
+                    break;
+            }
+
             _puddle.TrySpillAt(ent.Owner, tempSolution, out _, sound: false);
 
             tempSolution.RemoveAllSolution();
@@ -559,6 +591,22 @@ public sealed partial class BloodstreamSystem : EntitySystem
             _solutionContainer.RemoveAllSolution(ent.Comp.TemporarySolution.Value);
         }
 
+        var stainEv = new SpilledOnEvent(ent.Owner, tempSol);
+        RaiseLocalEvent(ent.Owner, stainEv);
+
+        var xform = Transform(ent.Owner);
+        foreach (var neighbor in _lookup.GetEntitiesInRange(xform.Coordinates, 1.5f))
+        {
+            if (neighbor == ent.Owner || !HasComp<InventoryComponent>(neighbor))
+                continue;
+
+            RaiseLocalEvent(neighbor, new SpilledOnEvent(ent.Owner, tempSol));
+
+            if (tempSol.Volume <= 0)
+                break;
+        }
+        var splashEv = new SplashOnWallEvent(Transform(ent.Owner).Coordinates, tempSol.Clone());
+        RaiseLocalEvent(ref splashEv);
         _puddle.TrySpillAt(ent, tempSol, out _);
     }
 

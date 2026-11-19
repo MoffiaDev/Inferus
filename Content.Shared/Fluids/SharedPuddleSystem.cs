@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Funkystation.ReagentFires;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -121,6 +122,9 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
         if (args.Solution.Comp.Id != entity.Comp.SolutionName)
             return;
+
+        var fireEv = new PuddleSolutionChangedEvent(args.Solution);
+        RaiseLocalEvent(entity, ref fireEv);
 
         if (args.Solution.Comp.Solution.Volume <= 0)
         {

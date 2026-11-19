@@ -16,6 +16,18 @@
   #    stain:
   #      maxVol: 5
   # todo: uncomment when i port clothing stains
+  - type: SolutionManager
+    solutions:
+    - SolutionStain
+  - type: Appearance
+  - type: Stainable
+    clothingVisuals:
+      mask:
+      - sprite: _Funkystation/Effects/blood.rsi
+        state: maskblood
+    iconVisuals:
+    - sprite: _Funkystation/Effects/blood.rsi
+      state: maskbloodicon
 
 - type: entity
   abstract: true

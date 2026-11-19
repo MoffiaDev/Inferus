@@ -444,6 +444,7 @@
   physicalDesc: reagent-physical-desc-translucent
   flavor: water
   color: "#75b1f0"
+  flammability: -4
   recognizable: true
   boilingPoint: 100.0
   meltingPoint: 0.0
@@ -519,6 +520,7 @@
   physicalDesc: reagent-physical-desc-frosty
   flavor: cold
   color: "#bed8e6"
+  flammability: -4
   recognizable: true
   meltingPoint: 0.0
   boilingPoint: 100.0

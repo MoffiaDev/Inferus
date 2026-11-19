@@ -13,6 +13,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Spawners;
 using System.Numerics;
+using Content.Shared._Funkystation.WallStains;
 using Content.Shared.Vapor;
 
 namespace Content.Server.Chemistry.EntitySystems
@@ -38,6 +39,14 @@ namespace Content.Server.Chemistry.EntitySystems
         {
             var solution = Comp<SolutionComponent>(entity).Solution;
             _reactive.DoEntityReaction(args.OtherEntity, solution, ReactionMethod.Touch);
+
+            if ((args.OtherFixture.CollisionLayer & (int)CollisionGroup.Impassable) != 0
+                && args.OtherFixture.Hard
+                && solution.Volume > 0)
+            {
+                var splashEv = new SplashOnWallEvent(Transform(entity.Owner).Coordinates, solution.Clone());
+                RaiseLocalEvent(ref splashEv);
+            }
 
             // Check for collision with a impassable object (e.g. wall) and stop
             if ((args.OtherFixture.CollisionLayer & (int)CollisionGroup.Impassable) != 0 && args.OtherFixture.Hard)

@@ -84,6 +84,8 @@ Content under these subdirectories either originate from their respective fork, 
 | `_Floof`         | Floof Station       | https://github.com/Floof-Station/space-station-14       | AGPL 3.0 |
 | `_Euphoria`      | Euphoria Station    | https://github.com/Euphoria-Station/Panta-Rhei          | AGPL 3.0 |
 | `_Funkystation`  | Funky Station       | https://github.com/funky-station/funky-station          | AGPL 3.0 |
+| `_Funkystation`  | Forky Station       | https://github.com/funky-station/forky-station          |    MIT   |
 | `_Goobstation`   | Goob Station        | https://github.com/Goob-Station/Goob-Station/           | AGPL 3.0 |
 | `_White`         | White Dream         | https://github.com/WWhiteDreamProject/wwdpublic/        | AGPL 3.0 |
 | `_MACRO`         | Macrocosm           | https://github.com/syndicate-ss14/macrocosm             |    MIT   |
+| `_RMC14`         | RMC-14              | https://github.com/RMC-14/RMC-14                        |    MIT   |

@@ -1,0 +1,11 @@
+# Forky stores stains in a named "stain" solution on the clothing's SolutionContainerManager.
+- type: entity
+  parent: Solution
+  id: SolutionStain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stain
+    solution:
+      maxVol: 5
+      canReact: false

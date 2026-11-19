@@ -25,6 +25,14 @@
     damageCoefficient: 0.90
 
 #Standard armor vest, allowed for security only
+  - type: Stainable
+    clothingVisuals:
+      outerClothing:
+      - sprite: _Funkystation/Effects/blood.rsi
+        state: armorblood
+    iconVisuals:
+    - sprite: _Funkystation/Effects/blood.rsi
+      state: armorbloodicon
 - type: entity
   parent: [ BaseSecurityContraband, ClothingOuterArmorBase ]
   id: ClothingOuterArmorBasic

@@ -184,6 +184,7 @@
   - AdvMopItem
   - MegaSprayBottle
   - BorgModuleAdvancedCleaning
+  - WashingMachineCircuitboard
   - TrashBagHolding
   # Goobstation R&D Console rework start
   position: -1,5

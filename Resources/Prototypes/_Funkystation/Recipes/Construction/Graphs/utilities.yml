@@ -1,0 +1,11 @@
+- type: construction
+  name: utilities-wallmount-paspeaker
+  id: PASpeaker
+  graph: PASPEAKER
+  startNode: start
+  targetNode: paSpeaker
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+  - !type:AgainstWall
