@@ -58,5 +58,12 @@ namespace Content.Shared.Speech
         /// </summary>
         [DataField]
         public float SpeechBubbleOffset = 0f;
+
+        /// <summary>
+        /// If true, speech bubbles are anchored to the entity's sprite offset (rotated with the entity) instead of its
+        /// tile center. Use for wallmounts and other offset sprites so the bubble lines up in every direction.
+        /// </summary>
+        [DataField]
+        public bool SpeechBubbleFollowsSprite;
     }
 }

@@ -1,5 +1,4 @@
-﻿// Persistence: Chat stacking from RMC14 - pull/7587
-using Content.Shared.Chat;
+﻿using Content.Shared.Chat;
 using Robust.Shared.Utility;
 
 namespace Content.Client._RMC14.Chat;
@@ -12,7 +11,7 @@ public sealed class RepeatedMessage(
     ChatChannel channel
 )
 {
-    public readonly int Index = index;
+    public int Index = index;
     public readonly FormattedMessage FormattedMessage = formattedMessage;
     public readonly NetEntity SenderEntity = senderEntity;
     public readonly string Message = message;

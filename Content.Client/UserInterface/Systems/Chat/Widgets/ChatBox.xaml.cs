@@ -123,7 +123,9 @@ public partial class ChatBox : UIWidget, IEntityLinkClickHandler
         formatted.AddMarkupOrThrow(message);
         formatted.Pop();
 
-        if (_entManager.System<CMChatSystem>().TryRepetition(this, Contents, formatted, sender, unwrapped, channel, repeatCheckSender))
+        // entity systems may not exist (e.g. mid-reconnect or between rounds); just add the line unstacked then
+        if (_entManager.TrySystem<CMChatSystem>(out var cmChat) &&
+            cmChat.TryRepetition(this, Contents, formatted, sender, unwrapped, channel, repeatCheckSender))
             return;
 
         Contents.AddMessage(formatted, tagsAllowed: null);
