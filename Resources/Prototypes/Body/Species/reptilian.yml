@@ -24,7 +24,7 @@
       limit: 2
       required: false
     enum.HumanoidVisualLayers.HeadSide:
-      limit: 1
+      limit: 2 # Inferus: was 1, Funky Station reptilian resprite
       required: false
     enum.HumanoidVisualLayers.LArm:
       limit: 1
@@ -57,35 +57,134 @@
   categories: [ HideSpawnMenu ]
   name: reptilian appearance
   components:
+  # Inferus - lizard displacement maps from Funky Station reptilian resprite
+  # Replaces upstream head/mask and human jumpsuit-female maps, which do not fit the resprited body.
   - type: Inventory
     speciesId: reptilian
     femaleDisplacements:
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: gloves
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: ears
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: belt
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: neck
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: outerclothing
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: mask
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: shoes
       jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
-      head:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: jumpsuit_female
+    maleDisplacements:
+      gloves:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: head
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: gloves
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: ears
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: belt
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: neck
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: outerclothing
       mask:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
             state: mask
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: shoes
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: jumpsuit_male
     displacements:
-      head:
+      gloves:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: head
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: gloves
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: ears
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: belt
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: neck
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: outerclothing
       mask:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
             state: mask
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: shoes
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Funkystation/Mobs/Species/Lizard/displacement.rsi
+            state: jumpsuit_male
+  # End Inferus
   - type: InitialBody
     organs:
       Torso: OrganReptilianTorso
@@ -166,7 +265,7 @@
       301: 0.9
       295: 0.8
       285: 0.7
-  - type: Wagging
+  # - type: Wagging # Inferus - removed by Funky Station reptilian resprite, resprited tails have no wag animations
 
 - type: entity
   parent: OrganBaseOrganic
@@ -263,7 +362,8 @@
   components:
   - type: VisualOrgan
     data:
-      sprite: Mobs/Customization/eyes.rsi
+      sprite: Mobs/Species/Reptilian/parts.rsi # Inferus: was Mobs/Customization/eyes.rsi, Funky Station reptilian eyes
+      state: eyes # Inferus
 
 - type: entity
   parent: [ OrganBaseTongue, OrganReptilianInternal ]

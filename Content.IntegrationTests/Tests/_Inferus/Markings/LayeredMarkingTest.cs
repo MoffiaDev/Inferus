@@ -105,7 +105,8 @@ public sealed class LayeredMarkingTest
             var manager = pair.Server.ResolveDependency<MarkingManager>();
             var prototypes = pair.Server.ProtoMan.EnumeratePrototypes<MarkingPrototype>()
                 .Where(proto => proto.LegacyColorIndices != null).ToList();
-            Assert.That(prototypes, Has.Count.EqualTo(23));
+            // 23 moth markings + 5 reptilian markings split into layers by the Funky Station resprite
+            Assert.That(prototypes, Has.Count.EqualTo(28));
 
             foreach (var proto in prototypes)
             {
