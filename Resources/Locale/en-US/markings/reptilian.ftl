@@ -26,13 +26,21 @@ marking-LizardTailSmooth-tail_smooth_primary = Lizard Tail
 marking-LizardTailSmooth-tail_smooth_secondary = Under Tone
 marking-LizardTailSmooth = Lizard Tail (Smooth)
 
-marking-LizardTailLarge-tail_large = Lizard Tail (Large)
+# Inferus - Funky Station reptilian resprite, was single layer
+marking-LizardTailLarge-tail_large_primary = Lizard Tail Primary (Large)
+marking-LizardTailLarge-tail_large_secondary = Lizard Tail Secondary (Large)
 marking-LizardTailLarge = Lizard Tail (Large)
 
-marking-LizardTailSpikes-tail_spikes = Lizard Tail (Spiky)
+# Inferus - Funky Station reptilian resprite, was single layer
+marking-LizardTailSpikes-tail_spikes_primary = Lizard Tail Primary (Spiky)
+marking-LizardTailSpikes-tail_spikes_secondary = Lizard Tail Secondary (Spiky)
+marking-LizardTailSpikes-tail_spikes_tertiary = Lizard Tail Tertiary (Spiky)
 marking-LizardTailSpikes = Lizard Tail (Spiky)
 
-marking-LizardTailLTiger-tail_ltiger = Lizard Tail (Light Tiger Stripes)
+# Inferus - Funky Station reptilian resprite, was single layer
+marking-LizardTailLTiger-tail_tiger_primary = Lizard Tail Primary (Light Tiger Stripes)
+marking-LizardTailLTiger-tail_tiger_secondary = Lizard Tail Secondary (Light Tiger Stripes)
+marking-LizardTailLTiger-tail_tiger_tertiary = Lizard Tail Tertiary (Light Tiger Stripes)
 marking-LizardTailLTiger = Lizard Tail (Light Tiger Stripes)
 
 marking-LizardTailDTiger-tail_dtiger = Lizard Tail (Dark Tiger Stripes)
@@ -41,10 +49,14 @@ marking-LizardTailDTiger = Lizard Tail (Dark Tiger Stripes)
 marking-LizardTailAquatic-tail_aquatic = Lizard Tail (Aquatic)
 marking-LizardTailAquatic = Lizard Tail (Aquatic)
 
-marking-LizardSnoutRound-snout_round = Lizard Snout (Round)
+# Inferus - Funky Station reptilian resprite, was single layer
+marking-LizardSnoutRound-snout_round_primary = Lizard Snout Primary (Round)
+marking-LizardSnoutRound-snout_round_secondary = Lizard Snout Secondary (Round)
 marking-LizardSnoutRound = Lizard Snout (Round)
 
-marking-LizardSnoutSharp-snout_sharp = Lizard Snout (Sharp)
+# Inferus - Funky Station reptilian resprite, was single layer
+marking-LizardSnoutSharp-snout_sharp_primary = Lizard Snout Primary (Sharp)
+marking-LizardSnoutSharp-snout_sharp_secondary = Lizard Snout Secondary (Sharp)
 marking-LizardSnoutSharp = Lizard Snout (Sharp)
 
 marking-LizardChestTiger-body_tiger = Lizard Chest (Tiger)

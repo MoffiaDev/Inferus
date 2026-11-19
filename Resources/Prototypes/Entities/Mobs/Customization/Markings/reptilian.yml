@@ -126,25 +126,52 @@
   id: LizardTailLarge
   bodyPart: Tail
   groupWhitelist: [Reptilian]
+  # Inferus - Funky Station reptilian resprite, split into colourable layers
+  legacyColorIndices:
+    tail_large_primary: 0
+    tail_large_secondary: 0
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: tail_large
+    state: tail_large_primary
+  - sprite: Mobs/Customization/reptilian_parts.rsi
+    state: tail_large_secondary
+  # End Inferus
 
 - type: marking
   id: LizardTailSpikes
   bodyPart: Tail
   groupWhitelist: [Reptilian]
+  # Inferus - Funky Station reptilian resprite, split into colourable layers
+  legacyColorIndices:
+    tail_spikes_primary: 0
+    tail_spikes_secondary: 0
+    tail_spikes_tertiary: 0
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: tail_spikes
+    state: tail_spikes_primary
+  - sprite: Mobs/Customization/reptilian_parts.rsi
+    state: tail_spikes_secondary
+  - sprite: Mobs/Customization/reptilian_parts.rsi
+    state: tail_spikes_tertiary
+  # End Inferus
 
 - type: marking
   id: LizardTailLTiger
   bodyPart: Tail
   groupWhitelist: [Reptilian]
+  # Inferus - Funky Station reptilian resprite, split into colourable layers
+  legacyColorIndices:
+    tail_tiger_primary: 0
+    tail_tiger_secondary: 0
+    tail_tiger_tertiary: 0
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: tail_ltiger
+    state: tail_tiger_primary
+  - sprite: Mobs/Customization/reptilian_parts.rsi
+    state: tail_tiger_secondary
+  - sprite: Mobs/Customization/reptilian_parts.rsi
+    state: tail_tiger_tertiary
+  # End Inferus
 
 - type: marking
   id: LizardTailDTiger
@@ -165,20 +192,34 @@
 - type: marking
   id: LizardSnoutRound
   bodyPart: Snout
-  forcedColoring: true
+  # forcedColoring: true # Inferus - removed by Funky Station resprite, snout is now two-tone
   groupWhitelist: [Reptilian]
+  # Inferus - Funky Station reptilian resprite, split into colourable layers
+  legacyColorIndices:
+    snout_round_primary: 0
+    snout_round_secondary: 0
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: snout_round
+    state: snout_round_primary
+  - sprite: Mobs/Customization/reptilian_parts.rsi
+    state: snout_round_secondary
+  # End Inferus
 
 - type: marking
   id: LizardSnoutSharp
   bodyPart: Snout
-  forcedColoring: true
+  # forcedColoring: true # Inferus - removed by Funky Station resprite, snout is now two-tone
   groupWhitelist: [Reptilian]
+  # Inferus - Funky Station reptilian resprite, split into colourable layers
+  legacyColorIndices:
+    snout_sharp_primary: 0
+    snout_sharp_secondary: 0
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: snout_sharp
+    state: snout_sharp_primary
+  - sprite: Mobs/Customization/reptilian_parts.rsi
+    state: snout_sharp_secondary
+  # End Inferus
 
 - type: marking
   id: LizardSnoutSplotch
