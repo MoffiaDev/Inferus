@@ -880,6 +880,11 @@ namespace Content.Shared.Chemistry.Components
 
         public Color GetColorWithout(IPrototypeManager? protoMan, params ProtoId<ReagentPrototype>[] without)
         {
+            return GetColorWithout(protoMan, without.ToList());
+        }
+
+        public Color GetColorWithout(IPrototypeManager? protoMan, List<ProtoId<ReagentPrototype>> without, bool isPuddle = false)
+        {
             if (Volume == FixedPoint2.Zero)
             {
                 return Color.Transparent;
@@ -903,15 +908,19 @@ namespace Content.Shared.Chemistry.Components
                     continue;
                 }
 
+                var color = isPuddle
+                    ? (proto.PuddleColor ?? proto.SubstanceColor)
+                    : proto.SubstanceColor;
+
                 if (first)
                 {
                     first = false;
-                    mixColor = proto.SubstanceColor;
+                    mixColor = color;
                     continue;
                 }
 
                 var interpolateValue = quantity.Float() / runningTotalQuantity.Float();
-                mixColor = Color.InterpolateBetween(mixColor, proto.SubstanceColor, interpolateValue);
+                mixColor = Color.InterpolateBetween(mixColor, color, interpolateValue);
             }
             return mixColor;
         }
@@ -921,6 +930,60 @@ namespace Content.Shared.Chemistry.Components
             return GetColorWithout(protoMan);
         }
 
+        public int GetSolutionFlammability(IPrototypeManager? protoMan)
+        {
+            if (Volume <= 0)
+                return 0;
+
+            IoCManager.Resolve(ref protoMan);
+            var totalFlammability = 0f;
+            foreach (var (reagent, quantity) in Contents)
+            {
+                if (protoMan.TryIndex<ReagentPrototype>(reagent.Prototype, out var proto))
+                {
+                    totalFlammability += proto.Flammability * (quantity.Float() / Volume.Float());
+                }
+            }
+            return (int) MathF.Round(totalFlammability);
+        }
+
+        public bool IsSolutionSelfOxidizing(IPrototypeManager? protoMan)
+        {
+            if (Volume <= 0)
+                return false;
+
+            IoCManager.Resolve(ref protoMan);
+            foreach (var (reagent, _) in Contents)
+            {
+                if (protoMan.TryIndex<ReagentPrototype>(reagent.Prototype, out var proto) && proto.SelfOxidizing)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void BurnFlammableReagents(float fraction, IPrototypeManager? protoMan)
+        {
+            IoCManager.Resolve(ref protoMan);
+            var clone = Clone();
+            foreach (var (reagent, quantity) in Contents)
+            {
+                if (!protoMan.TryIndex<ReagentPrototype>(reagent.Prototype, out var proto) || proto.Flammability <= 0)
+                    continue;
+
+                var rawBurn = quantity.Float() * fraction * proto.Flammability;
+                var roundedBurn = MathF.Ceiling(rawBurn * 100f) / 100f;
+                if (roundedBurn <= 0f)
+                    continue;
+
+                clone.RemoveReagent(reagent, FixedPoint2.New(roundedBurn));
+            }
+            Contents = clone.Contents;
+            Volume = clone.Volume;
+            _heatCapacityDirty = true;
+            ValidateSolution();
+        }
         public Color GetColorWithOnly(IPrototypeManager? protoMan, params ProtoId<ReagentPrototype>[] included)
         {
             if (Volume == FixedPoint2.Zero)

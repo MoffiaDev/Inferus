@@ -1,3 +1,4 @@
+using Content.Client._RMC14.Chat;
 using Content.Client.UserInterface.RichText;
 using Content.Client.UserInterface.Systems.Chat.Controls;
 using Content.Shared.Chat;
@@ -28,6 +29,8 @@ public partial class ChatBox : UIWidget, IEntityLinkClickHandler
     public bool Main { get; set; }
 
     public ChatSelectChannel SelectedChannel => ChatInput.ChannelSelector.SelectedChannel;
+
+    public readonly Queue<RepeatedMessage> RepeatQueue = new();
 
     public ChatBox()
     {
@@ -68,7 +71,7 @@ public partial class ChatBox : UIWidget, IEntityLinkClickHandler
 
         var color = msg.MessageColorOverride ?? msg.Channel.TextColor();
 
-        AddLine(msg.WrappedMessage, color);
+        AddLine(msg.WrappedMessage, color, msg.SenderEntity, msg.Message, msg.Channel, msg.RepeatCheckSender);
     }
 
     private void OnHighlightsUpdated(string highlights)
@@ -84,6 +87,7 @@ public partial class ChatBox : UIWidget, IEntityLinkClickHandler
     public void Repopulate()
     {
         Contents.Clear();
+        RepeatQueue.Clear();
 
         foreach (var message in _controller.History)
         {
@@ -94,6 +98,7 @@ public partial class ChatBox : UIWidget, IEntityLinkClickHandler
     private void OnChannelFilter(ChatChannel channel, bool active)
     {
         Contents.Clear();
+        RepeatQueue.Clear();
 
         foreach (var message in _controller.History)
         {
@@ -111,12 +116,18 @@ public partial class ChatBox : UIWidget, IEntityLinkClickHandler
         _controller.UpdateHighlights(highlighs);
     }
 
-    public void AddLine(string message, Color color)
+    public void AddLine(string message, Color color, NetEntity sender, string unwrapped, ChatChannel channel, bool repeatCheckSender)
     {
         var formatted = new FormattedMessage(3);
         formatted.PushColor(color);
         formatted.AddMarkupOrThrow(message);
         formatted.Pop();
+
+        // entity systems may not exist (e.g. mid-reconnect or between rounds); just add the line unstacked then
+        if (_entManager.TrySystem<CMChatSystem>(out var cmChat) &&
+            cmChat.TryRepetition(this, Contents, formatted, sender, unwrapped, channel, repeatCheckSender))
+            return;
+
         Contents.AddMessage(formatted, tagsAllowed: null);
     }
 

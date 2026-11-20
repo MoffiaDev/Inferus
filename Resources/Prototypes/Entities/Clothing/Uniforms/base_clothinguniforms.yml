@@ -28,6 +28,18 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+  - type: SolutionManager
+    solutions:
+    - SolutionStain
+  - type: Appearance
+  - type: Stainable
+    clothingVisuals:
+      jumpsuit:
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
+        state: uniformblood
+    iconVisuals:
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
+      state: uniformbloodicon
 
 - type: entity
   abstract: true
@@ -37,6 +49,14 @@
   - type: Clothing
     slots: [innerclothing]
     femaleMask: UniformTop
+  - type: Stainable
+    clothingVisuals:
+      jumpsuit:
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
+        state: uniformblood
+    iconVisuals:
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
+      state: uniformbloodicon
 
 - type: entity
   abstract: true
@@ -60,6 +80,14 @@
   - type: Clothing
     slots: [innerclothing]
     femaleMask: UniformTop
+  - type: Stainable
+    clothingVisuals:
+      jumpsuit:
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
+        state: uniformblood
+    iconVisuals:
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
+      state: uniformbloodicon
 
 - type: entity
   abstract: true

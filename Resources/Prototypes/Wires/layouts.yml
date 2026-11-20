@@ -233,3 +233,10 @@
   wires:
   - !type:AccessWireAction
   - !type:AiInteractWireAction
+
+- type: wireLayout
+  id: PASpeaker
+  dummyWires: 2
+  wires:
+  - !type:PowerWireAction
+    pulseTimeout: 15

@@ -743,19 +743,25 @@
   components:
   - type: Sprite
     sprite: Clothing/Mask/welding-gas.rsi
-    state: icon
+    layers: # Funky
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: Clothing/Mask/welding-gas.rsi
   - type: ESViewconeModifier # Funky
     angleModifier: -90
+  # Funky
+  - type: ComponentToggler
+    components:
+    - type: FlashImmunity
+    - type: EyeProtection
+    - type: WeldingMaskOverlay
+      texture: /Textures/_Funkystation/Clothing/Head/Welding/weldingOverlayWeak.png
   - type: StaticPrice
     price: 100
   - type: Tag
     tags:
     - WhitelistChameleon
-  - type: ImageOverlay
-    pathToOverlayImage: "/Textures/Clothing/Head/Welding/weldingTexture.png"
-    additionalColorOverlay: "#00000050"
 
 # Entity tables
 - type: entityTable

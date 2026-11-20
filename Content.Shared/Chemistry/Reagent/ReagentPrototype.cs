@@ -2,6 +2,7 @@ using System.Collections.Frozen;
 using System.Linq;
 using Content.Shared.FixedPoint;
 using System.Text.Json.Serialization;
+using Content.Shared._ES.Fluids;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Contraband;
 using Content.Shared.EntityEffects;
@@ -113,6 +114,15 @@ namespace Content.Shared.Chemistry.Reagent
         public float? MeltingPoint { get; private set; }
 
         [DataField]
+        public ProtoId<ESPuddleSpriteSetPrototype> PuddleSpriteSet = "Default";
+
+        /// <summary>
+        /// Optional override for <see cref="SubstanceColor"/> for usage only in puddles.
+        /// </summary>
+        [DataField]
+        public Color? PuddleColor;
+
+        [DataField]
         public SpriteSpecifier? MetamorphicSprite { get; private set; } = null;
 
         [DataField]
@@ -168,6 +178,18 @@ namespace Content.Shared.Chemistry.Reagent
         /// </summary>
         [DataField]
         public bool WorksOnTheDead;
+
+        /// <summary>
+        /// Funky - How flammable this reagent is. Higher values make it catch fire more easily and burn hotter.
+        /// </summary>
+        [DataField]
+        public int Flammability;
+
+        /// <summary>
+        /// Funky - If true, this reagent acts as its own oxidizer and can burn in vacuums or oxygen-deprived environments.
+        /// </summary>
+        [DataField]
+        public bool SelfOxidizing;
 
         [DataField, AlwaysPushInheritance]
         public ReagentMetabolisms? Metabolisms;

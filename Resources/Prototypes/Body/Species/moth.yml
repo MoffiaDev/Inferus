@@ -81,6 +81,11 @@
           32:
             sprite: _Funkystation/Mobs/Species/Moth/displacement.rsi
             state: jumpsuit_female
+      outerClothing: # Inferus - stops moth legs poking out of suits and coats
+        sizeMaps:
+          32:
+            sprite: _Inferus/Mobs/Species/Moth/displacement.rsi
+            state: outerclothing
     maleDisplacements:
       gloves:
         sizeMaps:
@@ -102,6 +107,11 @@
           32:
             sprite: _Funkystation/Mobs/Species/Moth/displacement.rsi
             state: jumpsuit_male
+      outerClothing: # Inferus - stops moth legs poking out of suits and coats
+        sizeMaps:
+          32:
+            sprite: _Inferus/Mobs/Species/Moth/displacement.rsi
+            state: outerclothing
   - type: Hands
     leftHandDisplacement:
       sizeMaps:

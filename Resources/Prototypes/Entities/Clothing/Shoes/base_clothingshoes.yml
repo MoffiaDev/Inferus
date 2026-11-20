@@ -28,6 +28,18 @@
     - Recyclable
     - WhitelistChameleon
   - type: ProtectedFromStepTriggers
+  - type: SolutionManager
+    solutions:
+    - SolutionStain
+  - type: Appearance
+  - type: Stainable
+    clothingVisuals:
+      shoes:
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
+        state: shoeblood
+    iconVisuals:
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
+      state: shoebloodicon
 
 - type: entity
   abstract: true

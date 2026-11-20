@@ -806,6 +806,7 @@
     access: [[ "NuclearOperative" ]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-nukie
+    preamble: foreign-pa-preamble # funky
     color: "#ff0000"
     canShuttle: false
     global: true #announce to everyone they're about to fuck shit up
@@ -840,6 +841,7 @@
     access: [[ "Wizard" ]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-wizard
+    preamble: foreign-pa-preamble # funky
     color: "#ff00ff"
     canShuttle: false
     global: true #announce to everyone they're about to fuck shit up
@@ -874,6 +876,8 @@
     access: [[ "CentralCommand" ]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-centcom
+    preamble: centcom-pa-preamble
+    canBypassPA: true
     color: "#f7663e" # Inferus - redcomm
     canShuttle: false
     global: true

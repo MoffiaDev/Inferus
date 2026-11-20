@@ -6,3 +6,12 @@
   components:
   - type: Flatpack
     entity: DocumentPrinterPublic
+
+- type: entity
+  parent: BaseFlatpack
+  id: FlatpackWashingMachine
+  name: Nanotrasen Commercial Model-C washing machine flatpack
+  description: An industrial-grade washing machine, mechanically compressed into a small flatpack.
+  components:
+  - type: Flatpack
+    entity: WashingMachine

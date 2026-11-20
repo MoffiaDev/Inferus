@@ -1,5 +1,6 @@
 using System.Globalization;
 using Content.Server.Atmos.Components;
+using Content.Server._Funkystation.Atmos.Events;
 using Content.Server.Decals;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -201,6 +202,8 @@ public sealed partial class AtmosphereSystem
         if (tile.Air == null)
             return;
 
+        var ev = new TileExposedEvent(tile.GridIndices, exposedTemperature, exposedVolume, sparkSourceUid);
+        RaiseLocalEvent(gridAtmosphere.Owner, ref ev);
         if (!IsMixtureOxidizer(tile.Air))
             return;
 

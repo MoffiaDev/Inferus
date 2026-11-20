@@ -13,6 +13,8 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Nutrition.Prototypes;
 using Content.Shared.Popups;
+using Content.Shared._Funkystation.Fluids;
+using Content.Shared._Funkystation.WallStains;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
@@ -121,6 +123,10 @@ public sealed partial class VomitSystem : EntitySystem
             solution.AddReagent(new ReagentId(VomitPrototype, _bloodstream.GetEntityBloodData((uid, bloodStream))), vomitAmount);
         }
 
+        var stainEv = new SpilledOnEvent(uid, solution.Clone());
+        RaiseLocalEvent(uid, stainEv);
+        var splashEv = new SplashOnWallEvent(Transform(uid).Coordinates, solution.Clone());
+        RaiseLocalEvent(ref splashEv);
         if (_puddle.TrySpillAt(uid, solution, out var puddle, false))
         {
             _forensics.TransferDna(puddle, uid, false);

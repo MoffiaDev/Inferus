@@ -68,7 +68,8 @@ namespace Content.Server.Doors.Systems
                 // only bother to check pressure on doors that are some variation of closed.
                 if (door.State != DoorState.Closed
                     && door.State != DoorState.Welded
-                    && door.State != DoorState.Denying)
+                    && door.State != DoorState.Denying
+                    && door.State != DoorState.Open)
                 {
                     continue;
                 }
@@ -76,7 +77,15 @@ namespace Content.Server.Doors.Systems
                 if (_airtightQuery.TryGetComponent(uid, out var airtight)
                     && _appearanceQuery.TryGetComponent(uid, out var appearance))
                 {
-                    var (pressure, fire) = CheckPressureAndFire(uid, firelock, airtight);
+                    var (pressure, fire) = CheckPressureAndFire(uid, firelock, airtight, door.State == DoorState.Open);
+
+                    if (door.State == DoorState.Open)
+                    {
+                        if (pressure || fire)
+                            EmergencyPressureStop(uid, firelock, door);
+                    }
+                    else
+                    {
                     _appearance.SetData(uid, DoorVisuals.ClosedLights, fire || pressure, appearance);
                     firelock.Temperature = fire;
                     firelock.Pressure = pressure;
@@ -87,6 +96,7 @@ namespace Content.Server.Doors.Systems
                     if (_pointLightQuery.TryComp(uid, out var pointLight))
                     {
                         _pointLight.SetEnabled(uid, fire | pressure, pointLight);
+                    }
                     }
                 }
             }
@@ -121,9 +131,10 @@ namespace Content.Server.Doors.Systems
         public (bool Pressure, bool Fire) CheckPressureAndFire(
         EntityUid uid,
         FirelockComponent firelock,
-        AirtightComponent airtight)
+        AirtightComponent airtight,
+        bool checkEvenIfOpen = false)
         {
-            if (!airtight.AirBlocked)
+            if (!checkEvenIfOpen && !airtight.AirBlocked)
                 return (false, false);
 
             if (TryComp(uid, out DockingComponent? dock) && dock.Docked)
@@ -133,8 +144,12 @@ namespace Content.Server.Doors.Systems
             }
 
             var xform = Transform(uid);
-            if (!HasComp<GridAtmosphereComponent>(xform.ParentUid))
+            if (!HasComp<GridAtmosphereComponent>(xform.ParentUid) ||
+                !HasComp<MapGridComponent>(xform.ParentUid) ||
+                !HasComp<MapAtmosphereComponent>(xform.MapUid))
+            {
                 return (false, false);
+            }
 
             var grid = Comp<MapGridComponent>(xform.ParentUid);
             var pos = _mapping.CoordinatesToTile(xform.ParentUid, grid, xform.Coordinates);

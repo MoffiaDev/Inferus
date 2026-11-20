@@ -11,6 +11,7 @@ using Content.Shared.DeviceLinking;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization;
 using System.Numerics;
+using Content.Shared._Funkystation.Audio;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -117,7 +118,12 @@ public sealed partial class NuclearReactorComponent : Component
     /// <summary>
     /// Sound that plays globally on meltdown
     /// </summary>
-    public SoundSpecifier MeltdownSound = new SoundPathSpecifier("/Audio/_FarHorizons/Machines/meltdown_siren.ogg");
+    // FUNKY - use mono-stereo sound pairs for PA speakers
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public MonoSoundSpecifier MeltdownSound = new (
+        stereoSound: new SoundPathSpecifier("/Audio/_FarHorizons/Machines/meltdown_siren.ogg"),
+        monoSound: new SoundPathSpecifier("/Audio/_FarHorizons/Machines/meltdown_siren_mono.ogg"));
+
 
     /// <summary>
     /// Radio channel to send alerts to

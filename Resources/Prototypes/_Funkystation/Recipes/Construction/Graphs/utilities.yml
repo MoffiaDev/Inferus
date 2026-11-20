@@ -1,0 +1,7 @@
+- type: construction
+  parent: BaseUtilityWallmount
+  name: utilities-wallmount-paspeaker
+  id: PASpeaker
+  graph: PASPEAKER
+  startNode: start
+  targetNode: paSpeaker

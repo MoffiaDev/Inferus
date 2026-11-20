@@ -111,6 +111,7 @@
   desc: reagent-desc-sugar
   physicalDesc: reagent-physical-desc-sweet
   flavor: sweet
+  puddleSpriteSet: Powder
   color: white
   meltingPoint: 146.0
   metabolisms:
@@ -139,6 +140,16 @@
   metamorphicMaxFillLevels: 7
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+
+- type: reagent
+  id: SmashedPie
+  name: es-reagent-name-smashed-pie
+  group: Foods
+  desc: es-reagent-desc-smashed-pie
+  physicalDesc: reagent-physical-desc-funny
+  flavor: sweet
+  puddleSpriteSet: Pie
+  recognizable: true
 
 - type: reagent
   id: PumpkinFlesh #Just so pumpkins spill orange stuff when smashed

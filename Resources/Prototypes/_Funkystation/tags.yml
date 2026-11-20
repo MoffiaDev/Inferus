@@ -1,2 +1,8 @@
 - type: Tag
   id: CardboardboxLarge
+
+- type: Tag # Funky Wall Stains
+  id: DirectionalWindow
+
+- type: Tag
+  id: PASpeakerElectronics

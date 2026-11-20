@@ -3,6 +3,7 @@ using Content.Client.Chat.Managers;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Speech;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -158,6 +159,15 @@ namespace Content.Client.Chat.UI
 
             var offset = (-_eyeManager.CurrentEye.Rotation).ToWorldVec() * -(EntityVerticalOffset + baseOffset);
             var worldPos = _transformSystem.GetWorldPosition(xform) + offset;
+
+            if (speech is { SpeechBubbleFollowsSprite: true } &&
+                _entityManager.TryGetComponent<SpriteComponent>(_senderEntity, out var sprite) &&
+                sprite.Offset != Vector2.Zero)
+            {
+                worldPos += sprite.NoRotation
+                    ? (-_eyeManager.CurrentEye.Rotation).RotateVec(sprite.Offset)
+                    : _transformSystem.GetWorldRotation(xform).RotateVec(sprite.Offset);
+            }
 
             var lowerCenter = _eyeManager.WorldToScreen(worldPos) / UIScale;
             var screenPos = lowerCenter - new Vector2(ContentSize.X / 2, ContentSize.Y + _verticalOffsetAchieved);

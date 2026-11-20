@@ -2,8 +2,10 @@ using System.Linq;
 using Content.Shared.Dataset;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.StationEvents.Components;
+using Content.Shared._Funkystation.CCVar;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Random.Helpers;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -16,6 +18,7 @@ public sealed partial class RandomSentienceRule : StationEventSystem<RandomSenti
 
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _cfg = null!; // funky - sis/tr toggle
 
     protected override void Started(EntityUid uid, RandomSentienceRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -72,6 +75,13 @@ public sealed partial class RandomSentienceRule : StationEventSystem<RandomSenti
         var kind2 = groupList.Count > 1 ? groupList[1] : "???";
         var kind3 = groupList.Count > 2 ? groupList[2] : "???";
 
+        if (_cfg.GetCVar(SistrCVars.SistrRequired))
+        {
+            var isSistr = Comp<StationEventComponent>(uid).StartAnnouncementSender == "chat-manager-sender-sistr";
+            if (isSistr && !SistrCore.StationHasFunctionalCore(station.Value)) // funky, no working sis/tr core on the station means no announcement
+                return;
+        }
+
         ChatSystem.DispatchStationAnnouncement(
             station.Value,
             Loc.GetString("station-event-random-sentience-announcement",
@@ -79,8 +89,9 @@ public sealed partial class RandomSentienceRule : StationEventSystem<RandomSenti
                 ("data", _random.Pick(_prototype.Index(DataSourceNames))),
                 ("strength", _random.Pick(_prototype.Index(IntelligenceLevelNames)))
             ),
+            sender: Loc.GetString(Comp<StationEventComponent>(uid).StartAnnouncementSender), // funky
             playDefaultSound: false,
-            colorOverride: Color.Gold
+            colorOverride: Comp<StationEventComponent>(uid).StartAnnouncementColor // funky
         );
     }
 }
