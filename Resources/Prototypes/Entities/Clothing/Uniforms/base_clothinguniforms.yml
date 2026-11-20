@@ -35,10 +35,10 @@
   - type: Stainable
     clothingVisuals:
       jumpsuit:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: uniformblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: uniformbloodicon
 
 - type: entity
@@ -52,10 +52,10 @@
   - type: Stainable
     clothingVisuals:
       jumpsuit:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: uniformblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: uniformbloodicon
 
 - type: entity
@@ -83,10 +83,10 @@
   - type: Stainable
     clothingVisuals:
       jumpsuit:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: uniformblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: uniformbloodicon
 
 - type: entity
