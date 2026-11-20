@@ -1,0 +1,13 @@
+- type: reagent
+  id: Parthenol
+  name: reagent-name-parthenol
+  group: Toxins
+  desc: reagent-desc-parthenol
+  physicalDesc: reagent-physical-desc-pulsating
+  flavor: meaty
+  color: "#a4262c"
+  metabolisms:
+    Bloodstream: # Inferus - was Poison, metabolism groups were replaced by stages
+      metabolismRate: 0
+      effects:
+      - !type:CrewletGestationEntityEffect

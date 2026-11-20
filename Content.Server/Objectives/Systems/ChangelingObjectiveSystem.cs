@@ -1,4 +1,5 @@
 using Content.Server.Objectives.Components;
+using Content.Shared._Omu.Objectives; // Inferus - Omu crewlets
 using Content.Shared.Changeling.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
@@ -19,6 +20,11 @@ public sealed partial class ChangelingObjectiveSystem : EntitySystem
         if (!args.GrantedDna)
             return;
 
+        // Inferus - Omu crewlets don't count towards changeling objectives
+        if (HasComp<ObjectiveExemptComponent>(args.Devoured))
+            return;
+        // End Inferus
+
         EnsureComp<ChangelingMindIdentityTrackerComponent>(mind, out var tracker);
         tracker.Devoured++;
     }
@@ -29,6 +35,11 @@ public sealed partial class ChangelingObjectiveSystem : EntitySystem
         if (!_mind.TryGetMind(args.Changeling, out var mind, out _))
             return;
         
+        // Inferus - Omu crewlets don't count towards changeling objectives
+        if (args.Identity.Original is { } original && HasComp<ObjectiveExemptComponent>(original))
+            return;
+        // End Inferus
+
         EnsureComp<ChangelingMindIdentityTrackerComponent>(mind, out var tracker);
         // Only count unique identities that the changeling didn't start as
         if (args.NewIdentity && !args.Identity.Starting)

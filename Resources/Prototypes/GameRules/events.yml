@@ -23,6 +23,7 @@
     - id: SpiderClownSpawnHorde
     - id: SpiderSpawnHorde
     - id: VentClog
+    - id: CrewletOmen # Omu
 
 - type: entityTable
   id: BasicAntagEventsTable

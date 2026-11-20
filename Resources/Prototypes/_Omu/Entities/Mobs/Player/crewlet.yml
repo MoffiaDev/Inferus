@@ -1,0 +1,245 @@
+# SPDX-License-Identifier: MIT
+
+- type: cloningSettings
+  id: Crewlet
+  components:
+  - DetailExaminable
+  - Dna
+  - Fingerprint
+  - Accentless
+  - BackwardsAccent
+  - BarkAccent
+  - BleatingAccent
+  - DamagedSiliconAccent
+  - FrenchAccent
+  - FrontalLisp
+  - GermanAccent
+  - LizardAccent
+  - MobsterAccent
+  - MonkeyAccent
+  - MothAccent
+  - MumbleAccent
+  - OwOAccent
+  - ParrotAccent
+  - PirateAccent
+  - RussianAccent
+  - ScrambledAccent
+  - SkeletonAccent
+  - SlurredAccent
+  - SouthernAccent
+  - SpanishAccent
+  - StutteringAccent
+  # Inferus - EE language system does not exist in Inferus
+  # - LanguageSpeaker
+  # - LanguageKnowledge
+  # - ForeignerTrait
+  # End Inferus
+  copyEquipment: null
+  copyInternalStorage: false
+  copyImplants: false
+  copyStatusEffects: false
+
+- type: entity
+  id: CrewletKit
+  save: false
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Crewlet
+  - type: CrewletReputation
+  - type: HTN
+    rootTask:
+      task: CrewletCompound
+    constantlyReplan: false
+    blackboard:
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavClimb: !type:Bool
+        true
+  - type: CrewletBrain
+    # Inferus - no Jump emote in Inferus
+    # danceEmote: Jump
+    danceEmote: Clap
+    # End Inferus
+    pickpocketBlacklist:
+      components:
+      - PressureProtection
+      - Unremoveable
+    lootBlacklist:
+      components:
+      - VirtualItem
+      - Unremoveable
+      - NukeDisk
+    seatBlacklist:
+      components:
+      - Item
+      - Vehicle
+      - MobState
+      # - BlockHandsOnBuckle # Inferus - component does not exist
+      - IgniteOnBuckle
+      # - RocketChair # Inferus - component does not exist
+      - TriggerOnStrapped
+    hornBlacklist:
+      components:
+      - VirtualItem
+      - Unremoveable
+      - ActivatableUI
+      - TriggerOnUse
+      - TriggerOnActivate
+      - ItemToggle
+      - Rehydratable
+      - Storage
+      - ItemSlots
+      - AnomalyCore
+      - Whistle
+      - Armor
+      # - Ransom # Inferus - component does not exist
+    targetBlacklist:
+      components:
+      - NodeContainer
+      - ContainmentFieldGenerator
+      - Emitter
+      - SingularityGenerator
+      - MultipartMachine
+      - MultipartMachinePart
+      - AmeController
+      - AmeShield
+      - LightningSparking
+      - GravityGenerator
+      - Firelock
+      - Airlock
+      - MindContainer
+      - MobState
+    formBlacklist:
+    - type: LimitedCharges
+    - type: Emag
+    habitGroups:
+      Locker:
+        components:
+        - EntityStorage
+      Light:
+        components:
+        - PoweredLight
+      Plant:
+        components:
+        - PlantHolder
+      Disposal:
+        components:
+        - DisposalUnit
+    habitToolBlacklist:
+      components:
+      - Injector
+      - Handcuff
+      - Welder
+      - IdCard
+      - Pda
+      tags:
+      - Hypospray
+    personTools:
+      components:
+      - HealthAnalyzer
+      - Stethoscope
+    interfaceTargets:
+      components:
+      - ActivatableUI
+      - Storage
+      - DisposalUnit
+    expendableTargets:
+      components:
+      - Puddle
+    toolUses:
+    # Inferus - no paper signatures
+    # - tool:
+    #     tags:
+    #     - Write
+    #   target:
+    #     components:
+    #     - Paper
+    #   targetBlacklist:
+    #     components:
+    #     - DevilContract
+    #   action: Sign
+    - tool:
+        components:
+        - Crayon
+      action: Floor
+    - tool:
+        tags:
+        - Trash
+      target:
+        components:
+        - DisposalUnit
+      taught: true
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: ActiveListener
+  - type: ParrotMemory
+    learnChance: 1
+    learnCooldown: 10
+    maxEntryLength: 100
+  - type: EmoteOnDamage
+    emoteChance: 0.3
+    emotes:
+    - Scream
+    withChat: true
+  - type: CrewletHarmScream
+  - type: CrewletRegen
+    damage:
+      types:
+        Blunt: -0.5
+        Slash: -0.5
+        Piercing: -0.5
+        Heat: -0.5
+        Shock: -0.5
+        Cold: -0.5
+        Caustic: -0.5
+        Poison: -0.5
+        Radiation: -0.5
+        Asphyxiation: -0.5
+        Bloodloss: -0.5
+        Cellular: -0.5
+        Holy: -0.5
+        # Ion: -0.5 # Inferus - no Ion damage type
+  # Inferus - Hunger and Thirst are handled by the Satiation system
+  # - type: Hunger
+  #   baseDecayRate: 0.004167
+  # - type: Thirst
+  #   baseDecayRate: 0.04167
+  - type: Satiation
+    satiations:
+      Hunger:
+        prototype: CrewletHunger
+      Thirst:
+        prototype: CrewletThirst
+  # End Inferus
+  - type: Access
+    tags:
+    - Maintenance
+  # - type: TargetObjectiveImmune # Inferus - Goob component; mindless NPCs are never picked as kill targets here
+  - type: ObjectiveExempt
+
+- type: entity
+  id: CrewletMobKit
+  save: false
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CrewletChatter
+  - type: CrewletRegen
+    damage:
+      types:
+        Blunt: -0.5
+        Slash: -0.5
+        Piercing: -0.5
+        Heat: -0.5
+        Shock: -0.5
+        Cold: -0.5
+        Caustic: -0.5
+        Poison: -0.5
+        Radiation: -0.5
+        Asphyxiation: -0.5
+        Bloodloss: -0.5
+        Cellular: -0.5
+        Holy: -0.5
+        # Ion: -0.5 # Inferus - no Ion damage type
