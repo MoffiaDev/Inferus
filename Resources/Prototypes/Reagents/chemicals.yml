@@ -4,6 +4,7 @@
   desc: reagent-desc-acetone
   physicalDesc: reagent-physical-desc-acidic
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#AF14B7"
   flammability: 3
   selfOxidizing: true
@@ -16,6 +17,7 @@
   desc: reagent-desc-phenol
   physicalDesc: reagent-physical-desc-acidic
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#E7EA91"
   boilingPoint: 55.5
   meltingPoint: -50.0
@@ -33,6 +35,7 @@
   name: reagent-name-charcoal
   desc: reagent-desc-charcoal
   physicalDesc: reagent-physical-desc-porous
+  puddleSpriteSet: Powder
   color: "#22282b"
   flammability: 2
   boilingPoint: 4200.0
@@ -53,6 +56,7 @@
   name: reagent-name-ash
   desc: reagent-desc-ash
   physicalDesc: reagent-physical-desc-powdery
+  puddleSpriteSet: Powder
   color: white
 
 - type: reagent
@@ -61,6 +65,7 @@
   desc: reagent-desc-lye
   flavor: alkaline
   physicalDesc: reagent-physical-desc-alkaline
+  puddleSpriteSet: Shiny
   color: "#e5420b"
   metabolisms:
     Bloodstream:
@@ -75,6 +80,7 @@
   name: reagent-name-sodium-carbonate
   desc: reagent-desc-sodium-carbonate
   physicalDesc: reagent-physical-desc-powdery
+  puddleSpriteSet: Powder
   color: white
 
 - type: reagent
@@ -122,6 +128,7 @@
   physicalDesc: reagent-physical-desc-acidic
   allowedJobs:
   - Chemist
+  puddleSpriteSet: Acid
   color: "#E7EA91"
   flammability: 2
   selfOxidizing: true
@@ -140,6 +147,7 @@
   name: reagent-name-hydroxide
   desc: reagent-desc-hydroxide
   physicalDesc: reagent-physical-desc-alkaline
+  puddleSpriteSet: Shiny
   color: "white"
   boilingPoint: 1661.0
   meltingPoint: 596.0
@@ -149,6 +157,7 @@
   name: reagent-name-sodium-hydroxide
   desc: reagent-desc-sodium-hydroxide
   physicalDesc: reagent-physical-desc-alkaline
+  puddleSpriteSet: Shiny
   color: "white"
   boilingPoint: 1661.0
   meltingPoint: 596.0
@@ -203,6 +212,7 @@
   flavor: bitter
   color: "#E6E6DA"
   physicalDesc: reagent-physical-desc-crystalline
+  puddleSpriteSet: Powder
 
 - type: reagent
   id: Rororium

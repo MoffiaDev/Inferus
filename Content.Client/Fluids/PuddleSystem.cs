@@ -1,4 +1,4 @@
-using Content.Client.IconSmoothing;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
@@ -9,7 +9,6 @@ namespace Content.Client.Fluids;
 
 public sealed partial class PuddleSystem : SharedPuddleSystem
 {
-    [Dependency] private IconSmoothSystem _smooth = default!;
     [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
@@ -31,40 +30,49 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
             volume = (float)volumeObj;
         }
 
-        // Update smoothing and sprite based on volume.
-        if (TryComp<IconSmoothComponent>(uid, out var smooth))
+        // Footprints are puddles too, but draw their own print layers; only tint them like before
+        // (puddle colors no longer carry the old 0.7 alpha, the new puddle sprites are translucent instead).
+        if (HasComp<FootprintComponent>(uid))
         {
-            if (volume < LowThreshold)
-            {
-                _sprite.LayerSetRsiState((uid, args.Sprite), 0, $"{smooth.StateBase}a");
-                _smooth.SetEnabled(uid, false, smooth);
-            }
-            else if (volume < MediumThreshold)
-            {
-                _sprite.LayerSetRsiState((uid, args.Sprite), 0, $"{smooth.StateBase}b");
-                _smooth.SetEnabled(uid, false, smooth);
-            }
-            else
-            {
-                if (!smooth.Enabled)
-                {
-                    _sprite.LayerSetRsiState((uid, args.Sprite), 0, $"{smooth.StateBase}0");
-                    _smooth.SetEnabled(uid, true, smooth);
-                    _smooth.DirtyNeighbours(uid);
-                }
-            }
+            if (args.AppearanceData.TryGetValue(PuddleVisuals.SolutionColor, out var printColorObj))
+                _sprite.SetColor((uid, args.Sprite), ((Color)printColorObj).WithAlpha(0.7f));
+
+            return;
         }
 
-        var baseColor = Color.White;
+        var spriteSetPrototype = DefaultPuddleSpriteSet;
+        if (args.AppearanceData.TryGetValue(PuddleVisuals.SpriteSet, out var spriteSetObj))
+        {
+            spriteSetPrototype = (string)spriteSetObj;
+        }
 
-        if (args.AppearanceData.TryGetValue(PuddleVisuals.SolutionColor, out var colorObj))
+        var spriteSet = ProtoMan.Index(spriteSetPrototype);
+
+        var sprites = volume switch
+        {
+            < LowThreshold => spriteSet.SmallSprites,
+            < MediumThreshold => spriteSet.MediumSprites,
+            _ => spriteSet.LargeSprites,
+        };
+
+        if (sprites.Count > 0)
+        {
+            // Deterministic per puddle and size bracket, so a puddle keeps its look until it changes size.
+            var random = new System.Random(HashCode.Combine(GetNetEntity(uid).Id, sprites.GetHashCode()));
+            _sprite.LayerSetSprite((uid, args.Sprite), 0, sprites[random.Next(sprites.Count)]);
+            _sprite.LayerSetRotation((uid, args.Sprite), 0, Angle.FromDegrees(90 * random.Next(4)));
+        }
+
+        var baseColor = spriteSet.BaseColor;
+
+        if (spriteSet.Recolor && args.AppearanceData.TryGetValue(PuddleVisuals.SolutionColor, out var colorObj))
         {
             var color = (Color)colorObj;
             _sprite.SetColor((uid, args.Sprite), color * baseColor);
         }
         else
         {
-            _sprite.SetColor((uid, args.Sprite), args.Sprite.Color * baseColor);
+            _sprite.SetColor((uid, args.Sprite), baseColor);
         }
     }
 

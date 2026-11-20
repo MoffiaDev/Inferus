@@ -10,6 +10,7 @@
   color: "#c4f5ff"
   boilingPoint: -183.0
   meltingPoint: -218.4
+  puddleSpriteSet: Acid
   metabolisms:
     Bloodstream:
       effects:
@@ -80,6 +81,7 @@
   desc: reagent-desc-plasma
   physicalDesc: reagent-physical-desc-gaseous
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#7e009e"
   flammability: 3
   recognizable: true
@@ -165,6 +167,7 @@
   desc: reagent-desc-carbon-dioxide
   physicalDesc: reagent-physical-desc-odorless
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#66ff33"
   flammability: -30
   metabolisms:
@@ -224,6 +227,7 @@
   name: reagent-name-nitrogen
   desc: reagent-desc-nitrogen
   physicalDesc: reagent-physical-desc-gaseous
+  puddleSpriteSet: Acid
   flavor: bitter
   color: "#a1e1ff"
   boilingPoint: -195.8
@@ -263,6 +267,7 @@
   desc: reagent-desc-nitrous-oxide
   physicalDesc: reagent-physical-desc-gaseous
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#5d88c9"
   boilingPoint: -88
   meltingPoint: -90
