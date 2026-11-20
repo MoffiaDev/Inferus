@@ -1,32 +1,35 @@
 # Snout Markings
 
-- type: marking
-  id: VulpSnout
-  bodyPart: Snout
-  groupWhitelist: [ Vulpkanin ]
-  sprites:
-    - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
-      state: snout
-  coloring:
-    default:
-      type:
-        !type:SkinColoring
+# Inferus - replaced by the Starlight vulpkanin resprite (_Starlight/Entities/Mobs/Customization/Marking/vulpkanin.yml)
+# - type: marking
+#   id: VulpSnout
+#   bodyPart: Snout
+#   groupWhitelist: [ Vulpkanin ]
+#   sprites:
+#     - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
+#       state: snout
+#   coloring:
+#     default:
+#       type:
+#         !type:SkinColoring
 
-- type: marking
-  id: VulpSnoutNose
-  bodyPart: SnoutCover
-  groupWhitelist: [ Vulpkanin ]
-  sprites:
-    - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
-      state: snout-nose
+# - type: marking
+#   id: VulpSnoutNose
+#   bodyPart: SnoutCover
+#   groupWhitelist: [ Vulpkanin ]
+#   sprites:
+#     - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
+#       state: snout-nose
 
-- type: marking
-  id: VulpSnoutVulpine
-  bodyPart: SnoutCover
-  groupWhitelist: [ Vulpkanin ]
-  sprites:
-    - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
-      state: vulpine
+# - type: marking
+#   id: VulpSnoutVulpine
+#   bodyPart: SnoutCover
+#   groupWhitelist: [ Vulpkanin ]
+#   sprites:
+#     - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
+#       state: vulpine
+
+# End Inferus
 
 - type: marking
   id: VulpSnoutVulpineLines
@@ -36,21 +39,24 @@
     - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
       state: vulpine-lines
 
-- type: marking
-  id: VulpSnoutBlaze
-  bodyPart: SnoutCover
-  groupWhitelist: [ Vulpkanin ]
-  sprites:
-    - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
-      state: blaze
+# Inferus - replaced by the Starlight vulpkanin resprite (_Starlight/Entities/Mobs/Customization/Marking/vulpkanin.yml)
+# - type: marking
+#   id: VulpSnoutBlaze
+#   bodyPart: SnoutCover
+#   groupWhitelist: [ Vulpkanin ]
+#   sprites:
+#     - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
+#       state: blaze
 
-- type: marking
-  id: VulpSnoutMask
-  bodyPart: SnoutCover
-  groupWhitelist: [ Vulpkanin ]
-  sprites:
-    - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
-      state: mask
+# - type: marking
+#   id: VulpSnoutMask
+#   bodyPart: SnoutCover
+#   groupWhitelist: [ Vulpkanin ]
+#   sprites:
+#     - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
+#       state: mask
+
+# End Inferus
 
 - type: marking
   id: VulpSnoutTop
@@ -60,10 +66,12 @@
     - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
       state: snout-top
 
-- type: marking
-  id: VulpSnoutPatch
-  bodyPart: SnoutCover
-  groupWhitelist: [ Vulpkanin ]
-  sprites:
-    - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
-      state: patch
+# Inferus - replaced by the Starlight vulpkanin resprite (_Starlight/Entities/Mobs/Customization/Marking/vulpkanin.yml)
+# - type: marking
+#   id: VulpSnoutPatch
+#   bodyPart: SnoutCover
+#   groupWhitelist: [ Vulpkanin ]
+#   sprites:
+#     - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
+#       state: patch
+# End Inferus
