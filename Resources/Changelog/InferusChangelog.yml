@@ -226,3 +226,51 @@ Entries:
       message: Reptilians are looking a little snazzy.
   id: 14
   time: '2026-11-19T13:01:52.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Add
+      message: >-
+        Added clothing and wall stains from spilled reagents. Washing machines
+        can clean stained clothing.
+    - type: Add
+      message: Flammable reagent stains can now catch fire.
+    - type: Add
+      message: >-
+        Added PA speakers. Station announcements can be heard through them, and
+        they can be built on walls.
+    - type: Add
+      message: >-
+        Station event, alert level and emergency shuttle announcements now come
+        from the new SIS/TR core.
+    - type: Add
+      message: Identical chat messages now stack instead of repeating.
+    - type: Add
+      message: Vending machines are now diegetic. Beep boop!
+    - type: Add
+      message: Puddles and their sprites are now reagent-specific.
+    - type: Add
+      message: >-
+        Added an overlay to welding masks when worn, worsening your vision in
+        exchange for welding protection.
+    - type: Add
+      message: Added a flipped-up state to the welding mask.
+    - type: Add
+      message: Added welding visors to engineering & salvage hardsuits.
+    - type: Add
+      message: >-
+        Added a toggleable t-ray scanner to the Engineering Goggles, with
+        overlay.
+    - type: Remove
+      message: Removed welding protection from Engineering Goggles.
+    - type: Tweak
+      message: Renamed the Engineering goggles to AD-THz Meson Goggles
+    - type: Tweak
+      message: Moths can now wear outer clothing without their legs clipping through.
+    - type: Tweak
+      message: >-
+        Handheld radios have a shorter, more realistic listen and transmit
+        range.
+    - type: Tweak
+      message: Firelocks now close when there is a fire nearby.
+  id: 15
+  time: '2026-11-20T18:54:56.0000000+00:00'
