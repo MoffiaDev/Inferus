@@ -6,6 +6,7 @@
   - DetailExaminable
   - Dna
   - Fingerprint
+  - Grammar # Inferus, Pronouns
   - SpeechBlip # Inferus - crewlets keep their original's speech blip
   - Accentless
   - BackwardsAccent
@@ -46,6 +47,11 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Crewlet
+  # Inferus - crewlets sound smaller
+  - type: SoundPitchModifier
+    footsteps: 1.3
+    speechBlips: 1.3
+  # End Inferus
   - type: CrewletReputation
   - type: HTN
     rootTask:
