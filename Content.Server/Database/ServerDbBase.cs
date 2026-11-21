@@ -235,6 +235,7 @@ namespace Content.Server.Database
             profile.Sex = humanoid.Sex.ToString();
             profile.Voice = humanoid.Voice.ToString();
             profile.SpeechBlip = humanoid.SpeechBlip.ToString(); // Inferus
+            profile.SpeechBlipPitch = humanoid.SpeechBlipPitch; // Inferus
             profile.Gender = humanoid.Gender.ToString();
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();

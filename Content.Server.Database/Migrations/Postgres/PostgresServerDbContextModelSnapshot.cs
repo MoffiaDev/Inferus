@@ -1379,6 +1379,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("speech_blip");
 
+                    b.Property<float>("SpeechBlipPitch")
+                        .HasColumnType("real")
+                        .HasColumnName("speech_blip_pitch");
+
                     b.Property<string>("Voice")
                         .HasColumnType("text")
                         .HasColumnName("voice");

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Content.Server.Database.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteServerDbContext))]
-    [Migration("20261121011527_StarlightCharacterInfoCDRecords")]
+    [Migration("20261121142026_StarlightCharacterInfoCDRecords")]
     partial class StarlightCharacterInfoCDRecords
     {
         /// <inheritdoc />
@@ -1306,6 +1306,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("speech_blip");
 
+                    b.Property<float>("SpeechBlipPitch")
+                        .HasColumnType("REAL")
+                        .HasColumnName("speech_blip_pitch");
+
                     b.Property<string>("Voice")
                         .HasColumnType("TEXT")
                         .HasColumnName("voice");
@@ -1538,6 +1542,31 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasName("PK_sl_character_info");
 
                     b.ToTable("sl_character_info", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.StarLightModel+StarLightProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("star_light_profile_id");
+
+                    b.Property<string>("CustomSpecieName")
+                        .HasMaxLength(32)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("custom_specie_name");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_star_light_profile");
+
+                    b.HasIndex("ProfileId")
+                        .IsUnique();
+
+                    b.ToTable("star_light_profile", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.Trait", b =>
@@ -2286,6 +2315,18 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Profile");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.StarLightModel+StarLightProfile", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithOne("StarLightProfile")
+                        .HasForeignKey("Content.Server.Database.StarLightModel+StarLightProfile", "ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_star_light_profile_profile_profile_id");
+
+                    b.Navigation("Profile");
+                });
+
             modelBuilder.Entity("Content.Server.Database.Trait", b =>
                 {
                     b.HasOne("Content.Server.Database.Profile", "Profile")
@@ -2438,6 +2479,8 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Loadouts");
 
                     b.Navigation("MoffProfile");
+
+                    b.Navigation("StarLightProfile");
 
                     b.Navigation("Traits");
                 });

@@ -55,6 +55,7 @@ public sealed partial class HumanoidProfileSystem : EntitySystem
         }
 
         _speechBlip.SetBlip(ent, profile.SpeechBlip); // Inferus
+        _speechBlip.SetPitch(ent, profile.SpeechBlipPitch); // Inferus
     }
 
     // Goobstation - Start - port EE height/width sliders
