@@ -284,3 +284,9 @@ Entries:
       message: Most NPCs now use speech blips rather than the default text box
   id: 16
   time: '2026-11-21T13:57:12.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Tweak
+      message: Vulpkanins no longer look like CHUDS.
+  id: 17
+  time: '2026-11-21T15:46:23.0000000+00:00'
