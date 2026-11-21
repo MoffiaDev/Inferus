@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Shared._Floof.Consent.Prototypes; // Floof - Consent toggles
+using Content.Shared._Inferus.Speech; // Inferus
 using Content.Shared.CCVar;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.EntityEffects.Effects;
@@ -246,6 +247,7 @@ namespace Content.Shared.Preferences
                 Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species.Value, sex.Value),
                 Height = speciesProto?.DefaultHeight ?? 1f, // Goobstation - port EE height/width sliders
                 Width = speciesProto?.DefaultWidth ?? 1f, // Goobstation - port EE height/width sliders
+                SpeechBlip = SpeechBlipSystem.GetSpeciesBlip(IoCManager.Resolve<IPrototypeManager>(), species.Value), // Inferus
             };
         }
 
@@ -397,7 +399,11 @@ namespace Content.Shared.Preferences
             profile.Age = (randomizeCfg & RandomizeCfg.Age) != 0 ? RandomAge(speciesProto) : baseProfile.Age;
 
             profile.Appearance = HumanoidCharacterAppearance.Random(speciesProto, profile.Sex, randomizeCfg, baseProfile.Appearance);
-            profile.SpeechBlip = baseProfile.SpeechBlip; // Inferus
+            // Inferus - random species get their species' blip
+            profile.SpeechBlip = (randomizeCfg & RandomizeCfg.Species) != 0
+                ? SpeechBlipSystem.GetSpeciesBlip(prototypeManager, profile.Species)
+                : baseProfile.SpeechBlip;
+            // End Inferus
 
             // Goobstation - Start - port EE height/width sliders
             if ((randomizeCfg & RandomizeCfg.Size) != 0)
@@ -420,7 +426,9 @@ namespace Content.Shared.Preferences
 
             return Random(
                 RandomizeConfigAll ^ RandomizeCfg.Species,
+                // new HumanoidCharacterProfile().WithSpecies(species) // Inferus
                 new HumanoidCharacterProfile().WithSpecies(species)
+                    .WithSpeechBlip(SpeechBlipSystem.GetSpeciesBlip(IoCManager.Resolve<IPrototypeManager>(), species)) // Inferus - NPC humanoids use their species' blip
             );
         }
 

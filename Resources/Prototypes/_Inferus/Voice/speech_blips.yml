@@ -6,6 +6,8 @@
 - type: speechBlip
   id: Bass
   name: speech-blip-bass
+  species:
+  - Dwarf
   sound:
     path: /Audio/_Inferus/Voice/Blips/bass.ogg
     params:
@@ -24,6 +26,10 @@
 - type: speechBlip
   id: Tenor
   name: speech-blip-tenor
+  species:
+  - Human
+  - Skeleton
+  - Gingerbread
   sound:
     path: /Audio/_Inferus/Voice/Blips/tenor.ogg
     params:
@@ -42,6 +48,8 @@
 - type: speechBlip
   id: Vox
   name: speech-blip-vox
+  species:
+  - Vox
   sound:
     path: /Audio/_Inferus/Voice/Blips/vox.ogg
     params:
@@ -51,6 +59,9 @@
 - type: speechBlip
   id: Arachnic
   name: speech-blip-arachnic
+  species:
+  - Arachnid
+  - Ant
   sound:
     path: /Audio/_Inferus/Voice/Blips/arachnic.ogg
     params:
@@ -60,6 +71,8 @@
 - type: speechBlip
   id: Vulp
   name: speech-blip-vulp
+  species:
+  - Vulpkanin
   sound:
     path: /Audio/_Inferus/Voice/Blips/vulp.ogg
     params:
@@ -69,6 +82,8 @@
 - type: speechBlip
   id: Slimy
   name: speech-blip-slimy
+  species:
+  - SlimePerson
   sound:
     path: /Audio/_Inferus/Voice/Blips/slimy.ogg
     params:
@@ -78,6 +93,12 @@
 - type: speechBlip
   id: Synthetic
   name: speech-blip-synthetic
+  speechSounds:
+  - Pai
+  - Borg
+  - SyndieBorg
+  - Xenoborg
+  - Vending
   sound:
     path: /Audio/_Inferus/Voice/Blips/synthetic.ogg
     params:
@@ -87,6 +108,8 @@
 - type: speechBlip
   id: Allulalo
   name: speech-blip-allulalo
+  species:
+  - Allulalo
   sound:
     path: /Audio/_Inferus/Voice/Blips/allulalo.ogg
     params:
@@ -123,6 +146,8 @@
 - type: speechBlip
   id: Gray
   name: speech-blip-gray
+  species:
+  - Gray
   sound:
     path: /Audio/_Inferus/Voice/Blips/gray.ogg
     params:
@@ -132,6 +157,8 @@
 - type: speechBlip
   id: Kodepiia
   name: speech-blip-kodepiia
+  species:
+  - Kodepiia
   sound:
     path: /Audio/_Inferus/Voice/Blips/kodepiia.ogg
     params:
@@ -141,6 +168,8 @@
 - type: speechBlip
   id: Leafy
   name: speech-blip-leafy
+  species:
+  - Diona
   sound:
     path: /Audio/_Inferus/Voice/Blips/leafy.ogg
     params:
@@ -150,6 +179,8 @@
 - type: speechBlip
   id: Sheepish
   name: speech-blip-ovinia
+  species:
+  - Ovinia
   sound:
     path: /Audio/_Inferus/Voice/Blips/ovinia.ogg
     params:
@@ -159,6 +190,8 @@
 - type: speechBlip
   id: Snail
   name: speech-blip-snail
+  species:
+  - Gastropoid
   sound:
     path: /Audio/_Inferus/Voice/Blips/snail.ogg
     params:
@@ -177,6 +210,8 @@
 - type: speechBlip
   id: Ungu
   name: speech-blip-ungu
+  species:
+  - Ungu
   sound:
     path: /Audio/_Inferus/Voice/Blips/ungu.ogg
     params:
@@ -186,6 +221,8 @@
 - type: speechBlip
   id: Lizard
   name: speech-blip-lizard
+  species:
+  - Reptilian
   sound:
     path: /Audio/_Inferus/Voice/Blips/lizard.ogg
     params:
@@ -205,6 +242,8 @@
 - type: speechBlip
   id: MothSpeak
   name: speech-blip-moth
+  species:
+  - Moth
   sounds:
   - path: /Audio/_Inferus/Voice/Blips/Moth/speak1.ogg
     params:

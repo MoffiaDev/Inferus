@@ -38,7 +38,7 @@ public sealed partial class CrewletBrainSystem
                 return;
             }
 
-            SetWalking(ent, true);
+            // SetWalking(ent, true); // Inferus - sprinting is handled in Update, keep away walks
             SetCourse(ent, refuge, RefugeArrival, ent.Comp.MoveTimeout, now);
             Complain(ent, threat, now);
         }
@@ -126,13 +126,23 @@ public sealed partial class CrewletBrainSystem
         return null;
     }
 
-    private void SetWalking(EntityUid uid, bool walking)
+    // Inferus - In Inferus the Walk key bit means sprinting, not walking
+    // private void SetWalking(EntityUid uid, bool walking)
+    // {
+    //     if (!TryComp<InputMoverComponent>(uid, out var mover) || mover.Sprinting != walking)
+    //         return;
+    //
+    //     _mover.SetSprinting((uid, mover), 0, walking);
+    //     if (!walking)
+    //         mover.CurTickWalkMovement = Vector2.Zero;
+    // }
+    private void SetSprint(Entity<InputMoverComponent> ent, bool sprint)
     {
-        if (!TryComp<InputMoverComponent>(uid, out var mover) || mover.Sprinting != walking)
+        if (ent.Comp.Sprinting == sprint)
             return;
 
-        _mover.SetSprinting((uid, mover), 0, walking);
-        if (!walking)
-            mover.CurTickWalkMovement = Vector2.Zero;
+        // SetSprinting's "walking" argument sets the Walk key bit, which is the sprint key in Inferus.
+        _mover.SetSprinting(ent, 0, sprint);
     }
+    // End Inferus
 }

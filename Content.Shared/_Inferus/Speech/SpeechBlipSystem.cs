@@ -1,4 +1,12 @@
 using System.Text;
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Silicons.Laws.Components;
+using Content.Shared.Silicons.StationAi;
+using Content.Shared.Speech;
+using Robust.Shared.Network;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -12,11 +20,17 @@ public sealed partial class SpeechBlipSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private INetManager _net = default!;
 
     /// <summary>
     /// The blip new characters start with.
     /// </summary>
     public static readonly ProtoId<SpeechBlipPrototype> DefaultBlip = "Tenor";
+
+    /// <summary>
+    /// The blip used by silicons, machines and other robotic things that talk.
+    /// </summary>
+    public static readonly ProtoId<SpeechBlipPrototype> SyntheticBlip = "Synthetic";
 
     private readonly Dictionary<ProtoId<SpeechBlipPrototype>, List<SpeechBlipClip>> _clips = new();
 
@@ -25,6 +39,62 @@ public sealed partial class SpeechBlipSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+        SubscribeLocalEvent<SpeechComponent, MapInitEvent>(OnSpeechMapInit);
+    }
+
+    /// <summary>
+    /// Gives anything that talks without a blip yet (NPCs, silicons, machines) a default one,
+    /// so its speech types out instead of using the plain bubble. Player profiles override this when applied.
+    /// </summary>
+    private void OnSpeechMapInit(Entity<SpeechComponent> ent, ref MapInitEvent args)
+    {
+        if (_net.IsClient || HasComp<SpeechBlipComponent>(ent))
+            return;
+
+        SetBlip(ent, GetDefaultBlip(ent));
+    }
+
+    /// <summary>
+    /// Picks the blip an entity should use if nothing else sets one.
+    /// Humanoids use their species' blip, silicons use <see cref="SyntheticBlip"/>,
+    /// then <see cref="SpeechBlipPrototype.SpeechSounds"/> is checked.
+    /// Talking non-mobs (vending machines, computers, toys) are treated as machines.
+    /// </summary>
+    public ProtoId<SpeechBlipPrototype> GetDefaultBlip(Entity<SpeechComponent> ent)
+    {
+        if (TryComp<HumanoidProfileComponent>(ent, out var profile))
+            return GetSpeciesBlip(_prototype, profile.Species);
+
+        if (HasComp<SiliconLawBoundComponent>(ent)
+            || HasComp<BorgChassisComponent>(ent)
+            || HasComp<StationAiHeldComponent>(ent))
+            return SyntheticBlip;
+
+        if (ent.Comp.SpeechSounds is { } sounds)
+        {
+            foreach (var blip in _prototype.EnumeratePrototypes<SpeechBlipPrototype>())
+            {
+                if (blip.SpeechSounds.Contains(sounds))
+                    return blip.ID;
+            }
+        }
+
+        return HasComp<MobStateComponent>(ent) ? DefaultBlip : SyntheticBlip;
+    }
+
+    /// <summary>
+    /// Gets the default blip for a species, from <see cref="SpeechBlipPrototype.Species"/>.
+    /// Falls back to <see cref="DefaultBlip"/> if no blip lists the species.
+    /// </summary>
+    public static ProtoId<SpeechBlipPrototype> GetSpeciesBlip(IPrototypeManager prototype, ProtoId<SpeciesPrototype> species)
+    {
+        foreach (var blip in prototype.EnumeratePrototypes<SpeechBlipPrototype>())
+        {
+            if (blip.Species.Contains(species))
+                return blip.ID;
+        }
+
+        return DefaultBlip;
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)

@@ -586,6 +586,32 @@ public sealed partial class CrewletBrainComponent : Component
     [DataField]
     public CrewletActivity Activity = CrewletActivity.None;
 
+    // Inferus - crewlets sprint like players and get winded
+    /// <summary>
+    /// True while the crewlet is out of breath and walking until its stamina recovers.
+    /// </summary>
+    [ViewVariables]
+    public bool Winded;
+
+    /// <summary>
+    /// Fraction of the stamina crit threshold at which the crewlet stops sprinting.
+    /// </summary>
+    [DataField]
+    public float WindedThreshold = 0.6f;
+
+    /// <summary>
+    /// Fraction of the stamina crit threshold the crewlet has to recover to before sprinting again.
+    /// </summary>
+    [DataField]
+    public float RecoveredThreshold = 0.25f;
+
+    /// <summary>
+    /// Crewlets walk instead of sprinting while within this distance of their owner.
+    /// </summary>
+    [DataField]
+    public float OwnerWalkRange = 8f;
+    // End Inferus
+
     [DataField]
     public CrewletStep Step;
 

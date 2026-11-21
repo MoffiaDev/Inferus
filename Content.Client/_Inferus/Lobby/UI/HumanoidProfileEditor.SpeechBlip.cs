@@ -50,6 +50,18 @@ public sealed partial class HumanoidProfileEditor
         UpdateSpeechBlipPreviewButton();
     }
 
+    /// <summary>
+    /// Switches to the species' default blip
+    /// </summary>
+    private void SetSpeciesSpeechBlip(string species)
+    {
+        if (Profile == null)
+            return;
+
+        Profile = Profile.WithSpeechBlip(SpeechBlipSystem.GetSpeciesBlip(_prototypeManager, species));
+        UpdateSpeechBlipControls();
+    }
+
     private void SetSpeechBlip(ProtoId<SpeechBlipPrototype> blip)
     {
         Profile = Profile?.WithSpeechBlip(blip);

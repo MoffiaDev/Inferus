@@ -6,6 +6,7 @@
   - DetailExaminable
   - Dna
   - Fingerprint
+  - SpeechBlip # Inferus - crewlets keep their original's speech blip
   - Accentless
   - BackwardsAccent
   - BarkAccent

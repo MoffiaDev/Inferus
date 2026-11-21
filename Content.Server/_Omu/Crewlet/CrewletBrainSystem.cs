@@ -19,6 +19,8 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Climbing.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.Cuffs;
+using Content.Shared.Damage.Components; // Inferus
+using Content.Shared.Damage.Systems; // Inferus
 using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
 using Content.Shared.Examine;
@@ -108,6 +110,7 @@ public sealed partial class CrewletBrainSystem : EntitySystem
     [Dependency] private SharedPowerReceiverSystem _power = default!; // Inferus
     [Dependency] private SharedPuddleSystem _puddle = default!; // Inferus
     [Dependency] private SharedSolutionContainerSystem _solutions = default!; // Inferus
+    [Dependency] private SharedStaminaSystem _stamina = default!; // Inferus
     [Dependency] private SharedStunSystem _stun = default!; // Inferus
     [Dependency] private SharedTransformSystem _transform = default!; // Inferus
     // [Dependency] private SignatureSystem _signature = default!; // Inferus - no paper signatures
@@ -181,15 +184,48 @@ public sealed partial class CrewletBrainSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // Inferus - In Inferus the Walk key is held to sprint, so crewlets sprint like players do:
+        // they run by default, walk while keeping away from someone or near their owner, drain stamina
+        // while sprinting and slow to a walk when winded until they catch their breath.
+        // using var query = EntityQueryEnumerator<NPCSteeringComponent, CrewletBrainComponent, InputMoverComponent>();
+        // while (query.MoveNext(out _, out _, out _, out var mover))
+        // {
+        //     if (mover.Sprinting)
+        //         continue;
+        //
+        //     mover.CurTickWalkMovement = mover.CurTickSprintMovement;
+        //     mover.CurTickSprintMovement = Vector2.Zero;
+        // }
         using var query = EntityQueryEnumerator<NPCSteeringComponent, CrewletBrainComponent, InputMoverComponent>();
-        while (query.MoveNext(out _, out _, out _, out var mover))
+        while (query.MoveNext(out var uid, out _, out var brain, out var mover))
         {
+            var stamina = CompOrNull<StaminaComponent>(uid);
+            if (stamina != null)
+            {
+                if (stamina.StaminaDamage >= stamina.CritThreshold * brain.WindedThreshold)
+                    brain.Winded = true;
+                else if (stamina.StaminaDamage <= stamina.CritThreshold * brain.RecoveredThreshold)
+                    brain.Winded = false;
+            }
+
+            var nearOwner = brain.KnownOwner is { } owner
+                            && !TerminatingOrDeleted(owner)
+                            && DistanceTo(uid, owner) <= brain.OwnerWalkRange;
+            var sprint = brain.Active && brain.Activity != CrewletActivity.KeepAway && !brain.Winded && !nearOwner;
+            SetSprint((uid, mover), sprint);
+
             if (mover.Sprinting)
+            {
+                if (stamina != null && mover.CurTickSprintMovement != Vector2.Zero)
+                    _stamina.TakeStaminaDamage(uid, stamina.SprintDrainPerSecond * frameTime, stamina, visual: false);
+
                 continue;
+            }
 
             mover.CurTickWalkMovement = mover.CurTickSprintMovement;
             mover.CurTickSprintMovement = Vector2.Zero;
         }
+        // End Inferus
     }
 
     public void StartThinking(EntityUid uid)
@@ -467,8 +503,12 @@ public sealed partial class CrewletBrainSystem : EntitySystem
     {
         StopMoving(ent);
 
-        if (ent.Comp.Activity == CrewletActivity.KeepAway)
-            SetWalking(ent, false);
+        // Inferus - sprinting is handled in Update
+        // if (ent.Comp.Activity == CrewletActivity.KeepAway)
+        //     SetWalking(ent, false);
+        if (TryComp<InputMoverComponent>(ent, out var mover))
+            SetSprint((ent, mover), false);
+        // End Inferus
 
         if (ent.Comp.ActivityDoAfter is { } doAfter)
         {
