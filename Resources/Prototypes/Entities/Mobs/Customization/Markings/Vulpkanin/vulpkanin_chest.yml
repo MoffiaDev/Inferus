@@ -1,24 +1,26 @@
 # Body Markings (Chest)
-- type: marking
-  id: VulpBellyCrest
-  bodyPart: Chest
-  groupWhitelist: [ Vulpkanin ]
-  sprites:
-    - sprite: Mobs/Customization/Vulpkanin/body_markings.rsi
-      state: belly_crest
+# Inferus - replaced by the Starlight vulpkanin resprite (_Starlight/Entities/Mobs/Customization/Marking/vulpkanin.yml)
+# - type: marking
+#   id: VulpBellyCrest
+#   bodyPart: Chest
+#   groupWhitelist: [ Vulpkanin ]
+#   sprites:
+#     - sprite: Mobs/Customization/Vulpkanin/body_markings.rsi
+#       state: belly_crest
 
-- type: marking
-  id: VulpBellyFull
-  bodyPart: Chest
-  groupWhitelist: [ Vulpkanin ]
-  sprites:
-    - sprite: Mobs/Customization/Vulpkanin/body_markings.rsi
-      state: belly_full
+# - type: marking
+#   id: VulpBellyFull
+#   bodyPart: Chest
+#   groupWhitelist: [ Vulpkanin ]
+#   sprites:
+#     - sprite: Mobs/Customization/Vulpkanin/body_markings.rsi
+#       state: belly_full
 
-- type: marking
-  id: VulpBellyFox
-  bodyPart: Chest
-  groupWhitelist: [ Vulpkanin ]
-  sprites:
-    - sprite: Mobs/Customization/Vulpkanin/body_markings.rsi
-      state: belly_fox
+# - type: marking
+#   id: VulpBellyFox
+#   bodyPart: Chest
+#   groupWhitelist: [ Vulpkanin ]
+#   sprites:
+#     - sprite: Mobs/Customization/Vulpkanin/body_markings.rsi
+#       state: belly_fox
+# End Inferus
