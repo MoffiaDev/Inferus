@@ -1,0 +1,16 @@
+<!-- Inferus - Starlight's hidden info section (exploitable info, secrets) is not part of this port -->
+<ui:CharacterICInfoControl
+    xmlns="https://spacestation14.io"
+    xmlns:ui="clr-namespace:Content.Client._Starlight.Character.Info.UI"
+    xmlns:ui1="clr-namespace:Content.Client._Starlight.Character.UI">
+    <BoxContainer Orientation="Vertical">
+        <Label VerticalAlignment="Top" Margin="0 6 0 10" HorizontalAlignment="Center" StyleClasses="LabelHeading"
+               Access="Public" Text="{Loc 'character-info-ic-header'}"/>
+        <ui1:CharacterViewControl Name="CharacterView" Access="Public"/>
+        <BoxContainer Orientation="Vertical" VerticalExpand="True">
+            <Label Text="{Loc 'character-info-description'}"/>
+            <RichTextLabel Name="CharacterDesc" Access="Public" MinSize="220 100" Margin="10" VerticalAlignment="Top"
+                   VerticalExpand="True" />
+        </BoxContainer>
+    </BoxContainer>
+</ui:CharacterICInfoControl>

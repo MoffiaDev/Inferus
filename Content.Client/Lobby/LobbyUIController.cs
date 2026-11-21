@@ -57,7 +57,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         _configurationManager.OnValueChanged(CCVars.FlavorText, args =>
         {
-            _profileEditor?.RefreshFlavorText();
+            _profileEditor?.RefreshStarlightCharacterInfo(); // Inferus: was RefreshFlavorText(), replaced by the Starlight IC info tab
         });
 
         _configurationManager.OnValueChanged(CCVars.GameRoleTimers, _ => RefreshProfileEditor());

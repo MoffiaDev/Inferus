@@ -31,6 +31,7 @@ public sealed partial class HumanoidProfileSystem : EntitySystem
         ent.Comp.Gender = profile.Gender;
         ent.Comp.Age = profile.Age;
         ent.Comp.Species = profile.Species;
+        ent.Comp.CustomSpecieName = profile.CustomSpecieName; // Inferus: Starlight custom species name port
         ent.Comp.Voice = profile.Voice;
         ent.Comp.Sex = profile.Sex;
 
@@ -96,7 +97,7 @@ public sealed partial class HumanoidProfileSystem : EntitySystem
     private void OnExamined(Entity<HumanoidProfileComponent> ent, ref ExaminedEvent args)
     {
         var identity = Identity.Entity(ent, EntityManager);
-        var species = GetSpeciesRepresentation(ent.Comp.Species).ToLower();
+        var species = GetSpeciesRepresentation(ent.Comp.Species, ent.Comp.CustomSpecieName).ToLower(); // Inferus: was GetSpeciesRepresentation(ent.Comp.Species)
         var age = GetAgeRepresentation(ent.Comp.Species, ent.Comp.Age);
 
         args.PushText(Loc.GetString("humanoid-appearance-component-examine", ("user", identity), ("age", age), ("species", species)));
@@ -113,6 +114,18 @@ public sealed partial class HumanoidProfileSystem : EntitySystem
         Log.Error("Tried to get representation of unknown species: {speciesId}");
         return Loc.GetString("humanoid-appearance-component-unknown-species");
     }
+
+    // Inferus - Starlight custom species name port
+    /// <summary>
+    /// Returns the custom species name if one is set, otherwise the UI-friendly name of the species.
+    /// </summary>
+    public string GetSpeciesRepresentation(ProtoId<SpeciesPrototype> species, string? customSpecieName)
+    {
+        return string.IsNullOrWhiteSpace(customSpecieName)
+            ? GetSpeciesRepresentation(species)
+            : customSpecieName;
+    }
+    // End Inferus
 
     /// <summary>
     /// Takes ID of the species prototype and an age, returns an approximate description

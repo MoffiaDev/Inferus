@@ -79,6 +79,14 @@
                                                    ToolTip="{Loc 'humanoid-profile-editor-guidebook-button-tooltip'}"/>
                                     <OptionButton Name="SpeciesButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
+                                <!-- Inferus - Starlight custom species name port -->
+                                <BoxContainer Name="CCustomSpecieName" HorizontalExpand="True">
+                                    <Label Text="{Loc 'humanoid-profile-editor-customspeciename-label'}" />
+                                    <Control HorizontalExpand="True"/>
+                                    <LineEdit Name="CCustomSpecieNameEdit" MinSize="200 0" HorizontalAlignment="Right"
+                                              ToolTip="{Loc 'humanoid-profile-editor-customspeciename-tooltip'}" />
+                                </BoxContainer>
+                                <!-- End Inferus -->
                                 <!-- Age -->
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-age-label'}" />

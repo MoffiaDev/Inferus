@@ -49,6 +49,13 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
                 .Include(p => p.Profiles).ThenInclude(h => h.ConsentToggles) // Floof - Consent toggles
+                .Include(p => p.Profiles).ThenInclude(h => h.CharacterInfo) // Starlight
+                .Include(p => p.Profiles).ThenInclude(h => h.StarLightProfile) // Starlight
+                // Cosmatic Drift Record System-start: Hydrate CD profiles and their denormalized entries so the client editor has data ready
+                .Include(p => p.Profiles)
+                    .ThenInclude(h => h.CDProfile)
+                    .ThenInclude(cdProfile => cdProfile!.CharacterRecordEntries)
+                // Cosmatic Drift Record System-end
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
@@ -108,6 +115,12 @@ namespace Content.Server.Database
                 .Include(p => p.Antags)
                 .Include(p => p.Traits)
                 .Include(p => p.ConsentToggles) // Floof - Consent toggles
+                .Include(p => p.CharacterInfo) // Starlight-edit
+                .Include(p => p.StarLightProfile) // Starlight
+                // Cosmatic Drift Record System-start: Pull forward existing CD profile state when editing a saved slot
+                .Include(p => p.CDProfile)
+                    .ThenInclude(cdProfile => cdProfile!.CharacterRecordEntries)
+                // Cosmatic Drift Record System-end
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
@@ -275,6 +288,9 @@ namespace Content.Server.Database
                     .Select(t => new ConsentToggle {ToggleId = t})
             );
             // Floof Section End - Consent toggles
+
+            ConvertStarlightCharacterInfo(humanoid, profile); // Inferus: Starlight character info port
+            ConvertCDProfile(humanoid, profile); // Inferus: Cosmatic Drift record system port
 
             profile.Loadouts.Clear();
 

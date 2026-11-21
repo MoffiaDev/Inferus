@@ -32,6 +32,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Server._CD.Records; // Cosmatic Drift Record System
 
 namespace Content.Server.Administration.Systems;
 
@@ -53,6 +54,7 @@ public sealed partial class AdminSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private StationRecordsSystem _stationRecords = default!;
     [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private CharacterRecordsSystem _characterRecords = default!; // Cosmatic Drift Record System: erase-ban helper
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
@@ -452,6 +454,10 @@ public sealed partial class AdminSystem : EntitySystem
 
             if (_playerManager.TryGetSessionById(uid, out var session))
                 _gameTicker.SpawnObserver(session);
+
+            // Cosmatic Drift Record System-start: Scrub any persisted records when an admin performs an erase.
+            _characterRecords.DeleteAllRecords(entity);
+            // Cosmatic Drift Record System-end
 
             RaiseLocalEvent(ref eraseEvent);
         }

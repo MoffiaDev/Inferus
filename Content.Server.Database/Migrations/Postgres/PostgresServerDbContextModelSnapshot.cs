@@ -792,6 +792,75 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.ToTable("blacklist", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.CDModel+CDProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("cdprofile_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<JsonDocument>("CharacterRecords")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("character_records");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("integer")
+                        .HasColumnName("profile_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_cdprofile");
+
+                    b.HasIndex("ProfileId")
+                        .IsUnique();
+
+                    b.ToTable("cdprofile", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.CDModel+CharacterRecordEntry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("cd_character_record_entries_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CDProfileId")
+                        .HasColumnType("integer")
+                        .HasColumnName("cdprofile_id");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Involved")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("involved");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("title");
+
+                    b.Property<byte>("Type")
+                        .HasColumnType("smallint")
+                        .HasColumnName("type");
+
+                    b.HasKey("Id")
+                        .HasName("PK_cd_character_record_entries");
+
+                    b.HasIndex("CDProfileId");
+
+                    b.HasIndex("Id")
+                        .HasDatabaseName("IX_cd_character_record_entries_cd_character_record_entries_id");
+
+                    b.ToTable("cd_character_record_entries", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.ConnectionLog", b =>
                 {
                     b.Property<int>("Id")
@@ -1530,6 +1599,63 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.ToTable("server_ban_hit", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.StarLightModel+CharacterInfo", b =>
+                {
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("integer")
+                        .HasColumnName("profile_id");
+
+                    b.Property<string>("OOCNotes")
+                        .IsRequired()
+                        .HasMaxLength(4096)
+                        .HasColumnType("character varying(4096)")
+                        .HasColumnName("oocnotes");
+
+                    b.Property<string>("PersonalNotes")
+                        .IsRequired()
+                        .HasMaxLength(4096)
+                        .HasColumnType("character varying(4096)")
+                        .HasColumnName("personal_notes");
+
+                    b.Property<string>("PersonalityDesc")
+                        .IsRequired()
+                        .HasMaxLength(4096)
+                        .HasColumnType("character varying(4096)")
+                        .HasColumnName("personality_desc");
+
+                    b.HasKey("ProfileId")
+                        .HasName("PK_sl_character_info");
+
+                    b.ToTable("sl_character_info", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.StarLightModel+StarLightProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("star_light_profile_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CustomSpecieName")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("custom_specie_name");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("integer")
+                        .HasColumnName("profile_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_star_light_profile");
+
+                    b.HasIndex("ProfileId")
+                        .IsUnique();
+
+                    b.ToTable("star_light_profile", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.Trait", b =>
                 {
                     b.Property<int>("Id")
@@ -1988,6 +2114,30 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Navigation("Round");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.CDModel+CDProfile", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithOne("CDProfile")
+                        .HasForeignKey("Content.Server.Database.CDModel+CDProfile", "ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_cdprofile_profile_profile_id");
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.CDModel+CharacterRecordEntry", b =>
+                {
+                    b.HasOne("Content.Server.Database.CDModel+CDProfile", "CDProfile")
+                        .WithMany("CharacterRecordEntries")
+                        .HasForeignKey("CDProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_cd_character_record_entries_cdprofile_cdprofile_id");
+
+                    b.Navigation("CDProfile");
+                });
+
             modelBuilder.Entity("Content.Server.Database.ConnectionLog", b =>
                 {
                     b.HasOne("Content.Server.Database.Server", "Server")
@@ -2246,6 +2396,30 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Navigation("Connection");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.StarLightModel+CharacterInfo", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithOne("CharacterInfo")
+                        .HasForeignKey("Content.Server.Database.StarLightModel+CharacterInfo", "ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_sl_character_info_profile_profile_id");
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.StarLightModel+StarLightProfile", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithOne("StarLightProfile")
+                        .HasForeignKey("Content.Server.Database.StarLightModel+StarLightProfile", "ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_star_light_profile_profile_profile_id");
+
+                    b.Navigation("Profile");
+                });
+
             modelBuilder.Entity("Content.Server.Database.Trait", b =>
                 {
                     b.HasOne("Content.Server.Database.Profile", "Profile")
@@ -2321,6 +2495,11 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Navigation("Unban");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.CDModel+CDProfile", b =>
+                {
+                    b.Navigation("CharacterRecordEntries");
+                });
+
             modelBuilder.Entity("Content.Server.Database.ConnectionLog", b =>
                 {
                     b.Navigation("BanHits");
@@ -2382,6 +2561,10 @@ namespace Content.Server.Database.Migrations.Postgres
                 {
                     b.Navigation("Antags");
 
+                    b.Navigation("CDProfile");
+
+                    b.Navigation("CharacterInfo");
+
                     b.Navigation("ConsentToggles");
 
                     b.Navigation("Jobs");
@@ -2389,6 +2572,8 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Navigation("Loadouts");
 
                     b.Navigation("MoffProfile");
+
+                    b.Navigation("StarLightProfile");
 
                     b.Navigation("Traits");
                 });

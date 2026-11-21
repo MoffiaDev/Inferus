@@ -121,6 +121,7 @@ public sealed partial class HumanoidProfileEditor
         WidthLabel.Text = Loc.GetString("humanoid-profile-editor-width-label", ("width", (int) width));
 
         UpdateWeight();
+        UpdateCDRecordMetrics(); // Inferus: keep CD record height/weight in line with the sliders
     }
 
     private void UpdateWeight()

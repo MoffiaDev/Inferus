@@ -217,12 +217,14 @@ namespace Content.Client.Lobby.UI
             {
                 SpeciesButton.SelectId(args.Id);
                 SetSpecies(_species[args.Id].ID);
+                UpdateCustomSpecieNameEdit(); // Inferus: Starlight custom species name port
                 Traits.RefreshTraits(); // DeltaV - Allows for hiding traits
 
                 OnSkinColorOnValueChanged();
             };
 
             InitializeHeightWidth(); // Goobstation - port EE height/width sliders
+            InitializeCustomSpecieName(); // Inferus: Starlight custom species name port
 
             #region Skin
 
@@ -311,7 +313,8 @@ namespace Content.Client.Lobby.UI
 
             #endregion Markings
 
-            RefreshFlavorText();
+            // RefreshFlavorText(); // Inferus: replaced by the Starlight IC info tab
+            RefreshStarlightCharacterInfo(); // Inferus: Starlight character info and CD records tabs
             RefreshConsentText();
 
             #region Dummy
@@ -583,7 +586,8 @@ namespace Content.Client.Lobby.UI
             JobOverride = null;
 
             UpdateNameEdit();
-            UpdateFlavorTextEdit();
+            // UpdateFlavorTextEdit(); // Inferus: replaced by the Starlight IC info tab
+            UpdateStarlightCharacterInfoEdit(); // Inferus: Starlight character info and CD records tabs
             UpdateConsentTextEdit(); // Floof: Added consent.
             UpdateSexControls();
             UpdateVoiceControls();
@@ -604,7 +608,8 @@ namespace Content.Client.Lobby.UI
             RefreshSpecies();
             // RefreshTraits(); // DeltaV
 
-            RefreshFlavorText();
+            // RefreshFlavorText(); // Inferus: replaced by the Starlight IC info tab
+            RefreshStarlightCharacterInfo(); // Inferus: Starlight character info and CD records tabs
             RefreshConsentText(); // Floof: Added consent.
             ReloadPreview();
 

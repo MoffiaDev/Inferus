@@ -1,5 +1,6 @@
 using System.Numerics;
 using System.Text;
+using Content.Shared._Inferus.Audio;
 using Content.Shared._Inferus.CCVar;
 using Content.Shared._Inferus.Speech;
 using Robust.Client.UserInterface.Controls;
@@ -100,6 +101,8 @@ public abstract partial class SpeechBubble
 
         _typewriterBlip = blip;
         _typewriterPitchScale = SpeechBlipSystem.ClampPitch(blipComp.Pitch);
+        if (_entityManager.TryGetComponent<SoundPitchModifierComponent>(_senderEntity, out var pitchModifier))
+            _typewriterPitchScale *= pitchModifier.SpeechBlips;
         _typewriterWhisper = speechStyleClass == "whisperBox";
         _typewriterRunes = runes.ToArray();
         _typewriterTimes = new float[_typewriterRunes.Length];

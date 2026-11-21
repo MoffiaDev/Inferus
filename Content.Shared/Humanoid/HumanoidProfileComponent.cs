@@ -35,6 +35,13 @@ public sealed partial class HumanoidProfileComponent : Component
     [DataField, AutoNetworkedField]
     public ProtoId<SpeciesPrototype> Species = HumanoidCharacterProfile.DefaultSpecies;
 
+    // Inferus - Starlight custom species name port
+    /// <summary>
+    /// A custom species name shown instead of the species name. Empty means the normal species name is used.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string CustomSpecieName = "";
+
     // Goobstation - Start - port EE height/width sliders
     /// <summary>
     ///     The height scale of this humanoid.

@@ -217,6 +217,8 @@ namespace Content.Shared.Preferences
             Height = other.Height; // Goobstation - port EE height/width sliders
             Width = other.Width; // Goobstation - port EE height/width sliders
             _consentToggles = new(other._consentToggles); // Floof - Consent toggles
+            CopyStarlightCharacterInfo(other); // Inferus: Starlight character info port
+            CopyCDCharacterRecords(other); // Inferus: Cosmatic Drift record system port
         }
 
         /// <summary>
@@ -710,6 +712,8 @@ namespace Content.Shared.Preferences
             if (FlavorText != other.FlavorText) return false;
             if (ConsentText != other.ConsentText) return false; // Floof: Added consent.
             if (!_consentToggles.SetEquals(other._consentToggles)) return false; // Floof - Consent toggles
+            if (!StarlightCharacterInfoEquals(other)) return false; // Inferus: Starlight character info port
+            if (!CDCharacterRecordsEquals(other)) return false; // Inferus: Cosmatic Drift record system port
             return Appearance.Equals(other.Appearance);
         }
 
@@ -872,6 +876,8 @@ namespace Content.Shared.Preferences
             _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
 
             _consentToggles.RemoveWhere(t => !prototypeManager.HasIndex(t)); // Floof - Consent toggles
+            EnsureValidStarlightCharacterInfo(configManager, prototypeManager); // Inferus: Starlight character info port
+            EnsureValidCDCharacterRecords(); // Inferus: Cosmatic Drift record system port
 
             // Checks prototypes exist for all loadouts and dump / set to default if not.
             var toRemove = new ValueList<string>();
@@ -974,6 +980,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(Name);
             hashCode.Add(FlavorText);
             hashCode.Add(ConsentText); // Floof: Added consent.
+            AddStarlightCharacterInfoHash(ref hashCode); // Inferus: Starlight character info port
             hashCode.Add(Species);
             hashCode.Add(Age);
             hashCode.Add((int)Sex);

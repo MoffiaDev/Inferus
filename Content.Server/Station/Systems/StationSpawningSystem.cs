@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Character.Info; // Inferus: Starlight character info port
 using Content.Server.Access.Systems;
 using Content.Server.Humanoid;
 using Content.Server.Mind;
@@ -34,6 +35,7 @@ namespace Content.Server.Station.Systems;
 [PublicAPI]
 public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 {
+    [Dependency] private SLSharedCharacterInfoSystem _slCharacterInfo = default!; // Inferus: Starlight character info port
     [Dependency] private SharedAccessSystem _accessSystem = default!;
     [Dependency] private ActorSystem _actors = default!;
     [Dependency] private IdCardSystem _cardSystem = default!;
@@ -139,10 +141,12 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
             _humanoidProfile.ApplyProfileTo(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
 
-            if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
-            {
-                AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
-            }
+            // Inferus - the physical description is shown through CharacterDescriptionComponent, so the upstream detail examine verb would duplicate it
+            // if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
+            // {
+            //     AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
+            // }
+            _slCharacterInfo.ApplyCharacterInfo(entity.Value, profile);
 
             // FLOOF: Added Consent.
             if (profile.ConsentText != "")

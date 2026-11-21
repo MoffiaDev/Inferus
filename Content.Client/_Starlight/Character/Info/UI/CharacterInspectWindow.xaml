@@ -1,0 +1,18 @@
+<!-- Inferus - removed Starlight's background tab, which is not part of this port -->
+<ui:CharacterInspectWindow
+    xmlns="https://spacestation14.io"
+    xmlns:ui="clr-namespace:Content.Client._Starlight.Character.Info.UI"
+    MinSize="400 545"
+>
+    <ScrollContainer HScrollEnabled="False">
+        <TabContainer Name="InspectTabs" Access="Public">
+            <BoxContainer Orientation="Vertical">
+                <ui:CharacterICInfoControl Access="Public" Name="ICInfo"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical">
+                <ui:CharacterOOCInfoControl Access="Public" Name="OOCInfo"/>
+            </BoxContainer>
+        </TabContainer>
+
+    </ScrollContainer>
+</ui:CharacterInspectWindow>

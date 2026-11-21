@@ -183,7 +183,7 @@ namespace Content.Server.Preferences.Managers
                 loadouts[role.RoleName] = loadout;
             }
 
-            return new HumanoidCharacterProfile(
+            var humanoid = new HumanoidCharacterProfile( // Inferus: was return
                 profile.CharacterName,
                 profile.FlavorText,
                 profile.ConsentText, // Floof: Added consent.
@@ -211,6 +211,12 @@ namespace Content.Server.Preferences.Managers
                 Height = profile.Height, // Goobstation - port EE height/width sliders
                 Width = profile.Width, // Goobstation - port EE height/width sliders
             }.WithConsentToggles(profile.ConsentToggles.Select(t => new ProtoId<ConsentTogglePrototype>(t.ToggleId))); // Floof - Consent toggles
+
+            // Inferus - Starlight character info and Cosmatic Drift record system ports
+            humanoid = ServerDbBase.LoadStarlightCharacterInfo(humanoid, profile);
+            humanoid = ServerDbBase.LoadCDProfile(humanoid, profile);
+            return humanoid;
+            // End Inferus
         }
 
         private async void HandleSelectCharacterMessage(MsgSelectCharacter message)

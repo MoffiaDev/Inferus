@@ -16,6 +16,9 @@ using Content.Shared.Database;
 using Content.Shared.StationRecords.Components;
 using Content.Shared.StationRecords.Events;
 using Content.Shared.StationRecords.Systems;
+// Cosmatic Drift Record System: imports
+using Content.Server._CD.Records;
+using Content.Shared._CD.Records;
 
 namespace Content.Server.CriminalRecords.Systems;
 
@@ -39,6 +42,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         SubscribeLocalEvent<CriminalRecordsConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<CriminalRecordsConsoleComponent, GeneralRecordCreatedEvent>(UpdateUserInterface);
 
+        // Inferus - CD records console reuses these BUI events; duplicate subscriptions are not allowed
+        /*
         Subs.BuiEvents<CriminalRecordsConsoleComponent>(CriminalRecordsConsoleKey.Key, subs =>
         {
             subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
@@ -49,6 +54,22 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             subs.Event<CriminalRecordDeleteHistory>(OnDeleteHistory);
             subs.Event<CriminalRecordSetStatusFilter>(OnStatusFilterPressed);
         });
+        */
+        // End Inferus
+
+        // Cosmatic Drift Record System-start: also subscribe to status changes from the CD records console
+        Subs.BuiEvents<CriminalRecordsConsoleComponent>(CharacterRecordConsoleKey.Key, subs =>
+        {
+            subs.Event<SelectStationRecord>(OnKeySelected);
+            subs.Event<CriminalRecordAddHistory>(OnAddHistory);
+            subs.Event<CriminalRecordDeleteHistory>(OnDeleteHistory);
+            subs.Event((Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordChangeStatus args) =>
+            {
+                OnChangeStatus(ent, ref args);
+                RaiseLocalEvent(ent, new CharacterRecordsModifiedEvent());
+            });
+        });
+        // Cosmatic Drift Record System-end
     }
 
     private void UpdateUserInterface<T>(Entity<CriminalRecordsConsoleComponent> ent, ref T args)
@@ -189,6 +210,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         // no radio message since its not crucial to officers patrolling
 
         UpdateUserInterface(ent);
+        RaiseLocalEvent(ent, new CharacterRecordsModifiedEvent()); // Cosmatic Drift Record System
     }
 
     private void OnDeleteHistory(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordDeleteHistory msg)
@@ -202,6 +224,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         // a bit sus but not crucial to officers patrolling
 
         UpdateUserInterface(ent);
+        RaiseLocalEvent(ent, new CharacterRecordsModifiedEvent()); // Cosmatic Drift Record System
     }
 
     private void UpdateUserInterface(Entity<CriminalRecordsConsoleComponent> ent)

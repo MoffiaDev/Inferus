@@ -122,7 +122,8 @@ public sealed partial class FootprintSystem : EntitySystem
             return;
 
         var walkAngle = moveVector.ToAngle();
-        var rotation = walkAngle + Angle.FromDegrees(90);
+        // var rotation = walkAngle + Angle.FromDegrees(90); // Inferus - pointed prints backwards
+        var rotation = walkAngle - Angle.FromDegrees(90); // Inferus - print sprites face north, turn them to face the walk direction
 
         // Inferus - keep the sprite's handedness aligned with its side of the trail
         var stepOffset = isStanding
