@@ -274,3 +274,13 @@ Entries:
       message: Firelocks now close when there is a fire nearby.
   id: 15
   time: '2026-11-20T18:54:56.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Add
+      message: Added the ability to give birth
+    - type: Add
+      message: You can now change the pitch of your speech blip
+    - type: Tweak
+      message: Most NPCs now use speech blips rather than the default text box
+  id: 16
+  time: '2026-11-21T13:57:12.0000000+00:00'
