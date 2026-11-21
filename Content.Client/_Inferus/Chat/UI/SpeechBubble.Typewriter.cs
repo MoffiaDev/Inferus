@@ -31,6 +31,7 @@ public abstract partial class SpeechBubble
     private RichTextLabel? _typewriterLabel;
     private FormattedMessage? _typewriterMessage;
     private SpeechBlipPrototype? _typewriterBlip;
+    private float _typewriterPitchScale = SpeechBlipSystem.DefaultPitch;
     private bool _typewriterWhisper;
     private bool _typewriterBreaksFound;
 
@@ -98,6 +99,7 @@ public abstract partial class SpeechBubble
             return;
 
         _typewriterBlip = blip;
+        _typewriterPitchScale = SpeechBlipSystem.ClampPitch(blipComp.Pitch);
         _typewriterWhisper = speechStyleClass == "whisperBox";
         _typewriterRunes = runes.ToArray();
         _typewriterTimes = new float[_typewriterRunes.Length];
@@ -302,7 +304,7 @@ public abstract partial class SpeechBubble
         if (_typewriterWhisper)
             audioParams = audioParams.WithVolume(audioParams.Volume + WhisperBlipVolume);
 
-        audioParams = audioParams.WithPitchScale(audioParams.Pitch * _typewriterPitches[index]);
+        audioParams = audioParams.WithPitchScale(audioParams.Pitch * _typewriterPitches[index] * _typewriterPitchScale);
 
         _entityManager.System<SharedAudioSystem>().PlayEntity(clip.Sound, Filter.Local(), _senderEntity, false, audioParams);
     }

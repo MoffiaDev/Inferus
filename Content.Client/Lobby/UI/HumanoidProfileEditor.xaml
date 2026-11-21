@@ -107,6 +107,11 @@
                                             Margin="0 0 4 0" />
                                     <OptionButton Name="SpeechBlipButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Name="SpeechBlipPitchLabel" MinWidth="110" />
+                                    <Slider Name="SpeechBlipPitchSlider" MinValue="0.75" Value="1" MaxValue="1.25" HorizontalExpand="True" Margin="5 0 5 0" />
+                                    <Button Name="SpeechBlipPitchReset" Text="{Loc 'ui-options-bind-reset'}" />
+                                </BoxContainer>
                                 <!-- Inferus end -->
                                 <!-- Pronouns -->
                                 <BoxContainer HorizontalExpand="True">

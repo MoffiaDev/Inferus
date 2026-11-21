@@ -13,4 +13,10 @@ public sealed partial class SpeechBlipComponent : Component
 {
     [DataField, AutoNetworkedField]
     public ProtoId<SpeechBlipPrototype> Blip = SpeechBlipSystem.DefaultBlip;
+
+    /// <summary>
+    /// Pitch multiplier applied on top of the blip's own pitch.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float Pitch = SpeechBlipSystem.DefaultPitch;
 }

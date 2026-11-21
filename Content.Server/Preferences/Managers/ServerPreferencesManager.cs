@@ -207,6 +207,7 @@ namespace Content.Server.Preferences.Managers
             )
             {
                 SpeechBlip = speechBlip, // Inferus
+                SpeechBlipPitch = SpeechBlipSystem.ClampPitch(profile.SpeechBlipPitch), // Inferus
                 Height = profile.Height, // Goobstation - port EE height/width sliders
                 Width = profile.Width, // Goobstation - port EE height/width sliders
             }.WithConsentToggles(profile.ConsentToggles.Select(t => new ProtoId<ConsentTogglePrototype>(t.ToggleId))); // Floof - Consent toggles

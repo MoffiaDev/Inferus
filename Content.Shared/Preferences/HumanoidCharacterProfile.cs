@@ -213,6 +213,7 @@ namespace Content.Shared.Preferences
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
         {
             SpeechBlip = other.SpeechBlip; // Inferus
+            SpeechBlipPitch = other.SpeechBlipPitch; // Inferus
             Height = other.Height; // Goobstation - port EE height/width sliders
             Width = other.Width; // Goobstation - port EE height/width sliders
             _consentToggles = new(other._consentToggles); // Floof - Consent toggles
@@ -403,6 +404,7 @@ namespace Content.Shared.Preferences
             profile.SpeechBlip = (randomizeCfg & RandomizeCfg.Species) != 0
                 ? SpeechBlipSystem.GetSpeciesBlip(prototypeManager, profile.Species)
                 : baseProfile.SpeechBlip;
+            profile.SpeechBlipPitch = baseProfile.SpeechBlipPitch;
             // End Inferus
 
             // Goobstation - Start - port EE height/width sliders
@@ -694,6 +696,7 @@ namespace Content.Shared.Preferences
             if (Sex != other.Sex) return false;
             if (Voice != other.Voice) return false;
             if (SpeechBlip != other.SpeechBlip) return false; // Inferus
+            if (!SpeechBlipPitch.Equals(other.SpeechBlipPitch)) return false; // Inferus
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             if (!MathHelper.CloseTo(Height, other.Height)) return false; // Goobstation - port EE height/width sliders
@@ -976,6 +979,7 @@ namespace Content.Shared.Preferences
             hashCode.Add((int)Sex);
             hashCode.Add(Voice);
             hashCode.Add(SpeechBlip); // Inferus
+            hashCode.Add(SpeechBlipPitch); // Inferus
             hashCode.Add(Height); // Goobstation - port EE height/width sliders
             hashCode.Add(Width); // Goobstation - port EE height/width sliders
             hashCode.Add((int)Gender);

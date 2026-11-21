@@ -32,6 +32,18 @@ public sealed partial class SpeechBlipSystem : EntitySystem
     /// </summary>
     public static readonly ProtoId<SpeechBlipPrototype> SyntheticBlip = "Synthetic";
 
+    /// <summary>
+    /// Range of the per-character blip pitch slider.
+    /// </summary>
+    public const float MinPitch = 0.75f;
+    public const float MaxPitch = 1.25f;
+    public const float DefaultPitch = 1f;
+
+    public static float ClampPitch(float pitch)
+    {
+        return float.IsFinite(pitch) ? Math.Clamp(pitch, MinPitch, MaxPitch) : DefaultPitch;
+    }
+
     private readonly Dictionary<ProtoId<SpeechBlipPrototype>, List<SpeechBlipClip>> _clips = new();
 
     public override void Initialize()
@@ -113,6 +125,20 @@ public sealed partial class SpeechBlipSystem : EntitySystem
             return;
 
         comp.Blip = blip;
+        Dirty(uid, comp);
+    }
+
+    /// <summary>
+    /// Sets the pitch multiplier for an entity's speech blips, adding <see cref="SpeechBlipComponent"/> if needed.
+    /// </summary>
+    public void SetPitch(EntityUid uid, float pitch)
+    {
+        pitch = ClampPitch(pitch);
+        var comp = EnsureComp<SpeechBlipComponent>(uid);
+        if (comp.Pitch.Equals(pitch))
+            return;
+
+        comp.Pitch = pitch;
         Dirty(uid, comp);
     }
 

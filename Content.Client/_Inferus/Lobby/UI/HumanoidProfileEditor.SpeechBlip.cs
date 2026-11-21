@@ -25,6 +25,17 @@ public sealed partial class HumanoidProfileEditor
         };
 
         SpeechBlipPreviewButton.OnPressed += _ => PlaySpeechBlipPreview();
+
+        SpeechBlipPitchSlider.MinValue = SpeechBlipSystem.MinPitch;
+        SpeechBlipPitchSlider.MaxValue = SpeechBlipSystem.MaxPitch;
+        SpeechBlipPitchSlider.OnValueChanged += _ => SetSpeechBlipPitch(SpeechBlipPitchSlider.Value);
+        SpeechBlipPitchSlider.OnReleased += _ => PlaySpeechBlipPreview();
+        SpeechBlipPitchReset.OnPressed += _ =>
+        {
+            SpeechBlipPitchSlider.SetValueWithoutEvent(SpeechBlipSystem.DefaultPitch);
+            SetSpeechBlipPitch(SpeechBlipSystem.DefaultPitch);
+            PlaySpeechBlipPreview();
+        };
     }
 
     private void UpdateSpeechBlipControls()
@@ -48,6 +59,25 @@ public sealed partial class HumanoidProfileEditor
         }
 
         UpdateSpeechBlipPreviewButton();
+        UpdateSpeechBlipPitchControls();
+    }
+
+    private void UpdateSpeechBlipPitchControls()
+    {
+        var pitch = Profile?.SpeechBlipPitch ?? SpeechBlipSystem.DefaultPitch;
+        SpeechBlipPitchSlider.SetValueWithoutEvent(pitch);
+        SpeechBlipPitchLabel.Text = Loc.GetString("humanoid-profile-editor-speech-blip-pitch-label",
+            ("pitch", (int) MathF.Round(pitch * 100f)));
+    }
+
+    private void SetSpeechBlipPitch(float pitch)
+    {
+        if (Profile == null)
+            return;
+
+        Profile = Profile.WithSpeechBlipPitch(pitch);
+        SetDirty();
+        UpdateSpeechBlipPitchControls();
     }
 
     /// <summary>
@@ -116,6 +146,7 @@ public sealed partial class HumanoidProfileEditor
                 return;
 
             var audioParams = clip.Params.WithVolume(clip.Params.Volume + SharedAudioSystem.GainToVolume(gain));
+            audioParams = audioParams.WithPitchScale(audioParams.Pitch * Profile.SpeechBlipPitch);
             Timer.Spawn(TimeSpan.FromSeconds(time),
                 () => audio.PlayGlobal(clip.Sound, Filter.Local(), false, audioParams),
                 _speechBlipPreviewCancel.Token);
