@@ -5,7 +5,7 @@
   components:
   - type: Label
     currentLabel: reagent-name-parthenol
-  - type: SolutionContainerManager
+  - type: Solution
     solutions:
       injector:
         maxVol: 10
