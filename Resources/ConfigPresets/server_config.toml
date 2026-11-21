@@ -41,7 +41,7 @@ ipintel_bad_rating = 0.95
 
 [ic]
 # Allows visibility and editing of flavor text (character descriptions)
-flavor_text = false
+flavor_text = true
 
 [admin]
 # Should players be able to see their own notes?
