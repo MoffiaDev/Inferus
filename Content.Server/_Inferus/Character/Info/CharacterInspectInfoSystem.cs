@@ -11,7 +11,7 @@ namespace Content.Server._Inferus.Character.Info;
 /// Sends the mind-held character info (personality description and OOC notes) of a character
 /// to a client that opened the Starlight character inspect window for them.
 /// </summary>
-public sealed class CharacterInspectInfoSystem : EntitySystem
+public sealed partial class CharacterInspectInfoSystem : EntitySystem
 {
     [Dependency] private ExamineSystemShared _examine = default!;
     [Dependency] private SharedMindSystem _mind = default!;
