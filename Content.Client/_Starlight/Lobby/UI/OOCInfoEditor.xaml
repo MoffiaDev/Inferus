@@ -1,0 +1,20 @@
+<!-- Inferus - labels moved to locale -->
+<Control xmlns="https://spacestation14.io"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         x:Class="Content.Client._Starlight.Lobby.UI.OOCInfoEditor"
+         HorizontalExpand="True">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True">
+        <BoxContainer
+            Name="PersonalNotes" Access="Public"
+            Orientation="Vertical" VerticalExpand="True">
+            <Label Text="{Loc 'character-editor-personal-notes'}"/>
+            <TextEdit Name="PersonalNotesInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
+        </BoxContainer>
+        <BoxContainer
+            Name="OOCNotes" Access="Public"
+            Orientation="Vertical" VerticalExpand="True">
+            <Label Text="{Loc 'character-editor-ooc-notes'}"/>
+            <TextEdit Name="OOCNotesInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
+        </BoxContainer>
+    </BoxContainer>
+</Control>

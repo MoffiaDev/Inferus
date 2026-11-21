@@ -306,6 +306,8 @@ namespace Content.Server.Database
             ModelBan.OnModelCreating(modelBuilder);
             ModelCustomVoteLog.OnModelCreating(modelBuilder);
             MoffModel.Configure(modelBuilder); // Inferus
+            CDModel.Configure(modelBuilder); // Inferus: Cosmatic Drift record system port
+            StarLightModel.Configure(modelBuilder); // Inferus: Starlight character info port
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -345,7 +347,6 @@ namespace Content.Server.Database
         public string Sex { get; set; } = null!;
         public string? Voice { get; set; } = null!; // If null, the voice gets defaulted to the sex associated value
         public string? SpeechBlip { get; set; } // Inferus
-        public float SpeechBlipPitch { get; set; } = 1f; // Inferus
         public string Gender { get; set; } = null!;
         public string Species { get; set; } = null!;
         public float Height { get; set; } = 1f; // Goobstation - port EE height/width sliders
@@ -371,6 +372,9 @@ namespace Content.Server.Database
         public int PreferenceId { get; set; }
         public Preference Preference { get; set; } = null!;
         public MoffModel.MoffProfile? MoffProfile { get; set; } // Inferus: multi-character selection
+        public CDModel.CDProfile? CDProfile { get; set; } // Cosmatic Drift Record System: optional persisted record data
+        public StarLightModel.CharacterInfo? CharacterInfo { get; set; } // Starlight
+        public StarLightModel.StarLightProfile? StarLightProfile { get; set; } // Starlight
     }
 
     // Floof Section - Consent toggles

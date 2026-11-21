@@ -2,7 +2,6 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Shared._Floof.Consent.Prototypes; // Floof - Consent toggles
-using Content.Shared._Inferus.Speech; // Inferus
 using Content.Shared.CCVar;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.EntityEffects.Effects;
@@ -213,10 +212,11 @@ namespace Content.Shared.Preferences
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
         {
             SpeechBlip = other.SpeechBlip; // Inferus
-            SpeechBlipPitch = other.SpeechBlipPitch; // Inferus
             Height = other.Height; // Goobstation - port EE height/width sliders
             Width = other.Width; // Goobstation - port EE height/width sliders
             _consentToggles = new(other._consentToggles); // Floof - Consent toggles
+            CopyStarlightCharacterInfo(other); // Inferus: Starlight character info port
+            CopyCDCharacterRecords(other); // Inferus: Cosmatic Drift record system port
         }
 
         /// <summary>
@@ -248,7 +248,6 @@ namespace Content.Shared.Preferences
                 Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species.Value, sex.Value),
                 Height = speciesProto?.DefaultHeight ?? 1f, // Goobstation - port EE height/width sliders
                 Width = speciesProto?.DefaultWidth ?? 1f, // Goobstation - port EE height/width sliders
-                SpeechBlip = SpeechBlipSystem.GetSpeciesBlip(IoCManager.Resolve<IPrototypeManager>(), species.Value), // Inferus
             };
         }
 
@@ -400,12 +399,7 @@ namespace Content.Shared.Preferences
             profile.Age = (randomizeCfg & RandomizeCfg.Age) != 0 ? RandomAge(speciesProto) : baseProfile.Age;
 
             profile.Appearance = HumanoidCharacterAppearance.Random(speciesProto, profile.Sex, randomizeCfg, baseProfile.Appearance);
-            // Inferus - random species get their species' blip
-            profile.SpeechBlip = (randomizeCfg & RandomizeCfg.Species) != 0
-                ? SpeechBlipSystem.GetSpeciesBlip(prototypeManager, profile.Species)
-                : baseProfile.SpeechBlip;
-            profile.SpeechBlipPitch = baseProfile.SpeechBlipPitch;
-            // End Inferus
+            profile.SpeechBlip = baseProfile.SpeechBlip; // Inferus
 
             // Goobstation - Start - port EE height/width sliders
             if ((randomizeCfg & RandomizeCfg.Size) != 0)
@@ -428,9 +422,7 @@ namespace Content.Shared.Preferences
 
             return Random(
                 RandomizeConfigAll ^ RandomizeCfg.Species,
-                // new HumanoidCharacterProfile().WithSpecies(species) // Inferus
                 new HumanoidCharacterProfile().WithSpecies(species)
-                    .WithSpeechBlip(SpeechBlipSystem.GetSpeciesBlip(IoCManager.Resolve<IPrototypeManager>(), species)) // Inferus - NPC humanoids use their species' blip
             );
         }
 
@@ -696,7 +688,6 @@ namespace Content.Shared.Preferences
             if (Sex != other.Sex) return false;
             if (Voice != other.Voice) return false;
             if (SpeechBlip != other.SpeechBlip) return false; // Inferus
-            if (!SpeechBlipPitch.Equals(other.SpeechBlipPitch)) return false; // Inferus
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             if (!MathHelper.CloseTo(Height, other.Height)) return false; // Goobstation - port EE height/width sliders
@@ -710,6 +701,8 @@ namespace Content.Shared.Preferences
             if (FlavorText != other.FlavorText) return false;
             if (ConsentText != other.ConsentText) return false; // Floof: Added consent.
             if (!_consentToggles.SetEquals(other._consentToggles)) return false; // Floof - Consent toggles
+            if (!StarlightCharacterInfoEquals(other)) return false; // Inferus: Starlight character info port
+            if (!CDCharacterRecordsEquals(other)) return false; // Inferus: Cosmatic Drift record system port
             return Appearance.Equals(other.Appearance);
         }
 
@@ -872,6 +865,8 @@ namespace Content.Shared.Preferences
             _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
 
             _consentToggles.RemoveWhere(t => !prototypeManager.HasIndex(t)); // Floof - Consent toggles
+            EnsureValidStarlightCharacterInfo(configManager, prototypeManager); // Inferus: Starlight character info port
+            EnsureValidCDCharacterRecords(); // Inferus: Cosmatic Drift record system port
 
             // Checks prototypes exist for all loadouts and dump / set to default if not.
             var toRemove = new ValueList<string>();
@@ -974,12 +969,12 @@ namespace Content.Shared.Preferences
             hashCode.Add(Name);
             hashCode.Add(FlavorText);
             hashCode.Add(ConsentText); // Floof: Added consent.
+            AddStarlightCharacterInfoHash(ref hashCode); // Inferus: Starlight character info port
             hashCode.Add(Species);
             hashCode.Add(Age);
             hashCode.Add((int)Sex);
             hashCode.Add(Voice);
             hashCode.Add(SpeechBlip); // Inferus
-            hashCode.Add(SpeechBlipPitch); // Inferus
             hashCode.Add(Height); // Goobstation - port EE height/width sliders
             hashCode.Add(Width); // Goobstation - port EE height/width sliders
             hashCode.Add((int)Gender);

@@ -5,6 +5,7 @@ using Content.Shared.Database;
 using Content.Shared.Preferences;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
+using Content.Shared._Starlight.Character.Info; // Inferus: Starlight character info port
 
 namespace Content.Server.Administration.Systems;
 
@@ -12,6 +13,7 @@ public sealed partial class AdminVerbSystem
 {
     [Dependency] private IServerPreferencesManager _moffPrefsManager = default!;
     [Dependency] private MoffCharacterPickerSystem _moffCharacterPicker = default!;
+    [Dependency] private SLSharedCharacterInfoSystem _slCharacterInfo = default!; // Inferus: Starlight character info port
 
     /// <summary>
     /// One "spawn here" entry per character the player has, since there is no single selected one.
@@ -46,6 +48,8 @@ public sealed partial class AdminVerbSystem
 
                     if (_mindSystem.TryGetMind(args.Target, out var mindId, out var mindComp))
                         _mindSystem.TransferTo(mindId, mobUid, true, mind: mindComp);
+
+                    _slCharacterInfo.ApplyCharacterInfo(mobUid, humanoid); // Inferus: Starlight character info port, after the mind moves over
                 },
                 ConfirmationPopup = true,
                 Impact = LogImpact.High,

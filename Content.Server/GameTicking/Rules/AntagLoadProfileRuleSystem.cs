@@ -6,6 +6,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Character.Info; // Inferus: Starlight character info port
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -14,6 +15,7 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
     [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
     [Dependency] private IServerPreferencesManager _prefs = default!;
     [Dependency] private SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private SLSharedCharacterInfoSystem _slCharacterInfo = default!; // Inferus: Starlight character info port
 
     public override void Initialize()
     {
@@ -48,6 +50,7 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
         {
             _visualBody.ApplyProfileTo(args.Entity.Value, humanoidProfile);
             _humanoidProfile.ApplyProfileTo(args.Entity.Value, humanoidProfile);
+            _slCharacterInfo.ApplyCharacterInfo(args.Entity.Value, humanoidProfile); // Inferus: Starlight character info port
         }
     }
 }

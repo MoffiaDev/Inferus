@@ -40,7 +40,6 @@
   - Fingerprint
   - Grammar # Pronouns
   - HumanoidProfile # Age, Sex, Gender
-  - SpeechBlip # Inferus - clones keep the original's speech blip
   - InnerBodyAnomalyVisuals # How you look with anomalies
   - MeleeWeapon # Attack animation, damage and sound
   - NpcFactionMember
@@ -150,6 +149,11 @@
   - TemperatureProtection
   - TypingIndicator
   - ScaleVisuals # for dwarf height
+  # Extended Character Descriptions - Starlight
+  - CharacterDescription
+  - MindSecrets
+  - RoleplayInfo
+  # Starlight end
   eventComponents:
   # these need special treatment in the event subscription
   - Inventory # arachnid pockets and diona feet

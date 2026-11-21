@@ -83,6 +83,12 @@ namespace Content.Server.Database
                 .Property(log => log.OrganMarkings)
                 .HasConversion(jsonByteArrayConverter);
 
+            // Cosmatic Drift Record System-start
+            modelBuilder.Entity<CDModel.CDProfile>()
+                .Property(profile => profile.CharacterRecords)
+                .HasConversion(jsonByteArrayConverter);
+            // Cosmatic Drift Record System-end
+
             // EF core can make this automatically unique on sqlite but not psql.
             modelBuilder.Entity<IPIntelCache>()
                 .HasIndex(p => p.Address)
