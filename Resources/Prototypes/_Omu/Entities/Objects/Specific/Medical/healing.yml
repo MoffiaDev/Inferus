@@ -4,11 +4,19 @@
   id: SyringeParthenol
   components:
   - type: Label
-    currentLabel: reagent-name-parthenol
+    # currentLabel: reagent-name-parthenol # Inferus
+    localizedLabel: reagent-name-parthenol # Inferus - currentLabel is not allowed in prototypes
+  # Inferus - the base syringe already defines the injector solution, use the single-solution field instead of redefining it
+  # - type: Solution
+  #   solutions:
+  #     injector:
+  #       maxVol: 10
+  #       reagents:
+  #         - ReagentId: Parthenol
+  #           Quantity: 10
   - type: Solution
-    solutions:
-      injector:
-        maxVol: 10
-        reagents:
-          - ReagentId: Parthenol
-            Quantity: 10
+    solution:
+      reagents:
+      - ReagentId: Parthenol
+        Quantity: 10
+  # End Inferus
