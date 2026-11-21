@@ -224,7 +224,12 @@ namespace Content.Client.Gameplay
 
             EntityCoordinates coordinates = default;
             EntityUid? entityToClick = null;
-            if (args.Viewport is IViewportControl vp && kArgs.PointerLocation.IsValid)
+            // Inferus - skip when the viewport has no map (e.g. no attached eye right after respawn), avoids nullspace ToCoordinates errors
+            // if (args.Viewport is IViewportControl vp && kArgs.PointerLocation.IsValid)
+            if (args.Viewport is IViewportControl vp
+                && kArgs.PointerLocation.IsValid
+                && vp.PixelToMap(kArgs.PointerLocation.Position).MapId != MapId.Nullspace)
+            // End Inferus
             {
                 var mousePosWorld = vp.PixelToMap(kArgs.PointerLocation.Position);
 

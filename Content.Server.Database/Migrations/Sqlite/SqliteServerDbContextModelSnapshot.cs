@@ -1237,6 +1237,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("speech_blip");
 
+                    b.Property<float>("SpeechBlipPitch")
+                        .HasColumnType("REAL")
+                        .HasColumnName("speech_blip_pitch");
+
                     b.Property<string>("Voice")
                         .HasColumnType("TEXT")
                         .HasColumnName("voice");
