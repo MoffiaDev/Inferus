@@ -1,0 +1,12 @@
+diff a/Content.Server/_Omu/Crewlet/CrewletBrainSystem.cs b/Content.Server/_Omu/Crewlet/CrewletBrainSystem.cs	(rejected hunks)
+@@ -185,8 +185,8 @@ public override void Update(float frameTime)
+         base.Update(frameTime);
+ 
+         // Inferus - In Inferus the Walk key is held to sprint, so crewlets sprint like players do:
+-        // they run by default, walk while keeping away from someone, drain stamina while sprinting
+-        // and slow to a walk when winded until they catch their breath.
++        // they run by default, walk while keeping away from someone or near their owner, drain stamina
++        // while sprinting and slow to a walk when winded until they catch their breath.
+         // using var query = EntityQueryEnumerator<NPCSteeringComponent, CrewletBrainComponent, InputMoverComponent>();
+         // while (query.MoveNext(out _, out _, out _, out var mover))
+         // {

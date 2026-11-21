@@ -345,6 +345,7 @@ namespace Content.Server.Database
         public string Sex { get; set; } = null!;
         public string? Voice { get; set; } = null!; // If null, the voice gets defaulted to the sex associated value
         public string? SpeechBlip { get; set; } // Inferus
+        public float SpeechBlipPitch { get; set; } = 1f; // Inferus
         public string Gender { get; set; } = null!;
         public string Species { get; set; } = null!;
         public float Height { get; set; } = 1f; // Goobstation - port EE height/width sliders

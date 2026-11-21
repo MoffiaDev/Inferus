@@ -33,7 +33,13 @@ public sealed partial class CharacterInfoSystem : EntitySystem
 
     private void OnCharacterInfoEvent(CharacterInfoEvent msg, EntitySessionEventArgs args)
     {
-        var entity = GetEntity(msg.NetEntity);
+        // Inferus - the entity can be deleted or out of PVS by the time the reply arrives (e.g. after aghost or setmind)
+        // var entity = GetEntity(msg.NetEntity);
+        if (!TryGetEntity(msg.NetEntity, out var maybeEntity) || TerminatingOrDeleted(maybeEntity.Value))
+            return;
+
+        var entity = maybeEntity.Value;
+        // End Inferus
         var data = new CharacterData(entity, msg.Objectives, msg.Briefing, msg.Job, Name(entity));
 
         OnCharacterUpdate?.Invoke(data);

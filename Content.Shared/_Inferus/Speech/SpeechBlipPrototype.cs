@@ -1,3 +1,5 @@
+using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Speech;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
@@ -24,6 +26,20 @@ public sealed partial class SpeechBlipPrototype : IPrototype
     /// </summary>
     [DataField]
     public int Order;
+
+    /// <summary>
+    /// Species that use this blip by default. Picked automatically when the species is chosen in the character editor,
+    /// and given to NPCs of that species. A species should only be listed on one blip.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<SpeciesPrototype>> Species = new();
+
+    /// <summary>
+    /// Speech sounds that map to this blip. Non-player entities (NPCs, machines) with one of these
+    /// <see cref="SpeechComponent.SpeechSounds"/> use this blip by default.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<SpeechSoundsPrototype>> SpeechSounds = new();
 
     /// <summary>
     /// If false, speech bubbles appear instantly like they normally would and no blips are played.

@@ -1,0 +1,11 @@
+# Satiation stand-ins for the Omu crewlet Hunger/Thirst overrides (baseDecayRate 0.004167 / 0.04167).
+
+- type: satiation
+  id: CrewletHunger
+  parent: NormalSatiationHunger
+  baseChangeRate: -0.004167
+
+- type: satiation
+  id: CrewletThirst
+  parent: NormalSatiationThirst
+  baseChangeRate: -0.04167

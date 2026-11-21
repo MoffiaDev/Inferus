@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseStationEvent
+  id: CrewletOmen
+  components:
+  - type: StationEvent
+    weight: 1
+    earliestStart: 20
+    maxOccurrences: 1
+    # eventType: Neutral # Inferus - no event types
+  # Inferus - no chaos score
+  # - type: GameRule
+  #   chaosScore: 20
+  # End Inferus
+  - type: CrewletOmenRule

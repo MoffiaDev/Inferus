@@ -82,3 +82,4 @@ Content under these subdirectories either originate from their respective fork, 
 | `_MACRO`         | Macrocosm           | https://github.com/syndicate-ss14/macrocosm             |    MIT   |
 | `_RMC14`         | RMC-14              | https://github.com/RMC-14/RMC-14                        |    MIT   |
 | `_ES`            | Ephemeral Space     | https://github.com/EphemeralSpace/ephemeral-space       |    MIT   |
+| `_Omu`           | Omu Station         | https://github.com/ProjectOmu/OmuStation                |    AGPL 3.0 / MIT   |

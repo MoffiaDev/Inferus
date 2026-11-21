@@ -220,6 +220,7 @@ public sealed partial class HumanoidProfileEditor
         RefreshLoadouts();
         UpdateSexControls(); // update sex for new species
         UpdateVoiceControls();
+        SetSpeciesSpeechBlip(newSpecies); // Inferus
         UpdateSpeciesGuidebookIcon();
         UpdateHeightWidthSliders(); // Goobstation - port EE height/width sliders, changing species provides inaccurate sliders without this
         ReloadPreview();
