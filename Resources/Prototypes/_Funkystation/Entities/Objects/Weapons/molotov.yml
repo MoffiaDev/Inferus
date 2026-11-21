@@ -67,6 +67,7 @@
   - type: FireVisuals
     sprite: _Funkystation/Objects/Weapons/Throwable/molotov.rsi
     normalState: icon-fire
+  - type: Damageable # Inferus: Injurable needs a Damageable to actually take damage
   - type: Injurable
     damageContainer: Inorganic
   - type: Destructible
