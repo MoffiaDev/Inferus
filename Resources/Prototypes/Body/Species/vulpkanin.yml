@@ -15,18 +15,18 @@
     enum.HumanoidVisualLayers.HeadTop:
       limit: 1
       required: true
-      default: [ VulpEar ]
+      default: [ FoxEar ] # Inferus: was VulpEar
     enum.HumanoidVisualLayers.Snout:
       limit: 1
       required: true
-      default: [ VulpSnout ]
+      default: [ FoxSnout ] # Inferus: was VulpSnout
     enum.HumanoidVisualLayers.SnoutCover:
       limit: 3
       required: false
     enum.HumanoidVisualLayers.Tail:
       limit: 1
       required: true
-      default: [ VulpTailVulp ]
+      default: [ FoxTail ] # Inferus: was VulpTailVulp
     enum.HumanoidVisualLayers.LArm:
       limit: 2
       required: false
@@ -96,48 +96,58 @@
       jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Vulpkanin/displacement.rsi
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi # Inferus: was Mobs/Species/Vulpkanin/displacement.rsi
             state: jumpsuit
-      back:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vulpkanin/displacement.rsi
-            state: back
+      # Inferus - Starlight vulpkanin only displace jumpsuit, outerClothing, head and shoes; their body needs no back displacement
+      # back:
+      #   sizeMaps:
+      #     32:
+      #       sprite: Mobs/Species/Vulpkanin/displacement.rsi
+      #       state: back
+      # End Inferus
       outerClothing:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Vulpkanin/displacement.rsi
-            state: outerwear
-      gloves:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vulpkanin/displacement.rsi
-            state: hand
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi # Inferus: was Mobs/Species/Vulpkanin/displacement.rsi
+            state: outerClothing # Inferus: was outerwear
+      # Inferus - Starlight vulpkanin only displace jumpsuit, outerClothing, head and shoes; their body needs no gloves displacement
+      # gloves:
+      #   sizeMaps:
+      #     32:
+      #       sprite: Mobs/Species/Vulpkanin/displacement.rsi
+      #       state: hand
+      # End Inferus
       shoes:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Vulpkanin/displacement.rsi
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi # Inferus: was Mobs/Species/Vulpkanin/displacement.rsi
             state: shoes
       head:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Vulpkanin/displacement.rsi
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi # Inferus: was Mobs/Species/Vulpkanin/displacement.rsi
             state: head
-      neck:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vulpkanin/displacement.rsi
-            state: neck
-      eyes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vulpkanin/displacement.rsi
-            state: eyes
-      belt:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vulpkanin/displacement.rsi
-            state: belt
+      # Inferus - Starlight vulpkanin only displace jumpsuit, outerClothing, head and shoes; their body needs no neck displacement
+      # neck:
+      #   sizeMaps:
+      #     32:
+      #       sprite: Mobs/Species/Vulpkanin/displacement.rsi
+      #       state: neck
+      # End Inferus
+      # Inferus - Starlight vulpkanin only displace jumpsuit, outerClothing, head and shoes; their body needs no eyes displacement
+      # eyes:
+      #   sizeMaps:
+      #     32:
+      #       sprite: Mobs/Species/Vulpkanin/displacement.rsi
+      #       state: eyes
+      # End Inferus
+      # Inferus - Starlight vulpkanin only displace jumpsuit, outerClothing, head and shoes; their body needs no belt displacement
+      # belt:
+      #   sizeMaps:
+      #     32:
+      #       sprite: Mobs/Species/Vulpkanin/displacement.rsi
+      #       state: belt
+      # End Inferus
 
 - type: entity
   parent:
@@ -231,7 +241,7 @@
   components:
   - type: VisualOrgan
     data:
-      sprite: Mobs/Species/Vulpkanin/parts.rsi
+      sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi # Inferus: was Mobs/Species/Vulpkanin/parts.rsi
   - type: VisualOrganMarkings
     markingData:
       group: Vulpkanin
@@ -242,14 +252,14 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Mobs/Species/Vulpkanin/parts.rsi
+    sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi # Inferus: was Mobs/Species/Vulpkanin/parts.rsi
 
 - type: entity
   parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganVulpkaninExternal ]
   id: OrganVulpkaninTorso
 
 - type: entity
-  parent: [ OrganBaseHead, OrganVulpkaninExternal ]
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganVulpkaninExternal ] # Inferus: Starlight parts.rsi has head_m/head_f instead of head
   id: OrganVulpkaninHead
   components:
   - type: VisualOrganMarkings
@@ -262,12 +272,14 @@
     dependentHidingLayers:
       enum.HumanoidVisualLayers.Snout:
       - enum.HumanoidVisualLayers.SnoutCover
-    markingsDisplacement:
-      Hair:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vulpkanin/displacement.rsi
-            state: hair
+    # Inferus - Starlight vulpkanin hair follows the normal human head layout, so no hair displacement
+    # markingsDisplacement:
+    #   Hair:
+    #     sizeMaps:
+    #       32:
+    #         sprite: Mobs/Species/Vulpkanin/displacement.rsi
+    #         state: hair
+    # End Inferus
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganVulpkaninExternal ]
@@ -308,6 +320,13 @@
 - type: entity
   parent: [ OrganVulpkaninVisual, OrganBaseEyes, OrganVulpkaninInternal ]
   id: OrganVulpkaninEyes
+  # Inferus - Starlight parts.rsi has no eyes state; Starlight vulpkanin use the human eyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Mobs/Customization/eyes.rsi
+      state: eyes
+  # End Inferus
 
 - type: entity
   parent: [ OrganBaseTongue, OrganVulpkaninInternal ]
