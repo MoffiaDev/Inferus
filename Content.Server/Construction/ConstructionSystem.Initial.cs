@@ -166,6 +166,7 @@ namespace Content.Server.Construction
 
             var steps = new List<ConstructionGraphStep>();
             var used = new HashSet<EntityUid>();
+            Content.Shared._Inferus.Construction.ConstructionInsertSoundPrototype? inferusSound = null; // Inferus - construction place sounds
 
             foreach (var step in edge.Steps)
             {
@@ -199,6 +200,7 @@ namespace Content.Server.Construction
                             else if (!_container.Insert(splitStack.Value, GetContainer(materialStep.Store)))
                                 continue;
 
+                            inferusSound ??= _inferusInsertSound.GetRule(splitStack.Value); // Inferus - construction place sounds
                             handled = true;
                             break;
                         }
@@ -230,6 +232,7 @@ namespace Content.Server.Construction
                                 continue;
 
                             used.Add(entity);
+                            inferusSound ??= _inferusInsertSound.GetRule(entity); // Inferus - construction place sounds
                             toFind--;
                             if (toFind > 0)
                                 continue;
@@ -315,6 +318,17 @@ namespace Content.Server.Construction
             {
                 completed.PerformAction(newEntity, user, EntityManager);
             }
+
+            // Inferus - construction place sounds: play the main ingredient's place sound, unless the recipe already plays one.
+            if (!Content.Server._Inferus.Construction.ConstructionInsertSoundSystem.HasSoundAction(edge.Completed)
+                && !steps.Any(s => Content.Server._Inferus.Construction.ConstructionInsertSoundSystem.HasSoundAction(s.Completed)))
+            {
+                if (!TerminatingOrDeleted(newEntity))
+                    _inferusInsertSound.Play(inferusSound, newEntity);
+                else
+                    _inferusInsertSound.Play(inferusSound, Transform(user).Coordinates);
+            }
+            // End Inferus
 
             return newEntity;
         }
