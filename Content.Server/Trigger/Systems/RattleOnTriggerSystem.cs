@@ -3,6 +3,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Pinpointer;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components.Effects;
+using Robust.Shared.Map; // Lavaland Change
 using Robust.Shared.Utility;
 
 namespace Content.Server.Trigger.Systems;
@@ -11,6 +12,7 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
 {
     [Dependency] private RadioSystem _radio = default!;
     [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private SharedTransformSystem _transform = default!; // Lavaland Change
 
     public override void Initialize()
     {
@@ -38,7 +40,18 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
             return;
 
         // Gets the location of the user
-        var posText = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString(target.Value));
+        // Lavaland Change start - added ReportCoordinates check
+        string posText;
+        if (ent.Comp.ReportCoordinates)
+        {
+            posText = "Unknown";
+            var mapCoords = _transform.GetMapCoordinates(target.Value);
+            if (mapCoords.MapId != MapId.Nullspace)
+                posText = $"({(int) mapCoords.Position.X}, {(int) mapCoords.Position.Y})";
+        }
+        else
+            posText = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString(target.Value));
+        // Lavaland Change end
 
         var message = Loc.GetString(messageId, ("user", target.Value), ("position", posText));
         // Sends a message to the radio channel specified by the implant

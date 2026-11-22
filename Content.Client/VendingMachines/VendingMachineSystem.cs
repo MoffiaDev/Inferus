@@ -102,7 +102,7 @@ public sealed partial class VendingMachineSystem : SharedVendingMachineSystem
 
     private void TryUpdateVisualState(Entity<VendingMachineComponent?> entity, VendingMachineEjectComponent? ejectComponent = null)
     {
-        if (!Resolve(entity.Owner, ref entity.Comp))
+        if (!Resolve(entity.Owner, ref entity.Comp, false)) // Inferus: DeltaV shop vendors (salvage vendor) inherit VendingMachineEject/Visuals without a VendingMachine
             return;
 
         Resolve(entity.Owner, ref ejectComponent, false);

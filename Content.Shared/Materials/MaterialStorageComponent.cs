@@ -97,9 +97,12 @@ public readonly record struct ConsumeStoredMaterialsEvent(Entity<MaterialStorage
 /// event raised on the materialStorage when a material entity is inserted into it.
 /// </summary>
 [ByRefEvent]
-public readonly record struct MaterialEntityInsertedEvent(MaterialComponent MaterialComp)
+public readonly record struct MaterialEntityInsertedEvent(EntityUid User, EntityUid Inserted, MaterialComponent MaterialComp, int Count) // Lavaland Change: added User, Inserted and Count
 {
+    public readonly EntityUid User = User; // Lavaland Change
+    public readonly EntityUid Inserted = Inserted; // Lavaland Change
     public readonly MaterialComponent MaterialComp = MaterialComp;
+    public readonly int Count = Count; // Lavaland Change
 }
 
 /// <summary>

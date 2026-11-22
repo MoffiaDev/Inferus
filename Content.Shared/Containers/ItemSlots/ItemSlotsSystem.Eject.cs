@@ -106,8 +106,13 @@ public sealed partial class ItemSlotsSystem
     /// Tries to eject an item and then place it in a user's hands or drop it.
     /// </summary>
     /// <returns>True if the item was ejected, even if it could not be placed in a hand.</returns>
-    public bool TryEjectToHands(EntityUid uid, ItemSlot slot, EntityUid? user, bool excludeUserAudio = false)
+    public bool TryEjectToHands(EntityUid uid, ItemSlot slot, EntityUid? user, bool excludeUserAudio = false, bool doAfter = true) // Lavaland Change - added doAfter
     {
+        // Lavaland Change start
+        if (doAfter && slot.EjectDelay != null && user != null)
+            return TryStartEjectDoAfter(uid, slot, user.Value);
+        // Lavaland Change end
+
         if (!TryEject(uid, slot, user, out var item, excludeUserAudio))
             return false;
 

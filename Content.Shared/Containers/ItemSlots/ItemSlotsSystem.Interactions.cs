@@ -100,10 +100,17 @@ public sealed partial class ItemSlotsSystem
             return;
         }
 
+        // Lavaland Change start - delayed insertion
+        slots.Sort(SortEmpty);
+        if (TryStartInsertDoAfter(ent, slots[0], args.Used, args.User))
+        {
+            args.Handled = true;
+            return;
+        }
+        // Lavaland Change end
+
         if (!_handsSystem.TryDrop(args.User, args.Used))
             return;
-
-        slots.Sort(SortEmpty);
 
         foreach (var slot in slots)
         {

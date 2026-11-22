@@ -1179,3 +1179,12 @@ AirlockStandardGlass: AirlockGlass
 
 # 2026-10-30
 PlushieArachind: PlushieArachnid
+
+# Inferus: Goob-only prototypes used by the ported Lavaland maps
+# 2026-11-22
+MachineFTLDriveAutomated: null # Mono FTL drives are not in Inferus, shuttles FTL without them
+TelecomTransmitter: null # Goob telecom range is not in Inferus
+WallRockBasaltBSCrystal: WallRock # bluespace crystal ore is not in Inferus
+DeadRatvar: null
+ShrapnelPayload: null
+DVSmartFridgeMedical: SmartFridge

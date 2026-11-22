@@ -6,6 +6,7 @@ using Content.Shared.Weapons.Misc;
 using Content.Shared.Whitelist;
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network; // Lavaland Change
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -22,6 +23,7 @@ public sealed partial class ChasmSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedChatSystem _chat = default!;
     [Dependency] private SharedGrapplingGunSystem _grapple = default!;
+    [Dependency] private INetManager _net = default!; // Lavaland Change
 
     [Dependency] private EntityQuery<ChasmComponent> _chasmQuery;
     [Dependency] private EntityQuery<ChasmFallingComponent> _chasmFallingQuery;
@@ -36,6 +38,20 @@ public sealed partial class ChasmSystem : EntitySystem
         {
             if (_timing.CurTime < chasm.NextDeletionTime)
                 continue;
+
+            // Lavaland Change start: Jaunter. The server decides, since a jaunter may teleport the faller away.
+            if (_net.IsClient)
+                continue;
+
+            var beforeEv = new _Lavaland.Chasm.BeforeChasmFallingEvent(uid);
+            RaiseLocalEvent(uid, ref beforeEv);
+            if (beforeEv.Cancelled)
+            {
+                RemComp<ChasmFallingComponent>(uid);
+                _blocker.UpdateCanMove(uid);
+                continue;
+            }
+            // Lavaland Change end: Jaunter
 
             var chasmEvent = new EntityCompletedFallingIntoChasmEvent((uid, chasm));
             RaiseLocalEvent(chasm.FallingInto, ref chasmEvent);

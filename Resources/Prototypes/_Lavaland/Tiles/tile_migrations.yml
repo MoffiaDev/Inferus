@@ -1,0 +1,4 @@
+# Inferus: tiles used by the ported Lavaland maps that do not exist in Inferus
+- type: tileAlias
+  id: FloorWoodDark
+  target: FloorWood

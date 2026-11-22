@@ -1,0 +1,28 @@
+# Gibtonite ore variants
+- type: entity
+  parent: [ BaseRockGibtonite, WallRock ]
+  id: WallRockGibtonite
+  components:
+  - type: EntityRemap
+    mask:
+      AsteroidRock: AsteroidRockGibtonite
+      WallRockChromite: WallRockChromiteGibtonite
+      WallRockSand: WallRockSandGibtonite
+      WallRockSnow: WallRockSnowGibtonite
+  # Inferus: removed the old edge-layer Sprite, upstream BaseRockGibtonite provides the gibtonite layer
+
+- type: entity
+  id: WallRockSnowGibtonite
+  parent: [ BaseRockGibtonite, WallRockSnow ]
+  # Inferus: removed the old edge-layer Sprite, upstream BaseRockGibtonite provides the gibtonite layer
+
+- type: entity
+  id: WallRockSandGibtonite
+  parent: [ BaseRockGibtonite, WallRockSand ]
+  # Inferus: removed the old edge-layer Sprite, upstream BaseRockGibtonite provides the gibtonite layer
+
+- type: entity
+  id: WallRockChromiteGibtonite
+  parent: [ BaseRockGibtonite, WallRockChromite ]
+  # Inferus: removed the old edge-layer Sprite, upstream BaseRockGibtonite provides the gibtonite layer
+

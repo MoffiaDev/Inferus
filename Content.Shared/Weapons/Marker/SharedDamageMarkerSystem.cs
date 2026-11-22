@@ -1,5 +1,6 @@
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
+using Content.Shared._Lavaland.Weapons.Marker; // Lavaland Change
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Whitelist;
@@ -38,6 +39,11 @@ public abstract partial class SharedDamageMarkerSystem : EntitySystem
         {
             _damageable.TryChangeDamage(args.User, leech.Leech, true, false, origin: args.Used);
         }
+
+        // Lavaland Change start
+        RaiseLocalEvent(uid, new ApplyMarkerBonusEvent(args.Used, args.User)); // For effects on the target
+        RaiseLocalEvent(args.Used, new ApplyMarkerBonusEvent(args.Used, args.User)); // For effects on the weapon
+        // Lavaland Change end
     }
 
     public override void Update(float frameTime)

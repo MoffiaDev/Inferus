@@ -1,0 +1,17 @@
+- type: entity
+  parent: IDCardStandard
+  id: MinerIDCard
+  name: miner ID card
+  components:
+  - type: Sprite
+    layers: # Inferus: upstream ID cards use stripes and a job icon layer
+    - state: default
+    - state: stripe_top
+      color: "#b18644"
+    - state: stripe_bottom
+      color: "#5b4523"
+    - sprite: Interface/Misc/job_icons.rsi
+      offset: -0.09375, 0.0625
+      state: ShaftMiner
+  - type: PresetIdCard
+    job: ShaftMiner

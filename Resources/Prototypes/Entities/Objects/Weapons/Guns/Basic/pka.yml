@@ -2,7 +2,7 @@
   name: proto-kinetic accelerator
   id: WeaponProtoKineticAccelerator
   parent: [WeaponProtoKineticAcceleratorBase, BaseCargoContraband]
-  description: Fires low-damage kinetic bolts at a short range.
+  description: Fires high-damage kinetic bolts at a short range. # Lavaland Change: was low-damage
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
@@ -13,10 +13,4 @@
       map: [ "empty-icon" ]
   # todo: add itemcomponent with inhandVisuals states using unused texture and animation assets in kinetic_accelerator.rsi
   # todo: add clothingcomponent with clothingVisuals states using unused texture and animations assets in kinetic_accelerator.rsi
-  - type: UpgradeableGun
-    whitelist:
-      tags:
-      - PKAUpgrade
-  - type: ContainerContainer
-    containers:
-      upgrades: !type:Container
+  # Lavaland Change: upgrades are handled by UpgradeableWeapon in the _Lavaland base

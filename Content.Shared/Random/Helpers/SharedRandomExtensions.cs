@@ -76,6 +76,29 @@ namespace Content.Shared.Random.Helpers
             throw new InvalidOperationException("Invalid weighted pick");
         }
 
+        // Lavaland Change start - weighted pick with a seeded System.Random
+        public static T Pick<T>(Dictionary<T, float> weights, System.Random random)
+            where T : notnull
+        {
+            var sum = weights.Values.Sum();
+            var accumulated = 0f;
+
+            var rand = random.NextFloat() * sum;
+
+            foreach (var (key, weight) in weights)
+            {
+                accumulated += weight;
+
+                if (accumulated >= rand)
+                {
+                    return key;
+                }
+            }
+
+            throw new InvalidOperationException("Invalid weighted pick");
+        }
+        // Lavaland Change end
+
         public static T PickAndTake<T>(this IRobustRandom random, Dictionary<T, float> weights)
             where T : notnull
         {

@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Lavaland mob faction to stop gang wars
+# Inferus: moved here from the upstream ai_factions.yml edit in Goob-Station#5270
+- type: npcFaction
+  id: Lavafauna
+  hostile:
+  - NanoTrasen
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Wizard # Inferus
+  - Xenoborg # Inferus
+  # Inferus: Changeling removed, not in Inferus

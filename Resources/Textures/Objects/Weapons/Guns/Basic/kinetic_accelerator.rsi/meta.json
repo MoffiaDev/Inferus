@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "icon by RiceMar1244 based on tgstation at https://github.com/tgstation/tgstation/commit/8b7f8ba6a3327c7381967c550f185dffafd11a57; inhand, wield, and belt equip sprites by RiceMar1244",
+    "copyright": "icon by RiceMar1244 based on tgstation at https://github.com/tgstation/tgstation/commit/8b7f8ba6a3327c7381967c550f185dffafd11a57; inhand, wield, and belt equip sprites by RiceMar1244, bayonet and flashlight taken from Monkestation at commit https://github.com/Monkestation/Monkestation2.0/commit/914d185332f0487f6da39bb43711019282fe2fae; upgrade-space from Goob Station at https://github.com/Goob-Station/Goob-Station/pull/5270",
     "size": {
         "x": 32,
         "y": 32
@@ -42,6 +42,18 @@
         {
             "name": "equipped-SUITSTORAGE",
             "directions": 4
+        },
+        {
+            "name": "bayonet"
+        },
+        {
+            "name": "flight"
+        },
+        {
+            "name": "flight-on"
+        },
+        {
+            "name": "upgrade-space"
         }
     ]
 }

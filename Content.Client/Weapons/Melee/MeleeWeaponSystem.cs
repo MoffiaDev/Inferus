@@ -16,6 +16,8 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Content.Shared._Goobstation.Weapons.MeleeDash; // Goobstation
+using System.Numerics; // Goobstation
 
 namespace Content.Client.Weapons.Melee;
 
@@ -141,6 +143,18 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
                 return;
             }
 
+            // Goobstation start - melee dash
+            if (HasComp<MeleeDashComponent>(weaponUid))
+            {
+                var userMap = TransformSystem.GetMapCoordinates(entity);
+                var targetMap = TransformSystem.ToMapCoordinates(coordinates);
+                var direction = targetMap.MapId == userMap.MapId ? targetMap.Position - userMap.Position : Vector2.Zero;
+                if (direction != Vector2.Zero)
+                    RaisePredictiveEvent(new MeleeDashEvent(GetNetEntity(weaponUid), direction));
+                return;
+            }
+            // Goobstation end
+
             ClientHeavyAttack(entity, coordinates, weaponUid, weapon);
             return;
         }
@@ -207,13 +221,21 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     {
         var attackerPos = TransformSystem.GetMapCoordinates(attacker);
 
-        if (mousePos.MapId != attackerPos.MapId || (attackerPos.Position - mousePos.Position).Length() > meleeComponent.Range)
+        // Goob edit start - let the weapon modify the light attack range
+        if (mousePos.MapId != attackerPos.MapId)
             return;
 
         EntityUid? target = null;
 
         if (_stateManager.CurrentState is GameplayStateBase screen)
             target = screen.GetClickedEntity(mousePos);
+
+        var rangeEv = new Content.Shared._Goobstation.Weapons.GetLightAttackRangeEvent(target, attacker, meleeComponent.Range);
+        RaiseLocalEvent(weaponUid, ref rangeEv);
+
+        if ((attackerPos.Position - mousePos.Position).Length() > (rangeEv.Cancel ? meleeComponent.Range : rangeEv.Range))
+            return;
+        // Goob edit end
 
         // Don't light-attack if interaction will be handling this instead
         if (Interaction.CombatModeCanHandInteract(attacker, target))

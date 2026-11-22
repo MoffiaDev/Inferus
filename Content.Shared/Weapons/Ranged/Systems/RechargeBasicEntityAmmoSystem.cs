@@ -50,7 +50,11 @@ public sealed partial class RechargeBasicEntityAmmoSystem : EntitySystem
                 continue;
             }
 
-            recharge.NextCharge = recharge.NextCharge.Value + TimeSpan.FromSeconds(recharge.RechargeCooldown);
+            // Goobstation
+            var ev = new Content.Shared._Goobstation.Weapons.Ranged.RechargeBasicEntityAmmoGetCooldownModifiersEvent(1f);
+            RaiseLocalEvent(uid, ref ev);
+
+            recharge.NextCharge = recharge.NextCharge.Value + TimeSpan.FromSeconds(recharge.RechargeCooldown * ev.Multiplier); // Goobstation
             Dirty(uid, recharge);
         }
     }
@@ -85,7 +89,11 @@ public sealed partial class RechargeBasicEntityAmmoSystem : EntitySystem
 
         if (ent.Comp.NextCharge == null || ent.Comp.NextCharge < _timing.CurTime)
         {
-            ent.Comp.NextCharge = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.RechargeCooldown);
+            // Goobstation
+            var ev = new Content.Shared._Goobstation.Weapons.Ranged.RechargeBasicEntityAmmoGetCooldownModifiersEvent(1f);
+            RaiseLocalEvent(ent, ref ev);
+
+            ent.Comp.NextCharge = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.RechargeCooldown * ev.Multiplier); // Goobstation
             Dirty(ent);
         }
     }

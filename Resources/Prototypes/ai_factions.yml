@@ -10,6 +10,8 @@
   - AllHostile
   - Wizard
   - Xenoborg
+  friendly: # Lavaland Change
+  - Lavafauna # Lavaland Change
 
 - type: npcFaction
   id: NanoTrasen
@@ -23,6 +25,7 @@
   - AllHostile
   - Wizard
   - Xenoborg
+  - Lavafauna # Lavaland Change
 
 - type: npcFaction
   id: Mouse
@@ -45,6 +48,7 @@
   - Xeno
   - AllHostile
   - Dragon
+  - Lavafauna # Lavaland Change
 
 - type: npcFaction
   id: SimpleHostile
@@ -61,6 +65,7 @@
   - Wizard
   - Xenoborg
   - AnimalFriend # MACRO
+  - Lavafauna # Lavaland Change
 
 - type: npcFaction
   id: SimpleNeutral
@@ -77,6 +82,7 @@
   - AllHostile
   - Wizard
   - Xenoborg
+  - Lavafauna # Lavaland Change
 
 - type: npcFaction
   id: Xeno
@@ -91,6 +97,7 @@
   - Wizard
   - Dragon
   - Xenoborg
+  - Lavafauna # Lavaland Change
 
 - type: npcFaction
   id: Zombie
@@ -106,6 +113,7 @@
   - Wizard
   - Dragon
   - Xenoborg
+  - Lavafauna # Lavaland Change
 
 - type: npcFaction
   id: Revolutionary
@@ -117,6 +125,7 @@
   - AllHostile
   - Wizard
   - Xenoborg
+  - Lavafauna # Lavaland Change
 
 - type: npcFaction
   id: AllHostile
@@ -134,6 +143,7 @@
   - Revolutionary
   - Wizard
   - Xenoborg
+  - Lavafauna # Lavaland Change
 
 - type: npcFaction
   id: Wizard

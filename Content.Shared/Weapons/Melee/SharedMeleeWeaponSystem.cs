@@ -343,6 +343,20 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             if (TryComp(held, out melee) &&
                 !melee.MustBeEquippedToUse)
             {
+                // Lavaland Change start
+                if (HasComp<Content.Shared._Lavaland.Weapons.MeleeWeaponRelayComponent>(held.Value))
+                {
+                    var relay = new Content.Shared._Lavaland.Weapons.GetRelayMeleeWeaponEvent();
+                    RaiseLocalEvent(held.Value, ref relay);
+                    if (relay.Handled && TryComp(relay.Found, out MeleeWeaponComponent? relayMelee))
+                    {
+                        weaponUid = relay.Found.Value;
+                        melee = relayMelee;
+                        return true;
+                    }
+                }
+                // Lavaland Change end
+
                 weaponUid = held.Value;
                 return true;
             }
@@ -515,19 +529,24 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
     protected abstract bool InRange(EntityUid user, EntityUid target, float range, ICommonSession? session);
 
-    protected virtual void DoLightAttack(EntityUid user, LightAttackEvent ev, EntityUid meleeUid, MeleeWeaponComponent component, ICommonSession? session)
+    public virtual void DoLightAttack(EntityUid user, LightAttackEvent ev, EntityUid meleeUid, MeleeWeaponComponent component, ICommonSession? session) // Goobstation - Edit: was protected
     {
         // If I do not come back later to fix Light Attacks being Heavy Attacks you can throw me in the spider pit -Errant
         var damage = GetDamage(meleeUid, user, component) * GetHeavyDamageModifier(meleeUid, user, component);
         var target = GetEntity(ev.Target);
         var resistanceBypass = GetResistanceBypass(meleeUid, user, component);
 
+        // Goobstation start
+        var rangeEv = new Content.Shared._Goobstation.Weapons.GetLightAttackRangeEvent(target, user, component.Range);
+        RaiseLocalEvent(meleeUid, ref rangeEv);
+        // Goobstation end
+
         // For consistency with wide attacks stuff needs damageable.
         if (Deleted(target) ||
             !HasComp<DamageableComponent>(target) ||
             !TryComp(target, out TransformComponent? targetXform) ||
             // Not in LOS.
-            !InRange(user, target.Value, component.Range, session))
+            !InRange(user, target.Value, rangeEv.Cancel ? component.Range : rangeEv.Range, session)) // Goobstation: was component.Range
         {
             // Leave IsHit set to true, because the only time it's set to false
             // is when a melee weapon is examined. Misses are inferred from an

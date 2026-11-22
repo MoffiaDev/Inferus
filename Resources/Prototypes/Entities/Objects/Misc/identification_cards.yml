@@ -26,6 +26,7 @@
   - type: StealTarget
     stealGroup:
     - IDCard
+  - type: MiningPoints # DeltaV
 
 #IDs with layers
 

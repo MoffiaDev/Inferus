@@ -126,6 +126,13 @@ public sealed partial class EntityWhitelistSystem : EntitySystem
     /// <summary>
     /// Helper function to determine if a whitelist is either null or the entity is not on the list.
     /// </summary>
+    // Lavaland Change start - blacklist helpers
+    public bool IsBlacklistPass(EntityWhitelist? blacklist, EntityUid uid) => IsWhitelistPass(blacklist, uid);
+    public bool IsBlacklistFail(EntityWhitelist? blacklist, EntityUid uid) => IsWhitelistFail(blacklist, uid);
+    public bool IsBlacklistPassOrNull(EntityWhitelist? blacklist, EntityUid uid) => IsWhitelistPassOrNull(blacklist, uid);
+    public bool IsBlacklistFailOrNull(EntityWhitelist? blacklist, EntityUid uid) => IsWhitelistFailOrNull(blacklist, uid);
+    // Lavaland Change end
+
     public bool IsWhitelistFailOrNull(EntityWhitelist? whitelist, EntityUid uid)
     {
         if (whitelist == null)

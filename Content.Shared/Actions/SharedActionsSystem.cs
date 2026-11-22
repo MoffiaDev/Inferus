@@ -276,6 +276,12 @@ public abstract partial class SharedActionsSystem : EntitySystem
     /// <param name="ev">The Request Perform Action Event</param>
     /// <param name="user">The user/performer of the action</param>
     /// <param name="skipDoActionRequest">Should this skip the initial doaction request?</param>
+    /// <summary>
+    /// Goobstation: public API to perform an action on behalf of an entity (used by megafauna AI).
+    /// </summary>
+    public bool TryPerformAction(EntityUid user, RequestPerformActionEvent ev)
+        => TryPerformAction(ev, user, showPopups: false);
+
     private bool TryPerformAction(RequestPerformActionEvent ev, EntityUid user, bool skipDoActionRequest = false, bool showPopups = true)
     {
         if (!_actionsQuery.TryComp(user, out var component))
@@ -1009,6 +1015,11 @@ public abstract partial class SharedActionsSystem : EntitySystem
         if (GameTiming.ApplyingState)
             return;
 
+        // Lavaland Change start - let providers (e.g. gun upgrades) know the item is being unequipped
+        if (!TerminatingOrDeleted(args.Equipment))
+            RaiseLocalEvent(args.Equipment, new GetItemActionsEvent(_actionContainer, args.EquipTarget, args.Equipment, isEquipping: false));
+        // Lavaland Change end
+
         RemoveProvidedActions(uid, args.Equipment, component);
     }
 
@@ -1016,6 +1027,11 @@ public abstract partial class SharedActionsSystem : EntitySystem
     {
         if (GameTiming.ApplyingState)
             return;
+
+        // Lavaland Change start - let providers (e.g. gun upgrades) know the item is being unequipped
+        if (!TerminatingOrDeleted(args.Unequipped))
+            RaiseLocalEvent(args.Unequipped, new GetItemActionsEvent(_actionContainer, args.User, args.Unequipped, isEquipping: false));
+        // Lavaland Change end
 
         RemoveProvidedActions(uid, args.Unequipped, component);
     }

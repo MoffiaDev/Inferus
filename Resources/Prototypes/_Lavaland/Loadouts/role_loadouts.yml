@@ -1,0 +1,15 @@
+- type: roleLoadout
+  id: JobShaftMiner
+  groups:
+  - GroupTankHarness
+  # Inferus: removed SalvageSpecialistNeck, not in Inferus
+  - SalvageSpecialistBackpack
+  - SalvageSpecialistOuterClothing
+  - SalvageSpecialistShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - AssistiveItems # Inferus: was Animals, matches upstream salvage specialist
+  - GroupSpeciesBreathTool
+  - GroupBreathToolDecapoid # Inferus: matches upstream salvage specialist
+  # Inferus: removed SalvageEnvirohelm/Envirosuit/Envirogloves, EE plasmamen are not in Inferus

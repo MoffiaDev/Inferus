@@ -37,6 +37,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private UserInterfaceSystem _ui = default!;
     [Dependency] private SharedContentEyeSystem _eyeSystem = default!;
     [Dependency] private EntityQuery<PilotComponent> _pilotQuery = default!;
+    [Dependency] private _Lavaland.Shuttles.Systems.DockingConsoleSystem _dockingConsole = default!; // Lavaland Change: FTL
 
     private static readonly ProtoId<TagPrototype> CanPilotTag = "CanPilot";
 
@@ -112,6 +113,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 UpdateState(uid, ref dockState);
             }
         }
+
+        _dockingConsole.UpdateConsolesUsing(gridUid); // Lavaland Change: FTL
     }
 
     /// <summary>

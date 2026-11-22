@@ -56,6 +56,7 @@ public sealed partial class ItemSlotsSystem : EntitySystem
         foreach (var (id, slot) in ent.Comp.Slots)
         {
             slot.ContainerSlot = _containers.EnsureContainer<ContainerSlot>(ent, id);
+            slot.ContainerSlot.OccludesLight = slot.OccludesLight; // Lavaland Change
         }
     }
 
@@ -119,6 +120,7 @@ public sealed partial class ItemSlotsSystem : EntitySystem
         }
 
         slot.ContainerSlot = _containers.EnsureContainer<ContainerSlot>(ent, id);
+        slot.ContainerSlot.OccludesLight = slot.OccludesLight; // Lavaland Change
         ent.Comp.Slots[id] = slot;
         Dirty(ent);
     }
@@ -222,6 +224,7 @@ public sealed partial class ItemSlotsSystem : EntitySystem
             {
                 CopySlotState(serverSlot, ref itemSlot);
                 itemSlot.ContainerSlot = _containers.EnsureContainer<ContainerSlot>(ent, serverKey);
+                itemSlot.ContainerSlot.OccludesLight = serverSlot.OccludesLight; // Lavaland Change
             }
             else
             {

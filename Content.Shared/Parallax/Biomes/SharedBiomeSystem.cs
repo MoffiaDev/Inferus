@@ -16,7 +16,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
     [Dependency] private TileSystem _tile = default!;
     [Dependency] private SharedMapSystem _map = default!;
 
-    protected const byte ChunkSize = 8;
+    public const byte ChunkSize = 8; // Lavaland change - make it public
 
     private T Pick<T>(List<T> collection, float value)
     {

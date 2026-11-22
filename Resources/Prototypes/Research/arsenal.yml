@@ -197,22 +197,23 @@
   technologyPrerequisites: # Floof - Tech Tree
   - WeaponizedLaserManipulation # Floof - Tech Tree
 
-- type: technology
-  id: KineticModifications
-  name: research-technology-kinetic-modifications
-  icon:
-    sprite: Objects/Tools/upgrade.rsi
-    state: display
-  discipline: Arsenal
-  tier: 2
-  cost: 7500
-  recipeUnlocks:
-  - PKAUpgradeDamage
-  - PKAUpgradeRange
-  - PKAUpgradeFireRate
-  position: 1,-2 # Floof - Tech Tree
-  technologyPrerequisites: # Floof - Tech Tree
-  - SalvageWeapons # Floof - Tech Tree
+# Lavaland Change: superseded by the _Lavaland version
+#- type: technology
+#  id: KineticModifications
+#  name: research-technology-kinetic-modifications
+#  icon:
+#    sprite: Objects/Tools/upgrade.rsi
+#    state: display
+#  discipline: Arsenal
+#  tier: 2
+#  cost: 7500
+#  recipeUnlocks:
+#  - PKAUpgradeDamage
+#  - PKAUpgradeRange
+#  - PKAUpgradeFireRate
+#  position: 1,-2 # Floof - Tech Tree
+#  technologyPrerequisites: # Floof - Tech Tree
+#  - SalvageWeapons # Floof - Tech Tree
 
 - type: technology
   id: BasicShuttleArmament
