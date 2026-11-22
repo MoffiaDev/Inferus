@@ -11,11 +11,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Omu.Fluids; // Inferus: was Content.Omu.Server.Fluids
 
-public sealed class SmokeBlockedReagentSystem : EntitySystem
+public sealed partial class SmokeBlockedReagentSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedPuddleSystem _puddle = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedPuddleSystem _puddle = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutions = default!;
 
     private ProtoId<ReagentPrototype>[] _blocked = Array.Empty<ProtoId<ReagentPrototype>>();
 
