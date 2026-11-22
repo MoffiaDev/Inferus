@@ -9,6 +9,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using Robust.Shared.Spawners; // Inferus
 
 namespace Content.Server._Omu.Crewlet;
 
@@ -181,6 +182,9 @@ public sealed partial class CrewletBrainSystem
             pointing.User = ent;
             Dirty(arrow, pointing);
         }
+
+        // Inferus - upstream pointing arrows now despawn through TimedDespawn instead of the old EndTime cleanup
+        EnsureComp<TimedDespawnComponent>(arrow).Lifetime = (float) ent.Comp.PointDuration.TotalSeconds;
 
         _popup.PopupEntity(Loc.GetString("pointing-system-point-at-other-others",
                 ("otherName", Identity.Entity(ent, EntityManager)),
