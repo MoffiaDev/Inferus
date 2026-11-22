@@ -18,6 +18,7 @@
   mapName: Dev
   mapPath: /Maps/Test/dev_map.yml
   minPlayers: 0
+  planets: [ Lavaland ] # Inferus - Lavaland for the dev map mining dock
   stations:
     Dev:
       stationProto: StandardNanotrasenStation
@@ -27,6 +28,9 @@
         - type: StationJobs
           availableJobs:
             Captain: [ -1, -1 ]
+            # Inferus - let's also test other jobs? thanks
+            ShaftMiner: [ -1, -1 ]
+            SalvageSpecialist: [ -1, -1 ]
 
 - type: gameMap
   id: TestTeg
