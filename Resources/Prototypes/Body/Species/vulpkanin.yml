@@ -326,6 +326,9 @@
     data:
       sprite: Mobs/Customization/eyes.rsi
       state: eyes
+  - type: EyeBlinking
+    eyelidsSprite: /Textures/Mobs/Species/Human/parts.rsi # Inferus: was /Textures/Mobs/Species/Vulpkanin/parts.rsi, matches the human eyes used above
+  - type: Appearance
   # End Inferus
 
 - type: entity

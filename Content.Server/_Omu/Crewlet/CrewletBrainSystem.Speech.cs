@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 using System.Numerics;
-using Content.Server.Pointing.Components;
+using Content.Shared.Pointing.Components;
 using Content.Shared.Animals.Components;
 using Content.Shared.Chat;
 using Content.Shared.Chat.TypingIndicator;
@@ -168,7 +168,7 @@ public sealed partial class CrewletBrainSystem
 
     private void Point(Entity<CrewletBrainComponent> ent, EntityUid target)
     {
-        if (!_pointing.CanPoint(ent) || !InSight(ent, target))
+        if (!_pointing.CanPoint(ent, Transform(target).Coordinates, target) || !InSight(ent, target))
             return;
 
         _rotate.TryFaceCoordinates(ent, _transform.GetWorldPosition(target));
@@ -178,6 +178,7 @@ public sealed partial class CrewletBrainSystem
             var start = _transform.ToCoordinates((arrow, Transform(arrow)), _transform.GetMapCoordinates(ent));
             pointing.StartPosition = start.Position;
             pointing.EndTime = _timing.CurTime + ent.Comp.PointDuration;
+            pointing.User = ent;
             Dirty(arrow, pointing);
         }
 

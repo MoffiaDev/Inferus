@@ -25,8 +25,8 @@ public sealed partial class VisualBodySystem
 
         for (var i = 0; i < prototype.Sprites.Count; i++)
         {
-            if (prototype.Sprites[i] is not SpriteSpecifier.Rsi sprite)
-                continue;
+            var layerData = prototype.Sprites[i];
+            var sprite = layerData.Sprite;
 
             var slot = prototype.GetSpriteLayer(sprite);
             if (!_sprite.LayerMapTryGet(target, slot, out var anchor, true))
@@ -34,7 +34,7 @@ public sealed partial class VisualBodySystem
 
             var offset = offsets.GetValueOrDefault(slot);
             var displaced = displacements.GetValueOrDefault(slot);
-            var layerId = $"{prototype.ID}-{sprite.RsiState}";
+            var layerId = layerData.GetLayerID(prototype.ID);
 
             if (!_sprite.LayerMapTryGet(target, layerId, out var layer, false))
             {
@@ -58,8 +58,7 @@ public sealed partial class VisualBodySystem
                 displacements[slot] = displaced + 1;
             }
 
-            if (prototype.Shaders != null &&
-                prototype.Shaders.TryGetValue(sprite.RsiState, out var shader) &&
+            if (layerData.Shader is { } shader &&
                 _sprite.LayerMapTryGet(target, layerId, out var shaderLayer, false))
                 target.Comp.LayerSetShader(shaderLayer, shader);
 

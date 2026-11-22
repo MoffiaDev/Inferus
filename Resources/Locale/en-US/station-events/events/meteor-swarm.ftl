@@ -1,4 +1,4 @@
-﻿
+
 # rewritten for funky
 station-event-meteor-swarm-start-announcement = Telemetry alert.
                                                 High-density cluster of meteors detected on collision trajectory.

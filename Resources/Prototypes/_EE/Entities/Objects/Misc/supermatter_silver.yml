@@ -18,7 +18,8 @@
     sprite: _EE/Structures/Power/Generation/Supermatter/supermatter_sliver.rsi
     state: icon
   - type: StealTarget
-    stealGroup: SupermatterSliver
+    stealGroup: # Inferus: was scalar, upstream made it a list
+    - SupermatterSliver
   - type: Tag
     tags:
     - HighRiskItem

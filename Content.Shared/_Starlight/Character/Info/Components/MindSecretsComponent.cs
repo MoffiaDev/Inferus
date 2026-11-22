@@ -9,7 +9,7 @@ namespace Content.Shared._Starlight.Character.Info.Components;
 /// <summary>
 /// Stores information that is only accessible to the player controlling this mind
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(SharedGameTicker), typeof(SLSharedCharacterInfoSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(GameTicker), typeof(SLSharedCharacterInfoSystem))]
 public sealed partial class MindSecretsComponent : Component
 {
     public override bool SessionSpecific => true;

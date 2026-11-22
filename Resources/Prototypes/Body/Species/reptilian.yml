@@ -364,6 +364,9 @@
     data:
       sprite: Mobs/Species/Reptilian/parts.rsi # Inferus: was Mobs/Customization/eyes.rsi, Funky Station reptilian eyes
       state: eyes # Inferus
+  - type: EyeBlinking
+    eyelidsSprite: /Textures/Mobs/Species/Human/parts.rsi
+  - type: Appearance
 
 - type: entity
   parent: [ OrganBaseTongue, OrganReptilianInternal ]

@@ -16,7 +16,7 @@ namespace Content.Server._Moffstation.Station;
 /// </summary>
 public sealed partial class MoffCharacterPickerSystem : EntitySystem
 {
-    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private ServerAntagSelectionSystem _antag = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private MoffJobCandidateSystem _candidates = default!;
     [Dependency] private PlayTimeTrackingSystem _playTime = default!;

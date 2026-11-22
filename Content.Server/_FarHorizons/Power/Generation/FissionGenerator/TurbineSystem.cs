@@ -20,7 +20,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Random;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.DeviceLinking.Events;
-using Content.Server.DeviceLinking.Systems;
+using Content.Shared.DeviceLinking.Systems;
+using Content.Shared.DeviceLinking.Payloads;
 using Content.Shared.Construction.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceNetwork;
@@ -85,7 +86,7 @@ public sealed partial class TurbineSystem : SharedTurbineSystem
 
         SubscribeLocalEvent<TurbineComponent, SignalReceivedEvent>(OnSignalReceived);
         SubscribeLocalEvent<TurbineComponent, SignalReceivedEvent<LogicStatePayload>>(OnSignalReceived);
-        SubscribeLocalEvent<TurbineComponent, PortDisconnectedEvent>(OnPortDisconnected);
+        SubscribeLocalEvent<TurbineComponent, SinkPortDisconnectedEvent>(OnPortDisconnected);
 
         SubscribeLocalEvent<TurbineComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<TurbineComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
@@ -433,7 +434,7 @@ public sealed partial class TurbineSystem : SharedTurbineSystem
         _adminLogger.Add(LogType.Action, $"{ToPrettyString(trigger):trigger} set the stator load on {ToPrettyString(uid):target} to {logtext}");
     }
 
-    private void OnPortDisconnected(EntityUid uid, TurbineComponent comp, ref PortDisconnectedEvent args)
+    private void OnPortDisconnected(EntityUid uid, TurbineComponent comp, ref SinkPortDisconnectedEvent args)
     {
         if (args.Port == comp.StatorLoadIncreasePort)
             comp.IncreasePortState = SignalState.Low;

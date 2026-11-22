@@ -141,8 +141,6 @@ namespace Content.Shared.Interaction
                     CCVars.InteractionRateLimitAnnounceAdminsDelay,
                     RateLimitAlertAdmins)
             );
-
-            InitializeBlocking();
         }
 
         // ES START
@@ -191,8 +189,11 @@ namespace Content.Shared.Interaction
 
             var range = _ui.GetUiRange(ev.Target, ev.UiKey);
 
-            // As long as range>0, the UI frame updates should have auto-closed the UI if it is out of range.
-            DebugTools.Assert(range <= 0 || UiRangeCheck(ev.Actor, ev.Target, range));
+            if (range > 0 && !UiRangeCheck(ev.Actor, ev.Target, range))
+            {
+                ev.Cancel();
+                return;
+            }
 
             if (range <= 0 && !IsAccessible(ev.Actor, ev.Target))
             {
@@ -204,7 +205,7 @@ namespace Content.Shared.Interaction
                 return;
 
             // Key shouldn't ever be null.
-            if (!aUiComp.Key.Equals(ev.UiKey))
+            if (!ev.UiKey.Equals(aUiComp.Key))
                 return;
 
             if (aUiComp.SingleUser && aUiComp.CurrentSingleUser != null && aUiComp.CurrentSingleUser != ev.Actor)
@@ -255,7 +256,7 @@ namespace Content.Shared.Interaction
             if (!item.DeleteOnDrop)
                 RemCompDeferred<UnremoveableComponent>(uid);
             else
-                PredictedQueueDel(uid);
+                QueueDel(uid);
         }
 
         private void OnUnequipHand(EntityUid uid, UnremoveableComponent item, GotUnequippedHandEvent args)
@@ -266,7 +267,7 @@ namespace Content.Shared.Interaction
             if (!item.DeleteOnDrop)
                 RemCompDeferred<UnremoveableComponent>(uid);
             else
-                PredictedQueueDel(uid);
+                QueueDel(uid);
         }
 
         private void OnDropped(EntityUid uid, UnremoveableComponent item, DroppedEvent args)
@@ -279,7 +280,7 @@ namespace Content.Shared.Interaction
             if (!item.DeleteOnDrop)
                 RemCompDeferred<UnremoveableComponent>(uid);
             else
-                PredictedQueueDel(uid);
+                QueueDel(uid);
         }
 
         private bool HandleTryPullObject(ICommonSession? session, EntityCoordinates coords, EntityUid uid)

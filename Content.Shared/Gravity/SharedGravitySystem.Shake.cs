@@ -9,7 +9,7 @@ namespace Content.Shared.Gravity;
 public abstract partial class SharedGravitySystem
 {
     [Dependency] private ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
-    [Dependency] private SharedGameTicker _ticker = default!; // Starlight
+    [Dependency] private GameTicker _ticker = default!; // Starlight - Inferus: was SharedGameTicker
     [Dependency] private EntityQuery<GravityComponent> _gravityQuery = default!;
 
     protected const float GravityKick = 100.0f;

@@ -3,7 +3,9 @@
 
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Administration.Logs;
-using Content.Server.DeviceLinking.Systems;
+using Content.Shared.DeviceLinking.Components;
+using Content.Shared.DeviceLinking.Systems;
+using Content.Shared.DeviceLinking.Payloads;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared.Database;
 using Content.Shared.DeviceLinking;
@@ -31,7 +33,7 @@ public sealed partial class GasTurbineMonitorSystem : EntitySystem
         SubscribeLocalEvent<GasTurbineMonitorComponent, MapInitEvent>(OnMapInit);
 
         SubscribeLocalEvent<GasTurbineMonitorComponent, NewLinkEvent>(OnNewLink);
-        SubscribeLocalEvent<GasTurbineMonitorComponent, PortDisconnectedEvent>(OnPortDisconnected);
+        SubscribeLocalEvent<GasTurbineMonitorComponent, SinkPortDisconnectedEvent>(OnPortDisconnected);
 
         SubscribeLocalEvent<GasTurbineMonitorComponent, TurbineChangeFlowRateMessage>(OnTurbineFlowRateChanged);
         SubscribeLocalEvent<GasTurbineMonitorComponent, TurbineChangeStatorLoadMessage>(OnTurbineStatorLoadChanged);
@@ -64,7 +66,7 @@ public sealed partial class GasTurbineMonitorSystem : EntitySystem
         Dirty(uid, comp);
     }
 
-    private void OnPortDisconnected(EntityUid uid, GasTurbineMonitorComponent comp, ref PortDisconnectedEvent args)
+    private void OnPortDisconnected(EntityUid uid, GasTurbineMonitorComponent comp, ref SinkPortDisconnectedEvent args)
     {
         if (args.Port != comp.LinkingPort)
             return;
@@ -165,7 +167,7 @@ public sealed partial class GasTurbineMonitorSystem : EntitySystem
 
         _uiSystem.CloseUi(uid, TurbineUiKey.Key);
         comp.turbine = null;
-        _signal.RemoveSinkFromSource(uidTurbine.Value, uid, source, sink);
+        _signal.RemoveSinkFromSource((uidTurbine.Value, source), (uid, sink));
         Dirty(uid, comp);
     }
 }

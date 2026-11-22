@@ -287,7 +287,7 @@ public sealed partial class ZoneSystem
         {
             for (var index = 0; index < navChunk.TileData.Length; index++)
             {
-                if ((navChunk.TileData[index] & SharedNavMapSystem.AirlockMask) == 0)
+                if ((navChunk.TileData[index] & NavMapSystem.AirlockMask) == 0)
                     continue;
 
                 RefreshMarkerArea(ctx, comp, TileOf(origin, index));
@@ -324,7 +324,7 @@ public sealed partial class ZoneSystem
     }
 
     private static Vector2i TileOf(Vector2i chunkOrigin, int index)
-        => (chunkOrigin * SharedNavMapSystem.ChunkSize) + SharedNavMapSystem.GetTileFromIndex(index);
+        => (chunkOrigin * NavMapSystem.ChunkSize) + NavMapSystem.GetTileFromIndex(index);
 
     #endregion
 
@@ -938,7 +938,7 @@ public sealed partial class ZoneSystem
 
     private bool TryGetFlag(ZoneContext ctx, Vector2i tile, out int flag)
     {
-        var origin = SharedMapSystem.GetChunkIndices(tile, SharedNavMapSystem.ChunkSize);
+        var origin = SharedMapSystem.GetChunkIndices(tile, NavMapSystem.ChunkSize);
 
         if (!ctx.Nav.Chunks.TryGetValue(origin, out var chunk))
         {
@@ -946,14 +946,14 @@ public sealed partial class ZoneSystem
             return false;
         }
 
-        var relative = SharedMapSystem.GetChunkRelative(tile, SharedNavMapSystem.ChunkSize);
-        flag = chunk.TileData[SharedNavMapSystem.GetTileIndex(relative)];
+        var relative = SharedMapSystem.GetChunkRelative(tile, NavMapSystem.ChunkSize);
+        flag = chunk.TileData[NavMapSystem.GetTileIndex(relative)];
 
-        if ((flag & SharedNavMapSystem.AirlockMask) != 0)
+        if ((flag & NavMapSystem.AirlockMask) != 0)
             flag = ExcludeExemptDoors(ctx, tile, flag);
 
         if (IsBoundaryTile(ctx.Grid, tile))
-            flag |= SharedNavMapSystem.AirlockMask;
+            flag |= NavMapSystem.AirlockMask;
 
         return true;
     }
@@ -979,13 +979,13 @@ public sealed partial class ZoneSystem
             doors |= (int) airtight.AirBlockedDirection;
         }
 
-        return !exempt ? flag : (flag & ~SharedNavMapSystem.AirlockMask) | (doors << (int) NavMapChunkType.Airlock);
+        return !exempt ? flag : (flag & ~NavMapSystem.AirlockMask) | (doors << (int) NavMapChunkType.Airlock);
     }
 
     private static bool IsRegionTile(int flag)
-        => (flag & SharedNavMapSystem.FloorMask) != 0 &&
-        (flag & SharedNavMapSystem.WallMask) != SharedNavMapSystem.WallMask &&
-        (flag & SharedNavMapSystem.AirlockMask) != SharedNavMapSystem.AirlockMask;
+        => (flag & NavMapSystem.FloorMask) != 0 &&
+        (flag & NavMapSystem.WallMask) != NavMapSystem.WallMask &&
+        (flag & NavMapSystem.AirlockMask) != NavMapSystem.AirlockMask;
 
     private bool IsRegionTile(ZoneContext ctx, Vector2i tile)
         => TryGetFlag(ctx, tile, out var flag) && IsRegionTile(flag);

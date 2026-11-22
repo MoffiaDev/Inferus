@@ -1,4 +1,4 @@
-﻿
+
 # rewritten for funky
 station-event-bureaucratic-error-announcement = Manifest telemetry alert.
                                                 Unexpected allocation fault logged in Organic Resources registry.

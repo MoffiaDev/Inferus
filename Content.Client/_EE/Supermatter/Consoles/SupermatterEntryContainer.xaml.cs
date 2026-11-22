@@ -33,9 +33,9 @@ public sealed partial class SupermatterEntryContainer : BoxContainer
     // Colors
     private readonly Color _colorGray = Color.Gray;
     private readonly Color _colorSlate = Color.LightSlateGray;
-    private readonly Color _colorRed = StyleNano.DangerousRedFore;
-    private readonly Color _colorOrange = StyleNano.ConcerningOrangeFore;
-    private readonly Color _colorGreen = StyleNano.GoodGreenFore;
+    private readonly Color _colorRed = Color.FromHex("#BB3232");
+    private readonly Color _colorOrange = Color.FromHex("#A5762F");
+    private readonly Color _colorGreen = Color.FromHex("#31843E");
     private readonly Color _colorTurquoise = Color.FromHex("#00fff7");
 
     // Arrow icons
@@ -215,11 +215,11 @@ public sealed partial class SupermatterEntryContainer : BoxContainer
 
         SupermatterStatusLabel.FontColorOverride = entry.EntityStatus switch
         {
-            >= Shared._EE.Supermatter.Components.SupermatterStatusType.Danger => StyleNano.DangerousRedFore,
-            >= Shared._EE.Supermatter.Components.SupermatterStatusType.Caution => StyleNano.ConcerningOrangeFore,
-            Shared._EE.Supermatter.Components.SupermatterStatusType.Normal => StyleNano.GoodGreenFore,
+            >= Shared._EE.Supermatter.Components.SupermatterStatusType.Danger => Color.FromHex("#BB3232"),
+            >= Shared._EE.Supermatter.Components.SupermatterStatusType.Caution => Color.FromHex("#A5762F"),
+            Shared._EE.Supermatter.Components.SupermatterStatusType.Normal => Color.FromHex("#31843E"),
             Shared._EE.Supermatter.Components.SupermatterStatusType.Inactive => Color.DarkGray,
-            _ => StyleNano.DisabledFore
+            _ => Color.FromHex("#5A5A5A")
         };
 
         // Focus updates

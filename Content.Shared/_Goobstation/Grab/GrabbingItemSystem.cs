@@ -3,6 +3,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
 using System.Numerics;
 using Content.Shared._Goobstation.Grab;
 using Content.Shared._Goobstation.GrabIntent;
@@ -88,7 +89,7 @@ public sealed partial class GrabbingItemSystem : EntitySystem
         if (!TryComp(args.User, out PullerComponent? puller))
             return;
 
-        var hitEntity = args.HitEntities[0];
+        var hitEntity = args.HitEntities.First();
 
         if (puller.Pulling != null)
         {

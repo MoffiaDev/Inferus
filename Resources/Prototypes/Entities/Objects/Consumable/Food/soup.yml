@@ -601,11 +601,6 @@
   - type: Sprite
     sprite: Objects/Consumable/Food/meals.rsi
     state: amanita-jelly
-  # macro edit start - allow ungu to eat
-  - type: Tag
-    tags:
-    - UnguFood
-  # macro edit end
   - type: Solution
     solution:
       reagents:
@@ -615,6 +610,10 @@
         Quantity: 15
       - ReagentId: Vodka
         Quantity: 5
+  - type: Tag
+    tags:
+    - UnguFood # Macrocosm - allow ungu to eat
+    - FinishedMeal
 
 # Soup
 
@@ -842,6 +841,7 @@
   - type: Tag
     tags:
     - ChiliBowl
+    - FinishedMeal
 
 
 - type: entity
@@ -876,6 +876,7 @@
   - type: Tag
     tags:
     - ChiliBowl
+    - FinishedMeal
 
 - type: entity
   name: chili con carnival
@@ -896,6 +897,7 @@
   - type: Tag
     tags:
     - ChiliBowl
+    - FinishedMeal
 
 - type: entity
   name: monkey's delight

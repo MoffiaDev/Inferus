@@ -24,8 +24,8 @@ public sealed partial class SupermatterGasBarContainer : BoxContainer
     // Colors
     private readonly Color _colorGray = Color.Gray;
     private readonly Color _colorSlate = Color.LightSlateGray;
-    private readonly Color _colorRed = StyleNano.DangerousRedFore;
-    private readonly Color _colorGreen = StyleNano.GoodGreenFore;
+    private readonly Color _colorRed = Color.FromHex("#BB3232");
+    private readonly Color _colorGreen = Color.FromHex("#31843E");
 
     // Arrow icons
     private readonly string _arrowUp = "/Textures/_EE/Interface/Supermatter/arrow_up.png";

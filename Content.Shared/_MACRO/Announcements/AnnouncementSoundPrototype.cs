@@ -1,3 +1,4 @@
+using Content.Shared.Audio; // Inferus
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
@@ -14,6 +15,7 @@ public sealed partial class AnnouncementSoundPrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
+    [AllowStereo] // Inferus - announcements play globally; upstream StereoTest requires this
     public required SoundSpecifier DefaultSound;
 
     /// <summary>

@@ -1,5 +1,5 @@
 using Content.Shared._Goobstation.RoundIntro;
-using Content.Server.Antag.Components;
+using Content.Shared.Antag.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;

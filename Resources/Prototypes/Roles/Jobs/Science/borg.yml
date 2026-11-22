@@ -31,6 +31,7 @@
       time: 10h
   icon: JobIconBorg
   supervisors: job-supervisors-rd
+  guides: [ Cyborgs ]
   jobEntity: PlayerBorgBattery
   # Cosmatic Drift Record System-start: Cyborg shells do not use humanoid profiles, so avoid seeding records.
   special:

@@ -6,7 +6,7 @@
     <!-- Shown while an icon is dragged over this target. -->
     <PanelContainer Name="BackgroundPanel" Visible="False">
         <PanelContainer.PanelOverride>
-            <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.NanoGold}" />
+            <gfx:StyleBoxFlat BackgroundColor="#A88B5E" />
         </PanelContainer.PanelOverride>
     </PanelContainer>
 

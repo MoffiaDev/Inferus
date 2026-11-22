@@ -22,7 +22,9 @@ using Content.Shared.Radiation.Systems;
 using Content.Shared.Audio;
 using Content.Shared.Damage.Components;
 using Content.Shared.Database;
+using Content.Shared.DeviceLinking.Components;
 using Content.Shared.DeviceLinking;
+using Content.Shared.DeviceLinking.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Ghost.Components;
 using Content.Shared.Interaction;
@@ -54,7 +56,7 @@ public sealed partial class SupermatterSystem : EntitySystem
     [Dependency] private EntityLookupSystem _entityLookup = default!;
     [Dependency] private ExamineSystem _examine = default!;
     [Dependency] private ExplosionSystem _explosion = default!;
-    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private ServerGameTicker _gameTicker = default!;
     [Dependency] private GhostSystem _ghost = default!;
     //[Dependency] private GravityWellSystem _gravityWell = default!;
     //[Dependency] private IonStormSystem _ionStorm = default!;
@@ -66,7 +68,7 @@ public sealed partial class SupermatterSystem : EntitySystem
     [Dependency] private SharedAmbientSoundSystem _ambient = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedContainerSystem _container = default!;
-    [Dependency] private SharedDeviceLinkSystem _link = default!;
+    [Dependency] private DeviceLinkSystem _link = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;
     [Dependency] private IChatManager _chatManager = default!;

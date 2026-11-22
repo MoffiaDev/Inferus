@@ -18,7 +18,7 @@
 - type: loadout
   id: BlueWizardRobes
   equipment:
-    outerClothing: ClothingOuterWizard
+    outerClothing: ClothingOuterWizardBlue # Inferus: was ClothingOuterWizard, renamed upstream
 
 - type: loadout
   id: RedWizardRobes
@@ -34,14 +34,14 @@
 - type: loadout
   id: BlueWizardHat
   equipment:
-    head: ClothingHeadHatWizard
+    head: ClothingHeadHatWizardBlue # Inferus: was ClothingHeadHatWizard, renamed upstream
 
 - type: loadout
   id: RedWizardHat
   equipment:
-    head: ClothingHeadHatRedwizard
+    head: ClothingHeadHatWizardRed # Inferus: was ClothingHeadHatRedwizard, renamed upstream
 
 - type: loadout
   id: VioletWizardHat
   equipment:
-    head: ClothingHeadHatVioletwizard
+    head: ClothingHeadHatWizardViolet # Inferus: was ClothingHeadHatVioletwizard, renamed upstream

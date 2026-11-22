@@ -3,7 +3,8 @@ alert-level-announcement = Security telemetry alert.
                            Station alert updated to {$name}.
                            {$announcement}
 
-alert-level-unknown = Unknown.
+# unknown name uses generic-unknown-title
+alert-level-unknown-announcement = This is a test of the alert broadcast system.
 alert-level-unknown-instructions = Unknown.
 
 alert-level-green = Green

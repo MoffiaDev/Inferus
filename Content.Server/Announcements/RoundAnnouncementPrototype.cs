@@ -1,4 +1,5 @@
 using Content.Shared._MACRO.Announcements;
+using Content.Shared.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 

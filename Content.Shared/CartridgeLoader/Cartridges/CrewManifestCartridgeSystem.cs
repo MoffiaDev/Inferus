@@ -4,6 +4,7 @@ using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.CCVar;
 using Content.Shared.Station;
+using Content.Shared.Station.Systems; // Inferus
 using Content.Shared.CrewManifest;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
@@ -14,7 +15,7 @@ public sealed partial class CrewManifestCartridgeSystem : EntitySystem
 {
     [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
-    [Dependency] private SharedStationSystem _stationSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!; // Inferus: was SharedStationSystem
 
     private static readonly EntProtoId CartridgePrototypeName = "CrewManifestCartridge";
 

@@ -8,13 +8,7 @@ namespace Content.Server._Omu.Crewlet;
 
 public sealed partial class CrewletBrainOperator : HTNOperator
 {
-    private CrewletBrainSystem _brain = default!;
-
-    public override void Initialize(IEntitySystemManager sysManager)
-    {
-        base.Initialize(sysManager);
-        _brain = sysManager.GetEntitySystem<CrewletBrainSystem>();
-    }
+    [Dependency] private CrewletBrainSystem _brain = default!;
 
     public override void Startup(NPCBlackboard blackboard)
     {

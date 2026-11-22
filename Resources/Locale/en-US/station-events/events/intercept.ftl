@@ -1,4 +1,4 @@
-﻿
+
 # rewritten for funky
 station-event-communication-interception = Telemetry alert.
                                            Unregistered transmission intercepted in local sector.

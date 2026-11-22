@@ -19,6 +19,7 @@
     - iron_2
     - iron_3
   - type: Sprite
+    sprite: _FarHorizons/Objects/Materials/plutonium_ingot.rsi # Inferus: iron states removed from upstream ingots.rsi
     state: iron_3
     layers:
     - state: iron_3

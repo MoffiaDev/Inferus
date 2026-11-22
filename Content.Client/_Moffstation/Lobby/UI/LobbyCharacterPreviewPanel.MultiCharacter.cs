@@ -4,6 +4,7 @@ using Content.Client._Moffstation.Preferences;
 using Content.Client.Lobby.UI.ProfileEditorControls;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Stylesheets;
+using Content.Client.Stylesheets.Palette; // Inferus
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Client.Graphics;
@@ -44,7 +45,7 @@ public sealed partial class LobbyCharacterPreviewPanel
             MinSize = new Vector2(2, 0),
             PanelOverride = new StyleBoxFlat
             {
-                BackgroundColor = StyleNano.NanoGold,
+                BackgroundColor = Palettes.Gold.Base,
                 ContentMarginTopOverride = 2,
             },
         };

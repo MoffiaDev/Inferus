@@ -1,9 +1,11 @@
 using System.Linq;
 using Content.Server._MACRO.Announcements;
 using Content.Server.Administration;
+using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Shared._MACRO.Announcements;
 using Content.Shared.Administration;
+using Content.Shared.Database;
 using Robust.Shared.Audio;
 using Robust.Shared.Console;
 using Robust.Shared.ContentPack;
@@ -20,6 +22,7 @@ public sealed partial class AnnounceCommand : LocalizedEntityCommands
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IResourceManager _res = default!;
     [Dependency] private AnnouncerManager _announcer = default!; // macrocosm
+    [Dependency] private IAdminLogManager _adminLogger = default!;
 
     public override string Command => "announce";
     public override string Description => Loc.GetString("cmd-announce-desc");
@@ -29,11 +32,11 @@ public sealed partial class AnnounceCommand : LocalizedEntityCommands
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         OnExecute(shell, argStr, args, true,
-            Loc, _announcer, _chat);
+            Loc, _announcer, _chat, _adminLogger); // Inferus - pass admin logger for upstream announce logging
     }
 
     public static void OnExecute(IConsoleShell shell, string argStr, string[] args, bool paBypass,
-        ILocalizationManager loc, AnnouncerManager announcer, ChatSystem chat)
+        ILocalizationManager loc, AnnouncerManager announcer, ChatSystem chat, IAdminLogManager adminLogger) // Inferus - adminLogger
     {
         switch (args.Length)
         {
@@ -82,7 +85,19 @@ public sealed partial class AnnounceCommand : LocalizedEntityCommands
                 sound = new SoundPathSpecifier(soundOverride);
         }
 
-        chat.DispatchGlobalAnnouncement(message, sender, true, sound, color, paBypass); // funky - add pa system bypass option
+        chat.DispatchGlobalAnnouncement(message, sender, true, sound, color, paSystemBypass: paBypass); // funky - add pa system bypass option
+
+        if (shell.Player is null)
+        {
+            adminLogger.Add(LogType.Chat, LogImpact.Low,
+                $"LOCAL used 'announce' with displayed sender {sender}: {message}");
+        }
+        else
+        {
+            adminLogger.Add(LogType.Chat, LogImpact.Low,
+                $"{shell.Player:Player} used 'announce' with displayed sender {sender}: {message}");
+        }
+
         shell.WriteLine(loc.GetString("shell-command-success"));
     }
 

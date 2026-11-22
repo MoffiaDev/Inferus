@@ -28,8 +28,6 @@ using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared._Starlight.DocumentManager; // Inferus
 using Content.Shared.Ame.Components;
-using Content.Shared.FeedbackSystem;
-using Content.Shared.Gravity;
 using Content.Shared.Localizations;
 using Robust.Client;
 using Robust.Client.Graphics;
@@ -133,8 +131,6 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("alertLevels");
             _prototypeManager.RegisterIgnore("nukeopsRole");
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
-            _prototypeManager.RegisterIgnore("codewordGenerator");
-            _prototypeManager.RegisterIgnore("codewordFaction");
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();
