@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared._Moffstation.Teleportation.Components; // Inferus
 using Content.Shared.Movement.Pulling.Systems;

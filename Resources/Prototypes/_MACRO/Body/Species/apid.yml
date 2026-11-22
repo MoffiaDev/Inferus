@@ -315,6 +315,11 @@
 - type: entity
   parent: [ OrganApidVisual, OrganBaseEyes, OrganApidInternal ]
   id: OrganApidEyes
+  # Inferus
+  components:
+  - type: EyeBlinking
+    eyelidsSprite: /Textures/_Inferus/Mobs/Species/Apid/eyelids.rsi
+  - type: Appearance
 
 - type: entity
   parent: [ OrganBaseTorso, OrganApidExternal ]

@@ -26,6 +26,17 @@ public sealed partial class MarkingPrototype
             : BodyPart;
     }
 
+    // Inferus - upstream marking layers wrap their sprite in MarkingLayerData
+    public HumanoidVisualLayers GetSpriteLayer(MarkingLayerData layer)
+    {
+        return GetSpriteLayer(layer.Sprite);
+    }
+
+    public static string? GetSpriteName(MarkingLayerData layer)
+    {
+        return GetSpriteName(layer.Sprite);
+    }
+
     public static string? GetSpriteName(SpriteSpecifier sprite)
     {
         return sprite switch

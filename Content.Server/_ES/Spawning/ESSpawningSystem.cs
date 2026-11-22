@@ -1,6 +1,7 @@
 using Content.Server.Administration.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Station.Components;
+using Content.Shared.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.Spawning;
 using Content.Shared.CCVar;
@@ -24,8 +25,8 @@ public sealed partial class ESSpawningSystem : EntitySystem
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private GameTicker _gameTicker = default!;
-    [Dependency] private StationJobsSystem _stationJobs = default!;
+    [Dependency] private ServerGameTicker _gameTicker = default!;
+    [Dependency] private ServerStationJobsSystem _stationJobs = default!;
 
     // Inferus: use server-owned profiles and the existing explicit-choice spawn path
     [Dependency] private Content.Server.Preferences.Managers.IServerPreferencesManager _characterPreferences = default!;

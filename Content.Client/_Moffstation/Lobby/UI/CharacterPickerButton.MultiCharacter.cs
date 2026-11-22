@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Client._Moffstation.Preferences;
 using Content.Client.Stylesheets;
+using Content.Client.Stylesheets.Palette; // Inferus
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Preferences;
 using Robust.Client.Graphics;
@@ -43,7 +44,7 @@ public sealed partial class CharacterPickerButton
         {
             Texture = Theme.ResolveTexture(OutlineTexture),
             TextureScale = new Vector2(1.1f),
-            Modulate = StyleNano.PanelDark,
+            Modulate = Color.FromHex("#1E1E22"),
         };
 
         styleBox.SetPatchMargin(StyleBox.Margin.All, 12);
@@ -73,7 +74,7 @@ public sealed partial class CharacterPickerButton
             MinSize = new Vector2(2, 0),
             PanelOverride = new StyleBoxFlat
             {
-                BackgroundColor = StyleNano.NanoGold,
+                BackgroundColor = Palettes.Gold.Base,
                 ContentMarginTopOverride = 2,
             },
         };
@@ -115,7 +116,7 @@ public sealed partial class CharacterPickerButton
         InternalHBox.AddChild(divider);
         InternalHBox.AddChild(buttonBox);
 
-        AddStyleClass(StyleNano.ButtonOpenRight);
+        AddStyleClass(StyleClass.ButtonOpenRight);
 
         deleteButton.OnPressed += _ => OnDeletePressed?.Invoke();
     }

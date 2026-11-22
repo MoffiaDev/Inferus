@@ -32,7 +32,8 @@ using System.Linq;
 using Content.Shared._FarHorizons.Materials.Systems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.DeviceLinking.Events;
-using Content.Server.DeviceLinking.Systems;
+using Content.Shared.DeviceLinking.Systems;
+using Content.Shared.DeviceLinking.Payloads;
 using Content.Shared.Construction.Components;
 using Content.Shared.Popups;
 using Content.Server.Popups;
@@ -69,7 +70,7 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
     [Dependency] private ServerGlobalSoundSystem _soundSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private StationSystem _station = default!;
+    [Dependency] private ServerStationSystem _station = default!;
     [Dependency] private UserInterfaceSystem _uiSystem = null!;
     [Dependency] private DeviceLinkSystem _signal = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
@@ -106,7 +107,7 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
         // Signal events
         SubscribeLocalEvent<NuclearReactorComponent, SignalReceivedEvent>(OnSignalReceived);
         SubscribeLocalEvent<NuclearReactorComponent, SignalReceivedEvent<LogicStatePayload>>(OnSignalReceived);
-        SubscribeLocalEvent<NuclearReactorComponent, PortDisconnectedEvent>(OnPortDisconnected);
+        SubscribeLocalEvent<NuclearReactorComponent, SinkPortDisconnectedEvent>(OnPortDisconnected);
 
         // Anchor events
         SubscribeLocalEvent<NuclearReactorComponent, AnchorStateChangedEvent>(OnAnchorChanged);
@@ -876,7 +877,7 @@ public sealed partial class NuclearReactorSystem : SharedNuclearReactorSystem
         _adminLog.Add(LogType.Action, $"{ToPrettyString(trigger):trigger} set control rod insertion of {ToPrettyString(uid):target} to {logtext}");
     }
 
-    private void OnPortDisconnected(EntityUid uid, NuclearReactorComponent comp, ref PortDisconnectedEvent args)
+    private void OnPortDisconnected(EntityUid uid, NuclearReactorComponent comp, ref SinkPortDisconnectedEvent args)
     {
         if (args.Port == comp.ControlRodInsertPort)
             comp.InsertPortState = SignalState.Low;

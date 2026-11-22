@@ -25,7 +25,7 @@ namespace Content.Server.Communications
 
             if (message.Actor is { Valid: true } mob)
             {
-                if (!CanAnnounce(comp))
+                if (!CanAnnounce((uid, comp)))
                     return;
 
                 if (!CanUse(mob, uid))

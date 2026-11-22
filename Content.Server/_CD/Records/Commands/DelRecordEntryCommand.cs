@@ -48,7 +48,7 @@ public sealed partial class DelRecordEntryCommand : IConsoleCommand
         }
 
         var characterRecordsSystem = _entManager.System<CharacterRecordsSystem>();
-        var stationSystem = _entManager.System<StationSystem>();
+        var stationSystem = _entManager.System<ServerStationSystem>();
 
         foreach (var station in stationSystem.GetStations())
         {

@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.Message;
 using Content.Client.Stylesheets; // Goob Station - End of Round Screen
+using Robust.Client.Graphics; // Inferus
 using Content.Shared.Mobs; // Goob Station - End of Round Screen
 using RoundEndPlayerInfo = Content.Shared.GameTicking.RoundEndMessageEvent.RoundEndPlayerInfo;
 using Robust.Client.UserInterface;
@@ -264,7 +265,7 @@ public sealed partial class RoundEndSummaryWindow : DefaultWindow
         // Each player is a card with their sprite, name/role, last words and how they died.
         var panel = new PanelContainer
         {
-            StyleClasses = { StyleNano.StyleClassBackgroundBaseDark },
+            PanelOverride = new StyleBoxFlat(Color.FromHex("#1F1F23")), // Inferus: was StyleNano.StyleClassBackgroundBaseDark, StyleNano was removed upstream
             Margin = new Thickness(0, 0, 0, 6)
         };
 
@@ -304,7 +305,7 @@ public sealed partial class RoundEndSummaryWindow : DefaultWindow
             var playerNameText = new Label
             {
                 VerticalAlignment = VAlignment.Bottom,
-                StyleClasses = { StyleNano.StyleClassLabelHeading },
+                StyleClasses = { StyleClass.LabelHeading }, // Inferus: was StyleNano.StyleClassLabelHeading
                 Margin = new Thickness(0, 0, 6, 0),
                 Text = playerInfo.PlayerICName
             };
@@ -319,7 +320,7 @@ public sealed partial class RoundEndSummaryWindow : DefaultWindow
             var playerRoleText = new Label
             {
                 VerticalAlignment = VAlignment.Bottom,
-                StyleClasses = { StyleNano.StyleClassLabelSubText },
+                StyleClasses = { StyleClass.LabelSubText }, // Inferus: was StyleNano.StyleClassLabelSubText
                 Text = Loc.GetString("round-end-summary-window-player-name",
                     ("player", playerInfo.PlayerOOCName))
             };
@@ -412,7 +413,7 @@ public sealed partial class RoundEndSummaryWindow : DefaultWindow
                 };
                 var damagePanel = new PanelContainer
                 {
-                    StyleClasses = { StyleNano.StyleClassBackgroundBaseLight },
+                    PanelOverride = new StyleBoxFlat(Color.FromHex("#2d2d39")), // Inferus: was StyleNano.StyleClassBackgroundBaseLight
                     Margin = new Thickness(2, 2, 2, 2)
                 };
                 var damageBox = new BoxContainer

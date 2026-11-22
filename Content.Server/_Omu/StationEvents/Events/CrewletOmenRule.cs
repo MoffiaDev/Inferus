@@ -7,6 +7,7 @@ using Content.Server.Roles;
 using Content.Server.StationEvents.Events;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Station.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Player;
@@ -31,7 +32,7 @@ public sealed partial class CrewletOmenRule : StationEventSystem<CrewletOmenRule
     {
         base.Started(uid, component, gameRule, args);
 
-        if (!TryGetRandomStation(out var station))
+        if (!Station.TryGetRandomStation<StationEventEligibleComponent>(out var station))
             return;
 
         _candidates.Clear();
@@ -41,7 +42,7 @@ public sealed partial class CrewletOmenRule : StationEventSystem<CrewletOmenRule
         {
             if (mobState.CurrentState != MobState.Alive
                 || !_crewlet.CanCreate(target)
-                || StationSystem.GetOwningStation(target, xform) != station
+                || Station.GetOwningStation(target, xform) != station.Value.Owner
                 || !_mind.TryGetMind(target, out var mind, out _)
                 || _role.MindIsAntagonist(mind))
                 continue;

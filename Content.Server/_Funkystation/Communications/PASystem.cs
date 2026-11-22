@@ -18,7 +18,7 @@ namespace Content.Server._Funkystation.Communications;
 public sealed partial class PASystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _cfg = null!;
-    [Dependency] private StationSystem _stationSystem = null!;
+    [Dependency] private ServerStationSystem _stationSystem = null!;
     [Dependency] private IAdminLogManager _adminLogger = null!;
     [Dependency] private ChatSystem _chat = null!;
 

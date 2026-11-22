@@ -179,9 +179,6 @@ public sealed class DoAfterOverlay : Overlay
                 offset += _barTexture.Height / scale;
             }
         }
-
-        handle.UseShader(null);
-        handle.SetTransform(Matrix3x2.Identity);
     }
 
     public Color GetProgressColor(float progress, float alpha = 1f)

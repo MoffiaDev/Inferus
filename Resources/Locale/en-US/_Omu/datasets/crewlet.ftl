@@ -17,7 +17,7 @@ crewlet-creepy-3 = If I killed you, would anyone find the body?
 crewlet-creepy-4 = You're not long for this world.
 crewlet-creepy-5 = I know what you did.
 crewlet-creepy-6 = No one will believe you
-crewlet-creepy-7 = Bomb Security!!
+crewlet-creepy-7 = Bomb in sec!!
 
 crewlet-hello-1 = hi {$name}!
 crewlet-hello-2 = {$name}...!
@@ -41,7 +41,7 @@ crewlet-stay-1 = stay still
 crewlet-stay-2 = stand still
 crewlet-stay-3 = stay
 
-crewlet-dislikerare-1 = It has recently come to my attention that you are nothing more than a scoundrel, and I shall be ecstatic to finally be rid of you.
+crewlet-dislikerare-1 = It has recently come to my attention that you are nothing more than a scoundrel, {$name}, and I shall be ecstatic to finally be rid of you.
 crewlet-dislikerare-2 = When the shuttle arrives, {$name}, I will personally pray you are not on it.
 crewlet-dislikerare-3 = I have read your medical records, {$name}. All of them. But only I know what's really inside you.
 crewlet-dislikerare-4 = One day you'll pass by an airlock, {$name}, and that'll be the last time anyone ever sees you.
@@ -49,3 +49,5 @@ crewlet-dislikerare-5 = Do you think anyone will miss you when you're gone, {$na
 crewlet-dislikerare-6 = If the word 'hate' were etched into every tile of this station, it would not amount to a fraction of what I feel for you, {$name}.
 crewlet-dislikerare-7 = I know you fear me, {$name}, but you don't know how right it is to be afraid yet.
 crewlet-dislikerare-8 = I could take your skin and wear it, {$name}, and all the crew would do is point and laugh while you scream. I'll be laughing with them.
+crewlet-dislikerare-9 = One day, you will have to answer for your sins, and God may not be so merciful, {$name}.
+crewlet-dislikerare-10 = Do you ever wonder what this universe would be like without you, {$name}? I do. It'd be a paradise.

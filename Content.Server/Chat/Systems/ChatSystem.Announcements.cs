@@ -15,6 +15,7 @@ public sealed partial class ChatSystem
     [Dependency] private AnnouncerManager _announcer = default!; // macrocosm
 
     [Dependency] private PASystem _paSystem = null!; // funky - announcements via PA speakers
+
     /// <inheritdoc />
     public override void DispatchGlobalAnnouncement(
         string message,
@@ -22,6 +23,7 @@ public sealed partial class ChatSystem
         bool playSound = true,
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null,
+        string? signature = null,
         bool paSystemBypass = false // funky
         )
     {
@@ -32,7 +34,7 @@ public sealed partial class ChatSystem
         {
             var paExclusive = _configurationManager.GetCVar(PAAnnouncementCVars.PAExclusiveAnnouncements);
             _paSystem.DispatchPAAnnouncement(
-                message,
+                WithSignature(message, signature), // Inferus - keep upstream announcement signatures on PA announcements
                 sender,
                 source: null,
                 preamble: false,
@@ -45,7 +47,7 @@ public sealed partial class ChatSystem
                 return;
         }
 
-        var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
+        var wrappedMessage = WrapAnnouncement(sender, message, signature);
         _chatManager.ChatMessageToAll(ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
         if (playSound)
         {
@@ -69,7 +71,8 @@ public sealed partial class ChatSystem
         bool playSound = true,
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null,
-        bool paSystemBypass = false) //funky
+        string? signature = null,
+        bool paSystemBypass = false) // funky
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");
 
@@ -78,7 +81,7 @@ public sealed partial class ChatSystem
         {
             var paExclusive = _configurationManager.GetCVar(PAAnnouncementCVars.PAExclusiveAnnouncements);
             _paSystem.DispatchPAAnnouncement(
-                message,
+                WithSignature(message, signature), // Inferus - keep upstream announcement signatures on PA announcements
                 sender,
                 source,
                 preamble: false,
@@ -91,7 +94,7 @@ public sealed partial class ChatSystem
                 return;
         }
 
-        var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
+        var wrappedMessage = WrapAnnouncement(sender, message, signature);
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source ?? default, false, true, colorOverride);
         if (playSound)
         {
@@ -114,6 +117,7 @@ public sealed partial class ChatSystem
         bool playDefaultSound = true,
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null,
+        string? signature = null,
         bool paSystemBypass = false) // funky
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");
@@ -123,7 +127,7 @@ public sealed partial class ChatSystem
         {
             var paExclusive = _configurationManager.GetCVar(PAAnnouncementCVars.PAExclusiveAnnouncements);
             _paSystem.DispatchPAAnnouncement(
-                message,
+                WithSignature(message, signature), // Inferus - keep upstream announcement signatures on PA announcements
                 sender,
                 source,
                 preamble: false,
@@ -136,7 +140,7 @@ public sealed partial class ChatSystem
                 return;
         }
 
-        var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
+        var wrappedMessage = WrapAnnouncement(sender, message, signature);
         var station = _stationSystem.GetOwningStation(source);
 
         if (station == null)
@@ -163,5 +167,19 @@ public sealed partial class ChatSystem
         }
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement on {station} from {sender}: {message}");
+    }
+
+    // Inferus - plain-text signature for PA speaker announcements
+    private static string WithSignature(string message, string? signature)
+    {
+        return string.IsNullOrWhiteSpace(signature) ? message : $"{message}\n{signature}";
+    }
+
+    private string WrapAnnouncement(string sender, string message, string? signature)
+    {
+        var escapedMessage = FormattedMessage.EscapeText(message);
+        return string.IsNullOrWhiteSpace(signature)
+            ? Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", escapedMessage))
+            : Loc.GetString("chat-manager-sender-announcement-wrap-message-signed", ("sender", sender), ("message", escapedMessage), ("signature", FormattedMessage.EscapeText(signature)));
     }
 }

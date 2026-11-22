@@ -77,7 +77,7 @@ public abstract partial class SpeechBubble
         if (ConfigManager.GetCVar(InferusCCVars.InstantSpeechBubbles))
             return;
 
-        if (!_entityManager.TryGetComponent<SpeechBlipComponent>(_senderEntity, out var blipComp)
+        if (!EntityManager.TryGetComponent<SpeechBlipComponent>(SenderEntity, out var blipComp)
             || !_prototype.TryIndex(blipComp.Blip, out var blip)
             || !blip.Typewriter)
         {
@@ -101,7 +101,7 @@ public abstract partial class SpeechBubble
 
         _typewriterBlip = blip;
         _typewriterPitchScale = SpeechBlipSystem.ClampPitch(blipComp.Pitch);
-        if (_entityManager.TryGetComponent<SoundPitchModifierComponent>(_senderEntity, out var pitchModifier))
+        if (EntityManager.TryGetComponent<SoundPitchModifierComponent>(SenderEntity, out var pitchModifier))
             _typewriterPitchScale *= pitchModifier.SpeechBlips;
         _typewriterWhisper = speechStyleClass == "whisperBox";
         _typewriterRunes = runes.ToArray();
@@ -295,7 +295,7 @@ public abstract partial class SpeechBubble
         if (gain <= 0f)
             return;
 
-        var speechBlip = _entityManager.System<SpeechBlipSystem>();
+        var speechBlip = EntityManager.System<SpeechBlipSystem>();
         if (speechBlip.PickClip(_typewriterBlip, _typewriterRunes[index], ref _typewriterClipSequence, ref _typewriterLastClip) is not { } clip)
             return;
 
@@ -309,7 +309,7 @@ public abstract partial class SpeechBubble
 
         audioParams = audioParams.WithPitchScale(audioParams.Pitch * _typewriterPitches[index] * _typewriterPitchScale);
 
-        _entityManager.System<SharedAudioSystem>().PlayEntity(clip.Sound, Filter.Local(), _senderEntity, false, audioParams);
+        EntityManager.System<SharedAudioSystem>().PlayEntity(clip.Sound, Filter.Local(), SenderEntity, false, audioParams);
     }
 
     /// <summary>

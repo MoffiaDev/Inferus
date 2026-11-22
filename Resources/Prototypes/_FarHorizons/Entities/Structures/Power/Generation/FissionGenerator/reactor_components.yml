@@ -56,7 +56,8 @@
       canReact: false
   # Inferus end
   - type: StealTarget
-    stealGroup: ReactorFuelRodSteal
+    stealGroup: # Inferus: was scalar, upstream made it a list
+    - ReactorFuelRodSteal
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.2

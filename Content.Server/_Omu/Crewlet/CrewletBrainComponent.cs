@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: MIT
 
+using Content.Shared.FixedPoint; // Inferus: was Content.Goobstation.Maths.FixedPoint
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
 using Content.Shared.Dataset;
 using Content.Shared.DoAfter;
@@ -388,6 +390,9 @@ public sealed partial class CrewletBrainComponent : Component
     public EntityWhitelist? TargetBlacklist;
 
     [DataField]
+    public EntityWhitelist? ActivateBlacklist;
+
+    [DataField]
     public EntityWhitelist? HabitToolBlacklist;
 
     [DataField]
@@ -573,6 +578,12 @@ public sealed partial class CrewletBrainComponent : Component
 
     [DataField]
     public SoundSpecifier FormToolSound = new SoundCollectionSpecifier("gib", AudioParams.Default.WithVolume(-3f));
+
+    [DataField]
+    public List<ProtoId<ReagentPrototype>> FormReagents = new() { "Water", "SpaceCleaner" };
+
+    [DataField]
+    public float ToolStockFraction = 0.5f;
 
     [DataField]
     public LocId RecallLine = "crewlet-recall";
@@ -951,7 +962,17 @@ public partial record struct CrewletHabit(
     bool Learned,
     bool Risky,
     CrewletFacts Facts,
-    CrewletFacts Varied);
+    CrewletFacts Varied,
+    CrewletToolState ToolState);
+
+[DataRecord]
+public partial record struct CrewletToolState(bool Active, List<CrewletToolReagent>? Reagents);
+
+[DataRecord]
+public partial record struct CrewletToolReagent(
+    string Solution,
+    ProtoId<ReagentPrototype> Reagent,
+    FixedPoint2 Quantity);
 
 [Flags]
 public enum CrewletFacts : ushort
@@ -984,7 +1005,8 @@ public record struct CrewletWatch(
     bool Risky,
     CrewletFacts Facts,
     GameTick Tick,
-    TimeSpan Seen)
+    TimeSpan Seen,
+    CrewletToolState ToolState)
 {
     public CrewletWatchState State;
     public bool Handled;

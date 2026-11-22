@@ -1,5 +1,6 @@
 using Content.Server._MACRO.Announcements;
 using Content.Server.Administration;
+using Content.Server.Administration.Logs; // Inferus
 using Content.Server.Chat.Systems;
 using Content.Shared._Funkystation.CCVar;
 using Content.Shared.Administration;
@@ -22,6 +23,7 @@ public sealed partial class PAAnnounceCommand : LocalizedEntityCommands
     [Dependency] private IPrototypeManager _proto = null!;
     [Dependency] private IResourceManager _res = null!;
     [Dependency] private IConfigurationManager _cfg = null!;
+    [Dependency] private IAdminLogManager _adminLogger = null!; // Inferus - upstream announce logging
 
     public override string Command => "announce:pa"; // larping toolshed
     public override string Description => Loc.GetString("cmd-pa-announce-desc");
@@ -31,7 +33,7 @@ public sealed partial class PAAnnounceCommand : LocalizedEntityCommands
     {
         var paBypass = !_cfg.GetCVar(PAAnnouncementCVars.PAEnabled); // only bother to use PA system if its enabled
         AnnounceCommand.OnExecute(shell, argStr, args, paBypass,
-            Loc, _announcer, _chat);
+            Loc, _announcer, _chat, _adminLogger); // Inferus - upstream announce logging
     }
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)

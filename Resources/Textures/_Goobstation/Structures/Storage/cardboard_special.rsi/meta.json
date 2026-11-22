@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation. Preserved from Structures/Storage/closet.rsi after upstream SS14 removed the state",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "cardboard_special"
+        }
+    ]
+}

@@ -32,7 +32,7 @@
                  job priority button on top, and a second right-hand pane for the priority editor -->
             <PanelContainer>
                 <PanelContainer.PanelOverride>
-                    <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.NanoGold}" ContentMarginTopOverride="2" />
+                    <gfx:StyleBoxFlat BackgroundColor="#A88B5E" ContentMarginTopOverride="2" />
                 </PanelContainer.PanelOverride>
             </PanelContainer>
             <BoxContainer Orientation="Horizontal" VerticalExpand="True" SeparationOverride="0">
@@ -47,7 +47,7 @@
                             StyleClasses="ButtonBig"/>
                     <PanelContainer>
                         <PanelContainer.PanelOverride>
-                            <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.NanoGold}" ContentMarginTopOverride="2" />
+                            <gfx:StyleBoxFlat BackgroundColor="#A88B5E" ContentMarginTopOverride="2" />
                         </PanelContainer.PanelOverride>
                     </PanelContainer>
                     <ScrollContainer HorizontalExpand="True" VerticalExpand="True" Margin="0 5 0 0">
@@ -56,7 +56,7 @@
                 </BoxContainer>
                 <PanelContainer MinSize="2 0">
                     <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.NanoGold}" ContentMarginTopOverride="2" />
+                        <gfx:StyleBoxFlat BackgroundColor="#A88B5E" ContentMarginTopOverride="2" />
                     </PanelContainer.PanelOverride>
                 </PanelContainer>
                 <BoxContainer Name="CharEditor" HorizontalExpand="True" />

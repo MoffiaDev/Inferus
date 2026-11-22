@@ -5,7 +5,7 @@ using Content.Shared.AlertLevel;
 using Content.Shared.CCVar;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
-using Content.Server.DeviceNetwork.Systems;
+using Content.Shared.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
@@ -37,11 +37,11 @@ namespace Content.Server.RoundEnd
         [Dependency] private IChatManager _chatManager = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private ChatSystem _chatSystem = default!;
-        [Dependency] private GameTicker _gameTicker = default!;
+        [Dependency] private ServerGameTicker _gameTicker = default!;
         [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
         [Dependency] private EmergencyShuttleSystem _shuttle = default!;
         [Dependency] private SharedAudioSystem _audio = default!;
-        [Dependency] private StationSystem _stationSystem = default!;
+        [Dependency] private ServerStationSystem _stationSystem = default!;
         [Dependency] private AnnouncerManager _announcer = default!; // Macrocosm edit
 
         // Macrocosm edit start
@@ -107,7 +107,7 @@ namespace Content.Server.RoundEnd
         }
 
         /// <summary>
-        ///     Attempts to get the MapUid of the station using <see cref="StationSystem.GetLargestGrid"/>
+        ///     Attempts to get the MapUid of the station using <see cref="ServerStationSystem.GetLargestGrid"/>
         /// </summary>
         public EntityUid? GetStation()
         {
@@ -421,23 +421,5 @@ namespace Content.Server.RoundEnd
     public sealed class RoundEndSystemChangedEvent : EntityEventArgs
     {
         public static RoundEndSystemChangedEvent Default { get; } = new();
-    }
-
-    public enum RoundEndBehavior : byte
-    {
-        /// <summary>
-        /// Instantly end round
-        /// </summary>
-        InstantEnd,
-
-        /// <summary>
-        /// Call shuttle with custom announcement
-        /// </summary>
-        ShuttleCall,
-
-        /// <summary>
-        /// Do nothing
-        /// </summary>
-        Nothing
     }
 }

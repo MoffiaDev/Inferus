@@ -9,7 +9,7 @@ namespace Content.Shared._Starlight.Character.Info.Components;
 /// <summary>
 /// Stores a detailed description of the character (FlavorText)
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(SharedGameTicker), typeof(SLSharedCharacterInfoSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(GameTicker), typeof(SLSharedCharacterInfoSystem))]
 public sealed partial class CharacterDescriptionComponent : Component
 {
     [DataField, AutoNetworkedField] public string Description = string.Empty;

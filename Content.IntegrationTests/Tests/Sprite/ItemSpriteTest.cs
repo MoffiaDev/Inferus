@@ -23,7 +23,7 @@ namespace Content.IntegrationTests.Tests.Sprite;
 /// <see cref="Ignored"/>
 /// </remarks>
 [TestFixture]
-public sealed class PrototypeSaveTest : GameTest
+public sealed class ItemSpriteTest : GameTest
 {
     // Inferus: body-based items also need a synchronized server/client rendering check
     public override PoolSettings PoolSettings => new()
@@ -48,7 +48,7 @@ public sealed class PrototypeSaveTest : GameTest
 
         await pair.Client.WaitPost(() =>
         {
-            foreach (var (proto, _) in pair.GetPrototypesWithComponent<ItemComponent>(Ignored))
+            foreach (var (proto, _) in pair.GetPrototypesWithComponent<ItemComponent>(ignored: Ignored))
             {
                 var dummy = pair.Client.EntMan.Spawn(proto.ID);
                 pair.Client.EntMan.RunMapInit(dummy, pair.Client.MetaData(dummy));

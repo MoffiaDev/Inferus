@@ -1,4 +1,4 @@
-﻿
+
 # rewritten for funky
 station-event-gas-leak-start-announcement = Atmospheric warning.
                                             Unexpected gas leakage detected within station atmosphere.

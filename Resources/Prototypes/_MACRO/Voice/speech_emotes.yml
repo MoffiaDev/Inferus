@@ -1,16 +1,4 @@
-- type: emote
-  id: Hiss
-  name: chat-emote-name-hiss
-  whitelist:
-    components:
-    - Vocal
-  category: Vocal
-  available: false
-  chatMessages: ["chat-emote-msg-hiss"]
-  chatTriggers:
-  - hiss
-  - hisses
-  - hissed
+# Inferus: Hiss emote removed, now provided upstream in Resources/Prototypes/Voice/speech_emotes.yml
 
 # Kode
 - type: emote

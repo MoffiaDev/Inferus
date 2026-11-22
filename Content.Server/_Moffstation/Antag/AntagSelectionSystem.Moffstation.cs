@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server._Moffstation.Preferences;
 using Content.Server._Moffstation.Station;
+using Content.Shared.Antag;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -13,7 +14,7 @@ namespace Content.Server.Antag;
 /// Multi-character selection support: a player opts in to an antag if any of their active
 /// characters wants it, and the character that spawns must be one of those.
 /// </summary>
-public sealed partial class AntagSelectionSystem
+public sealed partial class ServerAntagSelectionSystem
 {
     [Dependency] private MoffCharacterSelectionManager _moffCharacterSelection = default!;
 
@@ -62,6 +63,17 @@ public sealed partial class AntagSelectionSystem
     }
 
 
+    // Inferus: use the character that spawned, not just the lobby-selected character.
+    protected override void EquipAntagLoadout(EntityUid antag, ICommonSession player, List<ProtoId<StartingGearPrototype>> gear, AntagSpecifierPrototype prototype)
+    {
+        if (MoffCharacterPicker.GetSpawnedProfile(player.UserId) is { } profile)
+            Loadout.LoadoutAwareEquip(antag, player, gear, prototype.RoleLoadout, profile);
+        else if (_pref.TryGetCachedPreferences(player.UserId, out var preferences))
+            Loadout.LoadoutAwareEquip(antag, player, gear, prototype.RoleLoadout, preferences.SelectedCharacter);
+        else
+            Loadout.LoadoutAwareEquip(antag, player, gear, prototype.RoleLoadout, Loadout.GetProfile(antag));
+    }
+
     /// <summary>
     /// Per preselected antag, the prototypes a character must have enabled to fill that slot.
     /// </summary>
@@ -70,10 +82,9 @@ public sealed partial class AntagSelectionSystem
         var result = new List<HashSet<ProtoId<AntagPrototype>>>();
 
         var query = QueryAllRules();
-        while (query.MoveNext(out var uid, out var comp, out _))
+        // Inferus: upstream removed EndedGameRuleComponent; ended rules no longer match QueryAllRules.
+        while (query.MoveNext(out var comp, out _))
         {
-            if (HasComp<EndedGameRuleComponent>(uid))
-                continue;
 
             foreach (var antag in comp.Antags)
             {

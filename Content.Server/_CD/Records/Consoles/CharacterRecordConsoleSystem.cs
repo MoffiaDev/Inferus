@@ -17,7 +17,7 @@ public sealed partial class CharacterRecordConsoleSystem : EntitySystem
     [Dependency] private CharacterRecordsSystem _characterRecords = default!;
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private StationRecordsSystem _records = default!;
-    [Dependency] private StationSystem _station = default!;
+    [Dependency] private ServerStationSystem _station = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
 
     public override void Initialize()

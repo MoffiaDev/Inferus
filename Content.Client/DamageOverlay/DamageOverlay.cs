@@ -315,8 +315,6 @@ public sealed partial class DamageOverlay : Overlay
                 handle.DrawRect(viewport, Color.White);
             }
         }
-
-        handle.UseShader(null);
     }
 
     private float GetDiff(float value, float lastFrameTime)

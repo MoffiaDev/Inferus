@@ -11,13 +11,11 @@
     radius: 1.5
     energy: 1.6
     color: "#c9c042"
-  - type: Sprite
-    sprite: Structures/Machines/computers.rsi
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerScreen"]
-      state: power_monitor
+  # Inferus: upstream moved computer sprites to ComputerVisuals, was a Sprite with computerLayer* maps
+  - type: ComputerVisuals
+    stateKeyboard: null
+    stateKeys: null
+    stateScreen: power_monitor
   - type: NuclearReactorMonitor
   - type: ActivatableUI
     key: enum.NuclearReactorUiKey.Key
@@ -53,13 +51,11 @@
     radius: 1.5
     energy: 1.6
     color: "#c9c042"
-  - type: Sprite
-    sprite: Structures/Machines/computers.rsi
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerScreen"]
-      state: turbinecomp
+  # Inferus: upstream moved computer sprites to ComputerVisuals, was a Sprite with computerLayer* maps
+  - type: ComputerVisuals
+    stateKeyboard: null
+    stateKeys: null
+    stateScreen: turbinecomp
   - type: GasTurbineMonitor
   - type: ActivatableUI
     key: enum.TurbineUiKey.Key

@@ -237,8 +237,8 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: ClothingUniformJumpskirtPerformer
-        - id: ClothingShoesBootsPerformer
+        - id: ClothingUniformJumpskirtVirtualSinger # Inferus: was ClothingUniformJumpskirtPerformer, renamed upstream
+        - id: ClothingShoesBootsVirtualSinger # Inferus: was ClothingShoesBootsPerformer, renamed upstream
         - id: FoodMealMemoryleek
 
 - type: entity

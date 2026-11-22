@@ -11,24 +11,14 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 {
     [Dependency] private SpriteSystem _sprite = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<PuddleComponent, AppearanceChangeEvent>(OnPuddleAppearance);
-    }
-
+    [SubscribeLocalEvent]
     private void OnPuddleAppearance(EntityUid uid, PuddleComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
             return;
 
-        var volume = 1f;
-
-        if (args.AppearanceData.TryGetValue(PuddleVisuals.CurrentVolume, out var volumeObj))
-        {
-            volume = (float)volumeObj;
-        }
+        if (!args.TryGetData<float>(PuddleVisuals.CurrentVolume, out var volume))
+            volume = 1.0f;
 
         // Footprints are puddles too, but draw their own print layers; only tint them like before
         // (puddle colors no longer carry the old 0.7 alpha, the new puddle sprites are translucent instead).

@@ -34,6 +34,7 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
+using Content.Shared.Item.ItemToggle;
 using Content.Shared.Maps;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
@@ -86,6 +87,7 @@ public sealed partial class CrewletBrainSystem : EntitySystem
     [Dependency] private ExamineSystemShared _examine = default!; // Inferus
     [Dependency] private IngestionSystem _ingestion = default!; // Inferus
     [Dependency] private InventorySystem _inventory = default!; // Inferus
+    [Dependency] private ItemToggleSystem _itemToggle = default!; // Inferus
     [Dependency] private MobStateSystem _mobState = default!; // Inferus
     [Dependency] private SatiationSystem _satiation = default!; // Inferus - satiation refactor
     [Dependency] private NPCSteeringSystem _steering = default!; // Inferus

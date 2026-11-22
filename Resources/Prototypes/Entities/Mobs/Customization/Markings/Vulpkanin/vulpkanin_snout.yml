@@ -32,6 +32,7 @@
 # End Inferus
 
 - type: marking
+  parent: [ VulpBaseMarkingClamped ]
   id: VulpSnoutVulpineLines
   bodyPart: SnoutCover
   groupWhitelist: [ Vulpkanin ]
@@ -59,6 +60,7 @@
 # End Inferus
 
 - type: marking
+  parent: [ VulpBaseMarkingClamped ]
   id: VulpSnoutTop
   bodyPart: SnoutCover
   groupWhitelist: [ Vulpkanin ]

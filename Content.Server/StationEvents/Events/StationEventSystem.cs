@@ -1,8 +1,6 @@
 using Content.Server._MACRO.Announcements;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
-using Content.Server.GameTicking;
-using Content.Server.GameTicking.Rules;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Server._Funkystation.SistrCore;
@@ -11,6 +9,7 @@ using Content.Shared._Funkystation.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Audio;
+using Content.Shared.GameTicking.Rules;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -18,14 +17,14 @@ using Robust.Shared.Player;
 namespace Content.Server.StationEvents.Events;
 
 /// <summary>
-///     An abstract entity system inherited by all station events for their behavior.
+/// An abstract entity system inherited by all station events for their behavior.
 /// </summary>
 public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T : IComponent
 {
     [Dependency] protected IAdminLogManager AdminLogManager = default!;
     [Dependency] protected ChatSystem ChatSystem = default!;
     [Dependency] protected SharedAudioSystem Audio = default!;
-    [Dependency] protected StationSystem StationSystem = default!;
+    [Dependency] protected ServerStationSystem Station = default!;
     [Dependency] private IConfigurationManager _cfg = null!; // funky - pa announcement cvar
 
     [Dependency] protected AnnouncerManager Announcer = default!; // Macrocosm
@@ -42,21 +41,21 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
     }
 
     /// <inheritdoc/>
-    protected override void Added(EntityUid uid, T component, GameRuleComponent gameRule, GameRuleAddedEvent args)
+    protected override void Added(Entity<T, GameRuleComponent> ent, ref GameRuleAddedEvent args)
     {
-        base.Added(uid, component, gameRule, args);
+        base.Added(ent, ref args);
 
-        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
+        if (!TryComp<StationEventComponent>(ent, out var stationEvent))
             return;
 
         var paExclusive = PAAnnouncementCVars.IsPAEnabledAndExclusive(_cfg); // funky
 
-        AdminLogManager.Add(LogType.EventAnnounced, $"Event added / announced: {ToPrettyString(uid)}");
+                AdminLogManager.Add(LogType.EventAnnounced, $"Event added / announced: {ToPrettyString(ent)}");
 
         // we don't want to send to players who aren't in game (i.e. in the lobby)
         Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
 
-        var canAnnounce = SistrCore.ShouldStationEventBeAnnounced(uid);
+        var canAnnounce = SistrCore.ShouldStationEventBeAnnounced(ent); // Inferus: was uid
 
         // Macrocosm edit start - announcer variation
         SoundSpecifier? soundSpecifier = null; // funky
@@ -78,14 +77,14 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
     }
 
     /// <inheritdoc/>
-    protected override void Started(EntityUid uid, T component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    protected override void Started(Entity<T, GameRuleComponent> ent, ref GameRuleStartedEvent args)
     {
-        base.Started(uid, component, gameRule, args);
+        base.Started(ent, ref args);
 
-        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
+        if (!TryComp<StationEventComponent>(ent, out var stationEvent))
             return;
 
-        AdminLogManager.Add(LogType.EventStarted, LogImpact.High, $"Event started: {ToPrettyString(uid)}");
+        AdminLogManager.Add(LogType.EventStarted, LogImpact.High, $"Event started: {ToPrettyString(ent)}");
 
         if (stationEvent.Duration != null)
         {
@@ -98,21 +97,21 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
     }
 
     /// <inheritdoc/>
-    protected override void Ended(EntityUid uid, T component, GameRuleComponent gameRule, GameRuleEndedEvent args)
+    protected override void Ended(Entity<T> rule, ref GameRuleEndedEvent args)
     {
-        base.Ended(uid, component, gameRule, args);
+        base.Ended(rule, ref args);
 
-        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
+        if (!TryComp<StationEventComponent>(rule, out var stationEvent))
             return;
 
         var paExclusive = PAAnnouncementCVars.IsPAEnabledAndExclusive(_cfg); // funky
 
-        AdminLogManager.Add(LogType.EventStopped, $"Event ended: {ToPrettyString(uid)}");
+                AdminLogManager.Add(LogType.EventStopped, $"Event ended: {ToPrettyString(rule)}");
 
         // we don't want to send to players who aren't in game (i.e. in the lobby)
         Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
 
-        var canAnnounce = SistrCore.ShouldStationEventBeAnnounced(uid, true);
+        var canAnnounce = SistrCore.ShouldStationEventBeAnnounced(rule, true); // Inferus: was uid
 
         // Macrocosm edit start - announcer variation
         SoundSpecifier? soundSpecifier = null; // funky
@@ -144,16 +143,16 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
         var query = EntityQueryEnumerator<StationEventComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var stationEvent, out var ruleData))
         {
-            if (!GameTicker.IsGameRuleAdded(uid, ruleData))
+            if (!GameTicker.IsGameRuleAdded((uid, ruleData)))
                 continue;
 
-            if (!GameTicker.IsGameRuleActive(uid, ruleData) && !HasComp<DelayedStartRuleComponent>(uid))
+            if (!GameTicker.IsGameRuleActive((uid, ruleData)) && !HasComp<DelayedStartRuleComponent>(uid))
             {
-                GameTicker.StartGameRule(uid, ruleData);
+                GameTicker.StartGameRule((uid, ruleData));
             }
-            else if (stationEvent.EndTime != null && Timing.CurTime >= stationEvent.EndTime && GameTicker.IsGameRuleActive(uid, ruleData))
+            else if (stationEvent.EndTime != null && Timing.CurTime >= stationEvent.EndTime && GameTicker.IsGameRuleActive((uid, ruleData)))
             {
-                GameTicker.EndGameRule(uid, ruleData);
+                GameTicker.EndGameRule((uid, ruleData));
             }
         }
     }
