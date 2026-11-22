@@ -40,7 +40,8 @@ public sealed partial class AggressivePickTargetSelector : MegafaunaSelector
 
         if (aggressiveComp.Aggressors.Count == 0)
         {
-            DebugTools.Assert($"Megafauna AI failed to pick a target from {nameof(AggressiveComponent)}, it doesn't have any targets to pick from.");
+            // Inferus: was DebugTools.Assert(string), which always throws on debug builds and crashed the server when the last aggressor died or left mid-fight. Having no targets is a normal state, so just wait.
+            args.Logger.Debug($"Megafauna AI failed to pick a target from {nameof(AggressiveComponent)}, it doesn't have any targets to pick from.");
             return FailDelay;
         }
 

@@ -20,6 +20,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq; // Inferus
 using Content.Shared._Lavaland.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Mobs;
@@ -68,12 +69,12 @@ public sealed class AggressorsSystem : EntitySystem
         while (query.MoveNext(out var uid, out var aggressive, out var xform))
         {
             if (aggressive.ForgiveRange == null
-                || aggressive.NextUpdate < curTime)
+                || aggressive.NextUpdate > curTime) // Inferus: was <, which skipped every update
                 continue;
 
             aggressive.NextUpdate = curTime + aggressive.UpdateDelay;
 
-            foreach (var aggressor in aggressive.Aggressors)
+            foreach (var aggressor in aggressive.Aggressors.ToArray()) // Inferus: copy, RemoveAggressor modifies the set
             {
                 if (!_xformQuery.TryComp(aggressor, out var aggroXform))
                     continue;
@@ -153,8 +154,18 @@ public sealed class AggressorsSystem : EntitySystem
         ent.Comp.Aggressors.Remove(aggressor);
         aggressor.Comp.Aggressives.Remove(ent);
 
+        // Inferus: tell the aggressive entity (megafauna AI shuts down with no aggressors left)
+        RaiseLocalEvent(ent.Owner, new AggressorRemovedEvent(aggressor.Owner));
+        Dirty(ent.Owner, ent.Comp);
+
         if (aggressor.Comp.Aggressives.Count == 0)
+        {
+            RaiseLocalEvent(aggressor.Owner, new AggressiveRemovedEvent(ent.Owner));
             RemComp(aggressor, aggressor.Comp);
+        }
+        else
+            Dirty(aggressor.Owner, aggressor.Comp);
+        // End Inferus
     }
 
     public void RemoveAllAggressors(Entity<AggressiveComponent> ent)
@@ -184,13 +195,14 @@ public sealed class AggressorsSystem : EntitySystem
         if (!Resolve(aggressor, ref aggressor.Comp))
             return;
 
-        foreach (var aggressive in aggressor.Comp.Aggressives)
+        foreach (var aggressive in aggressor.Comp.Aggressives.ToArray()) // Inferus: copy, RemoveAggressor modifies the set
         {
             if (TryComp<AggressiveComponent>(aggressive, out var aggressors))
                 RemoveAggressor((aggressive, aggressors), aggressor);
         }
 
-        RemComp(aggressor, aggressor.Comp);
+        if (!aggressor.Comp.Deleted) // Inferus: RemoveAggressor may have already removed it
+            RemComp(aggressor, aggressor.Comp);
     }
 
     #endregion

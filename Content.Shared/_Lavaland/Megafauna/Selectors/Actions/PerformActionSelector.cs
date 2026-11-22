@@ -23,7 +23,8 @@ public sealed partial class PerformActionSelector : MegafaunaSelector
 
         if (!actionSys.TryGetActionById(args.Entity, ActionId, out var action))
         {
-            DebugTools.Assert($"{entMan.ToPrettyString(args.Entity)}'s AI failed to get an action with ID {ActionId}!");
+            // Inferus: was DebugTools.Assert(string), which always throws on debug builds and crashes the server
+            args.Logger.Warning($"{entMan.ToPrettyString(args.Entity)}'s AI failed to get an action with ID {ActionId}!");
             return FailDelay;
         }
 
@@ -31,7 +32,8 @@ public sealed partial class PerformActionSelector : MegafaunaSelector
 
         if (!actionSys.TryPerformAction(args.Entity, ev))
         {
-            DebugTools.Assert($"{entMan.ToPrettyString(args.Entity)}'s AI failed to perform action {entMan.ToPrettyString(action.Value.Owner)} with ID {ActionId}!");
+            // Inferus: was DebugTools.Assert(string), which always throws on debug builds and crashes the server
+            args.Logger.Warning($"{entMan.ToPrettyString(args.Entity)}'s AI failed to perform action {entMan.ToPrettyString(action.Value.Owner)} with ID {ActionId}!");
             return FailDelay;
         }
 
