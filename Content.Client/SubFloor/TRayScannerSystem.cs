@@ -72,7 +72,7 @@ public sealed partial class TRayScannerSystem : SharedTRayScannerSystem
         // API is extremely skrungly. If this ever shows up on dottrace ping me and laugh.
         var canSee = false;
 
-        foreach (var item in _inventory.GetHandOrInventoryEntities(player.Value, SlotFlags.POCKET))
+        foreach (var item in _inventory.GetHandOrInventoryEntities(player.Value, SlotFlags.POCKET | SlotFlags.EYES)) // Inferus: worn meson goggles
         {
             if (!_trayScannerQuery.TryGetComponent(item, out var scanner) || !_itemToggle.IsActivated(item))
                 continue;

@@ -496,9 +496,9 @@
   - type: UserInterface
     interfaces:
       enum.ResearchConsoleUiKey.Key:
-        type: ResearchConsoleBoundUserInterface
+        type: FancyResearchConsoleBoundUserInterface # R&D Console rework - Inferus: was mapped to ResearchClientUiKey by mistake
       enum.ResearchClientUiKey.Key:
-        type: FancyResearchConsoleBoundUserInterface # R&D Console rework
+        type: ResearchClientBoundUserInterface # Inferus
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: ApcPowerReceiver
