@@ -96,6 +96,10 @@ public sealed partial class CrewletSpeechSystem : EntitySystem // Inferus
             || message.Length > memory.MaxEntryLength)
             return;
 
+        // Inferus - crewlets can't pass along a phrase the listener already knows
+        if (IsCrewletSpeaker(args.Source) && KnowsPhrase(memory, message, args.Source))
+            return;
+
         memory.NextLearnInterval = _timing.CurTime + memory.LearnCooldown;
         if (!_random.Prob(memory.LearnChance))
             return;
@@ -111,6 +115,31 @@ public sealed partial class CrewletSpeechSystem : EntitySystem // Inferus
         else
             memory.SpeechMemories[_random.Next(memory.SpeechMemories.Count)] = entry;
     }
+
+    // Inferus - helpers for not relearning phrases from other crewlets
+    private bool IsCrewletSpeaker(EntityUid source)
+    {
+        return HasComp<CrewletComponent>(source) || HasComp<CrewletDisguiseComponent>(source);
+    }
+
+    private bool KnowsPhrase(ParrotMemoryComponent memory, string message, EntityUid source)
+    {
+        // The heard line went through the speaker's crewlet accent, so compare it to the accented version too.
+        var name = TryComp<CrewletAccentComponent>(source, out var accent) ? accent.Name : null;
+        foreach (var known in memory.SpeechMemories)
+        {
+            var phrase = known.Message.Trim();
+            if (string.Equals(phrase, message, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (!string.IsNullOrEmpty(name)
+                && string.Equals(FirstPersonWord.Replace(phrase, match => ReplaceWord(match.Value, name)), message, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+
+        return false;
+    }
+    // End Inferus
 
     private void OnAccentGet(Entity<CrewletAccentComponent> ent, ref AccentGetEvent args)
     {
