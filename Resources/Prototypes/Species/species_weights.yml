@@ -2,7 +2,7 @@
 - type: weightedRandomSpecies
   id: SpeciesWeights
   weights:
-    Human: 5
+    Human: 4
     Reptilian: 4
     SlimePerson: 4
     Moth: 4
@@ -10,3 +10,8 @@
     Diona: 2
     Vox: 1
     Vulpkanin: 4
+    Apid: 2
+    Ungu: 1
+    Allulalo: 2
+    Gastropoid: 1
+    Ovinia: 3

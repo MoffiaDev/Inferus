@@ -75,6 +75,7 @@
     tags:
     - PetWearable
     - WhitelistChameleon
+  - type: EyeProtection # give meson goggles their protection back
   - type: TRayScanner # Inferus: was TrayScanner, renamed upstream
     toggleAction: ActionToggleTrayScanner
   - type: ItemToggle # Inferus: upstream T-ray scanners toggle through ItemToggle, sounds moved from TRayScanner

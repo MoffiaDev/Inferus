@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "eyelid-left and eyelid-right made by Tarazicon (GitHub) for Inferus, traced from the reptilian eye sprite resprited for Funky Station by Delta, Thlrd and Trixxed in https://github.com/funky-station/funky-station/pull/2919",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "eyelid-left",
+      "directions": 4
+    },
+    {
+      "name": "eyelid-right",
+      "directions": 4
+    }
+  ]
+}

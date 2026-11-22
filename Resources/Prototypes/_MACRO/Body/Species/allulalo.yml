@@ -345,6 +345,10 @@
     data:
       sprite: _MACRO/Mobs/Species/Allulalo/parts.rsi
       state: eyes
+  # Inferus
+  - type: EyeBlinking
+    eyelidsSprite: /Textures/_Inferus/Mobs/Species/Allulalo/eyelids.rsi
+  - type: Appearance
 
 - type: entity
   parent: [ OrganBaseTongue, OrganAllulaloInternal ]

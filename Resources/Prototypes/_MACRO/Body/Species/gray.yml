@@ -269,6 +269,11 @@
   id: OrganGrayEyes
   name: shuui
   description: "Soulful."
+  # Inferus
+  components:
+  - type: EyeBlinking
+    eyelidsSprite: /Textures/_Inferus/Mobs/Species/Gray/eyelids.rsi
+  - type: Appearance
 
 - type: entity
   parent: [ OrganBaseTongue, OrganGrayInternal ]

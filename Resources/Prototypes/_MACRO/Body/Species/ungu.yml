@@ -370,6 +370,11 @@
 - type: entity
   parent: [ OrganUnguInternal, OrganUnguExternal, OrganBaseEyes ]
   id: OrganUnguEyes
+  # Inferus
+  components:
+  - type: EyeBlinking
+    eyelidsSprite: /Textures/_Inferus/Mobs/Species/Ungu/eyelids.rsi
+  - type: Appearance
 
 - type: entity
   parent: [ OrganBaseTongue, OrganUnguInternal ]

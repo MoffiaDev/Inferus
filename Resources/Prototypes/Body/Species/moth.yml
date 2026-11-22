@@ -307,7 +307,7 @@
   id: OrganMothEyes
   components:
   - type: EyeBlinking
-    eyelidsSprite: /Textures/Mobs/Species/Moth/parts.rsi
+    eyelidsSprite: /Textures/_Inferus/Mobs/Species/Moth/eyelids.rsi # Inferus: was /Textures/Mobs/Species/Moth/parts.rsi, matches the Funky Station moth eyes
   - type: Appearance
 
 - type: entity

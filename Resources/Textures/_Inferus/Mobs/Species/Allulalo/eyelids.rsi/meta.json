@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "eyelid-left and eyelid-right made by Tarazicon (GitHub) for Inferus, traced from the allulalo default eye sprites by kipdotnet (GitHub) and starlighthowls (GitHub) for Impstation",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "eyelid-left",
+      "directions": 4
+    },
+    {
+      "name": "eyelid-right",
+      "directions": 4
+    }
+  ]
+}

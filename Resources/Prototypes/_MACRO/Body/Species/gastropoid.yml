@@ -293,6 +293,11 @@
 - type: entity
   parent: [ OrganGastropoidVisual, OrganBaseEyes, OrganGastropoidInternal ]
   id: OrganGastropoidEyes
+  # Inferus
+  components:
+  - type: EyeBlinking
+    eyelidsSprite: /Textures/_Inferus/Mobs/Species/Gastropoid/eyelids.rsi
+  - type: Appearance
 
 - type: entity
   parent: [ OrganBaseTongue, OrganGastropoidInternal ]
