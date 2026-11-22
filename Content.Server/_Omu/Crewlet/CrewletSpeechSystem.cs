@@ -81,7 +81,9 @@ public sealed partial class CrewletSpeechSystem : EntitySystem // Inferus
 
     private void OnListen(Entity<CrewletComponent> ent, ref ListenEvent args)
     {
-        if (args.Source != ent.Comp.CrewletOwner
+        // if (args.Source != ent.Comp.CrewletOwner // Inferus - learn from anything that talks, not just the owner
+        if (args.Source == ent.Owner // Inferus
+            || (TryComp<CrewletDisguiseComponent>(args.Source, out var disguise) && disguise.Husk == ent.Owner) // Inferus - don't relearn our own disguise's lines
             || !TryComp<ParrotMemoryComponent>(ent, out var memory)
             || _mobState.IsIncapacitated(ent)
             || _timing.CurTime < memory.NextLearnInterval)
