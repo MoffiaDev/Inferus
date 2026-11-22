@@ -30,7 +30,7 @@
     - state: "4"
       shader: unshaded
     visible: true
-    drawdepth: Overlays
+    drawdepth: Effects # Inferus: was Overlays, which drew over ghosts
   - type: Appearance
   - type: WallStainFireVisuals
   - type: PointLight
@@ -45,7 +45,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    drawdepth: Overlays
+    drawdepth: Effects # Inferus: was Overlays, which drew over ghosts
 
 - type: particleEffect
   id: WallFire
