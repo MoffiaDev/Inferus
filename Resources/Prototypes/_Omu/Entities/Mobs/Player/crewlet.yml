@@ -118,6 +118,9 @@
       - Airlock
       - MindContainer
       - MobState
+    activateBlacklist:
+      components:
+      - Puddle
     formBlacklist:
     - type: LimitedCharges
     - type: Emag
