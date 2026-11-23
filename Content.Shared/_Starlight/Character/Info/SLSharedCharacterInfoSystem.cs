@@ -171,20 +171,21 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
         if (!_flavorTextEnabled || desc == null)
             return;
 
-        args.Verbs.Add(new ExamineVerb
-        {
-            Act = () =>
-            {
-                var markup = new FormattedMessage();
-                markup.AddMarkupPermissive(desc);
-                _examineSystem.SendExamineTooltip(user, ent, markup, false, false);
-            },
-            Text = Loc.GetString("detail-examine-verb-text"),
-            Category = VerbCategory.Examine,
-            Disabled = !detailsRange,
-            Message = detailsRange ? null : Loc.GetString("detail-examine-verb-disabled"),
-            Icon = DetailIcon,
-        });
+        // Inferus - disable normal examine
+        //args.Verbs.Add(new ExamineVerb
+        //{
+        //    Act = () =>
+        //    {
+        //        var markup = new FormattedMessage();
+        //        markup.AddMarkupPermissive(desc);
+        //        _examineSystem.SendExamineTooltip(user, ent, markup, false, false);
+        //    },
+        //    Text = Loc.GetString("detail-examine-verb-text"),
+        //    Category = VerbCategory.Examine,
+        //    Disabled = !detailsRange,
+        //    Message = detailsRange ? null : Loc.GetString("detail-examine-verb-disabled"),
+        //    Icon = DetailIcon,
+        //});
     }
 
     protected virtual void OpenCharacterWindow(EntityUid target, EntityUid requester)
