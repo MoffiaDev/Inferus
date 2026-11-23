@@ -128,7 +128,7 @@
       types:
         Heat: 0
     soundHit:
-      collection: WeakHit
+      path: /Audio/_ES/Weapons/Guns/Hits/disabler_sear.ogg # Inferus
     forceSound: true
   - type: StaminaDamageOnCollide
     damage: 8

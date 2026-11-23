@@ -42,7 +42,7 @@
       types:
         Piercing: 14
     soundHit:
-      path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+      path: /Audio/_ES/Weapons/Guns/Hits/bullet_hit.ogg # Inferus
   - type: TimedDespawn
     lifetime: 10
 

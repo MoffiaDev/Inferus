@@ -17,7 +17,7 @@ namespace Content.Server._Inferus.Construction;
 /// construction graph step, a machine frame, or consumed by a crafting/construction menu recipe.
 /// Which sound plays is decided by <see cref="ConstructionInsertSoundPrototype"/> rules.
 /// </summary>
-public sealed class ConstructionInsertSoundSystem : EntitySystem
+public sealed partial class ConstructionInsertSoundSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -98,7 +98,7 @@ public sealed class ConstructionInsertSoundSystem : EntitySystem
         if (rule.Components.Count == 0 && rule.ComponentPatterns.Count == 0)
             return false;
 
-        foreach (var comp in EntityManager.GetComponents(item))
+        foreach (var comp in AllComps(item))
         {
             var name = Factory.GetComponentName(comp.GetType());
 

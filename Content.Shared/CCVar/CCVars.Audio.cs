@@ -16,7 +16,7 @@ public sealed partial class CCVars
         ///     How large of a range to sample for ambience.
         /// </summary>
         public static readonly CVarDef<float> AmbientRange =
-            CVarDef.Create("ambience.range", 8f, CVar.REPLICATED | CVar.SERVER);
+            CVarDef.Create("ambience.range", 10f, CVar.REPLICATED | CVar.SERVER); // Inferus - 8 -> 10 so APC powerhum reaches its range, ported from Ephemeral Space PR #264 (ConfigPresets/_ES/base.toml)
 
         /// <summary>
         ///     Maximum simultaneous ambient sounds.

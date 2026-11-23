@@ -65,10 +65,7 @@
       NavClimb: !type:Bool
         true
   - type: CrewletBrain
-    # Inferus - no Jump emote in Inferus
-    # danceEmote: Jump
-    danceEmote: Clap
-    # End Inferus
+    danceEmote: Jump
     pickpocketBlacklist:
       components:
       - PressureProtection

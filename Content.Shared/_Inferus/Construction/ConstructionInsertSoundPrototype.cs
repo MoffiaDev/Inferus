@@ -11,7 +11,7 @@ namespace Content.Shared._Inferus.Construction;
 /// Rules are checked from highest <see cref="Priority"/> to lowest; the first match wins.
 /// If nothing matches, the rule marked <see cref="Fallback"/> is used.
 /// </summary>
-[Prototype("constructionInsertSound")]
+[Prototype]
 public sealed partial class ConstructionInsertSoundPrototype : IPrototype
 {
     [IdDataField]

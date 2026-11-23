@@ -42,6 +42,8 @@
   - type: Ammo
   - type: Projectile
     impactEffect: BulletImpactEffectOrangeDisabler
+    soundHit:
+      path: /Audio/_ES/Weapons/Guns/Hits/sear.ogg # Inferus
     damage:
       types:
         Heat: 13
