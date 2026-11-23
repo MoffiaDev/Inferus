@@ -18,9 +18,25 @@ public sealed partial class LastWordsSystem : EntitySystem
 
     private void OnEntitySpoke(EntityUid uid, MobStateComponent _, EntitySpokeEvent args)
     {
-        _mindSystem.TryGetMind(uid, out var mindId, out var _);
+        // Inferus - whispers (they carry an obfuscated message) are never recorded as last words.
+        if (args.ObfuscatedMessage != null)
+            return;
 
-        if (TryComp<LastWordsComponent>(mindId, out var lastWordsComp))
-            lastWordsComp.LastWords = args.Message;
+        SetLastWords(uid, args.Message);
+    }
+
+    // Inferus - helper so other systems (crit last words) can record last words explicitly
+    /// <summary>
+    /// Records <paramref name="message"/> as the last words of the mind controlling <paramref name="uid"/>.
+    /// </summary>
+    public void SetLastWords(EntityUid uid, string message)
+    {
+        if (string.IsNullOrWhiteSpace(message))
+            return;
+
+        if (!_mindSystem.TryGetMind(uid, out var mindId, out _))
+            return;
+
+        EnsureComp<LastWordsComponent>(mindId).LastWords = message;
     }
 }

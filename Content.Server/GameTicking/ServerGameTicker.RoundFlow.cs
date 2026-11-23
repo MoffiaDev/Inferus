@@ -548,11 +548,12 @@ public sealed partial class ServerGameTicker
             var mobState = MobState.Invalid;
             var damagePerGroup = new Dictionary<string, FixedPoint2>();
             var lastMob = mind.LastMob;
-            if (TryComp<LastWordsComponent>(mindId, out var lastWordsComponent)
-                && !TerminatingOrDeleted(lastMob))
-            {
-                lastWords = lastWordsComponent.LastWords;
+            // Inferus - last words are stored on the mind, so they survive the body being gibbed or deleted.
+            if (TryComp<LastWordsComponent>(mindId, out var lastWordsComponent))
+                lastWords = lastWordsComponent.LastWords ?? "";
 
+            if (!TerminatingOrDeleted(lastMob))
+            {
                 if (TryComp<MobStateComponent>(lastMob, out var mobStateComp))
                     mobState = mobStateComp.CurrentState;
 
@@ -591,8 +592,38 @@ public sealed partial class ServerGameTicker
             listOfPlayerInfo.Add(playerEndRoundInfo);
         }
 
+        // Inferus - a player can own several minds (e.g. after respawning or a mind swap), which showed up as
+        // duplicate manifest entries. Collapse entries for the same player, character and role into one.
+        var dedupedPlayerInfo = new List<RoundEndMessageEvent.RoundEndPlayerInfo>();
+        var seenEntries = new Dictionary<(NetUserId, string, string), int>();
+        foreach (var info in listOfPlayerInfo)
+        {
+            if (info.PlayerGuid is not { } guid)
+            {
+                dedupedPlayerInfo.Add(info);
+                continue;
+            }
+
+            var key = (guid, info.PlayerICName ?? "", info.Role ?? "");
+            if (!seenEntries.TryGetValue(key, out var index))
+            {
+                seenEntries[key] = dedupedPlayerInfo.Count;
+                dedupedPlayerInfo.Add(info);
+                continue;
+            }
+
+            var existing = dedupedPlayerInfo[index];
+            // Prefer the entry that still has a body, and never lose recorded last words.
+            var keep = existing.PlayerNetEntity == null && info.PlayerNetEntity != null ? info : existing;
+            if (string.IsNullOrWhiteSpace(keep.LastWords))
+                keep.LastWords = string.IsNullOrWhiteSpace(existing.LastWords) ? info.LastWords : existing.LastWords;
+            dedupedPlayerInfo[index] = keep;
+        }
+
+        // End Inferus
+
         // This ordering mechanism isn't great (no ordering of minds) but functions
-        var listOfPlayerInfoFinal = listOfPlayerInfo.OrderBy(pi => pi.PlayerOOCName).ToArray();
+        var listOfPlayerInfoFinal = dedupedPlayerInfo.OrderBy(pi => pi.PlayerOOCName).ToArray();
         var sound = RoundEndSoundCollection == null ? null : Audio.ResolveSound(new SoundCollectionSpecifier(RoundEndSoundCollection));
 
         var roundEndMessageEvent = new RoundEndMessageEvent(

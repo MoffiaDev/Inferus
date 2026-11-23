@@ -1,3 +1,4 @@
+using Content.Server._Goobstation.LastWords; // Inferus
 using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
@@ -20,6 +21,7 @@ public sealed partial class CritMobActionsSystem : EntitySystem
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private DeathgaspSystem _deathgasp = default!;
     [Dependency] private IServerConsoleHost _host = default!;
+    [Dependency] private LastWordsSystem _lastWords = default!; // Inferus
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private QuickDialogSystem _quickDialog = default!;
@@ -81,6 +83,9 @@ public sealed partial class CritMobActionsSystem : EntitySystem
                     lastWords = lastWords.Substring(0, MaxLastWordsLength);
                 }
                 lastWords += "...";
+
+                // Inferus - crit last words are whispered, and whispers are not recorded automatically, so record them explicitly.
+                _lastWords.SetLastWords(uid, lastWords);
 
                 _chat.TrySendInGameICMessage(uid, lastWords, InGameICChatType.Whisper, ChatTransmitRange.Normal, checkRadioPrefix: false, ignoreActionBlocker: true);
                 _host.ExecuteCommand(actor.PlayerSession, "ghost");
