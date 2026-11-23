@@ -1,12 +1,15 @@
 using Content.Shared.Body;
 using Content.Shared.Chat;
 using Content.Shared.Eye.Blinking;
+using Robust.Shared.Audio.Systems; // Inferus
 
 namespace Content.Server.Eye.Blinking;
 
 /// <inheritdoc/>
 public sealed partial class ServerEyeBlinkingSystem : EyeBlinkingSystem
 {
+    [Dependency] private SharedAudioSystem _audio = default!; // Inferus - blink emote sound
+
     // TODO: Move all this stuff into Shared once chat is predicted.
     [SubscribeLocalEvent]
     private void OnEmote(Entity<EyeBlinkingComponent> ent, ref EmoteEvent args)
@@ -37,6 +40,7 @@ public sealed partial class ServerEyeBlinkingSystem : EyeBlinkingSystem
 
         var ev = new BlinkEyeEvent(GetNetEntity(ent.Owner));
         RaiseNetworkEvent(ev);
+        _audio.PlayPvs(ent.Comp.BlinkEmoteSound, GetActiveEntity(ent)); // Inferus - blink emote sound
         return true;
     }
 }
