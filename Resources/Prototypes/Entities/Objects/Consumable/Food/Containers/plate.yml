@@ -11,6 +11,17 @@
   parent: BaseItem
   id: BaseFoodPlate
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusFoodPlatePickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusFoodPlateDrop
+      params:
+        volume: -6
   - type: Item
     shape:
     - 0,0,1,0
@@ -81,6 +92,17 @@
   name: broken plate
   description: A broken plate. Useless.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusFoodPlatePickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusFoodPlateDrop
+      params:
+        volume: -6
   - type: Sprite
     sprite: Objects/Consumable/Food/plates.rsi
     state: plate-trash

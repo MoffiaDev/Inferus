@@ -5,6 +5,29 @@
   description: A rooty tooty point and shooty.
   abstract: true
   components:
+  # Inferus
+  - type: ItemEquipSounds
+    equipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_holster.ogg
+      params:
+        volume: -2
+    unequipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_draw.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_drop.ogg
   - type: Sprite
     layers:
       - state: base
@@ -33,17 +56,23 @@
       - SemiAuto
       - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+      path: /Audio/_ES/Weapons/Guns/Gunshots/pistol_shot.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
   - type: ChamberMagazineAmmoProvider
     soundRack:
-      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+      path: /Audio/_ES/Weapons/Guns/Cock/pistol_cock.ogg
+    soundBoltClosed:
+      path: /Audio/_ES/Weapons/Guns/Bolt/pistol_bolt_closed.ogg
+    soundBoltOpened:
+      path: /Audio/_ES/Weapons/Guns/Bolt/pistol_bolt_open.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistol
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        insertSound: /Audio/_ES/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/_ES/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
@@ -88,8 +117,8 @@
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistolHighCapacity
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        insertSound: /Audio/_ES/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/_ES/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
@@ -122,7 +151,7 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+      path: /Audio/_ES/Weapons/Guns/Gunshots/pistol_shot.ogg
   - type: Sprite
     sprite: Objects/Weapons/Guns/Pistols/viper.rsi
     layers:
@@ -169,7 +198,7 @@
     angleDecay: 14
     fireRate: 4
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      path: /Audio/_ES/Weapons/Guns/Gunshots/pistol_shot_suppressed.ogg
       params:
         volume: -14
     availableModes:
@@ -179,8 +208,8 @@
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistolCaselessRifle
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        insertSound: /Audio/_ES/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/_ES/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
@@ -260,8 +289,8 @@
       gun_magazine:
         name: Magazine
         startingItem: MagazineMagnum
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        insertSound: /Audio/_ES/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/_ES/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:

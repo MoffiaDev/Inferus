@@ -20,6 +20,12 @@
   name: metal rod
   suffix: Full
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Materials/iron_rod_pickup.ogg
+      params:
+        volume: -4
   - type: PhysicalComposition
     materialComposition:
       Steel: 50 #Half of a regular steel sheet to reflect the crafting recipe

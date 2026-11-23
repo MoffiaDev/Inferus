@@ -3,6 +3,16 @@
   parent: [SolutionWelder, BaseItem]
   id: BaseWelder
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/weldingtool_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Items/welder_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/welder_drop.ogg
   - type: Sprite
     layers:
     - state: icon
@@ -10,9 +20,6 @@
       visible: false
       shader: unshaded
       map: [ "enum.ToggleableVisuals.Layer" ]
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Items/welder_drop.ogg
   - type: GenericVisualizer
     visuals:
       enum.ToggleableVisuals.Enabled:

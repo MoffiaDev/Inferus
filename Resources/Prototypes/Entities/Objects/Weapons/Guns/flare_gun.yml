@@ -4,6 +4,20 @@
   id: WeaponFlareGun
   description: A compact, single-shot pistol that fires shotgun shells. Comes with a safety feature that prevents the user from fitting lethal shells inside.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/gun_pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/gun_drop.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/gun_drop.ogg
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/flaregun.rsi
     layers:

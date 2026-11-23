@@ -4,6 +4,17 @@
   name: cardboard
   suffix: Full
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Materials/cardboard_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Materials/cardboard_drop.ogg
+      params:
+        volume: -4
   - type: PhysicalComposition
     materialComposition:
       Cardboard: 100
@@ -60,6 +71,17 @@
   name: cloth
   suffix: Full
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Clothing/glove_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Clothing/glove_drop.ogg
+      params:
+        volume: -4
   - type: Healing
     damageContainers:
       - Biological
@@ -145,6 +167,17 @@
   name: durathread
   suffix: Full
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Clothing/glove_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Clothing/glove_drop.ogg
+      params:
+        volume: -4
   - type: Stack
     stackType: Durathread
     baseLayer: base
@@ -200,6 +233,20 @@
   name: wood
   suffix: Full
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Materials/wood_pickup.ogg
+      params:
+        volume: -6
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Materials/wood_drop.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/wooden_drop.ogg
   - type: PhysicalComposition
     materialComposition:
       Wood: 100
@@ -663,6 +710,16 @@
   name: bones
   suffix: Full
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/bone_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/bone_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/bone_drop.ogg
   - type: Stack
     stackType: Bones
     baseLayer: base

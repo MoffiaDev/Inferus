@@ -5,6 +5,16 @@
   name: pin
   description: Be nothing do crime.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_drop.ogg
   - type: Item
     size: Tiny
   - type: Sprite

@@ -1,0 +1,79 @@
+- files:
+    - "pistol_draw.ogg"
+    - "pistol_holster.ogg"
+    - "rifle_draw.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Taken from CM-SS13 (gun_pistol_draw, gun_pistol_sheathe, gun_rifle_draw), converted to mono'
+  source: "https://github.com/cmss13-devs/cmss13/tree/master/sound/weapons"
+
+- files:
+    - "gun_sling1.ogg"
+    - "gun_sling2.ogg"
+    - "gun_sling3.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Taken from CM-SS13 (gunequip1-3), converted to mono'
+  source: "https://github.com/cmss13-devs/cmss13/tree/master/sound/handling"
+
+- files:
+    - "rifle_pickup.ogg"
+    - "rifle_drop.ogg"
+  license: "CC-BY-4.0"
+  copyright: 'Taken from tgstation (rifle_pickup1, rifle_drop1), originally by the_Carlos on freesound (https://freesound.org/people/the_Carlos/sounds/706972/), converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/gun/ballistics/rifle"
+
+- files:
+    - "smg_pickup.ogg"
+    - "smg_drop.ogg"
+  license: "CC0-1.0"
+  copyright: 'Taken from tgstation (smg_pickup1, smg_drop1), originally by hyperix6 on freesound, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/gun/ballistics/smg"
+
+- files:
+    - "magazine_drop1.ogg"
+  license: "CC0-1.0"
+  copyright: '"Magazine Hitting Surface.wav" by MootMcnoodles, trimmed and converted to mono'
+  source: "https://freesound.org/s/444402/"
+
+- files:
+    - "magazine_drop2.ogg"
+  license: "CC0-1.0"
+  copyright: '"magazinedrop.wav" by j1987, trimmed and converted to mono'
+  source: "https://freesound.org/s/123010/"
+
+- files:
+    - "pistol_pickup.ogg"
+    - "pistol_drop.ogg"
+  license: "CC-BY-NC-4.0"
+  copyright: 'Taken from tgstation (pistol_pickup1, pistol_drop1), originally by PNMCarrieRailfan (https://freesound.org/people/PNMCarrieRailfan/sounds/682043/), converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/gun/ballistics/pistol"
+
+- files:
+    - "shotgun_pickup.ogg"
+  license: "CC-BY-NC-4.0"
+  copyright: 'Taken from tgstation (shotgun_pickup1), originally by PNMCarrieRailfan (https://freesound.org/people/PNMCarrieRailfan/sounds/681692/), converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/gun/ballistics/shotgun"
+
+- files:
+    - "shotgun_drop.ogg"
+  license: "CC-BY-NC-4.0"
+  copyright: 'Taken from tgstation (shotgun_drop1), originally by PNMCarrieRailfan (https://freesound.org/people/PNMCarrieRailfan/sounds/681690/), converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/gun/ballistics/shotgun"
+
+- files:
+    - "magazine_pickup.ogg"
+    - "magazine_drop3.ogg"
+  license: "CC-BY-NC-4.0"
+  copyright: 'Taken from tgstation (magazine_pickup1, magazine_drop1), originally by PNMCarrieRailfan (https://freesound.org/people/PNMCarrieRailfan/sounds/681511/), converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/gun/ballistics/magazine"
+
+- files:
+    - "gun_pickup.ogg"
+  license: "CC-BY-NC-4.0"
+  copyright: 'Taken from tgstation (gun_pick_up), originally "FN FAL Rifle Unload and Cock.mp3" by PNMCarrieRailfan (https://freesound.org/s/682031/), edited by sadboysuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/gun"
+
+- files:
+    - "gun_drop.ogg"
+  license: "CC-BY-NC-4.0"
+  copyright: 'Taken from tgstation (gun_drop), originally "FN FAL Rifle Load and Cock 01.mp3" by PNMCarrieRailfan (https://freesound.org/s/682029/), edited by sadboysuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/gun"

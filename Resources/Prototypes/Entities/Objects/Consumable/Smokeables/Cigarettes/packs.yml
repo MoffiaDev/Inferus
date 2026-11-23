@@ -4,6 +4,17 @@
   name: cigarette pack
   abstract: true
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusCigPackPickup
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusCigPackDrop
+      params:
+        volume: -2
   - type: Sprite
     layers:
     - state: closed
@@ -74,6 +85,17 @@
   name: soaked cigarette pack
   abstract: true
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusCigPackPickup
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusCigPackDrop
+      params:
+        volume: -2
   - type: Sprite
     layers:
     - state: closed

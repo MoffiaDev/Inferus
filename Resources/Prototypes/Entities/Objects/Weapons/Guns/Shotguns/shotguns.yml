@@ -5,6 +5,29 @@
   description: A rooty tooty point and shooty.
   abstract: true
   components:
+  # Inferus
+  - type: ItemEquipSounds
+    equipSound:
+      collection: InferusGunSling
+      params:
+        volume: -3
+    unequipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/rifle_draw.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/shotgun_pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/shotgun_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/shotgun_drop.ogg
   - type: Sprite
     layers:
     - state: icon
@@ -26,9 +49,9 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+      path: /Audio/_ES/Weapons/Guns/Gunshots/shotgun_shot.ogg # Inferus
     soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg # Inferus
   - type: CustomSpriteAmmoCounter
     loadedAmmoSprite: Interface/ItemStatus/Shotgun_Shells/not_spent.png
     spentAmmoSprite: Interface/ItemStatus/Shotgun_Shells/spent.png
@@ -39,7 +62,7 @@
     capacity: 7
     proto: ShellShotgun
     soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+      path: /Audio/_ES/Weapons/Guns/MagIn/shotgun_insert.ogg # Inferus
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -80,9 +103,9 @@
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+      path: /Audio/_ES/Weapons/Guns/Gunshots/shotgun_shot.ogg # Inferus
     soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg # Inferus
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -121,6 +144,8 @@
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 3
+    soundGunshot:
+      path: /Audio/_ES/Weapons/Guns/Gunshots/doublebarrel_shot.ogg # Inferus
   - type: GunSpreadModifier
     spread: 0.6
   - type: BallisticAmmoProvider
@@ -201,6 +226,8 @@
     sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
   - type: Gun
     fireRate: 3
+    soundGunshot:
+      path: /Audio/_ES/Weapons/Guns/Gunshots/doublebarrel_shot.ogg # Inferus
   - type: GunSpreadModifier
     spread: 1.4
   - type: BallisticAmmoProvider

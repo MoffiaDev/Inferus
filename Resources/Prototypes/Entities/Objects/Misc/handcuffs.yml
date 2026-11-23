@@ -3,6 +3,17 @@
   parent: [BaseItem, BaseSecurityCommandContraband]
   abstract: true
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Weapons/handcuffs_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Weapons/handcuffs_drop.ogg
+      params:
+        volume: -4
   - type: Item
     size: Small
     storedRotation: 90

@@ -1,0 +1,57 @@
+- files:
+    - "cig_pack_drop1.ogg"
+    - "cig_pack_drop2.ogg"
+    - "cig_pack_pickup1.ogg"
+    - "cig_pack_pickup2.ogg"
+    - "cig_pack_pickup3.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by grungussuss for tgstation, converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/cigs"
+
+- files:
+    - "potted_plant_drop1.ogg"
+    - "potted_plant_drop2.ogg"
+    - "potted_plant_drop3.ogg"
+    - "potted_plant_drop4.ogg"
+    - "potted_plant_drop5.ogg"
+    - "potted_plant_pickup1.ogg"
+    - "potted_plant_pickup2.ogg"
+    - "potted_plant_pickup3.ogg"
+    - "potted_plant_pickup4.ogg"
+    - "potted_plant_pickup5.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by grungussuss for tgstation, converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/potted_plant"
+
+- files:
+    - "medkit_pickup.ogg"
+  license: "CC-BY-4.0"
+  copyright: 'Taken from tgstation (medkit_pick_up), originally by blouhond (https://freesound.org/people/blouhond/sounds/440710/), edited by sadboysuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/medkit"
+
+- files:
+    - "gas_tank_pickup.ogg"
+    - "gas_tank_drop.ogg"
+  license: "CC0-1.0"
+  copyright: 'Taken from tgstation (gas_tank_pick_up, gas_tank_drop), originally by Globofonia (https://freesound.org/people/Globofonia/sounds/698346/), edited by grungussuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/gas_tank"
+
+- files:
+    - "gas_analyzer_pickup.ogg"
+    - "gas_analyzer_drop.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by sadboysuss for tgstation, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/gas_analyzer"
+
+- files:
+    - "rcd_pickup.ogg"
+    - "rcd_drop.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by sadboysuss for tgstation, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/tools"
+
+- files:
+    - "medkit_drop.ogg"
+  license: "CC-BY-NC-4.0"
+  copyright: 'Taken from tgstation, originally by Jandre160108 (https://freesound.org/people/Jandre160108/sounds/365866/), edited by sadboysuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/medkit"

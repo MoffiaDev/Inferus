@@ -5,6 +5,30 @@
   name: headset
   description: An updated, modular intercom that fits over the head. Takes encryption keys.
   components:
+  # Inferus
+  - type: ItemEquipSounds
+    equipSound:
+      collection: InferusHeadsetEquip
+      params:
+        volume: -4
+    unequipSound:
+      collection: InferusHeadsetEquip
+      params:
+        volume: -6
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusHeadsetPickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Clothing/headset_drop1.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/component_drop.ogg
   - type: ContainerContainer
     containers:
       key_slots: !type:Container

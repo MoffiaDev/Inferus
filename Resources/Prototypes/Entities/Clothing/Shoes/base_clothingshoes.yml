@@ -3,12 +3,41 @@
   parent: [SolutionFood, SolutionToolNormal, Clothing]
   id: ClothingShoesBase
   components:
+  # Inferus
+  - type: ItemEquipSounds
+    equipSound:
+      path: /Audio/_Inferus/Items/Handling/Clothing/sneakers_equip.ogg
+      params:
+        volume: -4
+    unequipSound:
+      path: /Audio/_Inferus/Items/Handling/Clothing/sneakers_equip.ogg
+      params:
+        volume: -6
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Clothing/sneakers_pickup.ogg
+      params:
+        volume: -6
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Clothing/sneakers_drop.ogg
+      params:
+        volume: -6
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/boots_drop.ogg
+      params:
+        volume: -5
   # Begin Inferus
   - type: FootstepTimbre
     pitch: 1.04
     volume: -1.5
   # End Inferus
   - type: Clothing
+    equipSound:
+      collection: GenericEquip
+      params:
+        volume: -5
     slots:
     - FEET
   - type: Sprite

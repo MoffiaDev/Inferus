@@ -207,7 +207,12 @@ public sealed partial class ClientEyeBlinkingSystem : EyeBlinkingSystem
         foreach (var eyelidState in ent.Comp.Eyelids)
         {
             ChangeEyeState((ent.Comp.Body.Value, sprite), eyelidState, eyeClosed);
+            // Inferus - this isn't part of a blink, so don't mark the eyelid as having finished one.
+            // Otherwise the next blink (e.g. from the blink emote) instantly "completes" without the eyes ever closing.
+            eyelidState.IsCompleteBlink = false;
         }
+
+        ent.Comp.BlinkInProgress = false; // Inferus
     }
 
 

@@ -1,3 +1,4 @@
+using Content.Server._Inferus.Construction; // Inferus
 using Content.Server.Construction.Components;
 using Content.Server.Stack;
 using Content.Shared.Construction.Components;
@@ -20,6 +21,7 @@ public sealed partial class MachineFrameSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popupSystem = default!;
 
     [Dependency] private SharedInteractionSystem _interactionSystem = default!; // Moffstation - Interaction particles
+    [Dependency] private ConstructionInsertSoundSystem _inferusInsertSound = default!; // Inferus - construction place sounds
 
 
     public override void Initialize()
@@ -94,6 +96,8 @@ public sealed partial class MachineFrameSystem : EntitySystem
                 args.Handled = true;
                 if (!_container.Insert(args.Used, component.PartContainer))
                     return;
+
+                _inferusInsertSound.PlayFor(args.Used, uid); // Inferus - construction place sounds
             }
 
             component.ComponentProgress[compName]++;
@@ -126,6 +130,8 @@ public sealed partial class MachineFrameSystem : EntitySystem
                 args.Handled = true;
                 if (!_container.Insert(args.Used, component.PartContainer))
                     return;
+
+                _inferusInsertSound.PlayFor(args.Used, uid); // Inferus - construction place sounds
             }
 
             component.TagProgress[tagName]++;
@@ -157,6 +163,8 @@ public sealed partial class MachineFrameSystem : EntitySystem
         if (TryComp(uid, out ConstructionComponent? construction))
             _construction.ResetEdge(uid, construction);
 
+        _inferusInsertSound.PlayFor(used, uid); // Inferus - construction place sounds
+
         return true;
     }
 
@@ -185,6 +193,7 @@ public sealed partial class MachineFrameSystem : EntitySystem
                 return true;
 
             component.MaterialProgress[type] += count;
+            _inferusInsertSound.PlayFor(used, uid); // Inferus - construction place sounds
             return true;
         }
 
@@ -197,6 +206,7 @@ public sealed partial class MachineFrameSystem : EntitySystem
             return true;
 
         component.MaterialProgress[type] += needed;
+        _inferusInsertSound.PlayFor(splitStack.Value, uid); // Inferus - construction place sounds
         if (IsComplete(component))
             _popupSystem.PopupEntity(Loc.GetString("machine-frame-component-on-complete"), uid);
 

@@ -3,6 +3,26 @@
   id: ClothingHeadHatHardhatBase
   abstract: true
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusHardHatPickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusHardHatDrop
+      params:
+        volume: -4
+  - type: ItemEquipSounds
+    equipSound:
+      collection: InferusHardHatEquip
+      params:
+        volume: -4
+    unequipSound:
+      collection: InferusHardHatEquip
+      params:
+        volume: -6
   - type: Sprite
     layers:
     - state: icon

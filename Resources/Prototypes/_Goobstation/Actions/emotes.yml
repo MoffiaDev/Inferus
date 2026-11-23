@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Goob-Station: https://github.com/Goob-Station/Goob-Station/blob/8d81b444c5f6cab92e4756578bcf68457ec13de0/Resources/Prototypes/_Goobstation/Actions/emotes.yml
+
+- type: emote
+  id: Flip
+  name: chat-emote-name-flip
+  icon: _Goobstation/Interface/Emotes/flip.png
+  chatMessages: ["chat-emote-msg-flip"]
+  chatTriggers:
+  - flip
+  - flips
+  - flips.
+  - flips!
+  - does a flip
+  - does a flip.
+  - does a flip!
+  event: !type:AnimationFlipEmoteEvent
+
+- type: emote
+  id: Jump
+  name: chat-emote-name-jump
+  icon: _Goobstation/Interface/Emotes/jump.png
+  chatMessages: ["chat-emote-msg-jump"]
+  chatTriggers:
+  - jump
+  - jumps
+  - jumps.
+  - jumps!
+  event: !type:AnimationJumpEmoteEvent

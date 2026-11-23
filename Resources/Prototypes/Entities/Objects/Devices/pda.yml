@@ -5,6 +5,16 @@
   name: PDA
   description: Personal Data Assistant.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/phone_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/phone_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/phone_drop.ogg
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:

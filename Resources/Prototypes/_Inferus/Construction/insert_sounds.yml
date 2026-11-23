@@ -1,0 +1,75 @@
+# Place sounds that play when an item is put into a construction step, a machine frame, or used up by a crafting recipe.
+# Rules are checked from highest priority to lowest, and the first match wins. The fallback rule is used when nothing matches.
+# Sounds are from Resources/Audio/Construction (see attributions.yml there).
+
+- type: constructionInsertSound
+  id: Electronics
+  priority: 40
+  sound:
+    collection: PlaceElectronics
+  components:
+  - MachineBoard
+  - ComputerBoard
+  - BorgBrain
+  componentPatterns:
+  - Electronics
+  - Circuitboard
+  tagPatterns:
+  - Electronics
+  - Circuitboard
+  tags:
+  - SmallAIChip
+  - ProximitySensor
+  - Igniter
+  - SignalTrigger
+  - VoiceTrigger
+
+- type: constructionInsertSound
+  id: Wires
+  priority: 30
+  sound:
+    collection: PlaceWires
+  stacks:
+  - Cable
+  - CableMV
+  - CableHV
+  - CableDet
+
+- type: constructionInsertSound
+  id: Glass
+  priority: 20
+  sound:
+    collection: PlaceGlass
+  stacks:
+  - Glass
+  - ReinforcedGlass
+  - PlasmaGlass
+  - ReinforcedPlasmaGlass
+  - UraniumGlass
+  - ReinforcedUraniumGlass
+  - ClockworkGlass
+  tagPatterns:
+  - GlassShard
+
+- type: constructionInsertSound
+  id: Metal
+  priority: 10
+  sound:
+    collection: PlaceMetal
+  stacks:
+  - Steel
+  - Plasteel
+  - MetalRod
+  - Brass
+  - Silver
+  - Gold
+  - Uranium
+  - Bananium
+  tags:
+  - Pipe
+
+- type: constructionInsertSound
+  id: Item
+  fallback: true
+  sound:
+    collection: PlaceItem

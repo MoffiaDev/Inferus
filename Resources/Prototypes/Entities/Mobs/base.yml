@@ -54,6 +54,7 @@
   - type: MobMover
   - type: MovementSpeedModifier
   - type: LagCompensation
+  - type: AnimatedEmotes # Inferus - Goobstation flip and jump emotes
 
 - type: entity
   save: false

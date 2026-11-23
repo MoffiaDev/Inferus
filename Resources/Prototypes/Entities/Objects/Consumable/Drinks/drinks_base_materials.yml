@@ -7,6 +7,13 @@
   abstract: true
   id: DrinkBaseMaterialGlass
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/drinkglass_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/drinkglass_drop.ogg
   - type: Damageable
     damageModifierSet: FlimsyGlass
   - type: Injurable
@@ -44,6 +51,13 @@
   abstract: true
   id: DrinkBaseMaterialPorcelain
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/drinkglass_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/drinkglass_drop.ogg
   - type: Damageable
     damageModifierSet: FlimsyGlass
   - type: Injurable
@@ -75,6 +89,13 @@
   abstract: true
   id: DrinkBaseMaterialPlastic
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/plasticbox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/plasticbox_drop.ogg
   - type: Damageable
   - type: Injurable
     damageContainer: Inorganic
@@ -110,6 +131,13 @@
   parent: DrinkBaseMaterialPlastic
   id: DrinkBaseMaterialStrongPlastic
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/plasticbox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/plasticbox_drop.ogg
   - type: Destructible
     thresholds:
     - trigger:
@@ -139,6 +167,13 @@
   abstract: true
   id: DrinkBaseMaterialCardboard
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/cardboardbox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/cardboardbox_drop.ogg
   - type: Damageable
     damageModifierSet: Card
   - type: Injurable

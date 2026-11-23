@@ -4,6 +4,26 @@
   name: gas mask
   description: A face-covering mask that can be connected to an air supply.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusGasMaskPickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusGasMaskDrop
+      params:
+        volume: -4
+  - type: ItemEquipSounds
+    equipSound:
+      collection: InferusGasMaskEquip
+      params:
+        volume: -4
+    unequipSound:
+      collection: InferusGasMaskEquip
+      params:
+        volume: -6
   - type: Sprite
     sprite: Clothing/Mask/gas.rsi
   - type: Clothing

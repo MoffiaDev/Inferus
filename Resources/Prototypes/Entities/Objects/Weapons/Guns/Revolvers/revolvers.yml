@@ -5,6 +5,29 @@
   description: A rooty tooty point and shooty.
   abstract: true
   components:
+  # Inferus
+  - type: ItemEquipSounds
+    equipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_holster.ogg
+      params:
+        volume: -2
+    unequipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_draw.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_drop.ogg
   - type: Sprite
     state: icon
   - type: Item
@@ -28,8 +51,10 @@
     fireRate: 1.5
     availableModes:
     - SemiAuto
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg # Inferus
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+      path: /Audio/_ES/Weapons/Guns/Gunshots/revolver_shot.ogg # Inferus
   - type: UseDelay
     delay: 0.66
   - type: ContainerContainer
@@ -142,7 +167,7 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+      path: /Audio/_ES/Weapons/Guns/Gunshots/revolver_shot.ogg # Inferus
       params:
         volume: 2.25
   - type: StaticPrice

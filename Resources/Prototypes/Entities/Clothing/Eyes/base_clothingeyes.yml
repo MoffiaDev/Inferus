@@ -3,6 +3,26 @@
   parent: Clothing
   id: ClothingEyesBase
   components:
+  # Inferus
+  - type: ItemEquipSounds
+    equipSound:
+      collection: InferusGlassesEquip
+      params:
+        volume: -4
+    unequipSound:
+      collection: InferusGlassesEquip
+      params:
+        volume: -6
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusGlassesPickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusGlassesDrop
+      params:
+        volume: -4
   - type: Sprite
     state: icon
   - type: Clothing

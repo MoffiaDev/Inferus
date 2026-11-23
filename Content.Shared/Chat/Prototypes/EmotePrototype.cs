@@ -68,6 +68,11 @@ public sealed partial class EmotePrototype : IPrototype
     /// </summary>
     [DataField]
     public HashSet<string> ChatTriggers = new();
+
+    // Inferus - Goobstation animated emotes, event raised on the client to play the emote's animation
+    [DataField]
+    public object? Event = null;
+    // End Inferus
 }
 
 /// <summary>

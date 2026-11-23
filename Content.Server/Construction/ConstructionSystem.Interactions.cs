@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Inferus.Construction; // Inferus
 using Content.Server.Administration.Logs;
 using Content.Server.Construction.Components;
 using Content.Server.Temperature.Components;
@@ -27,6 +28,10 @@ namespace Content.Server.Construction
     public sealed partial class ConstructionSystem
     {
         [Dependency] private IAdminLogManager _adminLogger = default!;
+        // Inferus - construction place sounds
+        [Dependency] private ConstructionInsertSoundSystem _inferusInsertSound = default!;
+        private Content.Shared._Inferus.Construction.ConstructionInsertSoundPrototype? _inferusPendingInsertSound;
+        // End Inferus
 #if EXCEPTION_TOLERANCE
         [Dependency] private IRuntimeLog _runtimeLog = default!;
 #endif
@@ -141,6 +146,8 @@ namespace Content.Server.Construction
         /// <returns>The result of this interaction with the entity.</returns>
         private HandleResult HandleEdge(EntityUid uid, object ev, ConstructionGraphEdge edge, bool validation, ConstructionComponent? construction = null)
         {
+            _inferusPendingInsertSound = null; // Inferus - construction place sounds
+
             if (!Resolve(uid, ref construction))
                 return HandleResult.False;
 
@@ -159,6 +166,17 @@ namespace Content.Server.Construction
             var handle = HandleStep(uid, ev, step, validation, out var user, construction);
             if (handle is not HandleResult.True)
                 return handle;
+
+            // Inferus - construction place sounds: play the item's place sound, unless the graph already plays one.
+            var inferusSound = _inferusPendingInsertSound;
+            _inferusPendingInsertSound = null;
+            if (inferusSound != null
+                && !ConstructionInsertSoundSystem.HasSoundAction(step.Completed)
+                && !(construction.StepIndex + 1 >= edge.Steps.Count && ConstructionInsertSoundSystem.HasSoundAction(edge.Completed)))
+            {
+                _inferusInsertSound.Play(inferusSound, uid);
+            }
+            // End Inferus
 
             // Handle step should never handle the interaction during validation.
             DebugTools.Assert(!validation);
@@ -325,6 +343,8 @@ namespace Content.Server.Construction
 
                         insert = stack;
                     }
+
+                    _inferusPendingInsertSound = _inferusInsertSound.GetRule(insert); // Inferus - construction place sounds
 
                     // Container-storage handling.
                     if (!string.IsNullOrEmpty(insertStep.Store))

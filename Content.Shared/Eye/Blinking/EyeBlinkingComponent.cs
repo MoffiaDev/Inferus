@@ -1,5 +1,6 @@
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Humanoid;
+using Robust.Shared.Audio; // Inferus
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -92,6 +93,14 @@ public sealed partial class EyeBlinkingComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public List<ProtoId<EmotePrototype>> BlinkEmoteId = new() { "Blink" };
+
+    // Inferus - blink emote sound
+    /// <summary>
+    /// Sound played when this entity blinks because of a blink emote.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? BlinkEmoteSound = new SoundCollectionSpecifier("Blinks", AudioParams.Default.WithVariation(0.125f));
+    // End Inferus
 
     /// <summary>
     /// The prefix used to find eyelid states in <see cref="EyelidsSprite"/>.

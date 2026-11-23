@@ -3,6 +3,17 @@
   parent: BaseItem
   id: GrenadeBase
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Weapons/grenade_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Weapons/grenade_drop.ogg
+      params:
+        volume: -4
   - type: Sprite
     sprite: Objects/Weapons/Grenades/grenade.rsi
     layers:

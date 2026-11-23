@@ -1,0 +1,5 @@
+# Ported from Delta-V (https://github.com/DeltaV-Station/Delta-v), originally from Impstation.
+- type: soundCollection
+  id: Blinks
+  files:
+  - /Audio/_Impstation/Effects/Emotes/blink.ogg

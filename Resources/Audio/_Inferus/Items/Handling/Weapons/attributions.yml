@@ -1,0 +1,59 @@
+- files:
+    - "grenade_pickup.ogg"
+    - "grenade_drop.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by sadboysuss for tgstation, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/grenade"
+
+- files:
+    - "sword_unsheath.ogg"
+    - "sword_sheath.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Taken from tgstation (unsheath, sheath), converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items"
+
+- files:
+    - "sword_drop.ogg"
+  license: "CC0-1.0"
+  copyright: '"Dropping Sword 2" by Christopherderp, trimmed and converted to mono'
+  source: "https://freesound.org/s/342453/"
+
+- files:
+    - "baton_pickup.ogg"
+    - "baton_drop.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by sadboysuss for tgstation (telescopic_baton_unfolded_pickup, telescopic_baton_unfolded_drop), converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/baton"
+
+- files:
+    - "pole_pickup.ogg"
+  license: "CC-BY-4.0"
+  copyright: 'Taken from tgstation (lead_pipe_pickup), originally "Metal pipe hitting the ground.flac" by CGEffex (https://freesound.org/s/93962/), converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/lead_pipe"
+
+- files:
+    - "pole_drop.ogg"
+  license: "CC0-1.0"
+  copyright: 'Taken from tgstation (lead_pipe_drop), originally by thenotcheeseman (https://freesound.org/s/679206/), trimmed and converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/lead_pipe"
+
+- files:
+    - "shield_pickup.ogg"
+    - "shield_drop.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by sadboysuss for tgstation (plastic_shield_pick_up, plastic_shield_drop), converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/shield"
+
+- files:
+    - "handcuffs_pickup.ogg"
+    - "handcuffs_drop.ogg"
+  license: "CC-BY-3.0"
+  copyright: 'Taken from tgstation, originally "handcuffs.ogg" by kimuracarter (https://freesound.org/s/528749/), edited by sadboysuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/handcuffs"
+
+- files:
+    - "stun_baton_inactive_pickup.ogg"
+    - "stun_baton_inactive_drop.ogg"
+  license: "CC-BY-NC-4.0"
+  copyright: 'Taken from tgstation, originally "Fn P90 Submachine Gun 5.7Mm. Mechan; Empty Mag Inserted Into And Pulled Out Slow And Various 02" by PNMCarrieRailfan (https://freesound.org/s/682041/), converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/baton"

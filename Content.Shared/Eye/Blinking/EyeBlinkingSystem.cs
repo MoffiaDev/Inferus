@@ -87,6 +87,7 @@ public abstract partial class EyeBlinkingSystem : EntitySystem
 
         ent.Comp.BlinkSkinColorMultiplier = cloneEyes.BlinkSkinColorMultiplier;
         ent.Comp.BlinkEmoteId = [.. cloneEyes.BlinkEmoteId];
+        ent.Comp.BlinkEmoteSound = cloneEyes.BlinkEmoteSound; // Inferus - blink emote sound
         ent.Comp.StatePrefix = cloneEyes.StatePrefix;
 
         Dirty(ent);
@@ -200,6 +201,7 @@ public abstract partial class EyeBlinkingSystem : EntitySystem
 
         cloneComp.BlinkSkinColorMultiplier = ent.Comp.BlinkSkinColorMultiplier;
         cloneComp.BlinkEmoteId = [.. ent.Comp.BlinkEmoteId];
+        cloneComp.BlinkEmoteSound = ent.Comp.BlinkEmoteSound; // Inferus - blink emote sound
         cloneComp.StatePrefix = ent.Comp.StatePrefix;
         AddComp(args.CloneUid, cloneComp, true);
         _blindable.UpdateIsBlind(args.CloneUid);

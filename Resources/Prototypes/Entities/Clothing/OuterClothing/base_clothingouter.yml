@@ -3,7 +3,25 @@
   parent: Clothing
   id: ClothingOuterBase
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: GenericPickup
+      params:
+        volume: -9
+  - type: EmitSoundOnDrop
+    sound:
+      collection: GenericDrop
+      params:
+        volume: -9
+  - type: EmitSoundOnLand
+    sound:
+      collection: GenericDrop
+      params:
+        volume: -9
   - type: Clothing
+    equipSound:
+      collection: GenericEquip
     slots:
     - outerClothing
   - type: Sprite
@@ -214,6 +232,22 @@
   id: ClothingOuterHardsuitBase
   name: base hardsuit
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/backpack_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/backpack_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/backpack_drop.ogg
+      params:
+        volume: -4
   # Begin Inferus
   - type: FootstepLayer
     sound:

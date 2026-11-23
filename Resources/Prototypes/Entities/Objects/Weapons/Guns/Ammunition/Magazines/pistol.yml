@@ -4,6 +4,17 @@
   id: BaseMagazinePistol
   name: pistol magazine (.35 auto)
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/magazine_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusMagazineDrop
+      params:
+        volume: -4
   - type: Tag
     tags:
       - MagazinePistol
@@ -37,6 +48,17 @@
   id: BaseMagazinePistolHighCapacity
   name: machine pistol magazine (.35 auto)
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/magazine_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusMagazineDrop
+      params:
+        volume: -4
   - type: Tag
     tags:
       - MagazinePistolHighCapacity
@@ -70,6 +92,17 @@
   id: BaseMagazinePistolSubMachineGun  # Yeah it's weird but it's pistol caliber
   name: SMG magazine (.35 auto)
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/magazine_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusMagazineDrop
+      params:
+        volume: -4
   - type: Tag
     tags:
       - MagazinePistolSubMachineGun

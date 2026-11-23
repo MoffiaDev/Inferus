@@ -1,0 +1,53 @@
+- files:
+    - "bowl_drop1.ogg"
+    - "bowl_drop2.ogg"
+    - "bowl_drop3.ogg"
+    - "bowl_pickup1.ogg"
+    - "bowl_pickup2.ogg"
+    - "bowl_pickup3.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by grungussuss for tgstation, converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/bowl"
+
+- files:
+    - "cutlery_drop1.ogg"
+    - "cutlery_drop2.ogg"
+    - "cutlery_drop3.ogg"
+    - "cutlery_pickup1.ogg"
+    - "cutlery_pickup2.ogg"
+    - "cutlery_pickup3.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by grungussuss for tgstation, converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/cutlery"
+
+- files:
+    - "food_plate_drop1.ogg"
+    - "food_plate_drop2.ogg"
+    - "food_plate_drop3.ogg"
+    - "food_plate_pickup1.ogg"
+    - "food_plate_pickup2.ogg"
+    - "food_plate_pickup3.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by grungussuss for tgstation, converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/food_plate"
+
+- files:
+    - "rolling_pin_drop1.ogg"
+    - "rolling_pin_drop2.ogg"
+    - "rolling_pin_drop3.ogg"
+    - "rolling_pin_pickup1.ogg"
+    - "rolling_pin_pickup2.ogg"
+    - "rolling_pin_pickup3.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by grungussuss for tgstation, converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/rolling_pin"
+
+- files:
+    - "seasoning_shaker_drop1.ogg"
+    - "seasoning_shaker_drop2.ogg"
+    - "seasoning_shaker_pickup1.ogg"
+    - "seasoning_shaker_pickup2.ogg"
+    - "seasoning_shaker_pickup3.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by grungussuss for tgstation, converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/seasoning_shaker"

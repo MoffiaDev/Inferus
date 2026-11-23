@@ -1,0 +1,50 @@
+- files:
+    - "glass_drop.ogg"
+    - "metal_pickup.ogg"
+  license: "CC0-1.0"
+  copyright: 'Taken from tgstation (glass_drop, metal_pick_up), originally by Hotlavaman (https://freesound.org/people/Hotlavaman/sounds/108673/), edited by sadboysuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/materials"
+
+- files:
+    - "glass_pickup.ogg"
+  license: "CC0-1.0"
+  copyright: 'Taken from tgstation (glass_pick_up), originally by tcrocker68 (https://freesound.org/people/tcrocker68/sounds/235602/), edited by sadboysuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/materials"
+
+- files:
+    - "plastic_pickup.ogg"
+  license: "CC-BY-4.0"
+  copyright: 'Taken from tgstation (plastic_pick_up), originally by Jessica190091 (https://freesound.org/people/Jessica190091/sounds/491304/), edited by sadboysuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/materials"
+
+- files:
+    - "plastic_drop.ogg"
+  license: "CC0-1.0"
+  copyright: 'Taken from tgstation (plastic_drop), originally by martian (https://freesound.org/people/martian/sounds/338854/), edited by sadboysuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/materials"
+
+- files:
+    - "cardboard_pickup.ogg"
+    - "cardboard_drop.ogg"
+  license: "CC0-1.0"
+  copyright: 'Taken from tgstation (cardboard_pick_up, cardboard_drop), originally by newagesoup (https://freesound.org/people/newagesoup/sounds/364736/), converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/materials"
+
+- files:
+    - "iron_rod_pickup.ogg"
+  license: "CC-BY-4.0"
+  copyright: 'Taken from tgstation (irod_rod_pick_up), originally by lostphosphene (https://freesound.org/people/lostphosphene/sounds/258265/), edited by sadboysuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/materials"
+
+- files:
+    - "metal_drop.ogg"
+  license: "CC-BY-NC-4.0"
+  copyright: 'Taken from tgstation, originally by Robinhood76 (https://freesound.org/people/Robinhood76/sounds/85418/), edited by sadboysuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/materials"
+
+- files:
+    - "wood_pickup.ogg"
+    - "wood_drop.ogg"
+  license: "CC SAMPLING+ 1.0"
+  copyright: 'Taken from tgstation (wood_pick_up, wood_drop), originally by cjosephwalker (https://freesound.org/people/cjosephwalker/sounds/94859/), edited by sadboysuss, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/materials"
