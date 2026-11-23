@@ -1,0 +1,120 @@
+# Inferus: renders changed maps with Content.MapRenderer and uploads before/after crops.
+# Runs untrusted PR code, so it has a read-only token and no secrets. The comment is posted
+# by map-diff-comment.yml (workflow_run), which never executes code from the PR.
+name: Diff Maps
+
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize, ready_for_review ]
+    paths:
+      - 'Resources/Maps/**.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  MAX_MAPS: 10
+  WORK: ${{ github.workspace }}/../mapdiff
+
+jobs:
+  render:
+    name: Render
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Find changed maps
+        id: changes
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          mkdir -p "$WORK/src/base" "$WORK/render/base" "$WORK/render/head" "$WORK/out/images"
+          git fetch --no-tags origin "$BASE_SHA"
+          MB=$(git merge-base "$BASE_SHA" "$HEAD_SHA")
+          git diff --name-status --no-renames "$MB" "$HEAD_SHA" -- 'Resources/Maps/**.yml' \
+            | head -n "$MAX_MAPS" > "$WORK/changes.tsv"
+          cat "$WORK/changes.tsv"
+          : > "$WORK/base.txt"; : > "$WORK/head.txt"
+          while IFS=$'\t' read -r status path; do
+            if [ "$status" != "A" ]; then
+              mkdir -p "$WORK/src/base/$(dirname "$path")"
+              git show "$MB:$path" > "$WORK/src/base/$path"
+              echo "$WORK/src/base/$path" >> "$WORK/base.txt"
+            fi
+            if [ "$status" != "D" ]; then
+              echo "$PWD/$path" >> "$WORK/head.txt"
+            fi
+          done < "$WORK/changes.tsv"
+          echo "count=$(wc -l < "$WORK/changes.tsv")" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Submodule
+        if: steps.changes.outputs.count != '0'
+        run: git submodule update --init --recursive
+
+      - name: Pull engine updates
+        if: steps.changes.outputs.count != '0'
+        uses: space-wizards/submodule-dependency@v0.1.5
+
+      - name: Update Engine Submodules
+        if: steps.changes.outputs.count != '0'
+        run: |
+          cd RobustToolbox/
+          git submodule update --init --recursive
+
+      - name: Setup .NET Core
+        if: steps.changes.outputs.count != '0'
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Build Map Renderer
+        if: steps.changes.outputs.count != '0'
+        run: |
+          dotnet restore
+          dotnet build Content.MapRenderer --configuration Release --no-restore /m
+
+      - name: Render maps
+        if: steps.changes.outputs.count != '0'
+        # Inferus: same workaround as build-map-renderer.yml (prototype-variant dictionary race)
+        env:
+          DOTNET_PROCESSOR_COUNT: "1"
+        run: |
+          render() {
+            [ -s "$1" ] || return 0
+            mapfile -t files < "$1"
+            # Content.MapRenderer writes <out>/<file stem>/<file stem>-<grid>.png; "--" stops dotnet run eating -f
+            dotnet run --project Content.MapRenderer --configuration Release --no-build -- \
+              --format png -o "$2" -f "${files[@]}" || echo "::warning::Map renderer failed for some $3 maps"
+          }
+          render "$WORK/base.txt" "$WORK/render/base" base
+          render "$WORK/head.txt" "$WORK/render/head" head
+          find "$WORK/render" -name '*.png' -print
+
+      - name: Build diff images
+        if: steps.changes.outputs.count != '0'
+        run: |
+          pip install --quiet pyyaml pillow
+          python3 Tools/_Inferus/map_diff.py --repo . --changes "$WORK/changes.tsv" \
+            --base-src "$WORK/src/base" --base-renders "$WORK/render/base" \
+            --head-renders "$WORK/render/head" --out "$WORK/out"
+          echo "${{ github.event.pull_request.number }}" > "$WORK/out/pr.txt"
+          echo "${{ github.event.pull_request.head.sha }}" > "$WORK/out/sha.txt"
+
+      - name: Upload diff
+        if: steps.changes.outputs.count != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: map-diff
+          path: ${{ env.WORK }}/out
+          retention-days: 7

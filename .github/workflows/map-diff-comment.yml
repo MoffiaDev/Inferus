@@ -1,0 +1,97 @@
+# Inferus: posts the Map Diff Bot comment for map-diff.yml. Runs in the base repo with write
+# access, so it only copies PNGs and markdown from the artifact and never runs PR code.
+name: Comment Map Diff
+
+on:
+  workflow_run:
+    workflows: [ "Diff Maps" ]
+    types: [ completed ]
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: map-diff-comment
+  cancel-in-progress: false
+
+env:
+  IMAGE_BRANCH: map-diff-images
+
+jobs:
+  comment:
+    name: Comment
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download diff
+        id: download
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: map-diff
+          path: diff
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate artifact
+        id: meta
+        if: steps.download.outcome == 'success'
+        run: |
+          PR=$(head -c 16 diff/pr.txt | tr -d '\n\r ')
+          SHA=$(head -c 64 diff/sha.txt | tr -d '\n\r ')
+          [[ "$PR" =~ ^[0-9]+$ ]] || { echo "bad PR number"; exit 1; }
+          [[ "$SHA" =~ ^[0-9a-f]{40}$ ]] || { echo "bad sha"; exit 1; }
+          # Only plain PNG files with safe names are published.
+          find diff/images -type f ! -regex '.*/[A-Za-z0-9_.-]+\.png' -delete 2>/dev/null || true
+          find diff/images -type f -size +20M -delete 2>/dev/null || true
+          head -c 60000 diff/comment.md > body.md
+          echo "pr=$PR" >> "$GITHUB_OUTPUT"
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+
+      - name: Publish images
+        if: steps.download.outcome == 'success'
+        env:
+          PR: ${{ steps.meta.outputs.pr }}
+          SHA: ${{ steps.meta.outputs.sha }}
+          REPO: ${{ github.repository }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git init -q pages && cd pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add origin "https://x-access-token:${TOKEN}@github.com/${REPO}.git"
+          if git fetch -q --depth 1 origin "$IMAGE_BRANCH"; then
+            git checkout -q -b "$IMAGE_BRANCH" FETCH_HEAD
+          else
+            git checkout -q --orphan "$IMAGE_BRANCH"
+          fi
+          rm -rf "pr-$PR"
+          mkdir -p "pr-$PR/$SHA"
+          cp ../diff/images/*.png "pr-$PR/$SHA/" 2>/dev/null || true
+          git add -A
+          git commit -q -m "Map diff images for #$PR at ${SHA:0:7}" || echo "nothing to commit"
+          git push -q origin "$IMAGE_BRANCH"
+          cd ..
+          BASE="https://raw.githubusercontent.com/${REPO}/${IMAGE_BRANCH}/pr-${PR}/${SHA}"
+          sed -i "s#{{IMAGE_BASE}}#${BASE}#g" body.md
+          printf '\nDiff for %s\n' "$SHA" >> body.md
+
+      - name: Potentially find comment
+        if: steps.download.outcome == 'success'
+        uses: peter-evans/find-comment@v3
+        id: fc
+        with:
+          issue-number: ${{ steps.meta.outputs.pr }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Map Diff Bot
+
+      - name: Create or update comment
+        if: steps.download.outcome == 'success'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ steps.meta.outputs.pr }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: replace
+          body-path: body.md
