@@ -8,6 +8,7 @@ using Content.Shared._Funkystation.Footprints;
 using Content.Shared._Funkystation.ReagentFires;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Chemistry.Components; // Inferus
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Damage;
@@ -73,7 +74,19 @@ namespace Content.Server._Funkystation.ReagentFires.Systems
             SubscribeLocalEvent<TransformComponent, TileExposedEvent>(OnTileExposed);
             SubscribeLocalEvent<PuddleComponent, TileFireEvent>(OnPuddleTileFire);
             SubscribeLocalEvent<ReagentPuddleFireComponent, ComponentShutdown>(OnFireShutdown);
+            SubscribeLocalEvent<PuddleComponent, PuddleSolutionChangedEvent>(OnPuddleSolutionChanged); // Inferus - puddles never became flammable without this
         }
+
+        // Inferus - SharedPuddleSystem relays puddle solution changes through PuddleSolutionChangedEvent,
+        // but nothing listened for it, so UpdateFire never ran and puddles could never ignite.
+        private void OnPuddleSolutionChanged(Entity<PuddleComponent> ent, ref PuddleSolutionChangedEvent args)
+        {
+            if (args.Solution.Comp.Solution.Volume <= 0)
+                return;
+
+            UpdateFire(ent, args.Solution);
+        }
+        // End Inferus
 
         private void OnFireShutdown(EntityUid uid, ReagentPuddleFireComponent component, ref ComponentShutdown args)
         {
@@ -103,9 +116,10 @@ namespace Content.Server._Funkystation.ReagentFires.Systems
             return MathF.Pow(ratio, _volumeScalingCurve);
         }
 
-        public void UpdateFire(Entity<PuddleComponent> ent)
+        public void UpdateFire(Entity<PuddleComponent> ent, Entity<SolutionComponent>? solutionEnt = null) // Inferus: was UpdateFire(Entity<PuddleComponent> ent)
         {
-            if (ent.Comp.Solution == null)
+            solutionEnt ??= ent.Comp.Solution; // Inferus
+            if (solutionEnt == null) // Inferus: was ent.Comp.Solution == null
                 return;
 
             if (!_footprintsFlammable && HasComp<FootprintComponent>(ent))
@@ -115,7 +129,7 @@ namespace Content.Server._Funkystation.ReagentFires.Systems
                 return;
             }
 
-            var solution = ent.Comp.Solution.Value.Comp.Solution;
+            var solution = solutionEnt.Value.Comp.Solution; // Inferus: was ent.Comp.Solution.Value.Comp.Solution
             var flammability = solution.GetSolutionFlammability(ProtoMan);
             var selfOxidizing = solution.IsSolutionSelfOxidizing(ProtoMan);
 
