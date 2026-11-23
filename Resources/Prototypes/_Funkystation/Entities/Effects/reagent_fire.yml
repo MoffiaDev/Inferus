@@ -1,5 +1,7 @@
 ﻿- type: entity
   id: ReagentPuddleFireEffect
+  name: fire
+  description: That's probably very, very hot yeah.
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
