@@ -296,3 +296,19 @@ Entries:
       message: Added all content and changes from Upstream up to November 2026
   id: 18
   time: '2026-11-22T19:14:33.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Add
+      message: everything makes sound oh my god
+    - type: Fix
+      message: flammable puddles now light on fire
+    - type: Tweak
+      message: guns have new sounds
+    - type: Add
+      message: the station now has an actual ambience
+    - type: Add
+      message: constructing things like machines now makes sound
+    - type: Add
+      message: crafting things now makes sound
+  id: 19
+  time: '2026-11-23T05:55:51.0000000+00:00'
