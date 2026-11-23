@@ -4,6 +4,22 @@
   name: body bag
   description: A plastic bag designed for the storage and transportation of cadavers to stop body decomposition.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/cloth_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/cloth_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnThrow
+    sound:
+      collection: InferusItemThrow
+      params:
+        volume: -6
   - type: Item
     size: Small
     heldPrefix: bag

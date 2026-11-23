@@ -3,6 +3,26 @@
   parent: BaseItem
   id: BaseWeaponBatteryNoAmmoCounter
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/weapons/Laser/pickup1.ogg
+      params:
+        volume: -6
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/drop1.ogg
+      params:
+        volume: -6
+  - type: ItemEquipSounds
+    equipSound:
+      collection: InferusGunSling
+      params:
+        volume: -3
+    unequipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/rifle_draw.ogg
+      params:
+        volume: -4
   - type: Sprite
   - type: Item
     size: Huge
@@ -30,6 +50,31 @@
   parent: BaseWeaponBatteryNoAmmoCounter
   id: BaseWeaponBattery
   components:
+  # Inferus
+  - type: ItemEquipSounds
+    equipSound:
+      collection: InferusGunSling
+      params:
+        volume: -3
+    unequipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/rifle_draw.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/weapons/Laser/pickup1.ogg
+      params:
+        volume: -6
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/weapons/Laser/drop1.ogg
+      params:
+        volume: -6
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/weapons/Laser/drop1.ogg
+      params:
+        volume: -4
   - type: AmmoCounter
 
 - type: entity
@@ -111,6 +156,16 @@
   parent: BaseWeaponBatteryNoAmmoCounter
   id: BaseWeaponBatterySmallNoAmmoCounter
   components:
+  # Inferus
+  - type: ItemEquipSounds
+    equipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_holster.ogg
+      params:
+        volume: -2
+    unequipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_draw.ogg
+      params:
+        volume: -4
   - type: Item
     size: Small
     shape:
@@ -212,6 +267,21 @@
   parent: BaseMinorContraband
   id: WeaponMakeshiftLaserConstructionBase
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/component_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/component_drop.ogg
+  - type: EmitSoundOnThrow
+    sound:
+      collection: InferusItemThrow
+      params:
+        volume: -6
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/component_drop.ogg
   - type: Construction
     graph: MakeshiftLaserGraph
     containers:

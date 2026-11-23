@@ -5,6 +5,22 @@
   description: A little bit of nature contained in a pot.
   abstract: true
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusPottedPlantPickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusPottedPlantDrop
+      params:
+        volume: -6
+  - type: EmitSoundOnThrow
+    sound:
+      collection: InferusItemThrow
+      params:
+        volume: -6
   - type: SpriteFade
   - type: Transform
     noRot: true

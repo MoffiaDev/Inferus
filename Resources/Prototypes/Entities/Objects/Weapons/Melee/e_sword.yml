@@ -3,6 +3,17 @@
   parent: BaseItem
   abstract: true
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/weapons/Laser/pickup1.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/weapons/Laser/drop1.ogg
+      params:
+        volume: -6
   - type: EnergySword
   - type: ItemToggle
     soundActivate:

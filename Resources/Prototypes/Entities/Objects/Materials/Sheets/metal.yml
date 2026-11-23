@@ -4,6 +4,17 @@
   id: SheetMetalBase
   description: A sheet of metal, used often on the station in various applications.
   components:
+  # Inferus
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Materials/metal_drop.ogg
+      params:
+        volume: -6
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Materials/metal_pickup.ogg
+      params:
+        volume: -4
   - type: Sprite
     sprite: Objects/Materials/Sheets/metal.rsi
   - type: Item

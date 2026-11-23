@@ -363,6 +363,22 @@
   name: folding chair
   description: If you carry six of these you become the coolest kid at church.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: GenericPickup
+      params:
+        volume: -7
+  - type: EmitSoundOnDrop
+    sound:
+      collection: GenericDrop
+      params:
+        volume: -7
+  - type: EmitSoundOnThrow
+    sound:
+      collection: InferusItemThrow
+      params:
+        volume: -6
   - type: Rotatable
   - type: Sprite
     sprite: Structures/Furniture/folding_chair.rsi

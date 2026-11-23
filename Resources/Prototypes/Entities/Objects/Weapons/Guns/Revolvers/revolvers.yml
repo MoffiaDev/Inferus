@@ -5,6 +5,29 @@
   description: A rooty tooty point and shooty.
   abstract: true
   components:
+  # Inferus
+  - type: ItemEquipSounds
+    equipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_holster.ogg
+      params:
+        volume: -2
+    unequipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_draw.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/pistol_drop.ogg
   - type: Sprite
     state: icon
   - type: Item

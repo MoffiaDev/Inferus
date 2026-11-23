@@ -4,6 +4,22 @@
   name: microwave
   description: It's magic.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: GenericPickup
+      params:
+        volume: -7
+  - type: EmitSoundOnDrop
+    sound:
+      collection: GenericDrop
+      params:
+        volume: -7
+  - type: EmitSoundOnThrow
+    sound:
+      collection: InferusItemThrow
+      params:
+        volume: -6
   - type: Microwave
     capacity: 10
   - type: Appearance

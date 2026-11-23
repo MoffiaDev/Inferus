@@ -1,0 +1,101 @@
+- files:
+    - "gas_mask_drop1.ogg"
+    - "gas_mask_drop2.ogg"
+    - "gas_mask_drop3.ogg"
+    - "gas_mask_equip1.ogg"
+    - "gas_mask_equip2.ogg"
+    - "gas_mask_equip3.ogg"
+    - "gas_mask_pickup1.ogg"
+    - "gas_mask_pickup2.ogg"
+    - "gas_mask_pickup3.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by grungussuss for tgstation, converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/gas_mask"
+
+- files:
+    - "glasses_drop1.ogg"
+    - "glasses_drop2.ogg"
+    - "glasses_drop3.ogg"
+    - "glasses_equip1.ogg"
+    - "glasses_equip2.ogg"
+    - "glasses_pickup1.ogg"
+    - "glasses_pickup2.ogg"
+    - "glasses_pickup3.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by grungussuss for tgstation, converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/glasses"
+
+- files:
+    - "goggles_drop1.ogg"
+    - "goggles_drop2.ogg"
+    - "goggles_drop3.ogg"
+    - "goggles_equip1.ogg"
+    - "goggles_equip2.ogg"
+    - "goggles_equip3.ogg"
+    - "goggles_equip4.ogg"
+    - "goggles_pickup1.ogg"
+    - "goggles_pickup2.ogg"
+    - "goggles_pickup3.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by grungussuss for tgstation, converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/goggles"
+
+- files:
+    - "hard_hat_drop1.ogg"
+    - "hard_hat_drop2.ogg"
+    - "hard_hat_drop3.ogg"
+    - "hard_hat_drop4.ogg"
+    - "hard_hat_drop5.ogg"
+    - "hard_hat_equip1.ogg"
+    - "hard_hat_equip2.ogg"
+    - "hard_hat_equip3.ogg"
+    - "hard_hat_pickup1.ogg"
+    - "hard_hat_pickup2.ogg"
+    - "hard_hat_pickup3.ogg"
+    - "hard_hat_pickup4.ogg"
+    - "hard_hat_pickup5.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by grungussuss for tgstation, converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/hard_hat"
+
+- files:
+    - "headset_pickup1.ogg"
+    - "headset_pickup2.ogg"
+    - "headset_pickup3.ogg"
+    - "headset_drop1.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by sadboysuss for tgstation, converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/headset"
+
+- files:
+    - "headset_equip1.ogg"
+    - "headset_equip2.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Taken from tgstation, converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/equip"
+
+- files:
+    - "glove_pickup.ogg"
+    - "glove_drop.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by sadboysuss for tgstation (glove_pick_up, glove_drop), converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling"
+
+- files:
+    - "glove_equip.ogg"
+  license: "CC0-1.0"
+  copyright: 'Taken from tgstation, originally "LETHRCreak_Leather Belt Short Creak 01" by itmightgetloud (https://freesound.org/s/751281/), converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/equip"
+
+- files:
+    - "sneakers_pickup.ogg"
+    - "sneakers_drop.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by sadboysuss for tgstation (sneakers_pickup1, sneakers_drop1), converted to mono'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/shoes"
+
+- files:
+    - "sneakers_equip.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: 'Made by sadboysuss for tgstation (sneakers_equip1), converted to mono and volume-normalized'
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/equip"

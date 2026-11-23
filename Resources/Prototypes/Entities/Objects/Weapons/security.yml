@@ -4,6 +4,17 @@
   id: Stunbaton
   description: A stun baton for incapacitating people with. Has advanced wrist strap technology to prevent cadets accidentally dropping it.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Weapons/stun_baton_inactive_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Weapons/stun_baton_inactive_drop.ogg
+      params:
+        volume: -4
   - type: Sprite
     sprite: Objects/Weapons/Melee/stunbaton.rsi
     layers:
@@ -115,6 +126,17 @@
   id: Truncheon
   description: A rigid, steel-studded baton, meant to harm.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Weapons/baton_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Weapons/baton_drop.ogg
+      params:
+        volume: -4
   - type: Sprite
     sprite: Objects/Weapons/Melee/truncheon.rsi
     state: icon
@@ -155,6 +177,16 @@
   id: Flash
   description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
   components:
+    # Inferus
+    - type: EmitSoundOnPickup
+      sound:
+        path: /Audio/_Goobstation/Items/handling/component_pickup.ogg
+    - type: EmitSoundOnDrop
+      sound:
+        path: /Audio/_Goobstation/Items/handling/component_drop.ogg
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/_Goobstation/Items/handling/component_drop.ogg
     - type: Sprite
       sprite: Objects/Weapons/Melee/flash.rsi
       layers:

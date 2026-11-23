@@ -1,0 +1,28 @@
+# Ported from Goob Station: https://github.com/Goob-Station/Goob-Station/blob/master/Resources/Prototypes/SoundCollections/handling.yml
+# Only the generic item handling collections are ported. Goob's per-weapon-class collections are left out
+# because their audio has no known source or license.
+
+- type: soundCollection
+  id: GenericDrop
+  files:
+  - /Audio/_Goobstation/Items/handling/generic_drop1.ogg
+  - /Audio/_Goobstation/Items/handling/generic_drop2.ogg
+  - /Audio/_Goobstation/Items/handling/generic_drop3.ogg
+  - /Audio/_Goobstation/Items/handling/generic_drop4.ogg
+  - /Audio/_Goobstation/Items/handling/generic_drop5.ogg
+
+- type: soundCollection
+  id: GenericEquip
+  files:
+  - /Audio/_Goobstation/Items/handling/generic_equip1.ogg
+  - /Audio/_Goobstation/Items/handling/generic_equip2.ogg
+  - /Audio/_Goobstation/Items/handling/generic_equip3.ogg
+  - /Audio/_Goobstation/Items/handling/generic_equip4.ogg
+  - /Audio/_Goobstation/Items/handling/generic_equip5.ogg
+
+- type: soundCollection
+  id: GenericPickup
+  files:
+  - /Audio/_Goobstation/Items/handling/generic_pickup1.ogg
+  - /Audio/_Goobstation/Items/handling/generic_pickup2.ogg
+  - /Audio/_Goobstation/Items/handling/generic_pickup3.ogg

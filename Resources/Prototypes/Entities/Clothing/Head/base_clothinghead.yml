@@ -4,6 +4,9 @@
   id: ClothingHeadBase
   components:
   - type: Clothing
+    # Inferus
+    equipSound:
+      collection: GenericEquip
     slots:
     - HEAD
   - type: Sprite

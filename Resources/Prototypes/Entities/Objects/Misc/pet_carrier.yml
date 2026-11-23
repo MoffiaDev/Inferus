@@ -4,6 +4,22 @@
   description: Allows large animals to be carried comfortably. It smells vaguely of toilet water and explosives.
   parent: BaseStructureDynamic
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: GenericPickup
+      params:
+        volume: -7
+  - type: EmitSoundOnDrop
+    sound:
+      collection: GenericDrop
+      params:
+        volume: -7
+  - type: EmitSoundOnThrow
+    sound:
+      collection: InferusItemThrow
+      params:
+        volume: -6
   - type: Sprite
     noRot: true
     drawdepth: Items

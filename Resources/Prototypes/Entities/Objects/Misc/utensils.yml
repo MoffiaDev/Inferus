@@ -3,6 +3,17 @@
   id: UtensilBase
   abstract: true
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusCutleryPickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusCutleryDrop
+      params:
+        volume: -6
   - type: Sprite
     sprite: Objects/Misc/utensils.rsi
   - type: Item # TODO add inhand sprites for all utensils

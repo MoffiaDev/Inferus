@@ -5,6 +5,25 @@
   name: BaseWeaponLauncher
   description: A rooty tooty point and shooty.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/gun_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/gun_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/gun_drop.ogg
+  - type: ItemEquipSounds
+    equipSound:
+      collection: InferusGunSling
+      params:
+        volume: -3
+    unequipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/rifle_draw.ogg
+      params:
+        volume: -4
   - type: Sprite
   - type: ContainerContainer
     containers:

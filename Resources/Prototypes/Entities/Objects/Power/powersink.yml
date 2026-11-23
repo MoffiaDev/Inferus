@@ -4,6 +4,22 @@
   name: power sink
   description: Drains immense amounts of electricity from the grid.
   components:
+    # Inferus
+    - type: EmitSoundOnPickup
+      sound:
+        collection: GenericPickup
+        params:
+          volume: -7
+    - type: EmitSoundOnDrop
+      sound:
+        collection: GenericDrop
+        params:
+          volume: -7
+    - type: EmitSoundOnThrow
+      sound:
+        collection: InferusItemThrow
+        params:
+          volume: -6
     - type: Item
       size: Huge
     - type: MultiHandedItem

@@ -5,6 +5,17 @@
   id: BaseMagazineLightRifle
   name: "magazine (.30 rifle)"
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/magazine_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusMagazineDrop
+      params:
+        volume: -4
   - type: Tag
     tags:
       - MagazineLightRifle

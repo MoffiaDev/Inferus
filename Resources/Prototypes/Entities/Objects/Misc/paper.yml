@@ -3,6 +3,17 @@
   id: BasePaper
   abstract: true
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/paper_pickup.ogg
+      params:
+        volume: -6
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/paper_drop.ogg
+      params:
+        volume: -6
   - type: Tag
     tags:
     - Document

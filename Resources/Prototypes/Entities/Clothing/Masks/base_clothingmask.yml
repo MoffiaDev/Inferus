@@ -3,11 +3,20 @@
   parent: Clothing
   id: ClothingMaskBase
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/generic_small_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/generic_small_drop.ogg
   - type: Sprite
     state: icon
   - type: Item
     size: Small
   - type: Clothing
+    equipSound:
+      collection: GenericEquip
     slots: [mask]
   - type: StaticPrice
     price: 25

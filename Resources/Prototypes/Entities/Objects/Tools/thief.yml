@@ -4,6 +4,22 @@
   name: thieving beacon
   description: A device that will teleport everything around it to the thief's vault at the end of the shift.
   components:
+    # Inferus
+    - type: EmitSoundOnPickup
+      sound:
+        collection: GenericPickup
+        params:
+          volume: -7
+    - type: EmitSoundOnDrop
+      sound:
+        collection: GenericDrop
+        params:
+          volume: -7
+    - type: EmitSoundOnThrow
+      sound:
+        collection: InferusItemThrow
+        params:
+          volume: -6
     - type: ThiefBeacon
     - type: StealArea
       range: 2 # Slightly larger than fulton beacon's random offset

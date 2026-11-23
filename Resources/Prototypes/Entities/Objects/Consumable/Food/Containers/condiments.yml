@@ -528,6 +528,17 @@
   name: empty shaker
   description: A shaker used to store and dispense spices.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusShakerPickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusShakerDrop
+      params:
+        volume: -4
   - type: Item
     size: Tiny
   - type: Edible

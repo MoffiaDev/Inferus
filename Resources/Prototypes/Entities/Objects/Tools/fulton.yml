@@ -15,6 +15,22 @@
   name: fulton beacon
   description: Beacon to receive fulton extractions.
   components:
+    # Inferus
+    - type: EmitSoundOnPickup
+      sound:
+        collection: GenericPickup
+        params:
+          volume: -7
+    - type: EmitSoundOnDrop
+      sound:
+        collection: GenericDrop
+        params:
+          volume: -7
+    - type: EmitSoundOnThrow
+      sound:
+        collection: InferusItemThrow
+        params:
+          volume: -6
     - type: Physics
       bodyType: Dynamic
     - type: Fixtures

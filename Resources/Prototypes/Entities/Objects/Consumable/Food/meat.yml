@@ -5,6 +5,16 @@
   parent: FoodInjectableBase
   id: FoodMeatBase
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/flesh_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/flesh_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Inferus/Items/Handling/flesh_drop.ogg
   - type: FlavorProfile
     flavors:
       - meaty

@@ -3,6 +3,17 @@
   parent: [SolutionFood, SolutionToolSmall, Clothing, BaseSlicingRefinable]
   id: ClothingNeckBase
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/cloth_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/cloth_drop.ogg
+      params:
+        volume: -4
   - type: Item
     size: Small
   - type: Clothing

@@ -105,6 +105,17 @@
   name: plastic
   suffix: Full
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Materials/plastic_pickup.ogg
+      params:
+        volume: -6
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Materials/plastic_drop.ogg
+      params:
+        volume: -4
   - type: Tag
     tags:
     - Plastic

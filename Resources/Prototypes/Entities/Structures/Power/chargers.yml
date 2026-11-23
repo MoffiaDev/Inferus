@@ -70,6 +70,22 @@
   name: cell recharger
   description: An older model recharger that can recharge power cells.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: GenericPickup
+      params:
+        volume: -7
+  - type: EmitSoundOnDrop
+    sound:
+      collection: GenericDrop
+      params:
+        volume: -7
+  - type: EmitSoundOnThrow
+    sound:
+      collection: InferusItemThrow
+      params:
+        volume: -6
   - type: Sprite
     sprite: Structures/Power/cell_recharger.rsi
     layers:
@@ -153,6 +169,22 @@
   name: recharger
   description: A modern recharging station that can fit both power cells and small electronic devices.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: GenericPickup
+      params:
+        volume: -7
+  - type: EmitSoundOnDrop
+    sound:
+      collection: GenericDrop
+      params:
+        volume: -7
+  - type: EmitSoundOnThrow
+    sound:
+      collection: InferusItemThrow
+      params:
+        volume: -6
   - type: Sprite
     sprite: Structures/Power/recharger.rsi
   - type: Machine
@@ -180,6 +212,22 @@
   name: turbo recharger
   description: An overclocked recharger. Not recommended for use around asthmatics.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: GenericPickup
+      params:
+        volume: -7
+  - type: EmitSoundOnDrop
+    sound:
+      collection: GenericDrop
+      params:
+        volume: -7
+  - type: EmitSoundOnThrow
+    sound:
+      collection: InferusItemThrow
+      params:
+        volume: -6
   - type: Sprite
     sprite: Structures/Power/turbo_recharger.rsi
   - type: Machine

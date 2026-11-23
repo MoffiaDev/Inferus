@@ -1,0 +1,15 @@
+- files:
+    - "flesh_drop.ogg"
+    - "flesh_pickup.ogg"
+    - "plasticbox_drop.ogg"
+    - "plasticbox_pickup.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Paradise SS13 (ss220), converted to mono"
+  source: "https://github.com/ss220-space/Paradise/tree/master220/sound/items/handling"
+
+- files:
+    - "throw.ogg"
+    - "throwsoft.ogg"
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Paradise SS13 (ss220), converted to mono"
+  source: "https://github.com/ss220-space/Paradise/tree/master220/sound/weapons"

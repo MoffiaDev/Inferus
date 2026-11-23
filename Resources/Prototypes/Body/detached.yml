@@ -5,6 +5,21 @@
   categories: [HideSpawnMenu]
   save: false
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/flesh_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/flesh_drop.ogg
+  - type: EmitSoundOnThrow
+    sound:
+      collection: InferusItemThrow
+      params:
+        volume: -6
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Inferus/Items/Handling/flesh_drop.ogg
   - type: Clickable
   - type: Body
   - type: VisualBody

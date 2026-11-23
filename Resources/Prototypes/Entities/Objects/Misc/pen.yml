@@ -4,6 +4,13 @@
   id: Pen
   description: A dark ink pen.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/generic_small_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/generic_small_drop.ogg
   - type: Sprite
     sprite: Objects/Misc/pens.rsi
     state: pen

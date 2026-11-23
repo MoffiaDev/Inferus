@@ -5,6 +5,29 @@
   description: A rooty tooty point and shooty.
   abstract: true
   components:
+  # Inferus
+  - type: ItemEquipSounds
+    equipSound:
+      collection: InferusGunSling
+      params:
+        volume: -3
+    unequipSound:
+      path: /Audio/_Inferus/Items/Handling/Guns/rifle_draw.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/rifle_pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/rifle_drop.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Inferus/Items/Handling/Guns/rifle_drop.ogg
   - type: Sprite
   - type: Item
     size: Huge

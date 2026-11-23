@@ -65,6 +65,26 @@
   name: AD-THz meson goggles #more confusion
   description: Aetheris-issue engineering goggles that utilize THz radiation and mesons to reveal sub-floor infrastructure.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusGogglesPickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusGogglesDrop
+      params:
+        volume: -4
+  - type: ItemEquipSounds
+    equipSound:
+      collection: InferusGogglesEquip
+      params:
+        volume: -4
+    unequipSound:
+      collection: InferusGogglesEquip
+      params:
+        volume: -6
   - type: Sprite
     sprite: Clothing/Eyes/Glasses/meson.rsi
   - type: Clothing
@@ -238,6 +258,26 @@
   name: optical thermal scanner
   description: Thermals in the shape of glasses.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusGogglesPickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusGogglesDrop
+      params:
+        volume: -4
+  - type: ItemEquipSounds
+    equipSound:
+      collection: InferusGogglesEquip
+      params:
+        volume: -4
+    unequipSound:
+      collection: InferusGogglesEquip
+      params:
+        volume: -6
   - type: Sprite
     sprite: Clothing/Eyes/Glasses/thermal.rsi
   - type: Clothing
@@ -257,6 +297,26 @@
   name: chemical analysis goggles
   description: Goggles that can scan the chemical composition of a solution.
   components:
+    # Inferus
+    - type: EmitSoundOnPickup
+      sound:
+        collection: InferusGogglesPickup
+        params:
+          volume: -4
+    - type: EmitSoundOnDrop
+      sound:
+        collection: InferusGogglesDrop
+        params:
+          volume: -4
+    - type: ItemEquipSounds
+      equipSound:
+        collection: InferusGogglesEquip
+        params:
+          volume: -4
+      unequipSound:
+        collection: InferusGogglesEquip
+        params:
+          volume: -6
     - type: Sprite
       sprite: Clothing/Eyes/Glasses/science.rsi
     - type: Clothing
@@ -275,6 +335,26 @@
   name: ninja visor
   description: An advanced visor protecting a ninja's eyes from flashing lights.
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusGogglesPickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusGogglesDrop
+      params:
+        volume: -4
+  - type: ItemEquipSounds
+    equipSound:
+      collection: InferusGogglesEquip
+      params:
+        volume: -4
+    unequipSound:
+      collection: InferusGogglesEquip
+      params:
+        volume: -6
   - type: Sprite
     sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
   - type: Clothing

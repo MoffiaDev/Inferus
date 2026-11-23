@@ -6,6 +6,17 @@
   parent: [SolutionSmall, FoodInjectableBase]
   id: FoodBowlBase
   components:
+  # Inferus
+  - type: EmitSoundOnPickup
+    sound:
+      collection: InferusBowlPickup
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      collection: InferusBowlDrop
+      params:
+        volume: -4
   - type: Item
     shape:
     - 0,0,1,0

@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Armor;
 using Content.Shared.Clothing.Components;
+using Content.Shared._Inferus.Inventory; // Inferus
 using Content.Shared.DoAfter;
 using Content.Shared.Gibbing;
 using Content.Shared.Hands;
@@ -193,10 +194,17 @@ public abstract partial class InventorySystem
             return false;
         }
 
-        if (!silent && clothing != null)
+        // Inferus - ItemEquipSoundsComponent overrides the clothing equip sound
+        if (!silent && clothing != null && !HasComp<ItemEquipSoundsComponent>(itemUid))
+        // End Inferus
         {
             _audio.PlayPredicted(clothing.EquipSound, target, actor);
         }
+
+        // Inferus - fallback equip sound for items without a clothing equip sound, or with an override
+        if (!silent && (clothing?.EquipSound == null || HasComp<ItemEquipSoundsComponent>(itemUid)))
+            PlayFallbackItemSound(itemUid, target, actor, unequip: false);
+        // End Inferus
 
         // If new gloves are equipped, trigger OnContactInteraction for held items
         if (triggerHandContact && !((slotDefinition.SlotFlags & SlotFlags.GLOVES) == 0))
@@ -550,10 +558,18 @@ public abstract partial class InventorySystem
         if (!_containerSystem.IsEntityInContainer(removedItem.Value))
             _transform.DropNextTo(removedItem.Value, target);
 
-        if (!silent && Resolve(removedItem.Value, ref clothing, false) && clothing.UnequipSound != null)
+        // Inferus - ItemEquipSoundsComponent overrides the clothing unequip sound
+        var hasSoundOverride = HasComp<ItemEquipSoundsComponent>(removedItem.Value);
+        if (!silent && !hasSoundOverride && Resolve(removedItem.Value, ref clothing, false) && clothing.UnequipSound != null)
+        // End Inferus
         {
             _audio.PlayPredicted(clothing.UnequipSound, target, actor);
         }
+
+        // Inferus - fallback unequip sound for items without a clothing unequip sound, or with an override
+        if (!silent && (hasSoundOverride || !Resolve(removedItem.Value, ref clothing, false) || clothing.UnequipSound == null))
+            PlayFallbackItemSound(removedItem.Value, target, actor, unequip: true);
+        // End Inferus
 
         // If gloves are unequipped, OnContactInteraction should trigger for held items
         if (triggerHandContact && !((slotDefinition.SlotFlags & SlotFlags.GLOVES) == 0))
