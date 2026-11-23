@@ -21,7 +21,7 @@ public sealed partial class MoffJobPriorityDepartment : BoxContainer
         Spacer.Visible = !first;
 
         DepartmentLabel.Text = Loc.GetString(
-            "humanoid-profile-editor-department-jobs-label-moffstation",
+            "humanoid-profile-editor-department-jobs-label",
             ("departmentName", Loc.GetString(department.Name)));
 
         ((StyleBoxFlat)HeaderPanel.PanelOverride!).BackgroundColor = department.Color;
