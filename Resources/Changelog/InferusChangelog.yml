@@ -312,3 +312,13 @@ Entries:
       message: crafting things now makes sound
   id: 19
   time: '2026-11-23T05:55:51.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Add
+      message: Added a setting under accessibility to disable interaction particles.
+    - type: Tweak
+      message: >-
+        Lathes, microwaves, and reagent grinders now have unique, interactive
+        UIs.
+  id: 20
+  time: '2026-11-24T18:44:49.0000000+00:00'
