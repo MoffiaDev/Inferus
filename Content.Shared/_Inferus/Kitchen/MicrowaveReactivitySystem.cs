@@ -9,17 +9,17 @@ namespace Content.Shared._Inferus.Kitchen;
 /// Classifies generic microwave hazards identically for cooking and the chamber UI.
 /// Special BeingMicrowavedEvent behavior remains with the original item systems.
 /// </summary>
-public sealed class MicrowaveReactivitySystem : EntitySystem
+public sealed partial class MicrowaveReactivitySystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
     private static readonly ProtoId<MicrowaveReactionProfilePrototype> Profile = "InferusMicrowaveReactions";
 
     public bool IsReactive(EntityUid uid)
     {
         // IDs have their own access, burning and unsafe-microwave outcomes. Never classify them generically.
-        if (!EntityManager.EntityExists(uid) || HasComp<IdCardComponent>(uid))
+        if (!Exists(uid) || HasComp<IdCardComponent>(uid))
             return false;
 
         var profile = _prototypes.Index(Profile);
