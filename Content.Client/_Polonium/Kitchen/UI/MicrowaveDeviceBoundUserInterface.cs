@@ -4,8 +4,6 @@ using Content.Shared.Kitchen.EntitySystems;
 using Content.Shared.Power.EntitySystems;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Player;
 
 namespace Content.Client._Polonium.Kitchen.UI;
 
@@ -14,7 +12,6 @@ public sealed partial class MicrowaveDeviceBoundUserInterface(EntityUid owner, E
 {
     [Dependency] private MicrowaveSystem _microwave = default!;
     [Dependency] private SharedPowerReceiverSystem _power = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
 
     [ViewVariables]
     private MicrowaveDeviceWindow? _window;
@@ -28,12 +25,8 @@ public sealed partial class MicrowaveDeviceBoundUserInterface(EntityUid owner, E
         if (EntMan.TryGetComponent(Owner, out MicrowaveDeviceSkinComponent? skin))
             _window.SetSkin(skin.Body, skin.Light, skin.Plate);
 
-        // The door of an idle microwave swings open with the window. Nobody else sees that, so only this player hears it.
-        if (EntMan.TryGetComponent(Owner, out MicrowaveComponent? microwave)
-            && !microwave.Broken
-            && !_microwave.IsActiveMicrowave(Owner)
-            && EntMan.TryGetComponent(Owner, out MicrowaveSoundsComponent? sounds))
-            _audio.PlayEntity(sounds.DoorOpenSound, Filter.Local(), Owner, false);
+        // Inferus - window creation can be repeated during UI reconciliation
+        // keep door audio on the server's cooking transitions, not this cosmetic window lifecycle
 
         _window.OnStart += () => SendPredictedMessage(new MicrowaveStartCookMessage());
         _window.OnEjectAll += () => SendPredictedMessage(new MicrowaveEjectMessage());
