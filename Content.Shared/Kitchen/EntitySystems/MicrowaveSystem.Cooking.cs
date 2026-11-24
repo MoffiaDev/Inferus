@@ -136,8 +136,9 @@ public abstract partial class MicrowaveSystem
             TotalTime = component.CurrentCookTimerTime,
             CookTimeEnd = curTime + TimeSpan.FromSeconds(cookTime),
             Malfunctioning = malfunctioning,
+            // Inferus - Instant must get a malfunction opportunity before completing
             NextMalfunction = malfunctioning
-                ? curTime + component.MalfunctionInterval
+                ? curTime + (cookTime > 0 ? component.MalfunctionInterval : TimeSpan.Zero)
                 : TimeSpan.Zero,
         };
 
@@ -228,8 +229,14 @@ public abstract partial class MicrowaveSystem
             return;
         }
 
-        if (_whitelist.IsWhitelistPass(microwave.Comp.MalfunctionWhenCookedWhitelist, item))
+        // Begin Inferus - run item-specific events first, then exclude IDs from every generic reaction
+        if (HasComp<Content.Shared.Access.Components.IdCardComponent>(item))
+            return;
+
+        if (_whitelist.IsWhitelistPass(microwave.Comp.MalfunctionWhenCookedWhitelist, item)
+            || _inferusReactivity.IsReactive(item))
             malfunctioning = true;
+        // End Inferus
 
         if (_whitelist.IsWhitelistPass(microwave.Comp.BurnWhenCookedWhitelist, item))
         {

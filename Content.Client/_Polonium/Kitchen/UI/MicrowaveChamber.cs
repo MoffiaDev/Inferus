@@ -16,6 +16,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
+using Content.Shared._Inferus.Kitchen; // Inferus
+
 namespace Content.Client._Polonium.Kitchen.UI;
 
 /// <param name="Arcing">Contents that throw lightning while the microwave malfunctions.</param>
@@ -105,6 +107,7 @@ public sealed partial class MicrowaveChamber : Control
     private static readonly int[] WreckSmokeSizes = [4, 5, 6];
 
     private readonly EntityWhitelistSystem _whitelist;
+    private readonly MicrowaveReactivitySystem _reactivity; // Inferus
     private readonly MobStateSystem _mobState;
     private readonly SpriteSystem _sprite;
     private readonly Texture _unlit;
@@ -128,6 +131,7 @@ public sealed partial class MicrowaveChamber : Control
     private int _nextOrder;
     private bool _cooking;
     private bool _held;
+    private bool _heldMalfunctioning; // Inferus - preserve arcs during Instant playback
 
     public MicrowaveReactions Reactions;
     public bool Lit;
@@ -148,6 +152,7 @@ public sealed partial class MicrowaveChamber : Control
         IoCManager.InjectDependencies(this);
 
         _whitelist = _entMan.System<EntityWhitelistSystem>();
+        _reactivity = _entMan.System<MicrowaveReactivitySystem>(); // Inferus
         _mobState = _entMan.System<MobStateSystem>();
         _sprite = _entMan.System<SpriteSystem>();
         _unlit = _cache.GetTexture(MicrowaveDeviceWindow.TexturePath + "chamber.png");
@@ -183,13 +188,13 @@ public sealed partial class MicrowaveChamber : Control
     }
 
     /// <summary>
-    /// Whether anything on the plate melts or sparks when the microwave starts.
+    /// Whether anything on the plate melts, arcs or sparks when the microwave starts.
     /// </summary>
     public bool HasStartReaction()
     {
         foreach (var item in _items)
         {
-            if (item.Leave < 0f && (item.Melts || item.Sparks))
+            if (item.Leave < 0f && (item.Melts || item.Sparks || item.Arcs)) // Inferus
                 return true;
         }
 
@@ -215,6 +220,8 @@ public sealed partial class MicrowaveChamber : Control
     /// </summary>
     public void Hold()
     {
+        // Inferus - the active state can disappear before an Instant reaction has finished animating
+        _heldMalfunctioning = Malfunctioning || _items.Exists(static item => item.Leave < 0f && item.Arcs);
         _held = true;
         foreach (var item in _items)
         {
@@ -228,6 +235,7 @@ public sealed partial class MicrowaveChamber : Control
     /// </summary>
     public void Release()
     {
+        _heldMalfunctioning = false; // Inferus
         _held = false;
     }
 
@@ -354,11 +362,14 @@ public sealed partial class MicrowaveChamber : Control
     private void Inspect(Item item)
     {
         var uid = item.Uid;
-        item.Arcs = _whitelist.IsWhitelistPass(Reactions.Arcing, uid);
-        item.Melts = _whitelist.IsWhitelistPass(Reactions.Melting, uid);
-        // The game leaves cards with this flag off alone, so they must not look like they react.
-        item.Sparks = _whitelist.IsWhitelistPass(Reactions.Sparking, uid)
-                      && !(_entMan.TryGetComponent(uid, out IdCardComponent? card) && !card.CanMicrowave);
+        // Begin Inferus - generic hazards use the same rules as gameplay and IDs keep only their special sparks
+        var isCard = _entMan.TryGetComponent(uid, out IdCardComponent? card);
+        var reactive = _reactivity.IsReactive(uid);
+        item.Arcs = !isCard && (reactive || _whitelist.IsWhitelistPass(Reactions.Arcing, uid));
+        item.Melts = !isCard && _whitelist.IsWhitelistPass(Reactions.Melting, uid);
+        item.Sparks = (reactive || _whitelist.IsWhitelistPass(Reactions.Sparking, uid))
+                      && card is not { CanMicrowave: false };
+        // End Inferus
         item.Mob = _entMan.HasComponent<MobStateComponent>(uid);
         item.Charred = IsMess(uid);
     }
@@ -588,7 +599,7 @@ public sealed partial class MicrowaveChamber : Control
         _drawOrder.Sort(static (a, b) => a.Depth != b.Depth ? a.Depth.CompareTo(b.Depth) : a.Order.CompareTo(b.Order));
 
         UpdateHover();
-        UpdateArcs(delta, running && Sealed && Malfunctioning && !ReducedMotion);
+        UpdateArcs(delta, running && Sealed && (Malfunctioning || _held && _heldMalfunctioning) && !ReducedMotion); // Inferus
         UpdateBolts(delta);
 
         if (_wreckAge < 0f)
