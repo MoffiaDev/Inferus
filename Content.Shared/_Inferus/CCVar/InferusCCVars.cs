@@ -10,6 +10,12 @@ namespace Content.Shared._Inferus.CCVar;
 public sealed class InferusCCVars : CVars
 {
     /// <summary>
+    /// If true, use and pull interaction particles are not spawned on this client.
+    /// </summary>
+    public static readonly CVarDef<bool> DisableInteractionParticles =
+        CVarDef.Create("inferus.disable_interaction_particles", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// If true, the old pain/crit overlays are used instead of the new shader-based ones.
     /// </summary>
     public static readonly CVarDef<bool> LegacyDamageOverlays =

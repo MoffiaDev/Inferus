@@ -4,9 +4,11 @@
 
 using System.Numerics;
 using Content.Client._Moffstation.Interaction;
+using Content.Shared._Inferus.CCVar; // Inferus - client interaction-particle preference.
 using Content.Shared._ST.Interaction;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
+using Robust.Shared.Configuration; // Inferus - read the saved client preference.
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -20,6 +22,7 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private AnimationPlayerSystem _animation = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IConfigurationManager _cfg = default!; // Inferus
 
     private const string AnimateKey = "particle-animation";
 
@@ -38,6 +41,10 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
 
     private void OnInteractionParticle(StellarInteractionParticleEvent ev)
     {
+        // Inferus - suppress only this client's use/pull visuals, before spawning particles or updating cooldowns.
+        if (_cfg.GetCVar(InferusCCVars.DisableInteractionParticles))
+            return;
+
         var performer = GetEntity(ev.Performer);
         var used = GetEntity(ev.Used);
         var target = GetEntity(ev.Target);

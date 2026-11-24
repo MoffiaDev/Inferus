@@ -33,6 +33,7 @@ public sealed partial class AccessibilityTab : Control
         Control.AddOptionCheckBox(CCVars.DisableNightVisionNoise, DisableNightVisionNoiseCheckBox);
         Control.AddOptionCheckBox(CCVars.DisableRainbowOverlay, DisableRainbowOverlayCheckBox);
         Control.AddOptionCheckBox(CCVars.DisableSinguloWarp, DisableSinguloWarpCheckBox);
+        Control.AddOptionCheckBox(InferusCCVars.DisableInteractionParticles, DisableInteractionParticlesCheckBox); // Inferus
         Control.AddOptionCheckBox(ViewconeCCVars.DisableViewconeGrain, DisableViewconeGrainCheckBox); // funky
         Control.AddOptionPercentSlider(ViewconeCCVars.ViewconeOcclusionOpacity, ViewconeOcclusionOpacitySlider); // funky
         Control.AddOptionPercentSlider(CCVars.ScreenShakeIntensity, ScreenShakeIntensitySlider);
