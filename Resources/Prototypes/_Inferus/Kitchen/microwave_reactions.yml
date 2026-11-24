@@ -1,0 +1,21 @@
+- type: microwaveReactionProfile
+  id: InferusMicrowaveReactions
+  whitelist:
+    tags:
+    - Metal
+    components:
+    - Battery
+    - PowerCellSlot
+    - Circuitboard
+    - DeviceNetwork
+  metals:
+  - Steel
+  - Plasteel
+  - Gold
+  - Silver
+  - Brass
+  - Uranium
+  - Bananium
+  - Bohrum
+  - Cerenkite
+  - Plutonium

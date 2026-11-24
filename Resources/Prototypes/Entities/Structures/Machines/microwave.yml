@@ -22,6 +22,23 @@
         volume: -6
   - type: Microwave
     capacity: 10
+  # Begin Inferus - reactions and sounds for the device window.
+  - type: MicrowaveReactionVisuals
+    sparking:
+      components:
+      - IdCard
+      - PAI
+      - NukeDisk
+  - type: MicrowaveSounds
+    doorCloseSound:
+      path: /Audio/Items/toolbox_close.ogg
+    doorOpenSound:
+      path: /Audio/Items/toolbox_open.ogg
+    sparkSound:
+      collection: sparks
+    burnSound:
+      path: /Audio/Effects/sizzle.ogg
+  # End Inferus
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -61,7 +78,7 @@
   - type: UserInterface
     interfaces:
       enum.MicrowaveUiKey.Key:
-        type: MicrowaveBoundUserInterface
+        type: MicrowaveDeviceBoundUserInterface # Inferus
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -180,6 +197,10 @@
     capacity: 10
     canMicrowaveIdsSafely: false
     explosionChance: 0.3
+  - type: MicrowaveDeviceSkin # Inferus - Donk Co. device skin
+    body: /Textures/_Polonium/Interface/Microwave/Donk/body.png
+    light: /Textures/_Polonium/Interface/Microwave/Donk/chamber_lit.png
+    plate: polonium-microwave-plate-donk
   - type: Sprite
     sprite: Structures/Machines/microwave_syndie.rsi
     drawdepth: SmallObjects

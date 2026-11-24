@@ -34,6 +34,10 @@
                     <CheckBox Name="DisableSinguloWarpCheckBox"
                         Text="{Loc 'ui-options-disable-singulo-warp'}"
                         ToolTip="{Loc 'ui-options-disable-singulo-warp-tooltip'}" />
+                    <!-- Inferus - client-side use and pull interaction-particle preference. -->
+                    <CheckBox Name="DisableInteractionParticlesCheckBox"
+                        Text="{Loc 'ui-options-inferus-disable-interaction-particles'}"
+                        ToolTip="{Loc 'ui-options-inferus-disable-interaction-particles-tooltip'}" />
                 </GridContainer>
                 <Label Text="{Loc 'ui-options-accessibility-header-visuals'}"
                        StyleClasses="LabelKeyText"/>

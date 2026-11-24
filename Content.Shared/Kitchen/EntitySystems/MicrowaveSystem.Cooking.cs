@@ -76,6 +76,9 @@ public abstract partial class MicrowaveSystem
 
         ent.Comp.Broken = true;
         DirtyField(ent.AsNullable(), nameof(ent.Comp.Broken));
+        // Begin Inferus - a broken microwave stops and empties its chamber
+        StopCooking((ent.Owner, ent.Comp));
+        Container.EmptyContainer(ent.Comp.Storage);
     }
 
     /// <summary>
@@ -133,8 +136,9 @@ public abstract partial class MicrowaveSystem
             TotalTime = component.CurrentCookTimerTime,
             CookTimeEnd = curTime + TimeSpan.FromSeconds(cookTime),
             Malfunctioning = malfunctioning,
+            // Inferus - Instant must get a malfunction opportunity before completing
             NextMalfunction = malfunctioning
-                ? curTime + component.MalfunctionInterval
+                ? curTime + (cookTime > 0 ? component.MalfunctionInterval : TimeSpan.Zero)
                 : TimeSpan.Zero,
         };
 
@@ -167,7 +171,8 @@ public abstract partial class MicrowaveSystem
         out List<EntityUid> ingredientContents)
     {
         ingredientContents = contents.ToList();
-        foreach (var item in contents)
+        // Inferus -  burning an item mutates the container; iterate a snapshot
+        foreach (var item in contents.ToArray())
         {
             MicrowaveItem(microwave,
                 item,
@@ -224,8 +229,14 @@ public abstract partial class MicrowaveSystem
             return;
         }
 
-        if (_whitelist.IsWhitelistPass(microwave.Comp.MalfunctionWhenCookedWhitelist, item))
+        // Begin Inferus - run item-specific events first, then exclude IDs from every generic reaction
+        if (HasComp<Content.Shared.Access.Components.IdCardComponent>(item))
+            return;
+
+        if (_whitelist.IsWhitelistPass(microwave.Comp.MalfunctionWhenCookedWhitelist, item)
+            || _inferusReactivity.IsReactive(item))
             malfunctioning = true;
+        // End Inferus
 
         if (_whitelist.IsWhitelistPass(microwave.Comp.BurnWhenCookedWhitelist, item))
         {
