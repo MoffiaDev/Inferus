@@ -475,6 +475,10 @@ public sealed partial class MicrowaveDeviceWindow : BaseWindow
 
     protected override bool HasPoint(Vector2 point)
     {
+        // Inferus - the open-door hit area must not extend to negative window-local coordinates
+        if (point.X < 0f || point.Y < 0f)
+            return false;
+
         var art = (Vector2i) (point / Unit);
         return Body.Contains(art)
                || NotePaper.Contains(art)
