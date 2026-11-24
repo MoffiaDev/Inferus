@@ -11,9 +11,11 @@
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"
                   MouseFilter="Ignore">
+        <!-- Inferus - preserve character size instead of fitting a fixed portrait box -->
         <SpriteView Name="SelfView"
                     HorizontalAlignment="Center"
-                    SetSize="192 192"
+                    MinSize="192 192"
+                    Stretch="None"
                     Scale="6 6"
                     OverrideDirection="South"
                     MouseFilter="Ignore" />

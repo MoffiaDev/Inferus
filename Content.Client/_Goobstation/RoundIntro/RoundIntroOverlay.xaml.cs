@@ -82,7 +82,8 @@ public sealed partial class RoundIntroOverlay : Control
     {
         var view = new SpriteView
         {
-            SetSize = new Vector2(64, 64),
+            MinSize = new Vector2(64, 64), // Inferus - reserve space while the network entity resolves
+            Stretch = SpriteView.StretchMode.None, // Inferus - preserve coworker character sizes
             Scale = new Vector2(2, 2),
             OverrideDirection = Direction.South,
             HorizontalAlignment = HAlignment.Center,
@@ -200,6 +201,8 @@ public sealed partial class RoundIntroOverlay : Control
         foreach (var view in _spriteViews)
         {
             view.Modulate = color;
+            // Inferus - sprite bounds can change after the network entity or its visuals arrive
+            view.InvalidateMeasure();
         }
     }
 
