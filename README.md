@@ -84,3 +84,4 @@ Content under these subdirectories either originate from their respective fork, 
 | `_ES`            | Ephemeral Space     | https://github.com/EphemeralSpace/ephemeral-space       |    MIT   |
 | `_Omu`           | Omu Station         | https://github.com/ProjectOmu/OmuStation                |    AGPL 3.0 / MIT   |
 | `_CD`            | Cosmatic Drift      | https://github.com/cosmatic-drift-14/cosmatic-drift     |    MIT   |
+| `_Polonium`      | Polonium Station    | https://github.com/polonium14/polonium-station          | AGPL 3.0 |

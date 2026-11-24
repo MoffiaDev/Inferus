@@ -1,0 +1,25 @@
+# Inferus - english localization
+polonium-grinder-caption-grind = GRIND
+polonium-grinder-caption-juice = JUICE
+polonium-grinder-caption-auto = AUTO
+polonium-grinder-eject-vessel = Eject container
+polonium-grinder-close = Close
+polonium-grinder-auto-off = Auto: off
+polonium-grinder-auto-grind = Auto: grind
+polonium-grinder-auto-juice = Auto: juice
+polonium-grinder-no-power = No power!
+polonium-grinder-no-vessel = No container!
+polonium-grinder-vessel-ready = Container inserted
+polonium-grinder-chamber-empty = The chamber is empty!
+polonium-grinder-cannot-grind = Not all contents can be ground!
+polonium-grinder-cannot-juice = Not all contents can be juiced!
+polonium-grinder-vessel-take = Click to remove
+polonium-grinder-vessel-put = Click to insert: { $name }
+polonium-grinder-hand-empty = No container in hand
+polonium-grinder-note-no-vessel = NO CONTAINER
+polonium-grinder-note-empty = empty
+polonium-grinder-note-more = ... scroll for more
+polonium-grinder-note-end = ... end
+polonium-grinder-note-stack = { $name } ×{ $count }
+polonium-grinder-note-reagent = { $amount } { $name }
+polonium-grinder-note-volume = { $volume }/{ $capacity }

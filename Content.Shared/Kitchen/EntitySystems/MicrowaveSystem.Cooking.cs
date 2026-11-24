@@ -76,6 +76,9 @@ public abstract partial class MicrowaveSystem
 
         ent.Comp.Broken = true;
         DirtyField(ent.AsNullable(), nameof(ent.Comp.Broken));
+        // Begin Inferus - a broken microwave stops and empties its chamber
+        StopCooking((ent.Owner, ent.Comp));
+        Container.EmptyContainer(ent.Comp.Storage);
     }
 
     /// <summary>
@@ -167,7 +170,8 @@ public abstract partial class MicrowaveSystem
         out List<EntityUid> ingredientContents)
     {
         ingredientContents = contents.ToList();
-        foreach (var item in contents)
+        // Inferus -  burning an item mutates the container; iterate a snapshot
+        foreach (var item in contents.ToArray())
         {
             MicrowaveItem(microwave,
                 item,
