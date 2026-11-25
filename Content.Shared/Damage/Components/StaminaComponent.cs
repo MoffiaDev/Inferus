@@ -98,7 +98,7 @@ public sealed partial class StaminaComponent : Component
 
     // _Stardrift: How much stamina is drained per second while sprinting (default).
     [DataField, AutoNetworkedField]
-    public float SprintDrainPerSecond = 3.33f;
+    public float SprintDrainPerSecond = 1.75f; // inferus - nerfed to 1.75 from 3.33
 
     #region Animation Data
 
