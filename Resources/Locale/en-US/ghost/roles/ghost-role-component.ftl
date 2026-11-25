@@ -190,11 +190,13 @@ ghost-role-information-cburn-agent-description = A highly trained CentComm agent
 ghost-role-information-centcom-official-name = CentComm Official
 ghost-role-information-centcom-official-description = Perform CentComm related duties such as inspect the station, jotting down performance reviews for heads of staff, and managing the fax machine.
 
-ghost-role-information-nukeop-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all other nuclear operatives. Covert syndicate agents are not guaranteed to help you.
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-nukeop-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all other nuclear operatives. Covert EPC agents are not guaranteed to help you.
 
 ghost-role-information-loneop-name = Lone Operative
 ghost-role-information-loneop-description = You are a lone nuclear operative. Destroy the station!
-ghost-role-information-loneop-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-solo-antagonist-name}[/bold][/color]. Covert syndicate agents are not guaranteed to help you.
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-loneop-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-solo-antagonist-name}[/bold][/color]. Covert EPC agents are not guaranteed to help you.
 
 ghost-role-information-behonker-name = Behonker
 ghost-role-information-behonker-description = You are an antagonist, bring death and honks to those who do not follow the honkmother.
@@ -207,8 +209,9 @@ ghost-role-information-Death-Squad-name = Death Squad Operative
 ghost-role-information-Death-Squad-description = One of Aetheris' top internal affairs agents. Await orders from CentComm or an official.
 ghost-role-information-Death-Squad-rules = You are required to obey orders given by your superior, you are effectively their [color={role-type-familiar-color}][bold]{role-type-familiar-name}[/bold][/color].
 
-ghost-role-information-SyndiCat-name = SyndiCat
-ghost-role-information-SyndiCat-description = You're the faithful trained pet of nuclear operatives with a microbomb. Serve your master to the death!
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-SyndiCat-name = EcoCat
+ghost-role-information-SyndiCat-description = You're the faithful trained pet and mascot of the EPC! ..With a microbomb. Serve your master to the death!
 ghost-role-information-SyndiCat-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the agent who summoned you.
 
 ghost-role-information-Cak-name = Cak
@@ -223,32 +226,42 @@ ghost-role-information-space-ninja-description = Use stealth and deception to sa
 ghost-role-information-paradox-clone-name = Paradox Clone
 ghost-role-information-paradox-clone-description = A freak space-time anomaly has thrown you into another reality! Kill and replace this reality's version of you.
 
-ghost-role-information-syndicate-reinforcement-name = Syndicate Agent
-ghost-role-information-syndicate-reinforcement-description = Someone needs reinforcements. You, the first person the syndicate could find, will help them.
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndicate-reinforcement-name = EPC Agent
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndicate-reinforcement-description = Someone needs reinforcements. You, the first person the EPC could find, will help them.
 ghost-role-information-syndicate-reinforcement-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the agent who summoned you.
 
-ghost-role-information-syndicate-reinforcement-medic-name = Syndicate Combat Medic
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndicate-reinforcement-medic-name = EPC Combat Medic
 ghost-role-information-syndicate-reinforcement-medic-description = Someone needs reinforcements. Your task is to keep the agent who called you alive.
 
-ghost-role-information-syndicate-reinforcement-spy-name = Syndicate Spy
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndicate-reinforcement-spy-name = EPC Spy
 ghost-role-information-syndicate-reinforcement-spy-description = Someone needs reinforcements. Your speciality lies in espionage, do not be discovered.
 
-ghost-role-information-syndicate-reinforcement-thief-name = Syndicate Thief
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndicate-reinforcement-thief-name = EPC Thief
 ghost-role-information-syndicate-reinforcement-thief-description = Someone needs reinforcements. Your job is to break in and retrieve something valuable for your agent.
 
 ghost-role-information-nukeop-reinforcement-name = Nuclear Operative
 ghost-role-information-nukeop-reinforcement-description = The nuclear operatives need reinforcements. You, a reserve agent, will help them.
 ghost-role-information-nukeop-reinforcement-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the nuclear operatives who summoned you.
 
-ghost-role-information-syndicate-monkey-reinforcement-name = Syndicate Monkey Agent
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndicate-monkey-reinforcement-name = EPC Monkey Agent
 ghost-role-information-syndicate-monkey-reinforcement-description = Someone needs reinforcements. You, a trained monkey, will help them.
 
-ghost-role-information-syndicate-kobold-reinforcement-name = Syndicate Kobold Agent
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndicate-kobold-reinforcement-name = EPC Kobold Agent
 ghost-role-information-syndicate-kobold-reinforcement-description = Someone needs reinforcements. You, a trained kobold, will help them.
 
-ghost-role-information-syndicate-cyborg-assault-name = Syndicate Assault Cyborg
-ghost-role-information-syndicate-cyborg-saboteur-name = Syndicate Saboteur Cyborg
-ghost-role-information-syndicate-cyborg-description = The Syndicate needs reinforcements. You, a cold silicon killing machine, will help them.
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndicate-cyborg-assault-name = EPC Assault Cyborg
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndicate-cyborg-saboteur-name = EPC Saboteur Cyborg
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndicate-cyborg-description = The EPC needs reinforcements. You, a cold silicon killing machine, will help them.
 
 ghost-role-information-derelict-engineering-cyborg-name = Derelict Engineer Cyborg
 ghost-role-information-derelict-engineering-cyborg-description = You are an engineer cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station.
@@ -265,8 +278,10 @@ ghost-role-information-derelict-medical-cyborg-description = You are a medical c
 ghost-role-information-derelict-mining-cyborg-name = Derelict Salvage Cyborg
 ghost-role-information-derelict-mining-cyborg-description = You are a salvage cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station.
 
-ghost-role-information-derelict-syndicate-assault-cyborg-name = Derelict Syndicate Assault Cyborg
-ghost-role-information-derelict-syndicate-assault-cyborg-description = You are an early model syndicate assault cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station.
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-derelict-syndicate-assault-cyborg-name = Derelict EPC Assault Cyborg
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-derelict-syndicate-assault-cyborg-description = You are an early model EPC assault cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station.
 
 ghost-role-information-security-name = Security
 ghost-role-information-security-description = You are part of a security task force, but seem to have found yourself in a strange situation...
@@ -311,14 +326,20 @@ ghost-role-information-lost-challenge-cargo-technican-rules = You are not hostil
 ghost-role-information-disaster-victim-name = Disaster Victim
 ghost-role-information-disaster-victim-description = You were rescued in an escape pod from another station that suffered a terrible fate. Perhaps you will be found and rescued.
 
-ghost-role-information-syndie-disaster-victim-name = Syndicate Disaster Victim
-ghost-role-information-syndie-disaster-victim-description = You're a regular passenger from a syndicate station. Unfortunately, an evacuation pod has thrown you into an enemy sector...
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndie-disaster-victim-name = EPC Disaster Victim
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndie-disaster-victim-description = You're a regular passenger from an EPC-held outpost. Unfortunately, an evacuation pod has thrown you into an enemy sector...
 
-ghost-role-information-syndie-soldier-name = Syndicate Soldier
-ghost-role-information-syndie-soldier-description = You are a soldier from the Syndicate.
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndie-soldier-name = EPC Soldier
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndie-soldier-description = You are a soldier from the EPC.
 
-ghost-role-information-syndie-soldier-teamlead-name = Syndicate Team Leader
-ghost-role-information-syndie-soldier-teamlead-description = You are the fire team leader for a Syndicate operative taskforce.
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndie-soldier-teamlead-name = EPC Team Leader
+# Inferus - rebranded the Syndicate to the EPC
+ghost-role-information-syndie-soldier-teamlead-description = You are the fire team leader for an EPC operative taskforce.
 
 ghost-role-information-blackmarketeer-name = Black Market Trader
 ghost-role-information-blackmarketeer-description = Make trades or take odd jobs to collect the most interesting items by the end of the shift.

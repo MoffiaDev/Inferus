@@ -66,8 +66,8 @@ job=description-deathsquad = Eliminate any and all threats to Aetheris assets.
 job-description-ertchaplain = Ensure that the station's crew have their last rites performed.
 job-description-ertengineer = Ensure that the station has power and clean air.
 job-description-ertjanitor = Ensure that the station is thoroughly cleaned and sterilized.
-# Inferus - rebranded NanoTrasen to Aetheris Dynamics
-job-description-ertleader = Lead the Emergency Response Team to protect and preserve Aetheris assets.
+# Inferus - ERTs are federal (IFA) per lore
+job-description-ertleader = Lead a Federation Emergency Response Team to restore order and safety aboard the station.
 job-description-ertmedic = Ensure that the station's crew have their injuries treated.
 job-description-ertsecurity = Ensure that any threats to the station are eliminated.
 

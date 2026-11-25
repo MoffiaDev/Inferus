@@ -283,7 +283,7 @@
 - type: entity
   parent: MindRoleTraitor
   id: MindRoleTraitorReinforcement
-  name: Syndicate Reinforcement Role
+  name: EPC Reinforcement Role # Inferus
   components:
   - type: MindRole
     roleType: TeamAntagonist

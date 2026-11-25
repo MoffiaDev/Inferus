@@ -594,7 +594,7 @@
 
 - type: entity
   id: RandomHumanoidSpawnerSyndicateAgent
-  name: syndicate agent
+  name: EPC agent # Inferus
   components:
     - type: Sprite
       sprite: Mobs/Species/Human/parts.rsi

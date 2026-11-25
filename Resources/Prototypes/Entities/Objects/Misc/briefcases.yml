@@ -28,7 +28,7 @@
 - type: entity
   parent: BriefcaseBrown
   id: BriefcaseSyndie
-  suffix: Syndicate, Empty
+  suffix: EPC, Empty # Inferus
   components:
   - type: Item
     size: Huge

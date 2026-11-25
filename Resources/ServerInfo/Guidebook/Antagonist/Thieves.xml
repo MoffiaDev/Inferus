@@ -49,7 +49,7 @@
   <Box>
     <GuideEntityEmbed Entity="NitrousOxideTank" Caption="Sleeper"/>
     <GuideEntityEmbed Entity="Fulton" Caption="Smuggler"/>
-    <GuideEntityEmbed Entity="Telecrystal" Caption="Syndie"/>
+    <GuideEntityEmbed Entity="Telecrystal" Caption="EPC"/>
   </Box>
   <Box>
     <GuideEntityEmbed Entity="ClothingBackpackSatchelSmugglerUnanchored"/>

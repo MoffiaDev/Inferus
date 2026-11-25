@@ -29,7 +29,7 @@
 - type: entity
   parent: BaseFlag
   id: SyndieFlag
-  name: syndicate flag
+  name: EPC flag # Inferus
   description: Smells bloody. Down with Aetheris! # Inferus
   components:
   - type: Sprite

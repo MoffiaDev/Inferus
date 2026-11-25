@@ -35,11 +35,12 @@ thief-backpack-category-chemistry-description =
     Includes: Storage implanter, DNA scrambler implanter,
     ephedrine bottle, syringe, empty shaker, and omega soap
 
-thief-backpack-category-syndie-name = Syndie Kit
+# Inferus - rebranded the Syndicate to the EPC
+thief-backpack-category-syndie-name = EPC Kit
 thief-backpack-category-syndie-description =
     Trinkets from a disavowed past, or stolen from a careless agent?
     You've made some connections. Whiskey, echo...
-    Includes: An Emag, Access Breaker, Interdyne cigs, a Syndicate codeword,
+    Includes: An Emag, Access Breaker, Interdyne cigs, an EPC codeword,
     a Radio Jammer, a lighter and some strange red crystals.
 
 thief-backpack-category-sleeper-name = Sleeper Kit

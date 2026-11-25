@@ -873,7 +873,7 @@
 - type: entity
   parent: [ ClothingHeadBase, BaseSyndicateContraband ]
   id: ClothingHeadPyjamaSyndicateBlack
-  name: syndicate black pyjama hat
+  name: EPC black pyjama hat # Inferus
   description: For keeping that traitor head of yours warm.
   components:
   - type: Sprite
@@ -889,7 +889,7 @@
 - type: entity
   parent: [ ClothingHeadBase, BaseSyndicateContraband ]
   id: ClothingHeadPyjamaSyndicatePink
-  name: syndicate pink pyjama hat
+  name: EPC pink pyjama hat # Inferus
   description: For keeping that traitor head of yours warm.
   components:
   - type: Sprite
@@ -905,7 +905,7 @@
 - type: entity
   parent: [ ClothingHeadBase, BaseSyndicateContraband ]
   id: ClothingHeadPyjamaSyndicateRed
-  name: syndicate red pyjama hat
+  name: EPC red pyjama hat # Inferus
   description: For keeping that traitor head of yours warm.
   components:
   - type: Sprite
@@ -1109,8 +1109,8 @@
 - type: entity
   parent: [ClothingHeadBase, BaseSyndicateContraband]
   id: ClothingHeadHatSyndie
-  name: syndicate hat
-  description: A souvenir hat from "Syndieland", their production has already been closed.
+  name: EPC hat # Inferus
+  description: A souvenir hat from "Ecoland", their production has already been closed. # Inferus
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/syndiecap.rsi

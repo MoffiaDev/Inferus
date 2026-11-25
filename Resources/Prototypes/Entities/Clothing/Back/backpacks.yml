@@ -310,7 +310,7 @@
 - type: entity
   parent: [ClothingBackpack, BaseSyndicateContraband]
   id: ClothingBackpackSyndicate
-  name: syndicate backpack
+  name: EPC backpack # Inferus
   description:
   components:
   - type: Sprite

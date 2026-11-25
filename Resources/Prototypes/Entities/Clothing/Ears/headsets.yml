@@ -345,7 +345,7 @@
   parent: ClothingHeadsetGrey
   id: ClothingHeadsetSyndicateCovert
   name: passenger headset
-  suffix: Syndicate
+  suffix: EPC # Inferus
   components:
   - type: ContainerFill
     containers:

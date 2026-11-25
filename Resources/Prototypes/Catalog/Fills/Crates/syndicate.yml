@@ -1,8 +1,8 @@
 - type: entity
   parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
   id: CrateSyndicateSurplusBundle
-  name: Syndicate surplus crate
-  description: Contains 50 telecrystals worth of completely random Syndicate items. It can be useless junk or really good.
+  name: EPC surplus crate # Inferus
+  description: Contains 50 telecrystals worth of completely random EPC items. It can be useless junk or really good. # Inferus
   components:
     - type: SurplusBundle
       totalPrice: 50
@@ -25,8 +25,8 @@
 - type: entity
   parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
   id: CrateSyndicateSuperSurplusBundle
-  name: Syndicate super surplus crate
-  description: Contains 125 telecrystals worth of completely random Syndicate items.
+  name: EPC super surplus crate # Inferus
+  description: Contains 125 telecrystals worth of completely random EPC items. # Inferus
   components:
     - type: SurplusBundle
       totalPrice: 125

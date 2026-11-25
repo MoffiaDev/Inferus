@@ -27,5 +27,6 @@ doc-category-logistics = Logistics
 doc-category-research = R&D
 doc-category-ia = Internal Affairs
 doc-category-misc = Miscellaneous
-doc-category-contraband = Syndicate
+# Inferus - rebranded the Syndicate to the EPC
+doc-category-contraband = EPC
 doc-category-unregulated-forms = Unregulated

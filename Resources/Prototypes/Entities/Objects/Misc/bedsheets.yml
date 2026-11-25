@@ -315,8 +315,8 @@
 - type: entity
   id: BedsheetSyndie
   parent: [ BedsheetBase, BaseSyndicateContraband ]
-  name: syndicate bedsheet
-  description: It has a syndicate emblem and it has an aura of evil.
+  name: EPC bedsheet # Inferus
+  description: It has an EPC emblem and it has an aura of evil. # Inferus
   components:
   - type: Sprite
     state: sheetsyndie

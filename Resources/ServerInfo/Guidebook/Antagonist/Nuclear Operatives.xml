@@ -11,7 +11,7 @@
     <GuideEntityEmbed Entity="PosterContrabandEnlistGorlex" Caption=""/>
   </Box>
 
-  You've just been chosen to be a nuclear operative for the [color=#ff0000]Syndicate[/color]. You have one goal, to blow up one of Aetheris' finest outposts with a nuclear explosive.
+  You've just been chosen to be a nuclear operative for the [color=#19a842]EPC[/color]. You have one goal, to blow up one of Aetheris' finest outposts with a nuclear explosive.
 
   ## Operatives
   Your team will be made up of several different roles, which are:
@@ -105,12 +105,12 @@
 
   The [color=#00ff00]victor[/color] of the round is announced on the round end screen, as well as the scale of their victory.
 
-  [bold][color=red]Syndicate Major Victory![/color][/bold]
+  [bold][color=#19a842]EPC Major Victory![/color][/bold]
   - The nuke detonates on the station.
   - The crew escapes on evac, but the nuke is still armed.
   - The nuke is armed and delivered to Central Command on the evac shuttle.
 
-  [bold][color=red]Syndicate Minor Victory[/color][/bold]
+  [bold][color=#19a842]EPC Minor Victory[/color][/bold]
   - At least one operative survives, and the crew escapes, leaving the disk behind.
 
   [bold][color=#999999]Neutral Victory[/color][/bold]

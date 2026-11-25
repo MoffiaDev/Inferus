@@ -21,7 +21,8 @@
                                                                 ║░░░░██░░░████░███░║
                                                                 ╚══════════════════╝[/color]
 
--delivery-header-syndicate = [color=#ff0000]
+# Inferus - EPC green (was #ff0000)
+-delivery-header-syndicate = [color=#19a842]
                                                                           ╔══════════════════╗
                                                                           ║░░░░░████████░░░░░║
                                                                           ║░░░░░██░░░░░░░░░░░║
@@ -51,25 +52,25 @@ delivery-spam-1 =   Robust Toolbox - Special Offer!
                     -CHEAP! ONLY ONE ORGAN! THAT'S LESS THAN TWO ORGANS!
                     -DOESN'T HAVE TO BE YOUR ORGAN! WE DON'T JUDGE!
 
-# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics and the Syndicate to the EPC
 delivery-spam-2 =   Reasons to choose Aetheris!
     .desc =         An advertisement for Aetheris.
     .content =      {-delivery-header-nanotrasen}
 
-                    {"[head=2]TOP THREE REASONS WHY THE SYNDICATE IS INCOMPETENT[/head]"}
+                    {"[head=2]TOP THREE REASONS WHY THE EPC IS INCOMPETENT[/head]"}
 
                     {"[bold]NUMBER ONE[/bold]"}
                     THEIR SLEEPER AGENTS ARE INCOMPETENT! THEY CAN'T EVEN KILL A PASSENGER WITH A DEATHWISH!
 
                     {"[bold]NUMBER TWO[/bold]"}
-                    THEIR CIVILIANS ARE WEAK TO BULLETS! TRUST ME, WE TRIED! UNLIKE THE AETHERIS CIVILIANS, SYNDICATE CIVILIANS DIE FROM A BULLET TO THE SKULL! BULLETS WE HAVE!
+                    THEIR CIVILIANS ARE WEAK TO BULLETS! TRUST ME, WE TRIED! UNLIKE THE AETHERIS CIVILIANS, EPC CIVILIANS DIE FROM A BULLET TO THE SKULL! BULLETS WE HAVE!
 
                     {"[bold]NUMBER THREE[/bold]"}
                     THEIR LOGO IS HORRIBLE! THEY THINK THEY'RE COOL WITH THEIR LOGO! OOH, LOOK AT ME, I'M SO COOL! OOH, SNAKE THAT'S ALSO AN S! HOW CREATIVE! MY THREE YEAR OLD SON COULD DRAW A BETTER LOGO!
 
-# Inferus - rebranded NanoTrasen to Aetheris Dynamics
-delivery-spam-3 =   Reasons to choose The Syndicate!
-    .desc =         An advertisement for The Syndicate.
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics and the Syndicate to the EPC
+delivery-spam-3 =   Reasons to choose The EPC!
+    .desc =         An advertisement for The EPC.
     .content =      {-delivery-header-syndicate}
 
                     {"[head=2]TOP THREE REASONS WHY AETHERIS IS INCOMPETENT[/head]"}

@@ -1400,7 +1400,7 @@
   parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule, BaseSyndicateContraband ]
   id: BorgModuleOperative
   name: operative cyborg module
-  description: A module that comes with a crowbar, an Emag, an Access Breaker and a syndicate pinpointer.
+  description: A module that comes with a crowbar, an Emag, an Access Breaker and an EPC pinpointer. # Inferus
   components:
   - type: Sprite
     layers:

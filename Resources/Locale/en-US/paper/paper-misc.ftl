@@ -27,8 +27,8 @@ book-text-ame-scribbles = I don't know if you're trained already, so I hope this
       Higher will burn the engine out and eventually make it explode. Don't.
       Don't forget to refuel it, it tends to stop at the worst possible time.
 
-# Inferus - rebranded NanoTrasen to Aetheris Dynamics
-book-text-agrichemkit-manual = Thank you for choosing the safe-for-all-ages Aetheris Agri-Chem is Fun! chemistry kit, the best learning-adjacent toy of 2468! Be prepared to discover all about the biggest innovations in agriculture since people buried fish with their corn seeds.
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics; year was 2468, moved before 2426 per lore
+book-text-agrichemkit-manual = Thank you for choosing the safe-for-all-ages Aetheris Agri-Chem is Fun! chemistry kit, the best learning-adjacent toy of 2425! Be prepared to discover all about the biggest innovations in agriculture since people buried fish with their corn seeds.
 
       Contents:
       5 handily labeled 30u bottles, 1 each of nitrogen, phosphorus, hydrogen, potassium, and ethanol
@@ -72,15 +72,15 @@ book-text-combat-bakery-kit = Thank you for choosing our combat bakery kit!
       Glass Shard x 1
       Cook Time: 5 seconds
 
-# Inferus - rebranded NanoTrasen to Aetheris Dynamics
-book-text-reinforcement-initiation = [color=red][head=3]WELCOME TO THE SYNDICATE[/head][/color]
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics and the Syndicate to the EPC
+book-text-reinforcement-initiation = [color=#19a842][head=3]WELCOME TO THE EPC[/head][/color]
 
     You have been chosen for an essential mission, and are to be discretely teleported into enemy territory. Observe the following upon your arrival:
 
     - Aid the requester in their objectives, they are your commander. Their life is worth more than yours. Obey them without question.
 
-    - [italic]Do Not[/italic] reveal your identity to the enemies of the Syndicate unless ordered to by your commander. Consider equipping civilian clothing to blend in.
+    - [italic]Do Not[/italic] reveal your identity to the enemies of the EPC unless ordered to by your commander. Consider equipping civilian clothing to blend in.
 
-    - Ensure your adaptive Syndicate ID Card properly displays your false identity, ask your commander how to do this if you have failed to remember your training.
+    - Ensure your adaptive EPC ID Card properly displays your false identity, ask your commander how to do this if you have failed to remember your training.
 
     - Above all, remember:[bold] DOWN WITH AETHERIS. [/bold]

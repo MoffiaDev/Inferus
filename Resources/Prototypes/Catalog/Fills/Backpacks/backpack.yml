@@ -10,8 +10,8 @@
 - type: entity
   parent: ClothingBackpackSyndicateBundle
   id: ClothingBackpackSyndicateRaidBundle
-  name: syndicate raid suit bundle
-  description: "Contains the Syndicate's durable raid armor suit."
+  name: EPC raid suit bundle # Inferus
+  description: "Contains the EPC's durable raid armor suit." # Inferus
   components:
   - type: EntityTableContainerFill
     containers:

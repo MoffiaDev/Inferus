@@ -69,7 +69,7 @@
       collection: MetalThud
 
 - type: entity
-  name: syndicate jaws of death
+  name: EPC jaws of death # Inferus
   parent: [ JawsOfLife, BaseSyndicateContraband]
   id: SyndicateJawsOfLife
   description: Useful for breaking into secure areas and other nefarious activities.

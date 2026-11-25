@@ -15,7 +15,8 @@ stamp-component-stamped-name-qm = Quartermaster
 stamp-component-stamped-name-rd = Research Director
 stamp-component-stamped-name-warden = Warden
 stamp-component-stamped-name-trader = Trader
-stamp-component-stamped-name-syndicate = Syndicate
+# Inferus - rebranded the Syndicate to the EPC
+stamp-component-stamped-name-syndicate = EPC
 stamp-component-stamped-name-ce = Chief Engineer
 stamp-component-stamped-name-greytide = Greytide
 stamp-component-stamped-name-psychologist = Psychologist

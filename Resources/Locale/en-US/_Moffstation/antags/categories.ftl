@@ -1,8 +1,8 @@
 antag-category-enabled = {$selected}/{$total} enabled
 
-antag-catagory-syndicate-name = Syndicate
-# Inferus - rebranded NanoTrasen to Aetheris Dynamics
-antag-catagory-syndicate-desc = The Spinward Syndicate (often shortened to just ‘The Syndicate’) is a loose coalition of corporations, criminal enterprises and minor factions of all shapes and sizes. While united by their hatred of Aetheris, the Syndicate's members often squabble amongst themselves over their often-contrasting ideals.
+# Inferus - rebranded the Syndicate to the EPC
+antag-catagory-syndicate-name = EPC
+antag-catagory-syndicate-desc = The Environmental Preservation Coalition (often shortened to just ‘The EPC’) is a loose network of environmentalists, indigenous-rights groups and anti-corporate cells who claim Aetheris is strip-mining the sector. Its militant cells, some quietly funded by outside interests such as Cybersun, rarely agree with each other, let alone with the Coalition's public face.
 
 # USSP currently unused but we keep for later :godo:
 antag-catagory-ussp-name = USSP

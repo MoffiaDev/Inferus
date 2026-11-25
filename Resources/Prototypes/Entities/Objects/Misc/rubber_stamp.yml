@@ -347,7 +347,7 @@
         color: "#000000"
 
 - type: entity
-  name: syndicate rubber stamp
+  name: EPC rubber stamp # Inferus
   parent: [RubberStampBase, BaseSyndicateContraband]
   id: RubberStampSyndicate
   categories: [ DoNotMap ]

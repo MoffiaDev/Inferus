@@ -78,13 +78,14 @@ book-text-fishing = When I grow up, I want to be one of the harvesters of the sp
 
       - Sgt. John Baker Aclopoly
 
+# Inferus - rebranded the Syndicate to the EPC
 book-text-detective = CHAPTER 1: SMALL ADVENTURES IN A BIG STATION
 
       This station is filled with crime and grime...
 
       I was shooting hoops down on Bagel when I heard a cry and a laser shot. I walked under the table nearby to hide, but there wasn't a second shot.
 
-      Outside, the engineerin chief got blasted by two Syndies hooked up with some fierce contraband. There wasn't enough of him for an open casket funeral.
+      Outside, the engineerin chief got blasted by two EPC agents hooked up with some fierce contraband. There wasn't enough of him for an open casket funeral.
 
       Things always go wild here.. I'll never look at clowns the same.
 

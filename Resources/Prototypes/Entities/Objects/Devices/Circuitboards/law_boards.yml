@@ -127,8 +127,8 @@
 - type: entity
   id: SyndimovCircuitBoard
   parent: [BaseSiliconLawboard, BaseSyndicateContraband]
-  name: law board (Syndimov)
-  description: An electronics board containing the Syndimov lawset.
+  name: law board (Ecomov) # Inferus
+  description: An electronics board containing the Ecomov lawset. # Inferus
   components:
   - type: SiliconLawProvider
     laws: SyndicateStatic

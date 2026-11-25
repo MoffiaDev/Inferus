@@ -7,7 +7,7 @@
   parent: BookBase
   id: ZeroSumSymphonyVol1
   name: "The Zero-Sum Symphony Book One: Phantom Breach"
-  description: A military thriller about an assault on an Aetheris outpost by a Syndicate Nuclear Operative. # Inferus
+  description: A military thriller about an assault on an Aetheris outpost by an EPC Nuclear Operative. # Inferus
   components:
   - type: Sprite
     sprite: Objects/Misc/books.rsi
@@ -30,6 +30,7 @@
   - type: OocAuthorship
     oocAuthor: Stabithar
   - type: Paper
+    # Inferus - rebranded the Syndicate to the EPC
     content: |2
       [head=2]The Zero-Sum Symphony[/head]
       [head=3]Book One: Phantom Breach[/head]
@@ -70,7 +71,7 @@
 
       Chunk Bulkslab was jolted awake again by his shuttle leaving FTL. “Wow, all of that travel sure made me hungry,” he said to no-one in particular. He skulked over to his blood-red locker and took out a live mothroach that screamed at him as he bit into it, spilling green blood over the blood-red décor.
       “Mmph. Blech.” he choked, spitting bits of chitin out, “This is neither tasty nor nutritionally valid, but I love being cruel to adorable helpless creatures.”
-      “Oh shit! This is no time for snacking, I need to Nuclear Operate.” Chunk dropped the mothroach carcass and donned his blood-red hardsuit. “I’m going to need the biggest guns where I’m going,” he thought aloud, grabbing a pair of L6 SAWs, “And I almost forgot, my pAI. Syndicate pAIs aren’t that clever, but they might come in handy.”
+      “Oh shit! This is no time for snacking, I need to Nuclear Operate.” Chunk dropped the mothroach carcass and donned his blood-red hardsuit. “I’m going to need the biggest guns where I’m going,” he thought aloud, grabbing a pair of L6 SAWs, “And I almost forgot, my pAI. EPC pAIs aren’t that clever, but they might come in handy.”
       “Damn, you look badass!” The pAI beeped.
       “Fuck yeah,” Chunk smirked as he jumped out of his shuttle’s airlock towards the station.
 
@@ -108,7 +109,7 @@
   parent: BookBase
   id: ZeroSumSymphonyVol2
   name: "The Zero-Sum Symphony Book Two: The Omega Stratagem"
-  description: A military thriller about an assault on an Aetheris outpost by a Syndicate Nuclear Operative. # Inferus
+  description: A military thriller about an assault on an Aetheris outpost by an EPC Nuclear Operative. # Inferus
   components:
   - type: Sprite
     sprite: Objects/Misc/books.rsi
@@ -128,6 +129,7 @@
   - type: OocAuthorship
     oocAuthor: Stabithar
   - type: Paper
+    # Inferus - rebranded the Syndicate to the EPC
     content: |2
       [head=2]The Zero-Sum Symphony[/head]
       [head=3]Book Two: The Omega Stratagem[/head]
@@ -137,7 +139,7 @@
       The following is a work of fiction. Any resemblance to any events or persons, living or dead, is entirely coincidental
       ================================================
 
-      “What do we do now?” the Syndicate pAI beeped.
+      “What do we do now?” the EPC pAI beeped.
       “Well, now I’ve got my O2, the pinpointer says we should be going this way.” Chunk Bulkslab, Nuclear Operative, strategised.
       “How do we get there? I don’t know the layout of this station.”
       “Well, I guess we could check one of the maps on the walls, but I,” Chunk shouldered his L6 SAW, “favour the direct approach.”
@@ -160,22 +162,22 @@
       Nichael’s sabre flashed in the air, returning to its sheath as the bullet fell to the ground in front of him. “Whoa, AI, that was close! I thought you said he was all out!”
       “Apologies, Captain,” toned Serv_OS, the Station AI over the holopad, “It appears when I was counting the rounds fired and taking care of the rest of the station, I encountered an ‘off-by-one’ error.”
       “Hey pAI! How come you weren’t counting like their AI was?” Chunk started angrily.
-      “Uhhhhh was I supposed to? I was programmed with a jukebox, but there’s no good music in Syndicate space.” the pAI beeped.
+      “Uhhhhh was I supposed to? I was programmed with a jukebox, but there’s no good music in EPC space.” the pAI beeped.
       “Well, whatever,” grimaced Chunk, “I gotta get dat disk!” and lunged at the captain.
       Captain Nichael Trace let his arm fall, revealing a squad of security officers behind him, and a volley of disabler rounds stopped Chunk in his tracks non-lethally.
       “Your first mistake,” calmly explained the captain, looking over his glasses, “was believing that someone like you could take on an Aetheris station.”
       Security Officer Protects-the-Innocent dashed forward, handcuffs in her hand, to restrain the operator.
       “Your next mistake,” continued Nichael, smiling, “was relying on guns that need ammunition. Our energy weapons can be recharged indefinitely.”
 
-      Finally, Chunk saw how hopeless his situation was. He broke down in tears. “I had the backing of the entire Syndicate!”
+      Finally, Chunk saw how hopeless his situation was. He broke down in tears. “I had the backing of the entire EPC!”
       “That may be,” intoned the captain, as his cloak billowed behind him, “but I had the backing of the crew of $station_name!”
       The operator sobbed, “This was supposed to be my Omega Stratagem!”
       “Well, it looks like your ‘omega stratagem’,” said Nichael, pushing his glasses back into position, “turned into a ‘ω’ for Aetheris!”
-      The crew laughed behind him, as the blood-red hardsuit’s helmet was retracted, letting syndicate tears spill onto the floor. “What- what happens now?” stammered the defeated operator, “A-are you going to execute me?”
+      The crew laughed behind him, as the blood-red hardsuit’s helmet was retracted, letting EPC tears spill onto the floor. “What- what happens now?” stammered the defeated operator, “A-are you going to execute me?”
       Nichael seemed taken aback for perhaps the first time in the shift. “Execution? We can’t do that without a full trial in the presence of a Central Command official! And why would we, in the first place?”
       “It’s just,” blubbered Chunk, “Gorilla-X said they would replace my blood with acid if I failed. I thought- I thought you were going to do something e-even worse.”
 
-      A shadow drew across Captain Trace’s countenance. His normally jovial demeanour was marred with obvious disgust, as his glasses took on a reflective sheen, hiding the hatred that boiled in his eyes. “I can hardly believe the Syndicate would be so vile. Even, no- especially, towards their own people!”
+      A shadow drew across Captain Trace’s countenance. His normally jovial demeanour was marred with obvious disgust, as his glasses took on a reflective sheen, hiding the hatred that boiled in his eyes. “I can hardly believe the EPC would be so vile. Even, no- especially, towards their own people!”
       There was silence in the room. Chunk even stopped sobbing, his grief dampened by the force of the captain’s emotion.
 
       Captain Nichael Trace took a deep breath and set his jaw stoically. “We have the technology to deal with any implants you might have been given. You can come back to Central Command with us, where if you want it - after a period of re-acclimatisation of course - I’m sure we can find a place for you among the crew of Aetheris.”

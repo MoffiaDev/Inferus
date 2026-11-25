@@ -245,7 +245,7 @@
   parent: [BaseWhistle, BaseMinorContraband]
   id: SyndicateWhistle
   name: trench whistle
-  description: A whistle used by Syndicate commanders to draw attention. Avanti!
+  description: A whistle used by EPC commanders to draw attention. Avanti! # Inferus
   components:
   - type: Sprite
     state: trench

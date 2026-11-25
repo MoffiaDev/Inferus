@@ -936,7 +936,7 @@
 - type: entity
   parent: [WeaponPistolCHIMP, BaseSyndicateContraband]
   id: WeaponPistolCHIMPUpgraded
-  suffix: Syndicate
+  suffix: EPC # Inferus
   components:
   - type: BatteryWeaponFireModes
     fireModes:

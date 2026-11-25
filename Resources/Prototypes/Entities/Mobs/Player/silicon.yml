@@ -620,7 +620,7 @@
 - type: entity
   parent: MarkerBase
   id: PlayerBorgSyndicateInvasionGhostRoleSpawner
-  name: syndicate invasion borg spawner
+  name: EPC invasion borg spawner # Inferus
   components:
   - type: Sprite
     layers:

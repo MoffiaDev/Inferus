@@ -18,7 +18,7 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
   id: ClothingBackpackDuffelSyndicateFilledMedical
-  name: syndicate surgical duffel bag
+  name: EPC surgical duffel bag # Inferus
   description: A large duffel bag containing a full suite of surgical tools.
   components:
   - type: EntityTableContainerFill
@@ -37,7 +37,7 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
   id: ClothingBackpackDuffelSyndicateFilledMedicine
-  name: syndicate medicine duffel bag
+  name: EPC medicine duffel bag # Inferus
   description: A large duffel bag containing essential medicinal reagents.
   components:
   - type: EntityTableContainerFill
@@ -192,8 +192,8 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicatePyjamaBundle
-  name: syndicate pyjama duffel bag
-  description: Contains 3 pairs of syndicate pyjamas and 4 plushies for the ultimate sleepover.
+  name: EPC pyjama duffel bag # Inferus
+  description: Contains 3 pairs of EPC pyjamas and 4 plushies for the ultimate sleepover. # Inferus
   components:
   - type: Storage
     grid:
@@ -220,7 +220,7 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateC4tBundle
-  name: syndicate C-4 bundle
+  name: EPC C-4 bundle # Inferus
   description: "Contains a lot of C-4 charges."
   components:
   - type: EntityTableContainerFill
@@ -253,7 +253,7 @@
 - type: entity
   parent: ClothingBackpackChameleon
   id: ClothingBackpackChameleonFillAgent
-  suffix: Fill, Chameleon, Syndie
+  suffix: Fill, Chameleon, EPC # Inferus
   components:
   - type: EntityTableContainerFill
     containers:
@@ -274,8 +274,8 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateEVABundle
-  name: syndicate EVA bundle
-  description: "Contains the Syndicate approved EVA suit."
+  name: EPC EVA bundle # Inferus
+  description: "Contains the EPC approved EVA suit." # Inferus
   components:
   - type: EntityTableContainerFill
     containers:
@@ -291,8 +291,8 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateHardsuitBundle
-  name: syndicate hardsuit bundle
-  description: "Contains the Syndicate's signature blood red hardsuit."
+  name: EPC hardsuit bundle # Inferus
+  description: "Contains the EPC's signature blood red hardsuit." # Inferus
   components:
   - type: EntityTableContainerFill
     containers:
@@ -305,8 +305,8 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
-  name: syndicate elite hardsuit bundle
-  description: "Contains the Syndicate's elite hardsuit, which comes with some more stuff in it."
+  name: EPC elite hardsuit bundle # Inferus
+  description: "Contains the EPC's elite hardsuit, which comes with some more stuff in it." # Inferus
   components:
   - type: EntityTableContainerFill
     containers:
@@ -319,7 +319,7 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateHardsuitExtrasBundle
-  name: syndicate hardsuit extras bundle
+  name: EPC hardsuit extras bundle # Inferus
   description: "Contains stuff that you will absolutely want to have when purchasing a hardsuit."
   components:
   - type: EntityTableContainerFill
@@ -339,7 +339,7 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelZombieBundle
-  name: syndicate zombie bundle
+  name: EPC zombie bundle # Inferus
   description: "An all-in-one kit for unleashing the undead upon a station."
   components:
   - type: EntityTableContainerFill

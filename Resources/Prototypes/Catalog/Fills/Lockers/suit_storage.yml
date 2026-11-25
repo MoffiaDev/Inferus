@@ -82,7 +82,7 @@
 - type: entity
   parent: SuitStorageBase
   id: SuitStorageEVASyndicate
-  suffix: Syndicate EVA
+  suffix: EPC EVA # Inferus
   components:
   - type: EntityTableContainerFill
     containers:
@@ -280,7 +280,7 @@
 - type: entity
   parent: SuitStorageBase
   id: SuitStorageSyndie
-  suffix: Syndicate Hardsuit
+  suffix: EPC Hardsuit # Inferus
   components:
   - type: EntityTableContainerFill
     containers:

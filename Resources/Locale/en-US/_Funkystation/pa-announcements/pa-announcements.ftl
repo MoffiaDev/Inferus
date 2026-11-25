@@ -12,4 +12,5 @@ station-ai-pa-preamble = Incoming Station AI announcement.
 foreign-pa-preamble = Incoming foreign communications.
 centcom-pa-preamble = Incoming Central Command announcement.
 
-comms-console-announcement-title-declaration-of-war = Syndicate War Declaration
+# Inferus - rebranded the Syndicate to the EPC
+comms-console-announcement-title-declaration-of-war = EPC War Declaration

@@ -13,7 +13,8 @@ chat-radio-science = Science
 chat-radio-security = Security
 chat-radio-service = Service
 chat-radio-supply = Supply
-chat-radio-syndicate = Syndicate
+# Inferus - rebranded the Syndicate to the EPC
+chat-radio-syndicate = EPC
 chat-radio-freelance = Freelance
 
 # not headset but whatever

@@ -159,7 +159,7 @@
   parent: BaseSoap
   id: SoapletSyndie
   name: soaplet
-  description: A tiny piece of syndicate soap.
+  description: A tiny piece of EPC soap. # Inferus
   categories: [ HideSpawnMenu ]
   components:
   - type: Solution

@@ -381,8 +381,8 @@
 - type: entity
   parent: [ BaseComputerCircuitboard, BaseSyndicateContraband ]
   id: SyndicateCommsComputerCircuitboard
-  name: syndicate communications computer board
-  description: A computer printed circuit board for a syndicate communications console.
+  name: EPC communications computer board # Inferus
+  description: A computer printed circuit board for an EPC communications console. # Inferus
   components:
   - type: Sprite
     state: cpu_syndicate
@@ -475,8 +475,8 @@
 - type: entity
   parent: [ BaseComputerCircuitboard, BaseSyndicateContraband ]
   id: SyndicateShuttleConsoleCircuitboard
-  name: syndicate shuttle console board
-  description: A computer printed circuit board for a syndicate shuttle console.
+  name: EPC shuttle console board # Inferus
+  description: A computer printed circuit board for an EPC shuttle console. # Inferus
   components:
   - type: Sprite
     state: cpu_syndicate
@@ -508,7 +508,7 @@
 - type: entity
   parent: [ BaseComputerCircuitboard, BaseSyndicateContraband ]
   id: ComputerIFFSyndicateCircuitboard
-  name: syndicate IFF console board
+  name: EPC IFF console board # Inferus
   description: Allows you to control the IFF and stealth characteristics of this vessel.
   components:
   - type: Sprite
@@ -587,7 +587,7 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: SyndicateTeleportersControlCircuitboard
-  name: syndicate teleporters control console board
+  name: EPC teleporters control console board # Inferus
   description: A computer printed circuit board for a teleporter control console.
   components:
   - type: ComputerBoard

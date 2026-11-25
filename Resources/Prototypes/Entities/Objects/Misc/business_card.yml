@@ -1,8 +1,8 @@
 - type: entity
   id: SyndicateBusinessCard
-  name: syndicate business card
+  name: EPC business card # Inferus
   parent: [ Paper, BaseSyndicateContraband ]
-  description: A black card with the syndicate's logo. There's something written on the back.
+  description: A black card with the EPC's logo. There's something written on the back. # Inferus
   components:
     - type: Sprite
       sprite: Objects/Misc/bureaucracy.rsi

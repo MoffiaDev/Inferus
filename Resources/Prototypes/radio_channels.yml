@@ -67,7 +67,7 @@
   name: chat-radio-syndicate
   keycode: 't'
   frequency: 121.3
-  color: "#8f4a4b"
+  color: "#19a842" # Inferus: was #8f4a4b, EPC green
   longRange: true
 
 - type: radioChannel

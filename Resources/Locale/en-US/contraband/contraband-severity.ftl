@@ -22,10 +22,11 @@ contraband-examine-text-Major =
         [reagent] [color={$color}]This reagent is considered major contraband.[/color]
     }
 
+# Inferus - rebranded the Syndicate to the EPC
 contraband-examine-text-GrandTheft =
     { $type ->
-        *[item] [color={$color}]This item is a highly valuable target for Syndicate agents![/color]
-        [reagent] [color={$color}]This reagent is a highly valuable target for Syndicate agents![/color]
+        *[item] [color={$color}]This item is a highly valuable target for EPC agents![/color]
+        [reagent] [color={$color}]This reagent is a highly valuable target for EPC agents![/color]
     }
 
 contraband-examine-text-Highly-Illegal =
@@ -34,10 +35,11 @@ contraband-examine-text-Highly-Illegal =
         [reagent] [color={$color}]This reagent is highly illegal contraband![/color]
     }
 
+# Inferus - rebranded the Syndicate to the EPC
 contraband-examine-text-Syndicate =
     { $type ->
-        *[item] [color={$color}]This item is highly illegal Syndicate contraband![/color]
-        [reagent] [color={$color}]This reagent is highly illegal Syndicate contraband![/color]
+        *[item] [color={$color}]This item is highly illegal EPC contraband![/color]
+        [reagent] [color={$color}]This reagent is highly illegal EPC contraband![/color]
     }
 
 contraband-examine-text-Magical =

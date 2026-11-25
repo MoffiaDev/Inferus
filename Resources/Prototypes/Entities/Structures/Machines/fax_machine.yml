@@ -114,8 +114,8 @@
 - type: entity
   parent: FaxMachineBase
   id: FaxMachineSyndie
-  name: syndicate long range fax machine
-  suffix: Syndicate
+  name: EPC long range fax machine # Inferus
+  suffix: EPC # Inferus
   components:
   - type: Sprite
     layers:

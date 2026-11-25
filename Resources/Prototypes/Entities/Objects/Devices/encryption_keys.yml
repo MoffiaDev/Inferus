@@ -269,7 +269,7 @@
   parent: [ EncryptionKey, BaseSyndicateContraband ]
   id: EncryptionKeyBinarySyndicate
   name: binary translator key
-  description: A syndicate encryption key that translates binary signals used by silicons.
+  description: An EPC encryption key that translates binary signals used by silicons. # Inferus
   components:
   - type: EncryptionKey
     channels:

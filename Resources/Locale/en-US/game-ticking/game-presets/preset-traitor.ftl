@@ -3,7 +3,8 @@
 traitor-round-end-codewords = The codewords were: [color=White]{$codewords}[/color]
 traitor-round-end-agent-name = traitor
 
-objective-issuer-syndicate = [color=crimson]The Syndicate[/color]
+# Inferus - rebranded the Syndicate to the EPC
+objective-issuer-syndicate = [color=#19a842]The EPC[/color]
 objective-issuer-unknown = [color=white]Unknown[/color]
 
 # Shown at the end of a round of Traitor
@@ -23,15 +24,16 @@ traitor-death-match-end-round-description-entry = {$originalName}'s PDA, with {$
 ## TraitorRole
 
 # TraitorRole
-# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics and the Syndicate to the EPC
 traitor-role-greeting =
-    You are an agent sent by [color = darkred]The Syndicate[/color] on behalf of {$corporation}.
+    You are an agent sent by [color = #19a842]The EPC[/color] on behalf of {$corporation}.
     Your objectives and codewords are listed in the character menu. Use your uplink to buy the tools you'll need for this mission.
     Down with Aetheris!
+# Inferus - rebranded the Syndicate to the EPC
 traitor-role-codewords =
     The codewords are: [color = lightgray]
     {$codewords}.[/color]
-    Codewords can be used in regular conversation to identify yourself discreetly to other syndicate agents.
+    Codewords can be used in regular conversation to identify yourself discreetly to other EPC agents.
     Listen for them, and keep them secret.
 traitor-role-uplink-code =
     Set your ringtone to the notes [color = lightgray]{$code}[/color] to lock or unlock your uplink.
