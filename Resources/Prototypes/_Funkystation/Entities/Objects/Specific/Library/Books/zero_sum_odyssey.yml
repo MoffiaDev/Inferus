@@ -27,7 +27,6 @@
   - type: OocAuthorship
     oocAuthor: Stabithar
   - type: Paper
-    stampedBy:
     content: |2
       [head=2]The Zero-Sum Odyssey[/head]
       [head=3]Book One: Anodyne Trepidation[/head]
