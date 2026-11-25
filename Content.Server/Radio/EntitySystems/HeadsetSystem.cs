@@ -109,7 +109,8 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
             RaiseLocalEvent(parent, ref relayEvent);
         }
 
-        if (TryComp(parent, out ActorComponent? actor))
+        // Inferus - record and deduplicate direct delivery before PA relays
+        if (TryComp(parent, out ActorComponent? actor) && args.DirectRecipients.Add(actor.PlayerSession))
             _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
     }
 }

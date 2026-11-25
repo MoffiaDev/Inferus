@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
+using Content.Shared._Funkystation.Communications; // Inferus - defer PA radio relays
 using Content.Shared._RMC14.Chat;
 using Content.Shared.Chat;
 using Content.Shared.Database;
@@ -37,6 +38,7 @@ public sealed partial class RadioSystem : SharedRadioSystem
         base.Initialize();
         SubscribeLocalEvent<IntrinsicRadioReceiverComponent, RadioReceiveEvent>(OnIntrinsicReceive);
         SubscribeLocalEvent<IntrinsicRadioTransmitterComponent, EntitySpokeEvent>(OnIntrinsicSpeak);
+        SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnPARelayRecipients); // Inferus
     }
 
     private void OnIntrinsicSpeak(EntityUid uid, IntrinsicRadioTransmitterComponent component, EntitySpokeEvent args)
@@ -50,7 +52,8 @@ public sealed partial class RadioSystem : SharedRadioSystem
 
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
-        if (TryComp(uid, out ActorComponent? actor))
+        // Inferus - record and deduplicate direct delivery before PA relays
+        if (TryComp(uid, out ActorComponent? actor) && args.DirectRecipients.Add(actor.PlayerSession))
             _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
     }
 
@@ -106,6 +109,7 @@ public sealed partial class RadioSystem : SharedRadioSystem
         var hasActiveServer = HasActiveServer(sourceMapId, channel.ID);
         var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
+        var paRelays = new List<EntityUid>(); // Inferus - direct recipients must be known first
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
@@ -131,10 +135,16 @@ public sealed partial class RadioSystem : SharedRadioSystem
             if (attemptEv.Cancelled)
                 continue;
 
-            // send the message
-            RaiseLocalEvent(receiver, ref ev);
+            // Inferus - finish direct radio delivery before any PA speaks locally
+            if (HasComp<PAAnnouncerComponent>(receiver))
+                paRelays.Add(receiver);
+            else
+                RaiseLocalEvent(receiver, ref ev);
         }
 
+        // Inferus - each PA relay can now suppress duplicate local chat per listener
+        foreach (var receiver in paRelays)
+            RelayPARadio(receiver, ref ev);
         if (name != Name(messageSource))
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
         else
