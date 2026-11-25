@@ -2,9 +2,11 @@
   id: Ovinia
   onlyGroupWhitelisted: true
   limits:
+    # Inferus - STOP GOING BALD!!
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
+      onlyGroupWhitelisted: false
     enum.HumanoidVisualLayers.FacialHair:
       limit: 1
       required: false
