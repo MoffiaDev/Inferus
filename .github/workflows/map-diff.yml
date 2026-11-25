@@ -18,7 +18,7 @@ concurrency:
 
 env:
   MAX_MAPS: 10
-  WORK: ${{ github.workspace }}/../mapdiff
+  WORK: ${{ github.workspace }}-mapdiff # why did it have .. im cryine
 
 jobs:
   render:

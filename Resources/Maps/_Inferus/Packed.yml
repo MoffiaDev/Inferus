@@ -53342,8 +53342,7 @@ entities:
     - type: LinkedDeviceNetwork
       deviceLists:
       - 14323
-      configurators:
-      - invalid
+      configurators: []
   - uid: 169
     components:
     - type: Transform
@@ -69243,8 +69242,7 @@ entities:
     - type: LinkedDeviceNetwork
       deviceLists:
       - 14323
-      configurators:
-      - invalid
+      configurators: []
   - uid: 14850
     components:
     - type: Transform
@@ -70109,8 +70107,7 @@ entities:
     - type: LinkedDeviceNetwork
       deviceLists:
       - 14323
-      configurators:
-      - invalid
+      configurators: []
 - proto: GasVentScrubberFreezer
   entities:
   - uid: 13115
