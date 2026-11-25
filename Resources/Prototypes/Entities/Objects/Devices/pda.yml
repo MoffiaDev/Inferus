@@ -1140,7 +1140,7 @@
   parent: [ SyndiPDA, BaseSyndicateContraband ]
   id: SyndiOperativePDA
   name: syndicate operative PDA
-  description: Death to NT!
+  description: Down with Aetheris! # Inferus
   components:
   - type: Pda
     id: SyndiOperativeIDCard

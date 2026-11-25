@@ -102,7 +102,8 @@ barsign-prototype-description-maltroach = Squeak!
 
 ## Whiskey Echoes
 barsign-prototype-name-whiskeyechoes = Whiskey Echoes
-barsign-prototype-description-whiskeyechoes = An elite bar for elite oper-wait, this is a Nanotrasen station. Why's this sign in the database?
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+barsign-prototype-description-whiskeyechoes = An elite bar for elite oper-wait, this is an Aetheris station. Why's this sign in the database?
 
 ## EmpBarSign
 barsign-prototype-name-empbarsign = glitchy bar sign 

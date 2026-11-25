@@ -39,7 +39,8 @@ roles-antag-paradox-clone-objective = Kill and replace your counterpart in this 
 roles-antag-pirate-name = Pirate
 
 roles-antag-thief-name = Thief
-roles-antag-thief-objective = Steal some Nanotrasen property for your personal collection, without using violence.
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+roles-antag-thief-objective = Steal some Aetheris property for your personal collection, without using violence.
 
 roles-antag-dragon-name = Space Dragon
 roles-antag-dragon-objective = Create a carp army to take over this quadrant.

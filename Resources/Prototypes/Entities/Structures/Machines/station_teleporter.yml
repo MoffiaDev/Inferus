@@ -71,7 +71,7 @@
 - type: entity
   parent: StationTeleporter
   id: StationTeleporterNanotrasen
-  suffix: Unknown Coordinates, Nanotrasen Network
+  suffix: Unknown Coordinates, Aetheris Network # Inferus
   components:
   - type: StationTeleporter
     autoLinkKey: Nanotrasen
@@ -79,7 +79,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterCenter
-  suffix: Center, Nanotrasen
+  suffix: Center, Aetheris # Inferus
   components:
   - type: Label
     localizedLabel: teleporter-name-center
@@ -87,7 +87,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterSalvage
-  suffix: Salvage, Nanotrasen
+  suffix: Salvage, Aetheris # Inferus
   components:
   - type: Label
     localizedLabel: teleporter-name-salvage
@@ -95,7 +95,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterMedical
-  suffix: Medical, Nanotrasen
+  suffix: Medical, Aetheris # Inferus
   components:
   - type: Label
     localizedLabel: teleporter-name-medical
@@ -103,7 +103,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterEngineering
-  suffix: Engineering, Nanotrasen
+  suffix: Engineering, Aetheris # Inferus
   components:
   - type: Label
     localizedLabel: teleporter-name-engineering
@@ -111,7 +111,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterSecurity
-  suffix: Security, Nanotrasen
+  suffix: Security, Aetheris # Inferus
   components:
   - type: Label
     localizedLabel: teleporter-name-security
@@ -119,7 +119,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterScience
-  suffix: Science, Nanotrasen
+  suffix: Science, Aetheris # Inferus
   components:
   - type: Label
     localizedLabel: teleporter-name-science
@@ -127,7 +127,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterCargo
-  suffix: Cargo, Nanotrasen
+  suffix: Cargo, Aetheris # Inferus
   components:
   - type: Label
     localizedLabel: teleporter-name-cargo

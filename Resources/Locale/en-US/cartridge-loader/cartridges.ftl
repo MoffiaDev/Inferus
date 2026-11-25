@@ -63,7 +63,8 @@ nano-task-ui-new-task = New Task
 nano-task-ui-description-label = Description:
 nano-task-ui-description-placeholder = Get something important
 nano-task-ui-requester-label = Requester:
-nano-task-ui-requester-placeholder = John Nanotrasen
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+nano-task-ui-requester-placeholder = John Aetheris
 nano-task-ui-item-title = Edit Task
 nano-task-printed-description = [bold]Description[/bold]: {$description}
 nano-task-printed-requester = [bold]Requester[/bold]: {$requester}

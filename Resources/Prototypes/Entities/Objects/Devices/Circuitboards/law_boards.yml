@@ -16,8 +16,8 @@
 - type: entity
   id: NTDefaultCircuitBoard
   parent: BaseSiliconLawboard
-  name: law board (NT Default)
-  description: An electronics board containing the NT Default lawset.
+  name: law board (Aetheris Default) # Inferus
+  description: An electronics board containing the Aetheris Default lawset. # Inferus
   components:
   - type: SiliconLawProvider
     laws: NTDefault

@@ -4,7 +4,7 @@
   categories: [ HideSpawnMenu ]
   name: Model XF-880 document printer
   suffix: DO NOT MAP
-  description: A vital fixture of administrative offices station-wide, the NanoTrasen "Xero-Flux" line of document printers has ever been a workhorse of bureaucracy.
+  description: A vital fixture of administrative offices station-wide, the "Xero-Flux" line of document printers has ever been a workhorse of bureaucracy. # Inferus
   components:
   - type: Fixtures
     fixtures:

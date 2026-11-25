@@ -1244,16 +1244,19 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    # Inferus - blood-orange Central Command card. The shared centcom state stays blue for the ERT cards.
+    - sprite: _Inferus/Objects/Misc/id_cards.rsi
+      state: centcom
     - state: stripe_top
-      color: &color-centcomm-top "#134975"
+      color: "#c42a00"
     - state: stripe_bottom
-      color: &color-centcomm-bottom "#0d304d"
+      color: "#8f1f00"
+    # End Inferus
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Nanotrasen
   - type: Item
-    heldPrefix: blue
+    heldPrefix: orange # Inferus: was blue
   - type: PresetIdCard
     job: CentralCommandOfficial
 
@@ -1266,9 +1269,9 @@
     layers:
     - state: gold
     - state: stripe_top
-      color: *color-centcomm-top
+      color: &color-centcomm-top "#134975" # Inferus - anchor moved here from CentcomIDCard
     - state: stripe_bottom
-      color: *color-centcomm-bottom
+      color: &color-centcomm-bottom "#0d304d" # Inferus - anchor moved here from CentcomIDCard
     - sprite: *icon-rsi
       offset: *icon-offset
       state: ERTLeader

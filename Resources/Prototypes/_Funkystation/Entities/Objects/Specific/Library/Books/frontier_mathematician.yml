@@ -23,9 +23,6 @@
   - type: OocAuthorship
     oocAuthor: AlDente
   - type: Paper
-    stampedBy:
-    - stampedColor: '#134975'
-      stampedName: "NT APPROVED"
     content: |2
       [head=2]The History of Calculus[/head]
       [head=3]Book 1: Newton and Gottfried Enter the Ring[/head]
@@ -71,9 +68,6 @@
   - type: OocAuthorship
     oocAuthor: AlDente
   - type: Paper
-    stampedBy:
-    - stampedColor: '#134975'
-      stampedName: "NT APPROVED"
     content: |2
       [head=2]Frontier Mathematician!: The History of Calculus[/head]
       [head=3]Book 2: The Great Bribe[/head]

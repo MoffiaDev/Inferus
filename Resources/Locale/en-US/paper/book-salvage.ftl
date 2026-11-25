@@ -40,7 +40,8 @@ book-text-chemistry-insane = IGOR CHEMISTRY GUIDE TO CHEMISTRY
 
       CONCLUSION: IGOR CHEMISTRY
 
-book-text-botanics = ** Applications of Botanical Specimens Found In Nanotrasen Territories **
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+book-text-botanics = ** Applications of Botanical Specimens Found In the Inferus Sector **
 
       Many plants, when ground, yield useful chemicals. S. (spessmens) papaver and S. aloe vera
       are known for their basic healing properties.

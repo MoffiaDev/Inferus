@@ -41,8 +41,8 @@
 - type: entity
   id: BannerNanotrasen
   parent: BannerBase
-  name: nanotrasen banner
-  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  name: Aetheris banner # Inferus
+  description: A banner displaying the Aetheris logo. Fancy! # Inferus
   components:
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
@@ -92,7 +92,7 @@
   id: BannerSyndicate
   parent: BannerBase
   name: syndicate banner
-  description: A banner from which, according to the syndicate, you should feel hatred for NT.
+  description: A banner from which, according to the syndicate, you should feel hatred for Aetheris. # Inferus
   components:
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi

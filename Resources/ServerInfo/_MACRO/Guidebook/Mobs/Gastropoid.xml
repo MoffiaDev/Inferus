@@ -4,7 +4,7 @@
   <Box>
     <GuideEntityEmbed Entity="MobGastropoid" Caption=""/>
   </Box>
-  Gastropoids are used to extremely humid environments, and depend on moisture to survive. The comparativly harsh dryness of NT's standard life-support protocol leaves them vulnerable to hydrophilic chemicals - [color=#ffa500]Table salt, and anything that contains it as a direct ingredient, causes severe burns.[/color]
+  Gastropoids are used to extremely humid environments, and depend on moisture to survive. The comparativly harsh dryness of Aetheris' standard life-support protocol leaves them vulnerable to hydrophilic chemicals - [color=#ffa500]Table salt, and anything that contains it as a direct ingredient, causes severe burns![/color]
   <Box>
 	<GuideEntityEmbed Entity="FoodShakerSalt" Caption=""/>
   </Box>

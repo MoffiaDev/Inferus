@@ -12,7 +12,8 @@ blockgame-menu-gameover-info = Global: {$global}
     Local: {$local}
     Points: {$points}
 
-blockgame-menu-title = Nanotrasen Block Game
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+blockgame-menu-title = Aetheris Block Game
 blockgame-menu-button-new-game = New Game
 blockgame-menu-button-scoreboard = Scoreboard
 blockgame-menu-button-pause = Pause
@@ -23,4 +24,5 @@ blockgame-menu-button-back = Back
 blockgame-menu-label-next = Next
 blockgame-menu-label-hold = Hold
 blockgame-menu-text-station = Station
-blockgame-menu-text-nanotrasen = Nanotrasen
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+blockgame-menu-text-nanotrasen = Aetheris

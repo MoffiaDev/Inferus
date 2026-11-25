@@ -78,7 +78,7 @@
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-centcom
-    stampedColor: "#006600"
+    stampedColor: "#ff3700" # Inferus: was "#006600"
     stampState: "paper_stamp-centcom"
   - type: Sprite
     state: stamp-centcom

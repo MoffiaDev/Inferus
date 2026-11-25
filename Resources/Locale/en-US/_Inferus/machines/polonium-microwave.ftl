@@ -1,5 +1,5 @@
 # Inferus - english localization
-polonium-microwave-plate = NT  { $name }  { $version }
+polonium-microwave-plate = AD  { $name }  { $version }
 polonium-microwave-time-legend = TIME (S)
 polonium-microwave-status-empty = EMPTY
 polonium-microwave-status-cooking = COOKING

@@ -39,7 +39,8 @@ comms-console-announcement-title-wizard = Wizard
 
 # Flavor text for alert levels
 comms-console-level-Green-flavour-label = Work is to proceed as normal
-comms-console-level-Blue-flavour-label = Record suspicious activity with form NT-4772-b
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+comms-console-level-Blue-flavour-label = Record suspicious activity with form AD-4772-b
 comms-console-level-Violet-flavour-label = Maintain social distancing
 comms-console-level-Yellow-flavour-label = Prepare to hold your breath
 comms-console-level-Red-flavour-label = Remain vigilant

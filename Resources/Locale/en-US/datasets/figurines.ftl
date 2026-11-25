@@ -1,12 +1,13 @@
 # Command
 
-figurines-captain-1 = Glory to NT!
-figurines-captain-2 = How did I get hired? Yes.
-figurines-captain-3 = The nuclear disk is secure. Where? Somewhere.
-figurines-captain-4 = Where did my ID go?
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+figurines-captain-1 = A Better Tomorrow!
+figurines-captain-2 = How did I get hired? Uuuuhhh...
+figurines-captain-3 = The nuclear disk is secure. Where? Somewhere. Why're you asking?
+figurines-captain-4 = Where did my ID go!? SECURITY!!
 figurines-captain-5 = Everything is under control.
-figurines-captain-6 = The disk was in my bag last I checked.
-figurines-captain-7 = The chain of command starts and ends with me.
+figurines-captain-6 = The disk was in my bag last I checked...
+figurines-captain-7 = The chain of command starts, and ends, with me.
 figurines-captain-8 = It's hard being at the top.
 
 # Cargo
@@ -283,8 +284,10 @@ figurines-AI-7 = { law-nutimov-4 }
 figurines-footsoldier-1 = I'm an evil boy. Less boy every day, more evil every day.
 figurines-footsoldier-2 = Who will you choose? Them or us? Us or them?
 figurines-footsoldier-3 = Glory to the Syndicate!
-figurines-footsoldier-4 = Down with Nanotrasen!
-figurines-footsoldier-5 = I'd rather die than join Nanotrasen.
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+figurines-footsoldier-4 = Down with Aetheris!
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+figurines-footsoldier-5 = I'd rather die than join Aetheris.
 
 figurines-holoclown-1 = I'm helping my older brother.
 figurines-holoclown-2 = Hello, officer!
@@ -306,7 +309,8 @@ figurines-nukie-commander-3 = The Syndicate sends its regards.
 figurines-nukie-commander-4 = Failure is not an option.
 figurines-nukie-commander-5 = Whoops.
 
-figurines-nukie-elite-1 = Not a word in Nanotrasen.
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+figurines-nukie-elite-1 = Not a word in Aetheris.
 figurines-nukie-elite-2 = THAT'S A KEG!
 figurines-nukie-elite-3 = Guys, are you alive?
 figurines-nukie-elite-4 = Breach and clear!

@@ -50,7 +50,7 @@
   parent: ClothingNeckBase
   id: ClothingNeckLawyerbadge
   name: lawyer badge
-  description: A badge to show that the owner is a 'legitimate' lawyer who passed the NT bar exam required to practice law.
+  description: A badge to show that the owner is a 'legitimate' lawyer who passed the Aetheris bar exam required to practice law. # Inferus
   components:
   - type: Sprite
     sprite: Clothing/Neck/Misc/lawyerbadge.rsi

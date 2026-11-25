@@ -117,7 +117,7 @@
   parent: CrateElectrical
   id: CrateEngineeringElectricalSupplies
   name: electrical supplies crate
-  description: NT is not responsible for any workplace infighting relating to the insulated gloves included within these crates.
+  description: Aetheris is not responsible for any workplace infighting relating to the insulated gloves included within these crates. # Inferus
   components:
   - type: EntityTableContainerFill
     containers:

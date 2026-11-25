@@ -103,7 +103,7 @@
   parent: [ ClothingHeadset, BaseCentcommContraband ]
   id: ClothingHeadsetCentCom
   name: CentComm headset
-  description: A headset used by the upper echelons of Nanotrasen.
+  description: A headset used by the upper echelons of Aetheris. # Inferus
   components:
   - type: ContainerFill
     containers:

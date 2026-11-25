@@ -210,7 +210,7 @@
 
 - type: entity
   name: blood pack
-  description: Contains a groundbreaking universal blood replacement created by Nanotrasen's advanced medical science.
+  description: Contains a groundbreaking universal blood replacement created by Aetheris' advanced medical science. # Inferus
   parent: [ BaseHealingItem, SolutionFood ] #macro, add SolutionFood
   id: Bloodpack
   suffix: Full

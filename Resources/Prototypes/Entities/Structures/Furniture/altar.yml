@@ -88,7 +88,7 @@
 - type: entity
   parent: AltarBaseWood
   id: AltarNanotrasen
-  name: nanotrasen altar
+  name: Aetheris altar # Inferus
   components:
   - type: Sprite
     sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi

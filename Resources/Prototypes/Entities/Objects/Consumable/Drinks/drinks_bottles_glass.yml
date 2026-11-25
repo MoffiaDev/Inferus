@@ -493,7 +493,7 @@
     - Wine
 
 - type: entity
-  name: nt cahors bottle
+  name: Aetheris cahors bottle # Inferus
   parent: DrinkBottleGlassBase
   id: DrinkBottleNTCahors
   components:
@@ -506,7 +506,7 @@
     - Wine
 
 - type: entity
-  name: nt cahors bottle
+  name: Aetheris cahors bottle # Inferus
   parent: DrinkBottleNTCahors
   id: DrinkNTCahorsBottleFull
   suffix: Full

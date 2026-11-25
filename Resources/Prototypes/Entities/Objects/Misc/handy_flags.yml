@@ -13,8 +13,8 @@
 - type: entity
   parent: BaseItem
   id: NTHandyFlag
-  name: Nanotrasen handheld flag
-  description: "Glory to NT! Wait, they really made a handheld flag for a corporation?"
+  name: Aetheris handheld flag # Inferus
+  description: "For the Future! Wait, they really made a handheld flag for these guys?" # Inferus
   components:
   - type: Sprite
     sprite: Objects/Misc/Handy_Flags/NT_handy_flag.rsi
@@ -26,7 +26,7 @@
   parent: [BaseItem, BaseSyndicateContraband]
   id: SyndieHandyFlag
   name: syndicate handheld flag
-  description: "For truly rebellious patriots. Death to NT!"
+  description: "For truly rebellious patriots. Down with Aetheris!" # Inferus
   components:
   - type: Sprite
     sprite: Objects/Misc/Handy_Flags/syndie_handy_flag.rsi

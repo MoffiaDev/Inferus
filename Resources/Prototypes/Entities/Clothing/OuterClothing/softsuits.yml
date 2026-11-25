@@ -39,7 +39,7 @@
   parent: [ TemperatureProtectionMinimal, ClothingOuterEVASuitBaseToggleable ]
   id: ClothingOuterSuitEmergency
   name: emergency pressure suit
-  description: This bulky, uninsulated pressure suit was clearly not meant for extended use in outer space, despite NanoTrasen's claims that it passes corporate regulations.
+  description: This bulky, uninsulated pressure suit was clearly not meant for extended use in outer space, despite Aetheris' claims that it passes corporate regulations. # Inferus
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Suits/eva_emergency.rsi
@@ -81,8 +81,8 @@
 - type: entity
   parent: ClothingOuterEVASuitBase
   id: ClothingOuterHardsuitAncientEVA
-  name: NTSRA voidsuit #Nanotrasen Space Research Association
-  description: An ancient space suit, designed by the NTSRA branch of CentComm. It is very finely crafted, allowing for greater mobility than most modern space suits.
+  name: ADSRA voidsuit #Aetheris Dynamics Space Research Association # Inferus: was NTSRA (Nanotrasen Space Research Association)
+  description: An ancient space suit, designed by the ADSRA branch of CentComm. It is very finely crafted, allowing for greater mobility than most modern space suits. # Inferus
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Suits/ancient_voidsuit.rsi

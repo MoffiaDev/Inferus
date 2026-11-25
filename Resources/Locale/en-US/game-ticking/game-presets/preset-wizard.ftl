@@ -40,9 +40,10 @@ wizard-description = There's a wizard on the station! You never know what they m
 roles-antag-wizard-name = Wizard
 roles-antag-wizard-objective = Use your mastery of the arcane to sow chaos and discord.
 
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
 wizard-role-greeting =
     It's wizard time!
-    Tensions between the Space Wizards Federation and Nanotrasen are on the rise. You've been selected to pay a visit to one of Nanotrasen's space stations and "remind" them why wizards are not to be trifled with.
+    Tensions between the Space Wizards Federation and Aetheris are on the rise. You've been selected to pay a visit to one of Aetheris' outposts and "remind" them why wizards are not to be trifled with.
     Cause mayhem and destruction! What you do is up to you, but remember that your superiors want you to make it out alive.
 
 wizard-round-end-name = wizard

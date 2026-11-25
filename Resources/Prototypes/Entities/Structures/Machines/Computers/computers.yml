@@ -454,7 +454,7 @@
 - type: entity
   parent: ComputerStationTeleportersControl
   id: ComputerStationTeleportersControlFilled
-  suffix: Autofilled, Nanotrasen Network
+  suffix: Autofilled, Aetheris Network # Inferus
   components:
   - type: StationTeleporterConsole
     autoLinkKey: Nanotrasen
@@ -565,7 +565,7 @@
   parent: BaseComputerAiAccess
   id: ComputerId
   name: ID card computer
-  description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
+  description: Terminal for programming Aetheris employee ID cards to access parts of the station. # Inferus
   components:
   - type: IdCardConsole
     privilegedIdSlot:

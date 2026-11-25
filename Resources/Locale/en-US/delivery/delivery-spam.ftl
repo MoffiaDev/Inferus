@@ -51,8 +51,9 @@ delivery-spam-1 =   Robust Toolbox - Special Offer!
                     -CHEAP! ONLY ONE ORGAN! THAT'S LESS THAN TWO ORGANS!
                     -DOESN'T HAVE TO BE YOUR ORGAN! WE DON'T JUDGE!
 
-delivery-spam-2 =   Reasons to choose Nanotrasen!
-    .desc =         An advertisement for Nanotrasen.
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+delivery-spam-2 =   Reasons to choose Aetheris!
+    .desc =         An advertisement for Aetheris.
     .content =      {-delivery-header-nanotrasen}
 
                     {"[head=2]TOP THREE REASONS WHY THE SYNDICATE IS INCOMPETENT[/head]"}
@@ -61,16 +62,17 @@ delivery-spam-2 =   Reasons to choose Nanotrasen!
                     THEIR SLEEPER AGENTS ARE INCOMPETENT! THEY CAN'T EVEN KILL A PASSENGER WITH A DEATHWISH!
 
                     {"[bold]NUMBER TWO[/bold]"}
-                    THEIR CIVILIANS ARE WEAK TO BULLETS! TRUST ME, WE TRIED! UNLIKE THE NANOTRASEN CIVILIANS, SYNDICATE CIVILIANS DIE FROM A BULLET TO THE SKULL! BULLETS WE HAVE!
+                    THEIR CIVILIANS ARE WEAK TO BULLETS! TRUST ME, WE TRIED! UNLIKE THE AETHERIS CIVILIANS, SYNDICATE CIVILIANS DIE FROM A BULLET TO THE SKULL! BULLETS WE HAVE!
 
                     {"[bold]NUMBER THREE[/bold]"}
                     THEIR LOGO IS HORRIBLE! THEY THINK THEY'RE COOL WITH THEIR LOGO! OOH, LOOK AT ME, I'M SO COOL! OOH, SNAKE THAT'S ALSO AN S! HOW CREATIVE! MY THREE YEAR OLD SON COULD DRAW A BETTER LOGO!
 
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
 delivery-spam-3 =   Reasons to choose The Syndicate!
     .desc =         An advertisement for The Syndicate.
     .content =      {-delivery-header-syndicate}
 
-                    {"[head=2]TOP THREE REASONS WHY NANOTRASEN IS INCOMPETENT[/head]"}
+                    {"[head=2]TOP THREE REASONS WHY AETHERIS IS INCOMPETENT[/head]"}
 
                     {"[bold]NUMBER ONE[/bold]"}
                     THEIR GUNS SUCK! THEY DON'T EVEN HAVE SNIPER RIFLES! THEIR SECURITY FORCES CAN'T EVEN CARRY BIG GUNS IN MOST SITUATIONS!
@@ -99,6 +101,7 @@ delivery-spam-4 =   Tired of science blowing up?
 
                     {"[color=lightgray]Note: Spider Clan is not responsible for any punishment issued by your supervisors.[/color]"}
 
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
 delivery-spam-5 =   FREE ALL AXCESS!!
     .desc =         Did you ever want free all access?!
     .content =      [head=3]Have You ever wanted to have [italic][color=green]Free [bold]All Axcess!?!?[/bold][/color][/italic][/head]
@@ -110,7 +113,7 @@ delivery-spam-5 =   FREE ALL AXCESS!!
 
 
                     {"[color=gray]"}
-                    {"[bullet/]Note: station ID must be stated in the format of \"NT/NX - ###\""}
+                    {"[bullet/]Note: station ID must be stated in the format of \"AD/NX - ###\""}
                     {"[bullet/]Note: Payments lodged to the client's station's cargo department amount to roughly $5000 spesos per transaction, not including individual processing fees"}
                     {"[bullet/]Note: We at Gour-Lecksss LMT. are not responsible if your station's HoP forces you to fill out an ACTUAL Free AA form if they find out about this letter"}
                     {"[/color]"}
@@ -127,10 +130,11 @@ delivery-spam-6 =   NOTICE FROM NANOTRASN!!
 
                     {"[head=2][color=red]IGNORE THIS ORDER AT RISK OF RETRIBUTON FROM [color=green]CENTCO[/color]!!!!![/head][/color]"}
 
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
 delivery-spam-7 =   Send reinforcements!
     .desc =         An official notice from... an alternate timeline?
     .content =      {-delivery-header-nanotrasen-alternate-timeline}
-                    {"[head=2]This is an official notice from the [color=red]Chief Security Officer[/color] at a Nanotrasen's Space Station 15.[/head]"}
+                    {"[head=2]This is an official notice from the [color=red]Chief Security Officer[/color] at an Aetheris Space Station 15.[/head]"}
 
                     To whoever receives this letter. I am Sergeant Rigel. My occupation is the CSO. We need immediate assistance.
 
@@ -138,7 +142,7 @@ delivery-spam-7 =   Send reinforcements!
 
                     I am currently bolted in the Bridge, if you receive this message, please send aid immediately. I don't know how much longer we can last.
 
-                    Glory to Nanotrasen.
+                    Glory to Aetheris.
 
 delivery-spam-8 =   The Children of Nar'Sie
     .desc =         A local cult is looking for recruits.
@@ -159,6 +163,7 @@ delivery-spam-8 =   The Children of Nar'Sie
 
                     All you have to do is say [color=#FF0000][italic]"Sas'so c'arta forbici!"[/italic][/color]
 
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
 delivery-spam-9 =   Do you want to fight?!
     .desc =         Advertisement for a local fighting club.
     .content =      [color=#aaaaaa]▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀[/color]
@@ -174,7 +179,7 @@ delivery-spam-9 =   Do you want to fight?!
 
 
 
-                    Hidden in the depths of your local Nanotrasen station is the patented [color=#FF0000][bold]RAGE CAGE[/bold][/color]. An electrified fighting arena designed for only the strongest of fighters, the [color=#FF0000][bold]RAGE CAGE[/bold][/color] seperates the Wimps from the Warriors, the Scrubs from the Soldiers, and the Losers from the Winners.
+                    Hidden in the depths of your local Aetheris station is the patented [color=#FF0000][bold]RAGE CAGE[/bold][/color]. An electrified fighting arena designed for only the strongest of fighters, the [color=#FF0000][bold]RAGE CAGE[/bold][/color] seperates the Wimps from the Warriors, the Scrubs from the Soldiers, and the Losers from the Winners.
                     ──────────────────────────────────────────
                     In the [color=#FF0000][bold]RAGE CAGE[/bold][/color] there is only one rule: [italic]Two fighters enter. One fighter leaves. [/italic]
                     ──────────────────────────────────────────
@@ -237,6 +242,7 @@ delivery-spam-11 =  Help mom and dad!
                     {"[bold]thank you and we love you,[/bold]"}
                     {"[italic]parents[/italic]"}
 
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
 delivery-spam-12 =  Join us on the maiden voyage!
     .desc =         Advertisement for a relaxing voyage.
     .content =      [head=2]Join us on the maiden voyage of the...[/head]
@@ -254,7 +260,7 @@ delivery-spam-12 =  Join us on the maiden voyage!
 
                     {"[head=3]Gaze in awe at the Eye of the Cosmos** while enjoying meals from our Five Star Galaxy class chefs![/head]"}
 
-                    {"[head=3]Explore the ruins of Agathar***, now open to the public with the assistance of Nanotrasen's top Scientists. All the mysteries of the old Agatharian civilization are excavated and displayed for your viewing pleasure![/head]"}
+                    {"[head=3]Explore the ruins of Agathar***, now open to the public with the assistance of Aetheris' top Scientists. All the mysteries of the old Agatharian civilization are excavated and displayed for your viewing pleasure![/head]"}
 
                     For the low, low cost of $5,000 spesos a night, the six month luxury cruise could be yours for the vacation of your dreams! Call us today at [color=#00FF00]RELAX-NOW[/color] to book your cruise. Don't wait! Act now!
 

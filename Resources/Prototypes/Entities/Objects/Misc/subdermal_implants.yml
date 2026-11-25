@@ -369,7 +369,7 @@
   parent: BaseSubdermalImplant
   id: FakeMindShieldImplant
   name: fake mindshield implant
-  description: This implant allows the implanter to produce a fake signal that NT security huds use to identify individuals implanted with a mindshield.
+  description: This implant allows the implanter to produce a fake signal that Aetheris security huds use to identify individuals implanted with a mindshield. # Inferus
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -382,7 +382,7 @@
   parent: BaseSubdermalImplant
   id: MindShieldImplant
   name: mindshield implant
-  description: This implant will ensure loyalty to Nanotrasen and prevent mind control devices.
+  description: This implant will ensure safety and prevent mind control devices. # Inferus
   categories: [ HideSpawnMenu ]
   components:
    - type: SubdermalImplant

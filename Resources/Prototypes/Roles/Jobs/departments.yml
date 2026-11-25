@@ -12,7 +12,7 @@
   id: CentralCommand
   name: department-CentralCommand
   description: department-CentralCommand-description
-  color: "#0c344d"
+  color: "#ff3700" # Inferus: was "#0c344d"
   weight: 120 # Highest weight of all NT departments; Central Command's authority is absolute
   editorHidden: true
   roles:

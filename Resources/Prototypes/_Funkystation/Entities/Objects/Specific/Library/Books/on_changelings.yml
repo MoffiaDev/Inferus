@@ -23,9 +23,6 @@
   - type: OocAuthorship
     oocAuthor: Soggy
   - type: Paper
-    stampedBy:
-    - stampedColor: '#134975'
-      stampedName: "NT APPROVED"
     content: |2
       [head=1][color=MediumOrchid]On Changelings[/color][/head]
       [head=1][/head]

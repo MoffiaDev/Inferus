@@ -1,8 +1,9 @@
+# this item is slated to be used only by EPC operatives/nukies, since it doesn't make sense for aetheris to have a nuke on their outposts
 - type: entity
   name: nuclear authentication disk
   parent: [BaseItem, BaseGrandTheftContraband]
   id: NukeDisk
-  description: A nuclear auth disk, capable of arming a nuke if used along with a code. Note from nanotrasen reads "THIS IS YOUR MOST IMPORTANT POSESSION, SECURE DAT FUKKEN DISK!"
+  description: A nuclear auth disk, capable of arming a nuke if used along with a code. Note from Aetheris reads "THIS IS YOUR MOST IMPORTANT POSESSION, SECURE DAT FUKKEN DISK!" # Inferus
   components:
   # Inferus
   - type: EmitSoundOnPickup
@@ -45,7 +46,7 @@
   parent: [BaseItem, BaseGrandTheftContraband]
   id: NukeDiskFake
   suffix: Fake
-  description: A nuclear auth disk, capable of arming a nuke if used along with a code. Note from nanotrasen reads "THIS IS YOUR MOST IMPORTANT POSESSION, SECURE DAT FUKKEN DISK!"
+  description: A nuclear auth disk, capable of arming a nuke if used along with a code. Note from Aetheris reads "THIS IS YOUR MOST IMPORTANT POSESSION, SECURE DAT FUKKEN DISK!" # Inferus
   components:
   # Inferus
   - type: EmitSoundOnPickup

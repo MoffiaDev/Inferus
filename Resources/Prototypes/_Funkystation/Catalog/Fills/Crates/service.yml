@@ -17,7 +17,7 @@
   id: CrateServiceWashingMachineSet
   parent: CratePlastic
   name: DIY washing machine kit
-  description: A Nanotrasen Commercial Model-C washing machine, disassembled and ready for shipping. Contains small parts that may be ingested by infants.
+  description: A Commercial Model-C washing machine, disassembled and ready for shipping. Contains small parts that may be ingested by infants. # Inferus
   components:
   - type: StorageFill
     contents:
