@@ -140,7 +140,8 @@ public partial class ChatBox : UIWidget, IEntityLinkClickHandler
 
         // entity systems may not exist (e.g. mid-reconnect or between rounds); just add the line unstacked then
         if (_entManager.TrySystem<CMChatSystem>(out var cmChat) &&
-            cmChat.TryRepetition(this, Contents, formatted, sender, unwrapped, channel, repeatCheckSender))
+            // Inferus - include the displayed speaker in the repeat key, even when sender IDs are unavailable.
+            cmChat.TryRepetition(this, Contents, formatted, sender, message, channel, repeatCheckSender))
             return;
 
         Contents.AddMessage(formatted, tagsAllowed: null);

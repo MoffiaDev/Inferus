@@ -21,7 +21,7 @@ public sealed partial class CMChatSystem : EntitySystem // Persistence: SharedCM
         Subs.CVar(_config, RMCCVars.RMCChatRepeatHistory, v => _repeatHistory = v, true);
     }
 
-    public bool TryRepetition(ChatBox chat, OutputPanel contents, FormattedMessage message, NetEntity sender, string unwrapped, ChatChannel channel, bool repeatCheckSender)
+    public bool TryRepetition(ChatBox chat, OutputPanel contents, FormattedMessage message, NetEntity sender, string wrapped, ChatChannel channel, bool repeatCheckSender) // Inferus - match the full displayed line
     {
         if (ChatChannel.AdminRelated.HasFlag(channel)) // Persistence: don't stack anything that's admin-chat related
             return false;
@@ -29,7 +29,7 @@ public sealed partial class CMChatSystem : EntitySystem // Persistence: SharedCM
         var repeated = false;
         foreach (var old in chat.RepeatQueue)
         {
-            if (!old.Message.Equals(unwrapped) ||
+            if (!old.Message.Equals(wrapped) || // Inferus - do not merge different displayed speakers
                 old.Channel != channel)
             {
                 continue;
@@ -61,7 +61,7 @@ public sealed partial class CMChatSystem : EntitySystem // Persistence: SharedCM
 
         if (!repeated)
         {
-            chat.RepeatQueue.Enqueue(new RepeatedMessage(contents.EntryCount, message, sender, unwrapped, channel));
+            chat.RepeatQueue.Enqueue(new RepeatedMessage(contents.EntryCount, message, sender, wrapped, channel)); // Inferus - retain the full repeat key
             if (_repeatHistory > 0)
             {
                 while (chat.RepeatQueue.Count > _repeatHistory)

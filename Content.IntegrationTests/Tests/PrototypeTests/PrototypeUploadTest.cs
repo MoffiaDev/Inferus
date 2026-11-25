@@ -9,6 +9,15 @@ namespace Content.IntegrationTests.Tests.PrototypeTests;
 
 public sealed class PrototypeUploadTest : GameTest
 {
+    // Inferus - prototype uploads mutate both prototype managers and cannot be undone by entity cleanup
+    public override PoolSettings PoolSettings => new()
+    {
+        Connected = true,
+        Fresh = true,
+        Destructive = true
+    };
+    // End Inferus
+
     public const string IdA = "UploadTestPrototype";
     public const string IdB = $"{IdA}NoParent";
     public const string IdC = $"{IdA}Abstract";

@@ -1,4 +1,5 @@
 using Content.Shared.Chat;
+using Robust.Shared.Player; // Inferus - track actual radio recipients
 
 namespace Content.Shared.Radio;
 
@@ -6,7 +7,11 @@ namespace Content.Shared.Radio;
 /// Event raised when a radio message is received.
 /// </summary>
 [ByRefEvent]
-public readonly record struct RadioReceiveEvent(string Message, EntityUid MessageSource, RadioChannelPrototype Channel, EntityUid RadioSource, MsgChatMessage ChatMsg);
+public readonly record struct RadioReceiveEvent(string Message, EntityUid MessageSource, RadioChannelPrototype Channel, EntityUid RadioSource, MsgChatMessage ChatMsg)
+{
+    // Inferus - shared by every receiver of this transmission
+    public HashSet<ICommonSession> DirectRecipients { get; } = new();
+}
 
 /// <summary>
 /// Event raised on the parent entity of a headset radio when a radio message is received.
