@@ -322,3 +322,15 @@ Entries:
         UIs.
   id: 20
   time: '2026-11-24T18:44:49.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Tweak
+      message: Packed now has PA speakers and a SIS/TR core.
+    - type: Tweak
+      message: Ovinia can have hair now.
+    - type: Fix
+      message: >-
+        Radio messages are less likely to appear twice when received directly
+        and through radio or PA speaker.
+  id: 21
+  time: '2026-11-25T18:31:47.0000000+00:00'
