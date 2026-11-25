@@ -34,13 +34,14 @@ from collections import Counter
 import yaml
 from PIL import Image, ImageDraw, ImageFont
 
+from map_diff_image import save_png
+
 Image.MAX_IMAGE_PIXELS = None
 PX = 32                 # Content.MapRenderer: TilePainter.TileImageSize (EyeManager.PixelsPerMeter)
 CLUSTER_GAP = 6         # tiles; changes closer than this merge into one area
 PAD = 5                 # tiles of context around each area
 MIN_SPAN = 14           # minimum crop size in tiles
 MAX_AREAS = 8           # per map; the rest are merged into the last one
-MAX_PANEL_PX = 1600     # each before/after panel is scaled down only past this (32 px per tile otherwise)
 UID_KEYS = {"devices", "linkedPorts", "deviceLists", "configurators", "outputs", "inputs",
             "sinks", "sources", "containers", "ents", "entities", "lastSignals"}
 
@@ -315,15 +316,9 @@ def font(size):
         return ImageFont.load_default()
 
 
-def fit(img, limit=MAX_PANEL_PX):
-    s = min(1.0, limit / max(img.size))
-    if s < 1.0:
-        img = img.resize((max(1, int(img.width * s)), max(1, int(img.height * s))), Image.LANCZOS)
-    return img
-
-
 def panel(before, after):
-    imgs = [fit(before), fit(after)]
+    # Preserve native renderer pixels; large diffs must not be downscaled.
+    imgs = [before, after]
     labels = ["Before", "After"]
     gap, head = 12, 40
     W = sum(i.width for i in imgs) + gap * (len(imgs) + 1)
@@ -345,16 +340,16 @@ def overview(img_path, bounds, boxes):
     with Image.open(img_path) as im:
         im = im.convert("RGBA")
     d = ImageDraw.Draw(im)
-    scale = min(1.0, 1400 / max(im.size))
-    line = max(4, int(4 / scale))          # about 4 px wide after downscaling
-    f = font(max(20, int(28 / scale)))
+    # Overview and new-map images also retain their native resolution.
+    line = 4
+    f = font(28)
     for i, b in enumerate(boxes, 1):
         x0, y0, x1, y1 = b[0] - 3, b[1] - 3, b[2] + 3, b[3] + 3
         r = [(x0 - bounds[0]) * PX, (bounds[3] - y1) * PX, (x1 - bounds[0] + 1) * PX, (bounds[3] - y0 + 1) * PX]
         d.rectangle(r, outline=(255, 60, 60, 255), width=line)
         d.text((r[2] + line, r[1]), str(i), fill=(255, 60, 60, 255), font=f, stroke_width=max(2, line // 2),
                stroke_fill=(0, 0, 0, 255))
-    return fit(im, 1400)
+    return im
 
 
 def game_maps(repo):
@@ -431,13 +426,13 @@ def process(args, status, path, gmaps, lines):
         if base is None:
             ov = overview(himg, hb, [])
             name = f"{safe(stem)}-{gi}-new.png"
-            ov.save(os.path.join(args.out, "images", name))
+            save_png(ov, os.path.join(args.out, "images", name))
             lines.append(f"![{stem} new]({{{{IMAGE_BASE}}}}/{name})\n")
             continue
         ov = overview(himg, hb, boxes)
         if ov is not None and len(boxes) > 1:
             name = f"{safe(stem)}-{gi}-overview.png"
-            ov.save(os.path.join(args.out, "images", name))
+            save_png(ov, os.path.join(args.out, "images", name))
             lines.append("<details><summary>Overview of changed areas</summary>\n")
             lines.append(f"![{stem} overview]({{{{IMAGE_BASE}}}}/{name})\n")
             lines.append("</details>\n")
@@ -458,7 +453,7 @@ def process(args, status, path, gmaps, lines):
             outline(before, rect, b)
             outline(after, rect, b)
             name = f"{safe(stem)}-{gi}-area{ai}.png"
-            panel(before, after).save(os.path.join(args.out, "images", name))
+            save_png(panel(before, after), os.path.join(args.out, "images", name))
             where = ", ".join(area_names(b, beacons)) or "unnamed area"
             lines.append(f"**Area {ai}: {where}** - tiles ({b[0]}, {b[1]}) to ({b[2]}, {b[3]}), {b[4]} changed tiles")
             lines.append("")
