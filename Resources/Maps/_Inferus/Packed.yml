@@ -4,7 +4,7 @@ meta:
   engineVersion: 297.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/25/2026 17:10:16
+  time: 11/25/2026 17:26:41
   entityCount: 16612
 maps:
 - 126
@@ -522,7 +522,7 @@ entities:
           4,2:
             0: 53246
           4,3:
-            0: 65021
+            0: 56797
           0,-5:
             0: 45859
             1: 136
@@ -1924,15 +1924,26 @@ entities:
           29,-3:
             1: 273
           21,6:
-            1: 99
+            1: 111
           22,6:
-            2: 96
-            1: 8
+            1: 15
+          22,4:
+            1: 24576
+          22,5:
+            1: 60622
+          23,5:
+            1: 255
+            0: 65280
           23,6:
-            0: 61440
+            0: 62719
+          23,4:
+            1: 57344
+          24,5:
+            1: 26239
+            0: 4352
           24,6:
-            0: 4096
-            1: 2114
+            0: 4113
+            1: 2118
           24,7:
             0: 4369
             1: 8
@@ -2030,6 +2041,8 @@ entities:
             1: 15
           -3,4:
             1: 15
+          24,4:
+            1: 49152
           25,6:
             1: 12832
           25,7:
@@ -5179,7 +5192,7 @@ entities:
       pos: 88.5,-10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -12199.226
+      secondsUntilStateChange: -12609.1
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -47444,7 +47457,7 @@ entities:
       pos: 59.5,39.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -43766
+      secondsUntilStateChange: -44175.875
 - proto: CurtainsWhite
   entities:
   - uid: 12268
@@ -76392,7 +76405,7 @@ entities:
       pos: 12.5,12.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -29231.736
+      secondsUntilStateChange: -29641.61
   - uid: 8827
     components:
     - type: Transform
