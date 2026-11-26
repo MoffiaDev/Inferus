@@ -42,7 +42,7 @@
 - type: entity
   parent: BaseMachineCircuitboard
   id: WashingMachineCircuitboard
-  name: Nanotrasen Commercial Model-C washing machine board
+  name: Commercial Model-C washing machine board # Inferus
   description: A machine printed circuit board for an industrial-grade washing machine.
   components:
   - type: MachineBoard

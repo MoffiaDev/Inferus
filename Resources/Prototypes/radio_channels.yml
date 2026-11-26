@@ -10,7 +10,7 @@
   name: chat-radio-centcom
   keycode: 'y'
   frequency: 133.7
-  color: "#2681a5"
+  color: "#ff3700" # Inferus: was "#2681a5"
   longRange: true
 
 - type: radioChannel
@@ -67,7 +67,7 @@
   name: chat-radio-syndicate
   keycode: 't'
   frequency: 121.3
-  color: "#8f4a4b"
+  color: "#19a842" # Inferus: was #8f4a4b, EPC green
   longRange: true
 
 - type: radioChannel

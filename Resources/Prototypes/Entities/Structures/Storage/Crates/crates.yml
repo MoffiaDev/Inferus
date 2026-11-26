@@ -342,7 +342,7 @@
 - type: entity
   parent: CrateBaseSecure
   id: CrateSyndicateSecure
-  name: secure syndicate crate
+  name: secure EPC crate # Inferus
   description: A dark steel crate with red bands and a letter S embossed on the front.
   components:
   - type: Icon
@@ -819,7 +819,7 @@
 - type: entity
   parent: CrateGenericSteel
   id: CrateSyndicate
-  name: syndicate crate
+  name: EPC crate # Inferus
   description: A dark steel crate with red bands and a letter S embossed on the front.
   components:
   - type: Icon

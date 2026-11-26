@@ -125,7 +125,7 @@
 - type: entity
   parent: [BaseTraitorObjective, BaseKillRandomObjective]
   id: KillStationAiObjective
-  description: Nanotrasen proudly boasts about their state of the art artificial intelligence. Remind them it's just another toy that can be broken.
+  description: Aetheris proudly boasts about the state of the art artificial intelligence on their outposts. Remind them it's just another toy that can be broken. # Inferus
   components:
   - type: Objective
     difficulty: 3.0
@@ -370,7 +370,7 @@
 - type: entity
   parent: BaseTraitorObjective
   id: SupercritAnomaliesObjective
-  description: Nanotrasen is very interested in anomalies with potentially catastrophic consequences. Introduce them to the fire they're playing with.
+  description: Aetheris is very interested in anomalies with potentially catastrophic consequences. Introduce them to the fire they're playing with. # Inferus
   components:
   - type: Objective
     difficulty: 2
@@ -405,7 +405,7 @@
 - type: entity
   parent: [BaseTraitorObjective, BaseCounterObjective]
   id: MailFraudObjective
-  description: We're interested in Nanotrasen's correspondence. Letter opener not provided.
+  description: We're interested in Aetheris' correspondence. Letter opener not provided. # Inferus
   components:
   - type: Objective
     difficulty: 0.5

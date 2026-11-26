@@ -26,9 +26,6 @@
   - type: OocAuthorship
     oocAuthor: mkanke
   - type: Paper
-    stampedBy:
-    - stampedColor: '#134975'
-      stampedName: "NT APPROVED"
     content: |2
       [color=#1b67a5][head=1]Granny Pecons[/head]
       [head=2]Guide to Pies[/head][/color]

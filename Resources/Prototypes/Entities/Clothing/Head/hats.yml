@@ -71,7 +71,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatSecurityTrooper
   name: trooper hat
-  description: A campaign hat for the Nanotrasen Troopers. It's supposed to come with a case, too...
+  description: A campaign hat for the Aetheris Troopers. It's supposed to come with a case, too... # Inferus
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/security_trooper_hat.rsi
@@ -239,7 +239,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretCommand
   name: command beret
-  description: A beret with the Nanotrasen logo. It has an aura of authority.
+  description: A beret with the Aetheris logo. It has an aura of authority. # Inferus
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/beret_command.rsi
@@ -873,7 +873,7 @@
 - type: entity
   parent: [ ClothingHeadBase, BaseSyndicateContraband ]
   id: ClothingHeadPyjamaSyndicateBlack
-  name: syndicate black pyjama hat
+  name: EPC black pyjama hat # Inferus
   description: For keeping that traitor head of yours warm.
   components:
   - type: Sprite
@@ -889,7 +889,7 @@
 - type: entity
   parent: [ ClothingHeadBase, BaseSyndicateContraband ]
   id: ClothingHeadPyjamaSyndicatePink
-  name: syndicate pink pyjama hat
+  name: EPC pink pyjama hat # Inferus
   description: For keeping that traitor head of yours warm.
   components:
   - type: Sprite
@@ -905,7 +905,7 @@
 - type: entity
   parent: [ ClothingHeadBase, BaseSyndicateContraband ]
   id: ClothingHeadPyjamaSyndicateRed
-  name: syndicate red pyjama hat
+  name: EPC red pyjama hat # Inferus
   description: For keeping that traitor head of yours warm.
   components:
   - type: Sprite
@@ -1109,8 +1109,8 @@
 - type: entity
   parent: [ClothingHeadBase, BaseSyndicateContraband]
   id: ClothingHeadHatSyndie
-  name: syndicate hat
-  description: A souvenir hat from "Syndieland", their production has already been closed.
+  name: EPC hat # Inferus
+  description: A souvenir hat from "Ecoland", their production has already been closed. # Inferus
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/syndiecap.rsi

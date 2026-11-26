@@ -6,7 +6,8 @@ cargo-gifts-event-announcement = Logistics alert.
                                  Retrieve via inbound cargo shuttle.
 
 cargo-gift-default-description = uncataloged freight
-cargo-gift-default-sender = NanoTrasen
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+cargo-gift-default-sender = Aetheris Dynamics
 cargo-gift-default-dest = Logistics Department
 
 cargo-gift-dest-bar = Service Department

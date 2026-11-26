@@ -90,7 +90,7 @@
 - type: entity
   parent: Soap
   id: SoapNT
-  description: A Nanotrasen brand bar of soap. Smells of plasma.
+  description: An Aetheris brand bar of soap. Smells of dirt..? # Inferus
   components:
   - type: Sprite
     layers:
@@ -159,7 +159,7 @@
   parent: BaseSoap
   id: SoapletSyndie
   name: soaplet
-  description: A tiny piece of syndicate soap.
+  description: A tiny piece of EPC soap. # Inferus
   categories: [ HideSpawnMenu ]
   components:
   - type: Solution

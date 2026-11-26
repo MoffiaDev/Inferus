@@ -2,8 +2,8 @@
   parent: [BaseItem, BaseSyndicateContraband]
   abstract: true
   id: ReinforcementRadio
-  name: syndicate reinforcement radio
-  description: Call in a syndicate agent of questionable quality, instantly! Only basic equipment provided.
+  name: EPC reinforcement radio # Inferus
+  description: Call in an EPC agent of questionable quality, instantly! Only basic equipment provided. # Inferus
   components:
   - type: Sprite
     sprite: Objects/Devices/communication.rsi
@@ -19,8 +19,8 @@
 - type: entity
   parent: ReinforcementRadio
   id: ReinforcementRadioSyndicate
-  name: syndicate reinforcement radio
-  description: Call in a syndicate agent of questionable quality, instantly!
+  name: EPC reinforcement radio # Inferus
+  description: Call in an EPC agent of questionable quality, instantly! # Inferus
   components:
   - type: GhostRole
     name: ghost-role-information-syndicate-reinforcement-spy-name
@@ -55,7 +55,7 @@
 - type: entity
   parent: ReinforcementRadio
   id: ReinforcementRadioSyndicateAncestor
-  name: syndicate genetic ancestor reinforcement radio
+  name: EPC genetic ancestor reinforcement radio # Inferus
   description: Calls in a specially trained ancestor of your choosing to assist you.
   components:
   - type: GhostRole
@@ -84,7 +84,7 @@
 - type: entity
   parent: ReinforcementRadio
   id: ReinforcementRadioSyndicateSyndiCat
-  name: syndicat reinforcement radio
+  name: eco-cat reinforcement radio # Inferus
   description: Calls in a faithfully trained cat with a microbomb to assist you.
   components:
   - type: GhostRole
@@ -103,7 +103,7 @@
 - type: entity
   parent: ReinforcementRadio
   id: ReinforcementRadioSyndicateCyborgAssault # Reinforcement radio exclusive to nukeops uplink
-  name: syndicate assault cyborg reinforcement radio
+  name: EPC assault cyborg reinforcement radio # Inferus
   description: Call in a well armed assault cyborg, instantly!
   suffix: NukeOps
   components:

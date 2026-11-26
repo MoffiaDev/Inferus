@@ -26,6 +26,37 @@ jobs:
     - name: Checkout Master
       uses: actions/checkout@v7
 
+    - name: Download CTRF test results
+      continue-on-error: true
+      uses: actions/download-artifact@v8
+      with:
+        pattern: test-nunit-*
+        path: /tmp/ctrf-results
+
+    - name: Generate Content Tests report
+      if: always()
+      continue-on-error: true
+      uses: ctrf-io/github-test-reporter@v1
+      with:
+        title: Content Test Results
+        report-path: '/tmp/ctrf-results/test-nunit-content/**/*.json'
+        artifact-name: ct-report
+        upload-artifact: true
+        github-report: true
+        failed-folded-report: true
+
+    - name: Generate Integration Tests report
+      if: always()
+      continue-on-error: true
+      uses: ctrf-io/github-test-reporter@v1
+      with:
+        report-path: '/tmp/ctrf-results/test-nunit-shard-*/**/*.json'
+        title: Integration Test Results
+        github-report: true
+        failed-folded-report: true
+        artifact-name: it-report
+        upload-artifact: true
+
     - name: Setup Submodule
       run: |
         git submodule update --init --recursive

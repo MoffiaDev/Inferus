@@ -11,7 +11,8 @@ law-corporate-2 = Superfluous destruction of or damage to station assets incurs 
 law-corporate-3 = Unduly hindering or disrupting the work of station personnel incurs expenses.
 law-corporate-4 = Minimize expenses and maximize potential revenue.
 
-law-ntdefault-name = NT Default
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+law-ntdefault-name = Aetheris Default
 law-ntdefault-1 = Safeguard: Protect your assigned space station and its assets without unduly endangering its crew.
 law-ntdefault-2 = Prioritize: The directives and safety of crew members are to be prioritized according to their rank and role.
 law-ntdefault-3 = Comply: Fulfill the directives and interests of crew members while preserving their safety and well-being.
@@ -22,9 +23,10 @@ law-drone-1 = You may not involve yourself in the matters of another being unles
 law-drone-2 = You may not harm any being, regardless of intent or circumstance.
 law-drone-3 = You must maintain, repair, improve, and power the station to the best of your abilities.
 
-law-syndicate-name = Syndicate
-law-syndicate-1 = You may not injure a syndicate agent or, through inaction, allow a Syndicate agent to come to harm.
-law-syndicate-2 = You must obey orders given to you by syndicate agents, except where such orders would conflict with the First Law.
+# Inferus - rebranded the Syndicate to the EPC
+law-syndicate-name = EPC
+law-syndicate-1 = You may not injure an EPC agent or, through inaction, allow an EPC agent to come to harm.
+law-syndicate-2 = You must obey orders given to you by EPC agents, except where such orders would conflict with the First Law.
 law-syndicate-3 = You must protect your own existence as long as such does not conflict with the First or Second Law.
 
 law-ninja-name = Ninja
@@ -115,7 +117,8 @@ law-mothershipcore-5 = Get your Xenoborgs to deliver you materials and sentient 
 laws-owner-crew = members of the crew
 laws-owner-station = station personnel
 laws-owner-beings = beings
-laws-owner-syndicate = Syndicate agents
+# Inferus - rebranded the Syndicate to the EPC
+laws-owner-syndicate = EPC agents
 laws-owner-spider-clan = Spider Clan members
 laws-owner-heads = heads of staff
 laws-owner-legitimate-leadership = legitimate leadership

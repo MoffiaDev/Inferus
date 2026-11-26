@@ -172,7 +172,7 @@
 - type: entity
   parent: AirlockSecurity # if you get syndie door somehow it counts as sec
   id: AirlockSyndicate
-  suffix: Syndicate
+  suffix: EPC # Inferus
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/syndicate-base.rsi
@@ -268,7 +268,7 @@
 - type: entity
   parent: AirlockHatch
   id: AirlockHatchSyndicate
-  suffix: Syndicate
+  suffix: EPC # Inferus
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/airlock-hatch-syndicate.rsi
@@ -391,7 +391,7 @@
 - type: entity
   parent: AirlockSecurityGlass # see standard
   id: AirlockSyndicateGlass
-  suffix: Syndicate
+  suffix: EPC # Inferus
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/syndicate-base.rsi

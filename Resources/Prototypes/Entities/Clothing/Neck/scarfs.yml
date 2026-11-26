@@ -89,8 +89,8 @@
 - type: entity
   parent: [ ClothingScarfBase, BaseSyndicateContraband ]
   id: ClothingNeckScarfStripedSyndieGreen
-  name: striped syndicate green scarf
-  description: A stylish striped syndicate green scarf. The perfect winter accessory for those with a keen fashion sense, and those who are in the mood to steal something.
+  name: striped EPC green scarf # Inferus
+  description: A stylish striped EPC green scarf. The perfect winter accessory for those with a keen fashion sense, and those who are in the mood to steal something. # Inferus
   components:
     - type: Sprite
       sprite: Clothing/Neck/Scarfs/syndiegreen.rsi
@@ -102,8 +102,8 @@
 - type: entity
   parent: [ ClothingScarfBase, BaseSyndicateContraband ]
   id: ClothingNeckScarfStripedSyndieRed
-  name: striped syndicate red scarf
-  description: A stylish striped syndicate red scarf. The perfect winter accessory for those with a keen fashion sense, and those who are in the mood to steal something.
+  name: striped EPC red scarf # Inferus
+  description: A stylish striped EPC red scarf. The perfect winter accessory for those with a keen fashion sense, and those who are in the mood to steal something. # Inferus
   components:
     - type: Sprite
       sprite: Clothing/Neck/Scarfs/syndiered.rsi

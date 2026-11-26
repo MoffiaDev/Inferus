@@ -552,7 +552,7 @@
   parent: HappyHonkNukie
   id: HappyHonkNukieSnacks
   suffix: Toy Unsafe, Snacks
-  name: syndicate snack box
+  name: EPC snack box # Inferus
   components:
   - type: Storage
     grid:

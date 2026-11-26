@@ -84,7 +84,7 @@
 
 - type: entity
   name: electrical toolbox
-  suffix: Syndicate, Turret
+  suffix: EPC, Turret # Inferus
   parent: ToolboxElectrical
   id: ToolboxElectricalTurret
   description: A toolbox typically stocked with electrical gear.
@@ -125,7 +125,7 @@
   name: suspicious toolbox
   parent: [ToolboxBase, BaseSyndicateContraband]
   id: ToolboxSyndicate
-  description: A sinister looking toolbox filled with elite syndicate tools.
+  description: A sinister looking toolbox filled with elite EPC tools. # Inferus
   components:
   - type: Sprite
     sprite: Objects/Tools/Toolboxes/toolbox_syn.rsi

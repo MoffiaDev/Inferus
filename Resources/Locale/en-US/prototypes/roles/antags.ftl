@@ -6,11 +6,14 @@ roles-antag-generic-team-antagonist-name = Team Antagonist
 
 roles-antag-generic-silicon-antagonist-name = Silicon Antagonist
 
-roles-antag-syndicate-agent-name = Syndicate Agent
+# Inferus - rebranded the Syndicate to the EPC
+roles-antag-syndicate-agent-name = EPC Agent
 roles-antag-syndicate-agent-objective = Complete your objectives without being caught.
 
-roles-antag-syndicate-agent-sleeper-name = Syndicate Sleeper Agent
-roles-antag-syndicate-agent-sleeper-objective = A form of syndicate agent that can activate at any point in the middle of the shift. Complete your objectives without being caught.
+# Inferus - rebranded the Syndicate to the EPC
+roles-antag-syndicate-agent-sleeper-name = EPC Sleeper Agent
+# Inferus - rebranded the Syndicate to the EPC
+roles-antag-syndicate-agent-sleeper-objective = A form of EPC agent that can activate at any point in the middle of the shift. Complete your objectives without being caught.
 
 roles-antag-initial-infected-name = Initial Infected
 roles-antag-initial-infected-objective = Once you turn, infect as many other crew members as possible.
@@ -39,7 +42,8 @@ roles-antag-paradox-clone-objective = Kill and replace your counterpart in this 
 roles-antag-pirate-name = Pirate
 
 roles-antag-thief-name = Thief
-roles-antag-thief-objective = Steal some Nanotrasen property for your personal collection, without using violence.
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+roles-antag-thief-objective = Steal some Aetheris property for your personal collection, without using violence.
 
 roles-antag-dragon-name = Space Dragon
 roles-antag-dragon-objective = Create a carp army to take over this quadrant.

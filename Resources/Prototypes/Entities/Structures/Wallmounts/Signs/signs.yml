@@ -611,7 +611,7 @@
   parent: BaseSign
   id: SignHead
   name: head sign
-  description: An official sign indicating the dwellings of a Nanotrasen-certified head of department.
+  description: An official sign indicating the dwellings of an Aetheris-certified head of department. # Inferus
   components:
   - type: Sprite
     state: commander
@@ -1016,7 +1016,7 @@
   parent: BaseSign
   id: SignZomlab
   name: zombie lab sign
-  description: The final remains of a shut-down Nanotrasen research project that aimed to harness the powers of Romerol. I wonder how that went...
+  description: The remains of a shut-down Aetheris research project that aimed to harness the powers of a rumored parasitic plant hivemind. I wonder how far that got... # Inferus
   components:
   - type: Sprite
     state: zomlab
@@ -1297,7 +1297,7 @@
 - type: entity
   parent: BaseSign
   id: SignNanotrasen1
-  name: nanotrasen sign 1
+  name: Aetheris sign 1 # Inferus
   description: Part 1.
   components:
   - type: Sprite
@@ -1307,7 +1307,7 @@
 - type: entity
   parent: BaseSign
   id: SignNanotrasen2
-  name: nanotrasen sign 2
+  name: Aetheris sign 2 # Inferus
   description: Part 2.
   components:
   - type: Sprite
@@ -1317,7 +1317,7 @@
 - type: entity
   parent: BaseSign
   id: SignNanotrasen3
-  name: nanotrasen sign 3
+  name: Aetheris sign 3 # Inferus
   description: Part 3.
   components:
   - type: Sprite
@@ -1327,7 +1327,7 @@
 - type: entity
   parent: BaseSign
   id: SignNanotrasen4
-  name: nanotrasen sign 4
+  name: Aetheris sign 4 # Inferus
   description: Part 4.
   components:
   - type: Sprite
@@ -1337,7 +1337,7 @@
 - type: entity
   parent: BaseSign
   id: SignNanotrasen5
-  name: nanotrasen sign 5
+  name: Aetheris sign 5 # Inferus
   description: Part 5.
   components:
   - type: Sprite

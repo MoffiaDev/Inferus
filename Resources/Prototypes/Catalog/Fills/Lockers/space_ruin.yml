@@ -2,7 +2,7 @@
 - type: entity
   id: LockerOldAISat
   name: closet
-  suffix: NTSRA voidsuit locker
+  suffix: ADSRA voidsuit locker # Inferus: was NTSRA
   parent: LockerSyndicate
   components:
   - type: EntityTableContainerFill

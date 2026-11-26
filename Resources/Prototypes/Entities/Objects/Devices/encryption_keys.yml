@@ -69,7 +69,7 @@
     defaultChannel: CentCom
   - type: Sprite
     layers:
-    - state: crypt_blue
+    - state: crypt_red # Inferus: was crypt_blue
     - state: nano_label
 
 - type: entity
@@ -269,7 +269,7 @@
   parent: [ EncryptionKey, BaseSyndicateContraband ]
   id: EncryptionKeyBinarySyndicate
   name: binary translator key
-  description: A syndicate encryption key that translates binary signals used by silicons.
+  description: An EPC encryption key that translates binary signals used by silicons. # Inferus
   components:
   - type: EncryptionKey
     channels:

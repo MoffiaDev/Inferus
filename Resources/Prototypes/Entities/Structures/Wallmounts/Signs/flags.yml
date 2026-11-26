@@ -20,8 +20,8 @@
 - type: entity
   parent: BaseFlag
   id: NTFlag
-  name: Nanotrasen flag
-  description: Glory to NT! Wait, they really made a flag for a corporation?
+  name: Aetheris flag # Inferus
+  description: For the Future! Wait, they really made a flag for a corporation? # Inferus
   components:
   - type: Sprite
     state: NT_flag
@@ -29,8 +29,8 @@
 - type: entity
   parent: BaseFlag
   id: SyndieFlag
-  name: syndicate flag
-  description: Smells bloody. Death to NT!
+  name: EPC flag # Inferus
+  description: Smells bloody. Down with Aetheris! # Inferus
   components:
   - type: Sprite
     state: syndie_flag

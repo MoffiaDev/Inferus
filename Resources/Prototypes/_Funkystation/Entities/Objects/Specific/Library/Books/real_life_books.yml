@@ -18,9 +18,6 @@
     - state: icon_diamond
     - state: detail_rivets
   - type: Paper
-    stampedBy:
-    - stampedColor: '#134975'
-      stampedName: "NT APPROVED"
     content: |2
       [head=1]The Wealth of Nations[/head]
       A book by Adam Smith

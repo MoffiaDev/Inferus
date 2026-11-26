@@ -65,10 +65,14 @@ job-name-zookeeper = Zookeeper
 
 # antagonist jobs
 job-name-ninja = Ninja
-job-name-syndicate = Syndicate
-job-name-syndicate-commander = Syndicate Commander
-job-name-syndicate-corpsman = Syndicate Corpsman
-job-name-syndicate-operative = Syndicate Operative
+# Inferus - rebranded the Syndicate to the EPC
+job-name-syndicate = EPC
+# Inferus - rebranded the Syndicate to the EPC
+job-name-syndicate-commander = EPC Commander
+# Inferus - rebranded the Syndicate to the EPC
+job-name-syndicate-corpsman = EPC Corpsman
+# Inferus - rebranded the Syndicate to the EPC
+job-name-syndicate-operative = EPC Operative
 job-name-pirate = Pirate
 job-name-wizard = Wizard
 job-name-zombie = Zombie

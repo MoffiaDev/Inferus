@@ -19,7 +19,7 @@
   parent: [ClothingShoesMilitaryBase, BaseSecurityContraband]
   id: ClothingShoesBootsJack
   name: jackboots
-  description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time.
+  description: Aetheris-issue Security combat boots for combat scenarios or combat situations. All combat, all the time. # Inferus
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/jackboots.rsi
@@ -171,8 +171,8 @@
 - type: entity
   parent: [ClothingShoesBaseWinterBoots, BaseSyndicateContraband]
   id: ClothingShoesBootsWinterSyndicate
-  name: syndicate's winter boots
-  description: Durable heavy boots, looks like merch from "Syndieland".
+  name: EPC winter boots # Inferus
+  description: Durable heavy boots, looks like merch from "Ecoland". # Inferus
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/winterbootssyndicate.rsi

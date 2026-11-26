@@ -126,7 +126,7 @@
   parent: [ClothingHeadsetAlt, BaseSyndicateContraband]
   id: ClothingHeadsetAltSyndicate
   name: blood-red over-ear headset
-  description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
+  description: An updated, modular EPC intercom that fits over the head and takes encryption keys (there are 5 key slots.). # Inferus
   components:
   - type: Headset
   - type: EncryptionKeyHolder

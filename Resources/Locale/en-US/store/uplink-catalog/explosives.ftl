@@ -10,7 +10,8 @@ uplink-mini-bomb-name = Minibomb
 uplink-mini-bomb-desc = A low-yield, high-impact precision sabotage explosive with a 5 second long fuse. Perfect for quickly destroying a machine, dead body, or whatever else needs to go.
 
 uplink-penguin-grenade-name = Grenade Penguin
-uplink-penguin-grenade-desc = A small, highly-aggressive penguin with a grenade strapped around its neck. Trained to ignore all Syndicate agents and relentlessly pursue a single, random nearby target when released.
+# Inferus - rebranded the Syndicate to the EPC
+uplink-penguin-grenade-desc = A small, highly-aggressive penguin with a grenade strapped around its neck. Trained to ignore all EPC agents and relentlessly pursue a single, random nearby target when released.
 
 uplink-c4-name = C-4
 uplink-c4-desc = Use it to breach walls, airlocks or sabotage equipment. It can be attached to almost all objects and has a modifiable timer with a minimum setting of 10 seconds.
@@ -27,7 +28,8 @@ uplink-emp-grenade-desc = A grenade designed to disrupt electronic systems. Usef
 uplink-exploding-pen-name = Exploding pen
 uplink-exploding-pen-desc = A class IV explosive device contained within a standard pen. Comes with a 4 second fuse.
 
-uplink-exploding-syndicate-bomb-name = Syndicate Bomb
+# Inferus - rebranded the Syndicate to the EPC
+uplink-exploding-syndicate-bomb-name = EPC Bomb
 uplink-exploding-syndicate-bomb-desc = A big, anchored bomb that can create a huge explosion if not defused in time. Useful as a distraction. Has an adjustable timer with a minimum setting of 180 seconds.
 
 uplink-shrapnel-grenade-name = Shrapnel Grenade

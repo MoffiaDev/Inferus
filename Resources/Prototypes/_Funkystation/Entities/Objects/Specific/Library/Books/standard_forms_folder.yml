@@ -26,19 +26,20 @@
 
 - type: entity
   id: PaperHumanResourcesDept
-  name: Nanotrasen Human Resources Department
-  description: Nanotrasen Human Resources Department welcome form.
+  name: Aetheris Dynamics Organic Resources Department # Inferus
+  description: Aetheris Dynamics Organic Resources Department welcome form. # Inferus
   parent: Paper
   components:
   - type: Paper
+    # Inferus - rebranded NanoTrasen to Aetheris Dynamics
     content: |2
-          [color=navy]█▄ █ ▀█▀  [head=3]Nanotrasen Human [/head] [head=1][/head]
+          [color=navy]█▄ █ ▀█▀  [head=3]Aetheris Organic [/head] [head=1][/head]
           █ ▀█    █    [head=3]Resources Department[/head][/color]
           [head=2][color=ForestGreen]                 Congratulations![/color][/head]
 
           Enclosed inside this folder is some documents you, a brand new bureaucratic employee, can use! These are intended to be templates to allow your paperwork-fueled imagination roam free. Do remember, if you think your form needs another checkbox or question, add it! Crew members as part of their contract are obligated to complete any and all paperwork the Head of Personnel assigns to them!* Through the power of forms, bulletins, missives, and all sorts of busy paperwork will lead to a happier, more bureaucratically sound crew. Through [bold]YOUR[/bold] hard work, the Central Command Personnel will be glad to see how hard you work to provide a papertrail for every single adjustment you make to the crew.
           Of course, we can not forget that these alone will not get you entirely where you need to go. Some situations will require very complex fields of entry and barriers to stop bad actors! Feel free to ask other legally-minded crew for assistance in procuring such forms to work off of. Never stay stagnant! Never be content! Always push the limit your crew can handle with paperwork!
-          Now go! Let loose the creative mind that you are, we here at NanoTrasen Human Resources look forward to your growth immensely!
+          Now go! Let loose the creative mind that you are, we here at Aetheris Organic Resources look forward to your growth immensely!
           *[color=#aaaaaa][italic]Be advised that some crew will push back against the beautiful tide that is paperwork. If such unruly crewmembers threaten to torch, shred, eat, delaminate, or any such silly statements, remind them that you have the power to request demotion and that you have more power than many know!
 
 - type: entity
@@ -102,6 +103,7 @@
   parent: Paper
   components:
   - type: Paper
+    # Inferus - rebranded NanoTrasen to Aetheris Dynamics
     content: |2
                                       [color=#1b487e]╔══════════════════╗
                                       ║███░███░░░░██░░░░░║
@@ -111,7 +113,7 @@
                                       ║░░░░██░░░████░███░║
                                       ╚══════════════════╝[/color]
             ──────────────────────────────────────
-            [bold][head=2][color=#1b487e]NanoTrasen[/color][/bold]
+            [bold][head=2][color=#1b487e]Aetheris[/color][/bold]
             Job/Department Change Request Form[/head]
             ──────────────────────────────────────
 
@@ -143,8 +145,9 @@
   parent: Paper
   components:
   - type: Paper
+    # Inferus - rebranded NanoTrasen to Aetheris Dynamics
     content: |2
-            [color=#134975]█▄ █ ▀█▀    [head=3]NT Justice Department[/head]
+            [color=#134975]█▄ █ ▀█▀    [head=3]Aetheris Justice Department[/head]
             █ ▀█    █    Quick Crime Sentencing Memo[/color]
             ───────────────────────────────────
             [head=2][bold]Subject:[/bold] NAME[/head]
@@ -200,12 +203,13 @@
   parent: Paper
   components:
   - type: Paper
+    # Inferus - rebranded NanoTrasen to Aetheris Dynamics
     content: |2
                                                  [/color][color=#2b4e95]░▄██▄░
                                                 ░████░
                                                 ▄▄██▄▄
 
-                                   [head=1]NanoTrasen[/head]
+                                   [head=1]Aetheris[/head]
             [/color][head=3][bold]S-23 Form:[/bold] Replacement Identification Card and/or Personal Digital Assistant Request[/center]
             [/head]─────────────────────────────────────────
             [bold]Name:[/bold][italic]
@@ -225,4 +229,4 @@
             [/bolditalic][/color]─────────────────────────────────────────
             Stamp of the affected parties Departmental Head and signature of the affected party are to be completed below this line.
             ─────────────────────────────────────────
-            [italic][italic][color=#aaaaaa]New ID card requests are governed by fair use policy 67C3. NT withholds the right to deny any and all applications for a replacement ID dependent on policy 67C3 and any other pertinent criteria designated by NT at the time of the denial of application. Excessive ID loss or damage as laid out in 67C3 is to be compensated for out of personal income and accounts as specified under 67C6 and not uniform work expenditure allowances.[/italic][/italic][/color]
+            [italic][italic][color=#aaaaaa]New ID card requests are governed by fair use policy 67C3. Aetheris withholds the right to deny any and all applications for a replacement ID dependent on policy 67C3 and any other pertinent criteria designated by Aetheris at the time of the denial of application. Excessive ID loss or damage as laid out in 67C3 is to be compensated for out of personal income and accounts as specified under 67C6 and not uniform work expenditure allowances.[/italic][/italic][/color]

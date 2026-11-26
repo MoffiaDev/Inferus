@@ -140,8 +140,8 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleSyndie
-  name: syndicate shuttle console
-  description: Used to pilot a syndicate shuttle.
+  name: EPC shuttle console # Inferus
+  description: Used to pilot an EPC shuttle. # Inferus
   components:
   - type: ComputerVisuals
     stateScreen: syndishuttle
@@ -205,7 +205,7 @@
   parent: ComputerIFF
   id: ComputerIFFSyndicate
   name: IFF computer
-  suffix: Syndicate
+  suffix: EPC # Inferus
   description: Allows you to control the IFF and stealth characteristics of this vessel.
   components:
   - type: IFFConsole
@@ -454,7 +454,7 @@
 - type: entity
   parent: ComputerStationTeleportersControl
   id: ComputerStationTeleportersControlFilled
-  suffix: Autofilled, Nanotrasen Network
+  suffix: Autofilled, Aetheris Network # Inferus
   components:
   - type: StationTeleporterConsole
     autoLinkKey: Nanotrasen
@@ -462,7 +462,7 @@
 - type: entity
   parent: ComputerStationTeleportersControl
   id: ComputerSyndicateTeleportersControl
-  name: syndicate teleporters control console
+  name: EPC teleporters control console # Inferus
   components:
   - type: ComputerVisuals
     stateScreen: teleporters_syndicate
@@ -565,7 +565,7 @@
   parent: BaseComputerAiAccess
   id: ComputerId
   name: ID card computer
-  description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
+  description: Terminal for programming Aetheris employee ID cards to access parts of the station. # Inferus
   components:
   - type: IdCardConsole
     privilegedIdSlot:
@@ -666,7 +666,7 @@
 - type: entity
   parent: ComputerComms
   id: SyndicateComputerComms
-  name: syndicate communications computer
+  name: EPC communications computer # Inferus
   description: A computer capable of remotely hacking into the station's communications systems. Using this to make an announcement will alert the station to your presence.
   components:
   - type: ComputerVisuals
@@ -1467,7 +1467,7 @@
 - type: entity
   parent: BaseComputer
   id: ComputerNukieDelivery
-  name: syndicate delivery computer
+  name: EPC delivery computer # Inferus
   description: "A computer that can bluespace in certain equipment for Nuclear Operations. \nThe circuitboard is integrated into the frame and can't be recovered if deconstructed."
   components:
   - type: ComputerVisuals

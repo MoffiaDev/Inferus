@@ -400,10 +400,10 @@
         amount: 4
 
 - type: entity
-  name: syndicate encryption key box
+  name: EPC encryption key box # Inferus
   parent: [BoxEncryptionKeyPassenger, BaseSyndicateContraband]
   id: BoxEncryptionKeySyndie
-  description: Two syndicate encryption keys for the price of one. Miniaturized for ease of use.
+  description: Two EPC encryption keys for the price of one. Miniaturized for ease of use. # Inferus
   components:
   - type: Item
     size: Normal

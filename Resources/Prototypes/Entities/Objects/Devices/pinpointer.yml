@@ -62,8 +62,8 @@
     targetName: nuclear authentication disk
 
 - type: entity
-  name: syndicate pinpointer
-  description: A handheld tracking device produced by the Syndicate for their nuclear operatives. Keep upright to retain accuracy.
+  name: EPC pinpointer # Inferus
+  description: A handheld tracking device produced by the EPC for their nuclear operatives. Keep upright to retain accuracy. # Inferus
   id: PinpointerSyndicateNuclear
   parent: [ PinpointerBase, BaseSyndicateContraband ]
   components:

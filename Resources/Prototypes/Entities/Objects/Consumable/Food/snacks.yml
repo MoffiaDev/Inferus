@@ -804,7 +804,7 @@
   categories: [ HideSpawnMenu ]
   parent: FoodPacketTrash
   id: FoodPacketSyndiTrash
-  name: syndi-cakes box
+  name: eco-cakes box # Inferus
   components:
   - type: Sprite
     state: syndicakes-trash

@@ -4,7 +4,7 @@
   parent: ClothingBeltSecurity
   id: ClothingBeltCorporateJudo
   name: Corporate Judo Belt
-  description: Teaches the wearer NT Corporate Judo.
+  description: Teaches the wearer Corporate Judo. # Inferus
   components:
   - type: Sprite
     sprite: _Goobstation/Clothing/Belt/judobelt.rsi

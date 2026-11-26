@@ -147,7 +147,7 @@
   parent: BaseSubdermalImplant
   id: RadioImplant
   name: radio implant
-  description: This implant grants access to the Syndicate channel without a headset.
+  description: This implant grants access to the EPC channel without a headset. # Inferus
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -159,7 +159,7 @@
   parent: BaseSubdermalImplant
   id: UplinkImplant
   name: uplink implant
-  description: This implant lets the user access a hidden Syndicate uplink at will.
+  description: This implant lets the user access a hidden EPC uplink at will. # Inferus
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -348,7 +348,7 @@
   parent: BaseSubdermalImplant
   id: DeathRattleImplant
   name: death rattle implant
-  description: This implant will inform the Syndicate radio channel should the user fall into critical condition or die.
+  description: This implant will inform the EPC radio channel should the user fall into critical condition or die. # Inferus
   categories: [ HideSpawnMenu ]
   components:
     - type: SubdermalImplant
@@ -369,7 +369,7 @@
   parent: BaseSubdermalImplant
   id: FakeMindShieldImplant
   name: fake mindshield implant
-  description: This implant allows the implanter to produce a fake signal that NT security huds use to identify individuals implanted with a mindshield.
+  description: This implant allows the implanter to produce a fake signal that Aetheris security huds use to identify individuals implanted with a mindshield. # Inferus
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -382,7 +382,7 @@
   parent: BaseSubdermalImplant
   id: MindShieldImplant
   name: mindshield implant
-  description: This implant will ensure loyalty to Nanotrasen and prevent mind control devices.
+  description: This implant will ensure safety and prevent mind control devices. # Inferus
   categories: [ HideSpawnMenu ]
   components:
    - type: SubdermalImplant

@@ -1,3 +1,4 @@
-traitor-codes-message-singular = syndicate codeword:
-traitor-codes-message-plural = syndicate codewords:
+# Inferus - rebranded the Syndicate to the EPC
+traitor-codes-message-singular = EPC codeword:
+traitor-codes-message-plural = EPC codewords:
 traitor-codes-none = no known codewords

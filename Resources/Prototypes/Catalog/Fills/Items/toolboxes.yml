@@ -38,7 +38,7 @@
 - type: entity
   id: ToolboxElectricalTurretFilled
   name: electrical toolbox
-  suffix: Syndicate, Turret, Filled
+  suffix: EPC, Turret, Filled # Inferus
   parent: ToolboxElectricalTurret
   components:
   - type: EntityTableContainerFill

@@ -347,7 +347,7 @@
   parent: AirlockAssembly
   id: AirlockAssemblySyndicate
   categories: [HideSpawnMenu]
-  suffix: Syndicate
+  suffix: EPC # Inferus
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/syndicate-base.rsi
@@ -357,7 +357,7 @@
   parent: AirlockAssembly
   id: AirlockAssemblySyndicateGlass
   categories: [HideSpawnMenu]
-  suffix: Syndicate, Glass
+  suffix: EPC, Glass # Inferus
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/syndicate-base.rsi

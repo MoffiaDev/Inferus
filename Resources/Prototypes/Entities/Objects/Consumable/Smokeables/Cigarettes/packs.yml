@@ -203,7 +203,7 @@
   id: CigPackSyndicate
   parent: [CigPackBase, BaseSyndicateContraband]
   name: Interdyne herbals packet
-  description: Elite cigarettes for elite syndicate agents. Infused with medicine for when you need to do more than calm your nerves.
+  description: Elite cigarettes for elite EPC agents. Infused with medicine for when you need to do more than calm your nerves. # Inferus
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/syndicate.rsi
@@ -220,7 +220,7 @@
   parent: CigPackMixedBase
   name: Dan's soaked smokes
   suffix: Mixed
-  description: Dan worked with NT chemistry to dispose of excess chemicals, ENJOY.
+  description: Dan worked with Aetheris chemistry to dispose of excess chemicals, ENJOY. # Inferus
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/mixed.rsi

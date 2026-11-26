@@ -56,15 +56,18 @@ job-description-borg = Use your robotic chassis to perform a wide variety of spe
 job-description-station-ai = Remotely interface with the station's cameras, airlocks, radio, and other electronic devices from the safety of your core.
 
 # Central Command
-job-description-centcommoff = Act as liaison to the newest state-of-the-art space station in Nanotrasen's fleet.
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+job-description-centcommoff = Act as liaison to the newest state-of-the-art outpost in the Aetheris Dynamics Planetary Stations Division.
 
 # Task Force
 job-description-cburn = Cleanse the station of all biological contaminants.
-job=description-deathsquad = Eliminate any and all threats to Nanotrasen assets.
+# Inferus - rebranded NanoTrasen to Aetheris Dynamics
+job=description-deathsquad = Eliminate any and all threats to Aetheris assets.
 job-description-ertchaplain = Ensure that the station's crew have their last rites performed.
 job-description-ertengineer = Ensure that the station has power and clean air.
 job-description-ertjanitor = Ensure that the station is thoroughly cleaned and sterilized.
-job-description-ertleader = Lead the Emergency Response Team to protect and preserve Nanotrasen assets.
+# Inferus - ERTs are federal (IFA) per lore
+job-description-ertleader = Lead a Federation Emergency Response Team to restore order and safety aboard the station.
 job-description-ertmedic = Ensure that the station's crew have their injuries treated.
 job-description-ertsecurity = Ensure that any threats to the station are eliminated.
 

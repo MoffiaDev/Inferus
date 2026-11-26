@@ -1079,7 +1079,7 @@
   parent: VendingMachineSnack
   id: VendingMachineSustenance
   name: Sustenance Vendor
-  description: A vending machine which vends food, as required by section 47-C of the NT's Prisoner Ethical Treatment Agreement.
+  description: A vending machine which vends food, as required by section 47-C of the Federation's Prisoner Ethical Treatment Agreement. # Inferus
   components:
   - type: VendingMachine
     pack: SustenanceInventory
@@ -1872,8 +1872,8 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineSyndieDrobe
-  name: SyndieDrobe
-  description: Wardrobe machine encoded by the syndicate, contains elite outfits for various operations.
+  name: EcoDrobe # Inferus
+  description: Wardrobe machine encoded by the EPC, contains elite outfits for various operations. # Inferus
   components:
   - type: VendingMachine
     pack: SyndieDrobeInventory
@@ -2136,8 +2136,8 @@
 - type: entity
   parent: VendingMachineChemicals
   id: VendingMachineChemicalsSyndicate
-  name: SyndieJuice
-  description: Not made with freshly squeezed syndies I hope.
+  name: EcoJuice # Inferus
+  description: Not made with freshly squeezed EPC agents I hope. # Inferus
   components:
   - type: VendingMachine
     pack: ChemVendInventorySyndicate

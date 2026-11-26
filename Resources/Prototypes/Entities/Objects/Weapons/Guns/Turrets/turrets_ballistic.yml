@@ -1,7 +1,7 @@
 - type: entity
   parent: [BaseWeaponBallisticTurret, BaseSyndicateContraband]
   id: WeaponTurretSyndicate
-  suffix: Syndicate
+  suffix: EPC # Inferus
   components:
   - type: NpcFactionMember
     factions:
@@ -11,7 +11,7 @@
   parent: [ BaseWeaponBallisticTurretIndestructible, StructureHealthMachineWeak ]
   id: WeaponTurretSyndicateDisposable
   name: disposable ballistic turret
-  suffix: Syndicate, Disposable
+  suffix: EPC, Disposable # Inferus
   components:
   - type: NpcFactionMember
     factions:
@@ -53,7 +53,7 @@
 - type: entity
   parent: BaseWeaponBallisticTurret
   id: WeaponTurretNanoTrasen
-  suffix: NanoTrasen
+  suffix: Aetheris # Inferus
   components:
   - type: NpcFactionMember
     factions:

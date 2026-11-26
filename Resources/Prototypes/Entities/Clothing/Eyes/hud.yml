@@ -230,8 +230,8 @@
 - type: entity
   parent: [ClothingEyesHudBase, ShowSecurityIcons, BaseSyndicateContraband]
   id: ClothingEyesHudSyndicate
-  name: syndicate visor
-  description: The syndicate's professional head-up display, designed for better detection of humanoids and their subsequent elimination.
+  name: EPC visor # Inferus
+  description: The EPC's professional heads-up display, designed for better detection of humanoids and their subsequent elimination. # Inferus
   components:
   - type: Sprite
     sprite: Clothing/Eyes/Hud/synd.rsi
@@ -246,8 +246,8 @@
 - type: entity
   parent: [ClothingEyesHudBase, ShowSecurityIcons, BaseSyndicateContraband]
   id: ClothingEyesHudSyndicateAgent
-  name: syndicate medical visor
-  description: The Syndicate Corpsman's professional heads-up display, designed for quick diagnosis of their team's status.
+  name: EPC medical visor # Inferus
+  description: The EPC Corpsman's professional heads-up display, designed for quick diagnosis of their team's status. # Inferus
   components:
   - type: Sprite
     sprite: Clothing/Eyes/Hud/syndagent.rsi
@@ -263,7 +263,7 @@
 - type: entity
   parent: [ClothingEyesGlassesSunglasses, ShowSecurityIcons]
   id: ClothingEyesGlassesHiddenSecurity
-  suffix: Syndicate
+  suffix: EPC # Inferus
   components:
   - type: StealTarget
     stealGroup:

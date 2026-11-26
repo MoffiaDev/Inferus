@@ -111,8 +111,8 @@
 - type: entity
   parent: [ PersonalAI, BaseSyndicateContraband]
   id: SyndicatePersonalAI
-  name: syndicate personal ai device
-  description: Your Syndicate pal who's fun to be with!
+  name: EPC personal ai device # Inferus
+  description: Your EPC pal who's fun to be with! # Inferus
   components:
   - type: Sprite
     sprite: Objects/Fun/pai.rsi

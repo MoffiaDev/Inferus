@@ -164,7 +164,7 @@
 - type: entity
   parent: AirlockExternal
   id: AirlockExternalSyndicateLocked
-  suffix: Syndicate, Locked
+  suffix: EPC, Locked # Inferus
   components:
   - type: ContainerFill
     containers:
@@ -545,7 +545,7 @@
 - type: entity
   parent: AirlockExternalGlass
   id: AirlockExternalGlassSyndicateLocked
-  suffix: Syndicate, Locked
+  suffix: EPC, Locked # Inferus
   components:
   - type: ContainerFill
     containers:
@@ -886,7 +886,7 @@
 - type: entity
   parent: AirlockSyndicateGlass
   id: AirlockSyndicateGlassLocked
-  suffix: Syndicate, Locked
+  suffix: EPC, Locked # Inferus
   components:
   - type: ContainerFill
     containers:
@@ -1101,7 +1101,7 @@
 - type: entity
   parent: AirlockSyndicate
   id: AirlockSyndicateLocked
-  suffix: Syndicate, Locked
+  suffix: EPC, Locked # Inferus
   components:
   - type: ContainerFill
     containers:
@@ -1140,7 +1140,7 @@
 - type: entity
   parent: AirlockShuttleSyndicate
   id: AirlockExternalShuttleSyndicateLocked
-  suffix: Syndicate, Locked
+  suffix: EPC, Locked # Inferus
   components:
   - type: ContainerFill
     containers:
@@ -1178,7 +1178,7 @@
 - type: entity
   parent: AirlockGlassShuttleSyndicate
   id: AirlockExternalGlassShuttleSyndicateLocked
-  suffix: Syndicate, Locked
+  suffix: EPC, Locked # Inferus
   components:
   - type: ContainerFill
     containers:
@@ -1293,7 +1293,7 @@
 - type: entity
   parent: AirlockHatchSyndicate
   id: AirlockHatchSyndicateLocked
-  suffix: Syndicate, Locked
+  suffix: EPC, Locked # Inferus
   components:
   - type: ContainerFill
     containers:

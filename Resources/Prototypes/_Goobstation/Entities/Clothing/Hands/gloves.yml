@@ -4,7 +4,7 @@
   parent: [BaseSyndicateContraband, ClothingHandsGlovesCombat]
   id: ClothingHandsGlovesGuerrilla
   name: guerrilla gloves
-  description: Top-of-the-line quality syndicate combative gloves, good for grabs as well as absorbing electrical shocks. Seems to be powered by telecrystals, somehow...
+  description: Top-of-the-line quality combative gloves, good for grabs as well as absorbing electrical shocks. Seems to be powered by telecrystals, somehow... # Inferus
   components:
   - type: Sprite
     sprite: _Goobstation/Clothing/Hands/Gloves/guerrilla.rsi

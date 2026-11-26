@@ -2,7 +2,7 @@
   id: BoxFunLizardPlushieBulk
   parent: CardboardBoxLargeWeh
   name: bulk lizard plushie box
-  description: A buncha soft lizard plushies. Throw them around and then wonder how you're gonna explain this purchase to NT.
+  description: A buncha soft lizard plushies. Throw them around and then wonder how you're gonna explain this purchase to the QM. # Inferus
   components:
   - type: StorageFill
     contents:

@@ -69,11 +69,12 @@ descriptions-cookie-fortune-dataset-68 = Get back to work!
 descriptions-cookie-fortune-dataset-69 = Cookie.print() not found
 descriptions-cookie-fortune-dataset-70 = THERE IS NO CLONER ON THIS STATION
 descriptions-cookie-fortune-dataset-71 = Putting suit sensors on max is always a good idea.
-descriptions-cookie-fortune-dataset-72 = Syndicate is hiring. Contact us.
+# Inferus - rebranded the Syndicate to the EPC
+descriptions-cookie-fortune-dataset-72 = The EPC is hiring. Contact us.
 descriptions-cookie-fortune-dataset-73 = The person next to you is up to something. You know what you have to do.
 descriptions-cookie-fortune-dataset-74 = Did you know? Monkeys are not what they seem.
 descriptions-cookie-fortune-dataset-75 = Did you know that half of salvage specialists go missing on the job?
 descriptions-cookie-fortune-dataset-76 = Also try out sashimi with galaxythystle sauce!
-descriptions-cookie-fortune-dataset-77 = Did you know that 70% of Nanotrasen applicants go missing within the first years of their contract? The more you know!!
+descriptions-cookie-fortune-dataset-77 = Did you know that 70% of NanoTrasen applicants go missing within the first years of their contract? The more you know!!
 descriptions-cookie-fortune-dataset-78 = This shift you are going to do a very robust move in front of everyone.
 descriptions-cookie-fortune-dataset-79 = Robustness is not just about how good you are, but how good of a person you are.
