@@ -334,3 +334,9 @@ Entries:
         and through radio or PA speaker.
   id: 21
   time: '2026-11-25T18:31:47.0000000+00:00'
+- author: Tarazicon
+  changes:
+    - type: Tweak
+      message: NT is no more. Neither is the Syndicate. For AETHERIS lives.
+  id: 22
+  time: '2026-11-26T00:58:22.0000000+00:00'
