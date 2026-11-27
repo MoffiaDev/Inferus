@@ -18,6 +18,7 @@
   startingInventory:
     HandheldHealthAnalyzer: 1
     Tourniquet: 3
+    BoneTreatmentGel: 3 # Inferus
     Brutepack: 3
     AloeCream: 3 # Currently just a reskin of Ointment but it's something
     Bloodpack: 3
@@ -62,6 +63,7 @@
   startingInventory:
     HandheldHealthAnalyzer: 3
     Tourniquet: 5
+    BoneTreatmentGel: 5 # Inferus
     Brutepack: 5
     AloeCream: 5
     Bloodpack: 5

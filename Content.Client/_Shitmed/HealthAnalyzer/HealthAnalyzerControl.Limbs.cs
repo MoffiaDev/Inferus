@@ -1,8 +1,14 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Inferus - lists the wounded limbs of the scanned patient in the health analyzer.
+using Content.Shared._Shitmed.Surgery.Bleeding;
+using Content.Shared._Shitmed.Surgery.Pain;
+using Content.Shared._Shitmed.Surgery.Traumas;
 using Content.Shared._Shitmed.Surgery.Wounds;
 using Content.Shared._Shitmed.Targeting;
+using Content.Shared.Body;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Prototypes;
+using BodySystem = Content.Shared.Body.BodySystem;
 
 namespace Content.Client.HealthAnalyzer.UI;
 
@@ -24,39 +30,77 @@ public sealed partial class HealthAnalyzerControl
     };
 
     /// <summary>
-    /// Adds a section listing every limb that is not healthy, read from the patient's replicated <see cref="TargetingComponent"/>.
+    /// Adds a section listing every limb that is hurt, has a damaged bone or a tourniquet, and the patient's pain.
+    /// Wounds come from the patient's replicated <see cref="TargetingComponent"/>, bones and tourniquets from the limb organs.
     /// </summary>
     private void DrawLimbStatus(EntityUid target)
     {
         if (!_entityManager.TryGetComponent(target, out TargetingComponent? targeting))
             return;
 
+        var extras = new Dictionary<ProtoId<OrganCategoryPrototype>, (BoneSeverity Bone, bool Tourniquet)>();
+        var body = _entityManager.System<BodySystem>();
+        foreach (var limb in body.EnumerateOrgans<BoneComponent>(target))
+        {
+            if (limb.Comp1.Category is not { } category)
+                continue;
+
+            extras[category] = (limb.Comp2.BoneSeverity, _entityManager.HasComponent<TourniquetedComponent>(limb.Owner));
+        }
+
         BoxContainer? container = null;
 
         foreach (var (part, key) in LimbRows)
         {
-            if (!targeting.BodyStatus.TryGetValue(part, out var severity) || severity == WoundableSeverity.Healthy)
+            if (!targeting.BodyStatus.TryGetValue(part, out var severity))
+                severity = WoundableSeverity.Healthy;
+
+            extras.TryGetValue(SharedTargetingSystem.ToOrganCategory(part), out var extra);
+
+            if (severity == WoundableSeverity.Healthy && extra.Bone == BoneSeverity.Normal && !extra.Tourniquet)
                 continue;
 
-            if (container == null)
-            {
-                container = new BoxContainer
-                {
-                    Margin = new Thickness(0, 6, 0, 0),
-                    Orientation = BoxContainer.LayoutOrientation.Vertical,
-                };
-                container.AddChild(new Label { Text = Loc.GetString("health-analyzer-limbs-title") });
-            }
+            var parts = new List<string>();
+            if (severity != WoundableSeverity.Healthy)
+                parts.Add(Loc.GetString(SeverityKey(severity)));
 
+            if (extra.Bone != BoneSeverity.Normal)
+                parts.Add(Loc.GetString($"shitmed-part-status-bone-{extra.Bone.ToString().ToLowerInvariant()}"));
+
+            if (extra.Tourniquet)
+                parts.Add(Loc.GetString("shitmed-part-status-tourniquet"));
+
+            container ??= CreateLimbContainer();
             container.AddChild(new Label
             {
-                Text = $" · {Loc.GetString(key)}: {Loc.GetString(SeverityKey(severity))}",
-                FontColorOverride = SeverityColor(severity),
+                Text = $" · {Loc.GetString(key)}: {string.Join(", ", parts)}",
+                FontColorOverride = severity == WoundableSeverity.Healthy ? Color.FromHex("#F2A93B") : SeverityColor(severity),
+            });
+        }
+
+        if (_entityManager.TryGetComponent(target, out PainComponent? pain) && pain.Level != PainLevel.None)
+        {
+            container ??= CreateLimbContainer();
+            container.AddChild(new Label
+            {
+                Text = Loc.GetString($"health-analyzer-pain-{pain.Level.ToString().ToLowerInvariant()}"),
+                FontColorOverride = Color.FromHex("#E8662F"),
             });
         }
 
         if (container != null)
             GroupsContainer.AddChild(container);
+    }
+
+    private static BoxContainer CreateLimbContainer()
+    {
+        var container = new BoxContainer
+        {
+            Margin = new Thickness(0, 6, 0, 0),
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
+        };
+        container.AddChild(new Label { Text = Loc.GetString("health-analyzer-limbs-title") });
+        return container;
     }
 
     private static string SeverityKey(WoundableSeverity severity)

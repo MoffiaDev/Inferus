@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseItem
+  id: BoneTreatmentGel
+  name: bottle of bone gel
+  description: A sticky medical gel that knits cracked and broken bones back together. It stings, a lot...
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/bone-gel.rsi
+    state: bone-gel
+  - type: Item
+    size: Small
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/bone-gel.rsi
+  - type: StaticPrice
+    price: 0
+  - type: BoneTreatment
