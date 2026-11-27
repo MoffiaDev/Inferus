@@ -3,9 +3,11 @@
 using Content.Client._Shitmed.Targeting;
 using Content.Client._Shitmed.UserInterface.Systems.PartStatus.Widgets;
 using Content.Client.Gameplay;
+using Content.Shared._Shitmed.PartStatus;
 using Content.Shared._Shitmed.Targeting;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Client.Player;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Utility;
 
@@ -14,6 +16,8 @@ namespace Content.Client._Shitmed.UserInterface.Systems.PartStatus;
 public sealed class PartStatusUIController : UIController, IOnStateEntered<GameplayState>, IOnSystemChanged<TargetingSystem>
 {
     [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IEntityNetworkManager _net = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     private SpriteSystem? _spriteSystem;
     private TargetingComponent? _targetingComponent;
@@ -72,5 +76,16 @@ public sealed class PartStatusUIController : UIController, IOnStateEntered<Gamep
     {
         _spriteSystem ??= _entManager.System<SpriteSystem>();
         return _spriteSystem.Frame0(specifier);
+    }
+
+    /// <summary>
+    /// Asks the server for the written limb report of the local player.
+    /// </summary>
+    public void GetPartStatusMessage()
+    {
+        if (_player.LocalEntity is not { } user)
+            return;
+
+        _net.SendSystemNetworkMessage(new GetPartStatusEvent(_entManager.GetNetEntity(user)));
     }
 }
