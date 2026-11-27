@@ -340,7 +340,13 @@ public sealed partial class WoundSystem : EntitySystem
 
                 var taken = FixedPoint2.Min(remaining, capacity);
                 if (TryInduceWound(candidate, type, taken, out _, candidate.Comp2))
+                {
                     remaining -= taken;
+
+                    // Inferus - lets the bone system decide whether the hit damaged the bone
+                    var damaged = new WoundableDamagedEvent(type, taken);
+                    RaiseLocalEvent(candidate.Owner, ref damaged);
+                }
             }
         }
 
@@ -430,6 +436,8 @@ public sealed partial class WoundSystem : EntitySystem
                 total.DamageDict[type] = total.DamageDict.GetValueOrDefault(type) + wound.Comp.WoundSeverityPoint;
             }
         }
+
+        AddShockDamage(body.Comp, woundables, total); // Inferus
 
         var delta = total - before;
         delta.TrimZeros();

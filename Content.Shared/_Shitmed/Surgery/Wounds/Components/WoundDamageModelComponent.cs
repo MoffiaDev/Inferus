@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
+using Content.Shared.Body;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Shitmed.Surgery.Wounds.Components;
 
@@ -16,4 +20,39 @@ public sealed partial class WoundDamageModelComponent : Component
     /// </summary>
     [DataField]
     public DamageSpecifier BodyDamage = new();
+
+    // Inferus - the values below are tunable per prototype. They add "shock" damage on top of the wound damage,
+    // so a mangled head or a missing torso can crit or kill a body even when the wounds alone would not.
+
+    /// <summary>
+    /// Limbs the body cannot live without. A vital limb that is missing counts as severed.
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<OrganCategoryPrototype>> VitalLimbs = new() { "Head", "Torso" };
+
+    /// <summary>
+    /// Shock damage added for every limb at the given severity.
+    /// </summary>
+    [DataField]
+    public Dictionary<WoundableSeverity, FixedPoint2> SeverityDamage = new()
+    {
+        { WoundableSeverity.Mangled, 20 },
+    };
+
+    /// <summary>
+    /// Extra shock damage added for a vital limb at the given severity. Keep Mangled and Severed above the body's death threshold if they should kill.
+    /// </summary>
+    [DataField]
+    public Dictionary<WoundableSeverity, FixedPoint2> VitalSeverityDamage = new()
+    {
+        { WoundableSeverity.Critical, 40 },
+        { WoundableSeverity.Mangled, 300 },
+        { WoundableSeverity.Severed, 300 },
+    };
+
+    /// <summary>
+    /// The damage type shock damage is dealt as.
+    /// </summary>
+    [DataField]
+    public ProtoId<DamageTypePrototype> ShockDamageType = "Blunt";
 }
