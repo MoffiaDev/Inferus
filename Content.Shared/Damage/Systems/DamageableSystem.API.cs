@@ -54,6 +54,29 @@ public sealed partial class DamageableSystem
         OnEntityDamageChanged((ent, ent.Comp));
     }
 
+    // Inferus - for damage models that keep their damage outside of InjurableComponent, like the wound system.
+    /// <summary>
+    ///     Sets the damage like the other <see cref="SetDamage"/>, but reports <paramref name="delta"/> as the change.
+    ///     Listeners that need a delta (bleeding, damage visuals, do-after interruption) then react as they do to dealt damage.
+    /// </summary>
+    public void SetDamage(
+        Entity<DamageableComponent?> ent,
+        DamageSpecifier damage,
+        DamageSpecifier delta,
+        bool interruptsDoAfters = true,
+        EntityUid? origin = null)
+    {
+        if (!_damageableQuery.Resolve(ent, ref ent.Comp, false))
+            return;
+
+        foreach (var (type, amount) in damage.DamageDict)
+        {
+            ent.Comp.Damage.DamageDict[type] = amount;
+        }
+
+        OnEntityDamageChanged((ent, ent.Comp), delta, interruptsDoAfters, origin);
+    }
+
     /// <summary>
     ///     Applies damage specified via a <see cref="DamageSpecifier"/>.
     /// </summary>

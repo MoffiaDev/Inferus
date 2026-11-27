@@ -165,6 +165,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         var damagePerType = _damageable.GetAllDamage(target.Value).DamageDict;
 
         DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+        DrawLimbStatus(target.Value); // Inferus
     }
 
     /// <summary>

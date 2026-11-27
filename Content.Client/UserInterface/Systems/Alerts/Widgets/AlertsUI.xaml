@@ -1,7 +1,12 @@
 ﻿<widgets:AlertsUI xmlns="https://spacestation14.io"
                   xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Alerts.Widgets"
+                  xmlns:partStatus="clr-namespace:Content.Client._Shitmed.UserInterface.Systems.PartStatus.Widgets"
                   MinSize="64 64">
-    <PanelContainer HorizontalAlignment="Right" VerticalAlignment="Top">
-        <BoxContainer Name="AlertContainer" Access="Public" Orientation="Vertical" />
-    </PanelContainer>
+    <!-- Inferus - the part status doll sits below the alerts, same layout as Goob-Station. -->
+    <BoxContainer Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <PanelContainer HorizontalAlignment="Right" VerticalAlignment="Top">
+            <BoxContainer Name="AlertContainer" Access="Public" Orientation="Vertical" />
+        </PanelContainer>
+        <partStatus:PartStatusControl Name="PartStatus" Access="Protected"/> <!-- Inferus -->
+    </BoxContainer>
 </widgets:AlertsUI>

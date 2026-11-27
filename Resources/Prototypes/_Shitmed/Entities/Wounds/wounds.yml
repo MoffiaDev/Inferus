@@ -1,0 +1,118 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Goob-Station (Resources/Prototypes/_Shitmed/Entities/Surgery/wounds.yml) // Inferus
+# A wound prototype's ID is "Wound" followed by the damage type it represents, WoundSystem looks wounds up that way.
+# The prefix is needed because plain damage type names collide with existing entities, e.g. the Blunt joint.
+# Inferus - trauma, pain and bleed components and scar wounds were left out, they arrive with those systems.
+# Damage types without a wound here (Asphyxiation, Bloodloss, Structural) are kept as body damage instead.
+
+- type: entity
+  id: WoundBase
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Wound
+    damageType: Blunt
+
+- type: entity
+  id: WoundBlunt
+  parent: WoundBase
+  components:
+  - type: Wound
+    damageType: Blunt
+    woundType: External
+    woundVisibility: Always
+    mangleSeverity: Severe
+
+- type: entity
+  id: WoundPiercing
+  parent: WoundBase
+  components:
+  - type: Wound
+    damageType: Piercing
+    woundType: External
+    woundVisibility: Always
+    mangleSeverity: Severe
+
+- type: entity
+  id: WoundSlash
+  parent: WoundBase
+  components:
+  - type: Wound
+    damageType: Slash
+    woundType: External
+    woundVisibility: Always
+    mangleSeverity: Severe
+
+- type: entity
+  id: WoundHeat
+  parent: WoundBase
+  components:
+  - type: Wound
+    damageType: Heat
+    woundType: External
+    woundVisibility: Always
+
+- type: entity
+  id: WoundCold
+  parent: WoundBase
+  components:
+  - type: Wound
+    damageType: Cold
+    woundType: External
+    woundVisibility: Always
+
+- type: entity
+  id: WoundShock
+  parent: WoundBase
+  components:
+  - type: Wound
+    damageType: Shock
+    woundType: Internal
+    woundVisibility: HandScanner
+
+- type: entity
+  id: WoundCaustic
+  parent: WoundBase
+  components:
+  - type: Wound
+    damageType: Caustic
+    woundType: Internal
+    woundVisibility: AdvancedScanner
+
+- type: entity
+  id: WoundCellular
+  parent: WoundBase
+  components:
+  - type: Wound
+    damageType: Cellular
+    woundType: Internal
+    woundVisibility: AdvancedScanner
+    selfHealMultiplier: 0
+
+- type: entity
+  id: WoundRadiation
+  parent: WoundBase
+  components:
+  - type: Wound
+    damageType: Radiation
+    woundType: Internal
+    woundVisibility: HandScanner
+    selfHealMultiplier: 0
+
+- type: entity
+  id: WoundPoison
+  parent: WoundBase
+  components:
+  - type: Wound
+    damageType: Poison
+    woundType: Internal
+    woundVisibility: HandScanner
+
+- type: entity
+  id: WoundHoly
+  parent: WoundBase
+  components:
+  - type: Wound
+    damageType: Holy
+    woundType: Internal
+    woundVisibility: AdvancedScanner

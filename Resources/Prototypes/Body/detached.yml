@@ -29,3 +29,4 @@
   - type: Item
   - type: InteractionOutline
   - type: InputMover
+  - type: ESViewconeOccludable # Inferus

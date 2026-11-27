@@ -6,6 +6,7 @@ using Content.Shared._Shitmed.Targeting.Events;
 using Robust.Client.Player;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
+using Robust.Shared.GameStates;
 
 namespace Content.Client._Shitmed.Targeting;
 
@@ -25,6 +26,7 @@ public sealed partial class TargetingSystem : SharedTargetingSystem
         base.Initialize();
         SubscribeLocalEvent<TargetingComponent, LocalPlayerAttachedEvent>(HandlePlayerAttached);
         SubscribeLocalEvent<TargetingComponent, LocalPlayerDetachedEvent>(HandlePlayerDetached);
+        SubscribeLocalEvent<TargetingComponent, AfterAutoHandleStateEvent>(OnTargetingState);
         SubscribeLocalEvent<TargetingComponent, ComponentStartup>(OnTargetingStartup);
         SubscribeLocalEvent<TargetingComponent, ComponentShutdown>(OnTargetingShutdown);
         SubscribeNetworkEvent<TargetIntegrityChangeEvent>(OnTargetIntegrityChange);
@@ -53,6 +55,14 @@ public sealed partial class TargetingSystem : SharedTargetingSystem
         .Bind(ContentKeyFunctions.TargetRightFoot,
             InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.RightFoot)))
         .Register<SharedTargetingSystem>();
+    }
+
+    private void OnTargetingState(EntityUid uid, TargetingComponent component, ref AfterAutoHandleStateEvent args)
+    {
+        if (_playerManager.LocalEntity != uid)
+            return;
+
+        PartStatusUpdate?.Invoke(component);
     }
 
     public override void Shutdown()

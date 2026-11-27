@@ -2,17 +2,24 @@
 // Ported from Goob-Station (Content.Shared/_Shitmed/Targeting/TargetingComponent.cs) // Inferus
 // Inferus - wound/BodyStatus tracking removed here, it is added back in stage 2 on top of organs.
 using Robust.Shared.GameStates;
+using Content.Shared._Shitmed.Surgery.Wounds;
 
 namespace Content.Shared._Shitmed.Targeting;
 
 /// <summary>
 /// Controls entity limb targeting for actions.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class TargetingComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
     public TargetBodyPart Target = TargetBodyPart.Chest;
+
+    /// <summary>
+    /// The wound severity of every targetable part, kept up to date by the wound system. Parts the server has not reported are healthy.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public Dictionary<TargetBodyPart, WoundableSeverity> BodyStatus = new();
 
     /// <summary>
     /// What odds are there for every part targeted to be hit?

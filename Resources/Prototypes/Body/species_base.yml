@@ -138,6 +138,7 @@
   - type: GrabIntent # Goobstation - Grab Intent
   - type: Grabbable # Goobstation - Grab Intent
   - type: Targeting # Inferus - Shitmed
+  - type: WoundDamageModel # Inferus - Shitmed, damage is held by wounds on the limbs
   - type: Speech
     speechSounds: Alto
   - type: DamageForceSay

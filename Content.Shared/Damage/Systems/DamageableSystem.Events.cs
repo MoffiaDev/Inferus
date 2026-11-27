@@ -2,6 +2,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Cloning.Events;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared._Shitmed.Surgery.Wounds.Components; // Inferus
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Radiation.Events;
@@ -218,6 +219,10 @@ public sealed partial class DamageableSystem
 
     private void OnDamageDealt(Entity<InjurableComponent> ent, ref DamageDealtEvent args)
     {
+        // Inferus - bodies using the wound damage model keep their damage in wounds, WoundSystem handles this event for them.
+        if (HasComp<WoundDamageModelComponent>(ent))
+            return;
+
         if (!_damageableQuery.TryGetComponent(ent, out var damageable))
             return;
 
