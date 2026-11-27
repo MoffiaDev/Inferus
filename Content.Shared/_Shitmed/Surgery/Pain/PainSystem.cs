@@ -116,7 +116,7 @@ public sealed partial class PainSystem : EntitySystem
             var old = comp.Level;
             comp.Level = level;
             Dirty(ent);
-            _movementSpeed.RefreshMovementSpeedModifiers(ent);
+            _movementSpeed.RefreshMovementSpeedModifiers(ent.Owner);
 
             if (level > old)
             {
