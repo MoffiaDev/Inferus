@@ -1,3 +1,4 @@
+using Content.Shared._Shitmed.Surgery.Wounds.Components; // Inferus
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
@@ -50,11 +51,13 @@ public sealed partial class HealingSystem : EntitySystem
         if (!TryComp(args.Used, out HealingComponent? healing))
             return;
 
-        if (!TryComp<InjurableComponent>(target, out var injurable))
+        // Inferus - wound bodies have no InjurableComponent, their damage lives in wounds
+        TryComp<InjurableComponent>(target, out var injurable);
+        if (injurable == null && !HasComp<WoundDamageModelComponent>(target))
             return;
 
         if (healing.DamageContainers is not null &&
-            injurable.DamageContainer is not null &&
+            injurable?.DamageContainer is not null &&
             !healing.DamageContainers.Contains(injurable.DamageContainer.Value))
         {
             return;
@@ -182,11 +185,13 @@ public sealed partial class HealingSystem : EntitySystem
         if (!Resolve(target, ref target.Comp, false))
             return false;
 
-        if (!TryComp<InjurableComponent>(target, out var injurable))
+        // Inferus - wound bodies have no InjurableComponent, their damage lives in wounds
+        TryComp<InjurableComponent>(target, out var injurable);
+        if (injurable == null && !HasComp<WoundDamageModelComponent>(target))
             return false;
 
         if (healing.Comp.DamageContainers is not null &&
-            injurable.DamageContainer is not null &&
+            injurable?.DamageContainer is not null &&
             !healing.Comp.DamageContainers.Contains(injurable.DamageContainer.Value))
         {
             return false;

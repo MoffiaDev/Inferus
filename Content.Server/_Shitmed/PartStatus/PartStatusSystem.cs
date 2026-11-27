@@ -3,6 +3,7 @@
 // Inferus - the report lists every limb with its wound and bone state, and your pain. Per-wound bleeding is not part of it yet.
 using Content.Server.Chat.Managers;
 using Content.Shared._Shitmed.PartStatus;
+using Content.Shared._Shitmed.Surgery.Bleeding;
 using Content.Shared._Shitmed.Surgery.Pain;
 using Content.Shared._Shitmed.Surgery.Traumas;
 using Content.Shared._Shitmed.Surgery.Wounds;
@@ -20,6 +21,7 @@ public sealed class PartStatusSystem : EntitySystem
     [Dependency] private IChatManager _chat = default!;
     [Dependency] private BodySystem _body = default!;
     [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private LimbBleedingSystem _bleeding = default!;
 
     private static readonly (TargetBodyPart Part, string Key)[] Rows =
     {
@@ -49,14 +51,14 @@ public sealed class PartStatusSystem : EntitySystem
         if (args.SenderSession.AttachedEntity != body || _mobState.IsIncapacitated(body))
             return;
 
-        var limbs = new Dictionary<ProtoId<OrganCategoryPrototype>, (WoundableSeverity Wounds, BoneSeverity Bone)>();
+        var limbs = new Dictionary<ProtoId<OrganCategoryPrototype>, (WoundableSeverity Wounds, BoneSeverity Bone, bool Bleeding, bool Tourniquet)>();
         foreach (var limb in _body.EnumerateOrgans<WoundableComponent>(body))
         {
             if (limb.Comp1.Category is not { } category)
                 continue;
 
             var bone = TryComp<BoneComponent>(limb, out var boneComp) ? boneComp.BoneSeverity : BoneSeverity.Normal;
-            limbs[category] = (limb.Comp2.WoundableSeverity, bone);
+            limbs[category] = (limb.Comp2.WoundableSeverity, bone, _bleeding.IsBleeding(limb.Owner, limb.Comp2), HasComp<TourniquetedComponent>(limb));
         }
 
         var lines = new List<string> { Loc.GetString("shitmed-part-status-title") };
@@ -78,6 +80,11 @@ public sealed class PartStatusSystem : EntitySystem
 
                 if (state.Bone != BoneSeverity.Normal)
                     parts.Add(Loc.GetString($"shitmed-part-status-bone-{state.Bone.ToString().ToLowerInvariant()}"));
+
+                if (state.Tourniquet)
+                    parts.Add(Loc.GetString("shitmed-part-status-tourniquet"));
+                else if (state.Bleeding)
+                    parts.Add(Loc.GetString("shitmed-part-status-bleeding"));
 
                 status = parts.Count == 0
                     ? Loc.GetString("shitmed-part-status-fine")
