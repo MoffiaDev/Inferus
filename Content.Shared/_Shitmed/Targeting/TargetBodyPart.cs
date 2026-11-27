@@ -1,0 +1,39 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Ported from Goob-Station (Content.Shared/_Shitmed/Targeting/TargetBodyPart.cs) // Inferus
+
+namespace Content.Shared._Shitmed.Targeting;
+
+/// <summary>
+/// Represents an enum of possible target parts.
+/// </summary>
+/// <remarks>
+/// To get all body parts as an array, use <see cref="SharedTargetingSystem.GetValidParts"/>.
+/// </remarks>
+[Flags]
+public enum TargetBodyPart : ushort
+{
+    Head = 1,
+    Chest = 1 << 1,
+    Groin = 1 << 2,
+    LeftArm = 1 << 3,
+    LeftHand = 1 << 4,
+    RightArm = 1 << 5,
+    RightHand = 1 << 6,
+    LeftLeg = 1 << 7,
+    LeftFoot = 1 << 8,
+    RightLeg = 1 << 9,
+    RightFoot = 1 << 10,
+
+    Hands = LeftHand | RightHand,
+    Arms = LeftArm | RightArm,
+    Legs = LeftLeg | RightLeg,
+    Feet = LeftFoot | RightFoot,
+    FullArms = Arms | Hands,
+    FullLegs = Feet | Legs,
+    BodyMiddle = Chest | Groin | FullArms,
+    FullLegsGroin = FullLegs | Groin,
+
+    All = Head | Chest | Groin | LeftArm | LeftHand | RightArm | RightHand | LeftLeg | LeftFoot | RightLeg | RightFoot,
+
+    Vital = Head | Chest | Groin,
+}

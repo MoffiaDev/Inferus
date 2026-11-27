@@ -68,6 +68,17 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction ZoomIn = "ZoomIn";
         public static readonly BoundKeyFunction ResetZoom = "ResetZoom";
         public static readonly BoundKeyFunction ResistGrab = "ResistGrab"; // Goobstation - Grab Intent
+        public static readonly BoundKeyFunction TargetHead = "TargetHead"; // Inferus - Shitmed targeting
+        public static readonly BoundKeyFunction TargetChest = "TargetChest"; // Inferus - Shitmed targeting
+        public static readonly BoundKeyFunction TargetGroin = "TargetGroin"; // Inferus - Shitmed targeting
+        public static readonly BoundKeyFunction TargetLeftArm = "TargetLeftArm"; // Inferus - Shitmed targeting
+        public static readonly BoundKeyFunction TargetLeftHand = "TargetLeftHand"; // Inferus - Shitmed targeting
+        public static readonly BoundKeyFunction TargetRightArm = "TargetRightArm"; // Inferus - Shitmed targeting
+        public static readonly BoundKeyFunction TargetRightHand = "TargetRightHand"; // Inferus - Shitmed targeting
+        public static readonly BoundKeyFunction TargetLeftLeg = "TargetLeftLeg"; // Inferus - Shitmed targeting
+        public static readonly BoundKeyFunction TargetLeftFoot = "TargetLeftFoot"; // Inferus - Shitmed targeting
+        public static readonly BoundKeyFunction TargetRightLeg = "TargetRightLeg"; // Inferus - Shitmed targeting
+        public static readonly BoundKeyFunction TargetRightFoot = "TargetRightFoot"; // Inferus - Shitmed targeting
 
         public static readonly BoundKeyFunction ArcadeUp = "ArcadeUp";
         public static readonly BoundKeyFunction ArcadeDown = "ArcadeDown";

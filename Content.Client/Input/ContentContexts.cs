@@ -121,6 +121,17 @@ namespace Content.Client.Input
             }
             human.AddFunction(ContentKeyFunctions.ToggleKnockdown);
             human.AddFunction(ContentKeyFunctions.OpenEmotesMenu);
+            human.AddFunction(ContentKeyFunctions.TargetHead); // Inferus - Shitmed targeting
+            human.AddFunction(ContentKeyFunctions.TargetChest); // Inferus - Shitmed targeting
+            human.AddFunction(ContentKeyFunctions.TargetGroin); // Inferus - Shitmed targeting
+            human.AddFunction(ContentKeyFunctions.TargetLeftArm); // Inferus - Shitmed targeting
+            human.AddFunction(ContentKeyFunctions.TargetLeftHand); // Inferus - Shitmed targeting
+            human.AddFunction(ContentKeyFunctions.TargetRightArm); // Inferus - Shitmed targeting
+            human.AddFunction(ContentKeyFunctions.TargetRightHand); // Inferus - Shitmed targeting
+            human.AddFunction(ContentKeyFunctions.TargetLeftLeg); // Inferus - Shitmed targeting
+            human.AddFunction(ContentKeyFunctions.TargetLeftFoot); // Inferus - Shitmed targeting
+            human.AddFunction(ContentKeyFunctions.TargetRightLeg); // Inferus - Shitmed targeting
+            human.AddFunction(ContentKeyFunctions.TargetRightFoot); // Inferus - Shitmed targeting
 
             var ghost = contexts.New("ghost", "human");
             ghost.AddFunction(EngineKeyFunctions.MoveUp);
