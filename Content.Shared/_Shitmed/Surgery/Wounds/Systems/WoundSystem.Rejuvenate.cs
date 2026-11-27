@@ -2,6 +2,7 @@
 // rejuvenate zeroes the body's damage, but the damage lives in wounds, so they have to be cleared too.
 using System.Linq;
 using Content.Shared._Shitmed.Surgery.Wounds.Components;
+using Content.Shared._Shitmed.Surgery.Traumas.Systems;
 using Content.Shared.Body;
 using Content.Shared.Rejuvenate;
 
@@ -9,6 +10,8 @@ namespace Content.Shared._Shitmed.Surgery.Wounds.Systems;
 
 public sealed partial class WoundSystem
 {
+    [Dependency] private BoneSystem _bone = default!; // Inferus
+
     [SubscribeLocalEvent]
     private void OnRejuvenate(Entity<WoundDamageModelComponent> ent, ref RejuvenateEvent args)
     {
@@ -30,5 +33,6 @@ public sealed partial class WoundSystem
         }
 
         SyncBodyDamage(ent, woundables);
+        _bone.RestoreBones(ent.Owner);
     }
 }

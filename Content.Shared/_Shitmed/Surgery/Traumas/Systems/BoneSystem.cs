@@ -8,7 +8,6 @@ using Content.Shared.Body;
 using Content.Shared.FixedPoint;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Rejuvenate;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -57,7 +56,7 @@ public sealed partial class BoneSystem : EntitySystem
     /// Every limb that can be wounded has a bone.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnWoundableInit(Entity<WoundableComponent> ent, ref ComponentInit args)
+    private void OnWoundableStartup(Entity<WoundableComponent> ent, ref ComponentStartup args)
     {
         if (_net.IsClient)
             return;
@@ -81,12 +80,12 @@ public sealed partial class BoneSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnRejuvenate(Entity<WoundDamageModelComponent> ent, ref RejuvenateEvent args)
+    public void RestoreBones(EntityUid body)
     {
         if (_net.IsClient)
             return;
 
-        foreach (var limb in _body.EnumerateOrgans<BoneComponent>(ent.Owner).ToList())
+        foreach (var limb in _body.EnumerateOrgans<BoneComponent>(body).ToList())
         {
             SetIntegrity((limb.Owner, limb.Comp2), limb.Comp2.IntegrityCap);
         }

@@ -27,6 +27,9 @@ For MIT this means you **must not** remove the copy of the MIT license from any 
 
 - Code taken from [the Starlight project](https://github.com/ss14Starlight/space-station-14) in the `_Starlight` namespace was taken under [their custom MIT-like license](/LICENSE-Starlight.txt) and sublicensed to AGPLv3.
 
+- Code in the `_Shitmed` namespace was ported from [Goob Station](https://github.com/Goob-Station/Goob-Station/), which is AGPL-3.0-or-later,
+  and adapted to Inferus's organ-based body model.
+
 - Code from other namespaces was taken under [the MIT license](/LICENSE-MIT.txt) and/or the AGPLv3 license.
 
 Assets have distinct licenses in `attributions.yml` and `meta.json` files which must be followed individually.

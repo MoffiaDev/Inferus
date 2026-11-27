@@ -78,6 +78,7 @@ Content under these subdirectories either originate from their respective fork, 
 | `_Funkystation`  | Funky Station       | https://github.com/funky-station/funky-station          | AGPL 3.0 |
 | `_Funkystation`  | Forky Station       | https://github.com/funky-station/forky-station          |    MIT   |
 | `_Goobstation`   | Goob Station        | https://github.com/Goob-Station/Goob-Station/           | AGPL 3.0 |
+| `_Shitmed`       | Shitmed (ported from Goob Station) | https://github.com/Goob-Station/Goob-Station/ | AGPL 3.0 |
 | `_White`         | White Dream         | https://github.com/WWhiteDreamProject/wwdpublic/        | AGPL 3.0 |
 | `_MACRO`         | Macrocosm           | https://github.com/syndicate-ss14/macrocosm             |    MIT   |
 | `_RMC14`         | RMC-14              | https://github.com/RMC-14/RMC-14                        |    MIT   |
