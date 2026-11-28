@@ -1,0 +1,445 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Body/Parts/cyberlimbs.yml: reaper, mechwright and engineer) // Inferus
+# Cybernetic arms whose hand keeps tools. The hand toggles them out with its action (LimbItemDeployer). The organs are 1.5 times as tough as flesh.
+
+- type: entity
+  id: OrganProstheticArmReaperLeft
+  parent: [ OrganBaseArmLeft, OrganProstheticBase ]
+  name: left reaper arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_silver_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_silver_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandReaperLeft
+  parent: [ OrganBaseHandLeft, OrganProstheticBase ]
+  name: left reaper hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_silver_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_silver_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - ScalpelCyber
+    - HemostatCyber
+    - RetractorCyber
+    - BoneSetterCyber
+    - BoneGelCyber
+    - CauteryCyber
+    - DrillCyber
+    - SawCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandLeft
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmReaperLeft
+  parent: DetachedBody
+  name: left reaper arm
+  description: A machine arm with its hand, a surgical arm. Its hand keeps a scalpel, hemostat, retractor, bone setter, bone gel, cautery, drill and saw, all of them much faster than the ordinary ones. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmReaperLeft
+    - OrganProstheticHandReaperLeft
+
+- type: entity
+  id: OrganProstheticArmReaperRight
+  parent: [ OrganBaseArmRight, OrganProstheticBase ]
+  name: right reaper arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_silver_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_silver_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandReaperRight
+  parent: [ OrganBaseHandRight, OrganProstheticBase ]
+  name: right reaper hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_silver_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_silver_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - ScalpelCyber
+    - HemostatCyber
+    - RetractorCyber
+    - BoneSetterCyber
+    - BoneGelCyber
+    - CauteryCyber
+    - DrillCyber
+    - SawCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandRight
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmReaperRight
+  parent: DetachedBody
+  name: right reaper arm
+  description: A machine arm with its hand, a surgical arm. Its hand keeps a scalpel, hemostat, retractor, bone setter, bone gel, cautery, drill and saw, all of them much faster than the ordinary ones. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmReaperRight
+    - OrganProstheticHandReaperRight
+
+- type: entity
+  id: OrganProstheticArmMechwrightLeft
+  parent: [ OrganBaseArmLeft, OrganProstheticBase ]
+  name: left mechwright arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_steel_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_steel_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandMechwrightLeft
+  parent: [ OrganBaseHandLeft, OrganProstheticBase ]
+  name: left mechwright hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_steel_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_steel_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - WrenchCyber
+    - ScrewdriverCyber
+    - CrowbarCyber
+    - WirecutterCyber
+    - WelderCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandLeft
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmMechwrightLeft
+  parent: DetachedBody
+  name: left mechwright arm
+  description: A machine arm with its hand, an engineering arm. Its hand keeps a wrench, screwdriver, crowbar, wirecutter and welder. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmMechwrightLeft
+    - OrganProstheticHandMechwrightLeft
+
+- type: entity
+  id: OrganProstheticArmMechwrightRight
+  parent: [ OrganBaseArmRight, OrganProstheticBase ]
+  name: right mechwright arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_steel_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_steel_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandMechwrightRight
+  parent: [ OrganBaseHandRight, OrganProstheticBase ]
+  name: right mechwright hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_steel_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_steel_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - WrenchCyber
+    - ScrewdriverCyber
+    - CrowbarCyber
+    - WirecutterCyber
+    - WelderCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandRight
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmMechwrightRight
+  parent: DetachedBody
+  name: right mechwright arm
+  description: A machine arm with its hand, an engineering arm. Its hand keeps a wrench, screwdriver, crowbar, wirecutter and welder. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmMechwrightRight
+    - OrganProstheticHandMechwrightRight
+
+- type: entity
+  id: OrganProstheticArmEngineerLeft
+  parent: [ OrganBaseArmLeft, OrganProstheticBase ]
+  name: left engineer arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_engineer_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_engineer_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandEngineerLeft
+  parent: [ OrganBaseHandLeft, OrganProstheticBase ]
+  name: left engineer hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_engineer_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_engineer_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - JawsOfLifeCyber
+    - PowerDrillCyber
+    - WelderExperimentalCyber
+    - RCDCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandLeft
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmEngineerLeft
+  parent: DetachedBody
+  name: left engineer arm
+  description: A machine arm with its hand, an engineering arm. Its hand keeps a jaws of life, a power drill, an experimental welder and an RCD. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmEngineerLeft
+    - OrganProstheticHandEngineerLeft
+
+- type: entity
+  id: OrganProstheticArmEngineerRight
+  parent: [ OrganBaseArmRight, OrganProstheticBase ]
+  name: right engineer arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_engineer_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_engineer_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandEngineerRight
+  parent: [ OrganBaseHandRight, OrganProstheticBase ]
+  name: right engineer hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_engineer_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_engineer_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - JawsOfLifeCyber
+    - PowerDrillCyber
+    - WelderExperimentalCyber
+    - RCDCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandRight
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmEngineerRight
+  parent: DetachedBody
+  name: right engineer arm
+  description: A machine arm with its hand, an engineering arm. Its hand keeps a jaws of life, a power drill, an experimental welder and an RCD. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmEngineerRight
+    - OrganProstheticHandEngineerRight

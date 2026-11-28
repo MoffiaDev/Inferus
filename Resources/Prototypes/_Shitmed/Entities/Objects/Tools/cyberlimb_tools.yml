@@ -1,0 +1,310 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Entities/Objects/Tools/cyberlimb.yml and .../Medical/surgery.yml) // Inferus
+# The tools of the cybernetic hands. They have the tag the hands accept and cannot be dropped while they are out (the deployer system makes them unremovable).
+# The speed of a surgical tool here is how many times faster than a normal one it is. Starlight had it the other way round (0.2 = five times faster).
+
+# Reaper - surgery
+
+- type: entity
+  parent: Scalpel
+  id: ScalpelCyber
+  name: scalpel
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: scalpel
+  - type: Scalpel
+    speed: 5
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: Hemostat
+  id: HemostatCyber
+  name: hemostat
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: hemostat
+  - type: Hemostat
+    speed: 2.5
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: Retractor
+  id: RetractorCyber
+  name: retractor
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: retractor
+  - type: Retractor
+    speed: 2.5
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: Cautery
+  id: CauteryCyber
+  name: cautery
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: cautery
+  - type: Cautery
+    speed: 2
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: Drill
+  id: DrillCyber
+  name: drill
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: drill
+  - type: Drill
+    speed: 2
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: SawElectric
+  id: SawCyber
+  name: circular saw
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: saw
+  - type: BoneSaw
+    speed: 10
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: BaseToolSurgery
+  id: BoneSetterCyber
+  name: bone setter
+  description: A surgical tool used for setting bones.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: bonesetter
+  - type: BoneSetter
+    speed: 2.5
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: BaseToolSurgery
+  id: BoneGelCyber
+  name: bone gel
+  description: Bone gel that seals a set bone.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: bonegel
+  - type: BoneGel
+    speed: 2.5
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+# Mechwright
+- type: entity
+  parent: Wrench
+  id: WrenchCyber
+  name: wrench
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: wrench
+  - type: Tool
+    speedModifier: 1.75
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: Screwdriver
+  id: ScrewdriverCyber
+  name: screwdriver
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: screwdriver
+  - type: Tool
+    speedModifier: 1.75
+  - type: Tag
+    tags:
+    - Screwdriver
+    - CyberHandItem
+
+- type: entity
+  parent: Crowbar
+  id: CrowbarCyber
+  name: crowbar
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: crowbar
+  - type: Tool
+    speedModifier: 1.75
+  - type: Tag
+    tags:
+    - Crowbar
+    - CyberHandItem
+
+- type: entity
+  parent: Wirecutter
+  id: WirecutterCyber
+  name: wirecutter
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: cutters
+  - type: Tool
+    speedModifier: 1.75
+  - type: Tag
+    tags:
+    - Wirecutter
+    - CyberHandItem
+
+- type: entity
+  parent: Welder
+  id: WelderCyber
+  name: welding tool
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: indwelder
+    - state: indwelder-on
+      visible: false
+      shader: unshaded
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Tool
+    speedModifier: 1.75
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+# Engineer
+- type: entity
+  parent: PowerDrill
+  id: PowerDrillCyber
+  name: cyber drill
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: drill_screw
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+    - behavior: [ Screwing ]
+      sprite:
+        sprite: _Shitmed/Objects/Tools/cyberling.rsi
+        state: drill_screw
+      useSound:
+        path: /Audio/Items/drill_use.ogg
+      changeSound:
+        path: /Audio/Items/change_drill.ogg
+    - behavior: [ Anchoring ]
+      sprite:
+        sprite: _Shitmed/Objects/Tools/cyberling.rsi
+        state: drill_bolt
+      useSound:
+        path: /Audio/Items/drill_use.ogg
+      changeSound:
+        path: /Audio/Items/change_drill.ogg
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: JawsOfLife
+  id: JawsOfLifeCyber
+  name: cybernetic jaws of life
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: jaws_pry
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+    - behavior: [ Prying ]
+      sprite:
+        sprite: _Shitmed/Objects/Tools/cyberling.rsi
+        state: jaws_pry
+      useSound: /Audio/Items/jaws_pry.ogg
+      changeSound: /Audio/Items/change_jaws.ogg
+    - behavior: [ Cutting ]
+      sprite:
+        sprite: _Shitmed/Objects/Tools/cyberling.rsi
+        state: jaws_cutter
+      useSound: /Audio/Items/jaws_cut.ogg
+      changeSound: /Audio/Items/change_jaws.ogg
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: WelderExperimental
+  id: WelderExperimentalCyber
+  name: experimental cyber-welder
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: expwelder
+    - state: indwelder-on
+      visible: false
+      shader: unshaded
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: RCD
+  id: RCDCyber
+  name: cybernetic RCD
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: rcd
+  - type: Tag
+    tags:
+    - CyberHandItem

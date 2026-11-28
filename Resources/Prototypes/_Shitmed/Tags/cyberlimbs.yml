@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Inferus - the tools that a cybernetic hand keeps. Only these fit the extra hands it gives the body.
+- type: Tag
+  id: CyberHandItem

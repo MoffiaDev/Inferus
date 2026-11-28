@@ -1,0 +1,174 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Entities/Objects/Specific/Medical/surgery.yml, the *Ripper tools) // Inferus
+# The ripperdoc tools: slower than the reaper ones, a little slower than a normal one in fact (Starlight had 1.2 as a duration multiplier, so 0.83 here),
+# and they weigh on the arm (sprint 10% slower while they are out). The weapons of the tools do no damage.
+
+- type: entity
+  parent: Scalpel
+  id: ScalpelRipper
+  name: scalpel
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: scalpelripper
+  - type: Scalpel
+    speed: 0.83
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 0
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: Hemostat
+  id: HemostatRipper
+  name: hemostat
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: hemostatripper
+  - type: Hemostat
+    speed: 0.83
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: Retractor
+  id: RetractorRipper
+  name: retractor
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: retractorripper
+  - type: Retractor
+    speed: 0.83
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: Cautery
+  id: CauteryRipper
+  name: cautery
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: cauteryripper
+  - type: Cautery
+    speed: 0.83
+  - type: MeleeWeapon
+    damage:
+      types:
+        Heat: 0
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: Drill
+  id: DrillRipper
+  name: drill
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: drillripper
+  - type: Drill
+    speed: 0.83
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 0
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: SawElectric
+  id: SawRipper
+  name: circular saw
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: sawripper
+  - type: BoneSaw
+    speed: 0.83
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 0
+        Piercing: 0
+        Slash: 0
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: BaseToolSurgery
+  id: BoneSetterRipper
+  name: bone setter
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: bonesetterripper
+  - type: BoneSetter
+    speed: 0.83
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  parent: BaseToolSurgery
+  id: BoneGelRipper
+  name: bone gel
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/surgery.rsi
+    layers:
+    - state: bonegel
+  - type: BoneGel
+    speed: 0.83
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem

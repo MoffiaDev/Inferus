@@ -166,6 +166,124 @@
     Silver: 200
     Gold: 100
 
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmReaperLeft
+  result: ProstheticArmReaperLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmReaperRight
+  result: ProstheticArmReaperRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmMechwrightLeft
+  result: ProstheticArmMechwrightLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmMechwrightRight
+  result: ProstheticArmMechwrightRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmEngineerLeft
+  result: ProstheticArmEngineerLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmEngineerRight
+  result: ProstheticArmEngineerRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmRipperLeft
+  result: ProstheticArmRipperLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmRipperRight
+  result: ProstheticArmRipperRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmRipperLeft
+  result: ProstheticArmRipperLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmRipperRight
+  result: ProstheticArmRipperRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
 - type: latheRecipePack
   id: CyberneticOrgans
   recipes:
@@ -188,3 +306,11 @@
   - ProstheticLegRight
   - ProstheticLegBudgetRight
   - ProstheticLegSpeedRight
+  - ProstheticArmReaperLeft
+  - ProstheticArmReaperRight
+  - ProstheticArmMechwrightLeft
+  - ProstheticArmMechwrightRight
+  - ProstheticArmEngineerLeft
+  - ProstheticArmEngineerRight
+  - ProstheticArmRipperLeft
+  - ProstheticArmRipperRight

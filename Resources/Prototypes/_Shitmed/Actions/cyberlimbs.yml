@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Actions/common.yml) // Inferus
+# Takes the tools out of a cybernetic hand and puts them back. The event is raised on the body, the category tells which hand it is.
+- type: entity
+  parent: BaseAction
+  id: ActionToggleCyberHandLeft
+  name: Toggle hand
+  description: Toggle the tools of the left hand.
+  components:
+  - type: Action
+    useDelay: 1
+    raiseOnUser: true
+    icon:
+      sprite: _Shitmed/Interface/Actions/actions_cyber.rsi
+      state: cyber-hand-left
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:ToggleLimbEvent
+      category: HandLeft
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleCyberHandRight
+  name: Toggle hand
+  description: Toggle the tools of the right hand.
+  components:
+  - type: Action
+    useDelay: 1
+    raiseOnUser: true
+    icon:
+      sprite: _Shitmed/Interface/Actions/actions_cyber.rsi
+      state: cyber-hand-right
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:ToggleLimbEvent
+      category: HandRight

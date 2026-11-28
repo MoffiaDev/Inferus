@@ -32,7 +32,7 @@
   cost: 15000
   position: 6,5
   technologyPrerequisites:
-  - MechanizedTreatment
+  - CyberneticOrgans
   recipeUnlocks:
   - ProstheticArmLeft
   - ProstheticArmRight
@@ -42,3 +42,11 @@
   - ProstheticLegRight
   - ProstheticLegBudgetRight
   - ProstheticLegSpeedRight
+  - ProstheticArmReaperLeft
+  - ProstheticArmReaperRight
+  - ProstheticArmMechwrightLeft
+  - ProstheticArmMechwrightRight
+  - ProstheticArmEngineerLeft
+  - ProstheticArmEngineerRight
+  - ProstheticArmRipperLeft
+  - ProstheticArmRipperRight

@@ -1,0 +1,155 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Body/Parts/cyberlimbs.yml: ripperdoc) // Inferus
+# The ripperdoc arm: surgical tools like the reaper arm but ordinary speed.
+
+- type: entity
+  id: OrganProstheticArmRipperLeft
+  parent: [ OrganBaseArmLeft, OrganProstheticBase ]
+  name: left ripperdoc arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_ripper_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_ripper_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandRipperLeft
+  parent: [ OrganBaseHandLeft, OrganProstheticBase ]
+  name: left ripperdoc hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_ripper_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_ripper_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - ScalpelRipper
+    - HemostatRipper
+    - RetractorRipper
+    - BoneSetterRipper
+    - BoneGelRipper
+    - CauteryRipper
+    - DrillRipper
+    - SawRipper
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandLeft
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmRipperLeft
+  parent: DetachedBody
+  name: left ripperdoc arm
+  description: A machine arm with its hand, a surgical arm. Its hand keeps a scalpel, hemostat, retractor, bone setter, bone gel, cautery, drill and saw. Slower than the reaper arm. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmRipperLeft
+    - OrganProstheticHandRipperLeft
+
+- type: entity
+  id: OrganProstheticArmRipperRight
+  parent: [ OrganBaseArmRight, OrganProstheticBase ]
+  name: right ripperdoc arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_ripper_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_ripper_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandRipperRight
+  parent: [ OrganBaseHandRight, OrganProstheticBase ]
+  name: right ripperdoc hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_ripper_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_ripper_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - ScalpelRipper
+    - HemostatRipper
+    - RetractorRipper
+    - BoneSetterRipper
+    - BoneGelRipper
+    - CauteryRipper
+    - DrillRipper
+    - SawRipper
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandRight
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmRipperRight
+  parent: DetachedBody
+  name: right ripperdoc arm
+  description: A machine arm with its hand, a surgical arm. Its hand keeps a scalpel, hemostat, retractor, bone setter, bone gel, cautery, drill and saw. Slower than the reaper arm. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmRipperRight
+    - OrganProstheticHandRipperRight
