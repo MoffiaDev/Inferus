@@ -38,6 +38,7 @@ public sealed partial class WoundSystem
             || !TryComp<LostOrgansComponent>(ent.Owner, out var lost)
             || !TryComp<OrganComponent>(args.Organ, out var organ)
             || organ.Category is not { } category
+            || IsOrganFailed(args.Organ) // Inferus - a failed organ stays lost until it is repaired
             || !lost.Categories.Remove(category))
             return;
 

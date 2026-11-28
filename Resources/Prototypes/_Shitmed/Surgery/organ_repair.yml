@@ -1,0 +1,25 @@
+# Inferus - mending the internal organs of an open limb. The step repeats until none are bruised, damaged or failed any more.
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRepairOrgans
+  name: repair the organs
+  components:
+  - type: SurgeryStep
+    pain: 10
+    tool:
+    - type: Hemostat
+  - type: SurgeryRepeatableStep
+  - type: SurgeryTendOrgansStep
+    amount: 10
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRepairOrgans
+  name: repair the organs
+  components:
+  - type: Surgery
+    priority: 29
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepRepairOrgans
+  - type: SurgeryOrgansDamagedCondition

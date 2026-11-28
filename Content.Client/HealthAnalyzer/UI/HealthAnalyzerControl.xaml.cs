@@ -171,6 +171,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         DrawDiagnosticGroups(damageSortedGroups, damagePerType);
         DrawLimbStatus(target.Value); // Inferus
+        DrawOrganStatus(target.Value); // Inferus
     }
 
     /// <summary>
