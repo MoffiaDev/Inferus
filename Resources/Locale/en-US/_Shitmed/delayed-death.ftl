@@ -1,0 +1,1 @@
+defibrillator-missing-organs = Unable to revive the patient. Vital organs are missing.

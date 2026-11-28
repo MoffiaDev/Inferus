@@ -4,7 +4,9 @@
 // from reviving. Goob also stuns it and starts a delayed death. A brain taken out of the body, or put back, is handled in WoundSystem.Organs,
 // because only one system can subscribe to the organ events of a body.
 using Content.Server.Popups;
+using Content.Shared._Shitmed.DelayedDeath;
 using Content.Shared._Shitmed.Surgery.Traumas;
+using Content.Shared._Shitmed.Surgery.Wounds.Components;
 using Content.Shared.Speech;
 using Content.Shared.Standing;
 
@@ -20,17 +22,33 @@ public sealed class DebrainedSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<DebrainedComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<DebrainedComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<DebrainedComponent, SpeakAttemptEvent>(OnSpeakAttempt);
         SubscribeLocalEvent<DebrainedComponent, StandAttemptEvent>(OnStandAttempt);
     }
 
     private void OnInit(Entity<DebrainedComponent> ent, ref ComponentInit args)
     {
-        if (!TerminatingOrDeleted(ent))
-            _standing.Down(ent);
+        if (TerminatingOrDeleted(ent))
+            return;
+
+        EnsureComp<DelayedDeathComponent>(ent);
+        _standing.Down(ent);
     }
 
-    private void OnSpeakAttempt(Entity<DebrainedComponent> ent, ref SpeakAttemptEvent args)
+    private void OnRemove(Entity<DebrainedComponent> ent, ref ComponentRemove args)
+    {
+        if (TerminatingOrDeleted(ent))
+            return;
+
+        // The timer keeps running if the heart is gone too.
+        if (TryComp<LostOrgansComponent>(ent, out var lost) && lost.Categories.Contains("Heart"))
+            return;
+
+        RemComp<DelayedDeathComponent>(ent);
+    }
+
+        private void OnSpeakAttempt(Entity<DebrainedComponent> ent, ref SpeakAttemptEvent args)
     {
         _popup.PopupEntity(Loc.GetString("speech-muted"), ent, ent);
         args.Cancel();

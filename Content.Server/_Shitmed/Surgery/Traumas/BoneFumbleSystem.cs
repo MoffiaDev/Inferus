@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Adapted from Goob-Station (Content.Shared/_Shitmed/Surgery/Traumas/Systems/TraumaSystem.Bones.cs) // Inferus
-// Inferus - the odds come from the worst arm or hand bone of the body, not from the hand that holds the weapon.
-// It is decided on the server, so a fumbled attack is simply cancelled there.
+// Inferus - the odds come from the bones of the hand that holds the weapon and the arm it is on. A body with a hand id this does not know
+// uses its worst arm or hand bone instead. It is decided on the server, so a fumbled attack is simply cancelled there.
 using Content.Shared._Shitmed.Surgery.Traumas;
 using Content.Shared._Shitmed.Surgery.Traumas.Systems;
 using Content.Shared._Shitmed.Surgery.Wounds.Components;
 using Content.Shared.Body;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
@@ -22,7 +23,11 @@ public sealed class BoneFumbleSystem : EntitySystem
 {
     private static readonly SoundPathSpecifier FumbleSound = new("/Audio/Effects/slip.ogg");
 
+    private static readonly HashSet<string> LeftLimbs = ["HandLeft", "ArmLeft"];
+    private static readonly HashSet<string> RightLimbs = ["HandRight", "ArmRight"];
+
     [Dependency] private BodySystem _body = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
@@ -37,25 +42,37 @@ public sealed class BoneFumbleSystem : EntitySystem
 
     private void OnMeleeAttempt(Entity<MeleeWeaponComponent> weapon, ref AttemptMeleeEvent args)
     {
-        if (!args.Cancelled && TryFumble(args.User))
+        if (!args.Cancelled && TryFumble(args.User, weapon.Owner))
             args.Cancelled = true;
     }
 
     private void OnShotAttempt(Entity<GunComponent> gun, ref ShotAttemptedEvent args)
     {
-        if (TryFumble(args.User))
+        if (TryFumble(args.User, gun.Owner))
             args.Cancel();
     }
 
-    private bool TryFumble(EntityUid user)
+    private bool TryFumble(EntityUid user, EntityUid weapon)
     {
         if (!HasComp<WoundDamageModelComponent>(user))
             return false;
 
+        // The hand that holds the weapon, or the active hand when it is unarmed.
+        string? handId = null;
+        if (weapon == user || !_hands.IsHolding(user, weapon, out handId))
+            handId = _hands.GetActiveHand(user);
+
+        var limbs = handId switch
+        {
+            "left" => LeftLimbs,
+            "right" => RightLimbs,
+            _ => BoneDoAfterSystem.ArmCategories,
+        };
+
         var odds = 0f;
         foreach (var limb in _body.EnumerateOrgans<BoneComponent>(user))
         {
-            if (limb.Comp1.Category is not { } category || !BoneDoAfterSystem.ArmCategories.Contains(category.Id))
+            if (limb.Comp1.Category is not { } category || !limbs.Contains(category.Id))
                 continue;
 
             var limbOdds = limb.Comp2.BoneSeverity switch
