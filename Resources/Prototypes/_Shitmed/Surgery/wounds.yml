@@ -1,0 +1,66 @@
+# Inferus - tending the wounds of an open limb. A step heals some of the wounds and repeats until the limb has none left of its kind.
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepTendBruises
+  name: tend the bruises and cuts
+  components:
+  - type: SurgeryStep
+    pain: 10
+    tool:
+    - type: Hemostat
+  - type: SurgeryTendWoundsStep
+    types:
+    - Blunt
+    - Slash
+    - Piercing
+    amount: 20
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryTendBruises
+  name: tend bruises and cuts
+  components:
+  - type: Surgery
+    priority: 20
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepTendBruises
+  - type: SurgeryWoundedCondition
+    types:
+    - Blunt
+    - Slash
+    - Piercing
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepTendBurns
+  name: tend the burns
+  components:
+  - type: SurgeryStep
+    pain: 10
+    tool:
+    - type: Cautery
+  - type: SurgeryTendWoundsStep
+    types:
+    - Heat
+    - Cold
+    - Shock
+    - Caustic
+    amount: 20
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryTendBurns
+  name: tend burns
+  components:
+  - type: Surgery
+    priority: 21
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepTendBurns
+  - type: SurgeryWoundedCondition
+    types:
+    - Heat
+    - Cold
+    - Shock
+    - Caustic

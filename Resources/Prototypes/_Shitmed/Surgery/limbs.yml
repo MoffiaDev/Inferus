@@ -1,0 +1,92 @@
+# Inferus - amputation and reattachment of limbs. Both need the incision to be fully open first.
+
+# Amputation
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepSawBone
+  name: saw through the bone # IM GOING TO SAW THROUGH YOUR DICK
+  components:
+  - type: SurgeryStep
+    pain: 25
+    duration: 4
+    tool:
+    - type: BoneSaw
+    add:
+    - type: BoneSawed
+  - type: SurgeryBoneStep
+    set: 0
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepAmputateLimb
+  name: cut the limb off
+  components:
+  - type: SurgeryStep
+    pain: 20
+    tool:
+    - type: Scalpel
+  - type: SurgeryAmputateStep
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryAmputateLimb
+  name: amputate
+  components:
+  - type: Surgery
+    priority: 50
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepSawBone
+    - SurgeryStepAmputateLimb
+  - type: SurgeryAmputableCondition
+
+# Reattachment, done on the part the limb belongs to, with the severed limb in the hand
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepAttachLimb
+  name: attach the limb
+  components:
+  - type: SurgeryStep
+    pain: 20
+    tool:
+    - type: DetachedLimb
+    add:
+    - type: LimbReattached
+  - type: SurgeryAttachLimbStep
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepSetLimbBone
+  name: set the bone of the limb
+  components:
+  - type: SurgeryStep
+    pain: 15
+    tool:
+    - type: BoneSetter
+    add:
+    - type: LimbBoneSet
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepGelLimb
+  name: seal the limb with bone gel
+  components:
+  - type: SurgeryStep
+    pain: 5
+    tool:
+    - type: BoneGel
+  - type: SurgeryFinishReattachStep
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryReattachLimb
+  name: reattach a limb
+  components:
+  - type: Surgery
+    priority: 60
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepAttachLimb
+    - SurgeryStepSetLimbBone
+    - SurgeryStepGelLimb
+  - type: SurgeryReattachCondition

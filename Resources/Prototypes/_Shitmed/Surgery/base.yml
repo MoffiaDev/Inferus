@@ -1,0 +1,14 @@
+# Inferus - base prototypes for surgeries and their steps. The server spawns each one once and reads it, they are never in the world.
+- type: entity
+  id: SurgeryBase
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+
+- type: entity
+  id: SurgeryStepBase
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SurgeryStep

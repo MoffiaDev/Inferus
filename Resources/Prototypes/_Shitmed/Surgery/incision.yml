@@ -1,0 +1,104 @@
+# Inferus - opening and closing an incision, the base of most surgeries.
+
+# Steps, opening
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepOpenIncision
+  name: make an incision
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Scalpel
+    add:
+    - type: IncisionOpen
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepClampBleeders
+  name: clamp the bleeding vessels
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Hemostat
+    add:
+    - type: BleedersClamped
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRetractSkin
+  name: retract the skin
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Retractor
+    add:
+    - type: SkinRetracted
+
+# Steps, closing
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepReleaseSkin
+  name: release the skin
+  components:
+  - type: SurgeryStep
+    pain: 5
+    tool:
+    - type: Retractor
+    remove:
+    - type: SkinRetracted
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepUnclampBleeders
+  name: release the clamps
+  components:
+  - type: SurgeryStep
+    pain: 5
+    tool:
+    - type: Hemostat
+    remove:
+    - type: BleedersClamped
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepCloseIncision
+  name: cauterize the incision
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Cautery
+    remove:
+    - type: IncisionOpen
+
+# Surgeries
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryOpenIncision
+  name: open the incision
+  components:
+  - type: Surgery
+    priority: 1
+    steps:
+    - SurgeryStepOpenIncision
+    - SurgeryStepClampBleeders
+    - SurgeryStepRetractSkin
+  # Offered until the skin is retracted, so it stays in the list while it is half done.
+  - type: SurgeryPartComponentCondition
+    inverse: true
+    components:
+    - type: SkinRetracted
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryCloseIncision
+  name: close the incision
+  components:
+  - type: Surgery
+    priority: 100
+    steps:
+    - SurgeryStepReleaseSkin
+    - SurgeryStepUnclampBleeders
+    - SurgeryStepCloseIncision
+  - type: SurgeryPartComponentCondition
+    components:
+    - type: IncisionOpen

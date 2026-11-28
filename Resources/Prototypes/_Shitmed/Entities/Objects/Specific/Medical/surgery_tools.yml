@@ -1,0 +1,13 @@
+# Inferus - surgery tools that Inferus does not have yet. The sprites come from the Shitmed textures.
+- type: entity
+  parent: BaseToolSurgery
+  id: Bonesetter
+  name: bone setter
+  description: Used for setting bones back into place.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/bonesetter.rsi
+    state: bonesetter
+  - type: Item
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/bonesetter.rsi
+  - type: BoneSetter

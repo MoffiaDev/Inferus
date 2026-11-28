@@ -3,6 +3,7 @@
 // Inferus - a limb is amputated through DetachableOrganSystem, which moves the organ and every organ below it into a detached body.
 // Bleeding, dropped items, sounds and the throw of the limb come with later stages.
 using System.Linq;
+using Content.Shared._Shitmed.Surgery.Operations; // Inferus
 using Content.Shared._Shitmed.Surgery.Wounds.Components;
 using Content.Shared.Body;
 using Content.Shared.FixedPoint;
@@ -92,11 +93,17 @@ public sealed partial class WoundSystem
         var bodyUid = limb.Comp1.Body.Value;
         var bodyName = Name(bodyUid);
         var limbName = Name(limb.Owner);
+        var parentUid = TryComp<ChildOrganComponent>(limb.Owner, out var childOrgan) ? childOrgan.Parent : null; // Inferus - surgery reattaches the limb here
 
         // The detached body is what lies on the floor, so it takes the limb's name.
         var detached = _detachable.Detach(limb.Owner);
         if (detached == null)
             return false;
+
+        // Inferus - remembers what the limb was attached to, so surgery can put it back
+        var detachedLimb = EnsureComp<DetachedLimbComponent>(detached.Value);
+        detachedLimb.Limb = limb.Owner;
+        detachedLimb.Parent = parentUid;
 
         _metaData.SetEntityName(detached.Value, Loc.GetString("shitmed-detached-limb-name", ("owner", bodyName), ("limb", limbName)));
         _metaData.SetEntityDescription(detached.Value, Loc.GetString("shitmed-detached-limb-description"));

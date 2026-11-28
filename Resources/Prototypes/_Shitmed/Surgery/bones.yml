@@ -1,0 +1,39 @@
+# Inferus - mending a cracked or broken bone with a bone setter and bone gel.
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepSetBone
+  name: set the bone
+  components:
+  - type: SurgeryStep
+    pain: 15
+    tool:
+    - type: BoneSetter
+    add:
+    - type: BoneSet
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepGelBone
+  name: apply bone gel
+  components:
+  - type: SurgeryStep
+    pain: 5
+    tool:
+    - type: BoneGel
+    remove:
+    - type: BoneSet
+  - type: SurgeryBoneStep
+    restore: true
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryMendBone
+  name: mend the bone
+  components:
+  - type: Surgery
+    priority: 40
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepSetBone
+    - SurgeryStepGelBone
+  - type: SurgeryBoneCondition
