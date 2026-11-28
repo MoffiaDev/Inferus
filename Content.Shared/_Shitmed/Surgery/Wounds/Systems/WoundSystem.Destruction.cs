@@ -93,7 +93,7 @@ public sealed partial class WoundSystem
         var bodyUid = limb.Comp1.Body.Value;
         var bodyName = Name(bodyUid);
         var limbName = Name(limb.Owner);
-        var parentUid = TryComp<ChildOrganComponent>(limb.Owner, out var childOrgan) ? childOrgan.Parent : null; // Inferus - surgery reattaches the limb here
+        var parentUid = TryComp<ChildOrganComponent>(limb.Owner, out var limbRelation) ? limbRelation.Parent : null; // Inferus - surgery reattaches the limb here
 
         // The detached body is what lies on the floor, so it takes the limb's name.
         var detached = _detachable.Detach(limb.Owner);
