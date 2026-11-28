@@ -1,0 +1,94 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Entities/Objects/Tools/cyberlimb.yml: spacer and gorilla) // Inferus
+# These extend the normal items of Inferus and change the sprite and the tag, so the weapons behave as the normal ones do.
+# Starlight also tuned the accuracy of the accelerator and the fire rate of the gun, that is not ported.
+
+- type: entity
+  parent: WeaponProtoKineticAccelerator
+  id: ProtokineticAcceleratorCyber
+  name: cyber protokinetic accelerator
+  description: Fires low-damage kinetic bolts at a short range. The lack of stabilisation leads to decreased accuracy when firing in short succession.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: protokineticaccelerator
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: WeaponGrapplingGun
+  id: WeaponGrapplingGunCyber
+  name: cyber grappling gun
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: grapplinghook
+    - state: grapplinghook-loaded
+      map: [ "unshaded" ]
+      visible: true
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: WeaponCrusherDagger
+  id: WeaponCrusherDaggerCyber
+  name: cyber crusher dagger
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: crusherdagger
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: WeaponGauntletGorilla
+  id: WeaponGauntletGorillaCyber
+  name: G.O.R.I.L.L.A. gauntlet arm attachment
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: gorillagauntlet
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: WeaponPistolCHIMP
+  id: WeaponPistolCHIMPCyber
+  name: C.H.I.M.P. handcannon arm attachment
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: chimphandcannon
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-unshaded-1
+      visible: false
+      map: [ "enum.GunVisualLayers.MagUnshaded" ]
+      shader: unshaded
+  - type: BatterySelfRecharger
+    autoRechargeRate: 2
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: AnomalyScanner
+  id: AnomalyScannerCyber
+  name: anomaly scanner arm attachment
+  description: An arm-mounted scanner built to collect information on various anomalous objects.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: anomalyscanner
+  - type: Tag
+    tags:
+    - CyberHandItem

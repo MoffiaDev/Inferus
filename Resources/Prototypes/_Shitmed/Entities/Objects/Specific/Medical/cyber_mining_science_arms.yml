@@ -1,0 +1,286 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Body/Parts/cyberlimbs.yml: spacer and gorilla) // Inferus
+
+- type: entity
+  id: OrganProstheticArmSpacerLeft
+  parent: [ OrganBaseArmLeft, OrganProstheticBase ]
+  name: left spacer arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_spacer_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_spacer_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandSpacerLeft
+  parent: [ OrganBaseHandLeft, OrganProstheticBase ]
+  name: left spacer hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_spacer_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_spacer_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - ProtokineticAcceleratorCyber
+    - WeaponGrapplingGunCyber
+    - WeaponCrusherDaggerCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandLeft
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmSpacerLeft
+  parent: DetachedBody
+  name: left spacer arm
+  description: A machine arm with its hand, a mining arm. Its hand keeps a protokinetic accelerator, a grappling gun and a crusher dagger. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmSpacerLeft
+    - OrganProstheticHandSpacerLeft
+
+- type: entity
+  id: OrganProstheticArmSpacerRight
+  parent: [ OrganBaseArmRight, OrganProstheticBase ]
+  name: right spacer arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_spacer_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_spacer_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandSpacerRight
+  parent: [ OrganBaseHandRight, OrganProstheticBase ]
+  name: right spacer hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_spacer_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_spacer_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - ProtokineticAcceleratorCyber
+    - WeaponGrapplingGunCyber
+    - WeaponCrusherDaggerCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandRight
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmSpacerRight
+  parent: DetachedBody
+  name: right spacer arm
+  description: A machine arm with its hand, a mining arm. Its hand keeps a protokinetic accelerator, a grappling gun and a crusher dagger. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmSpacerRight
+    - OrganProstheticHandSpacerRight
+
+- type: entity
+  id: OrganProstheticArmGorillaLeft
+  parent: [ OrganBaseArmLeft, OrganProstheticBase ]
+  name: left gorilla arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_gorilla_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_gorilla_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandGorillaLeft
+  parent: [ OrganBaseHandLeft, OrganProstheticBase ]
+  name: left gorilla hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_gorilla_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_gorilla_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - WeaponGauntletGorillaCyber
+    - WeaponPistolCHIMPCyber
+    - AnomalyScannerCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandLeft
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmGorillaLeft
+  parent: DetachedBody
+  name: left gorilla arm
+  description: A machine arm with its hand, a research arm. Its hand keeps a G.O.R.I.L.L.A. gauntlet, a C.H.I.M.P. handcannon and an anomaly scanner. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmGorillaLeft
+    - OrganProstheticHandGorillaLeft
+
+- type: entity
+  id: OrganProstheticArmGorillaRight
+  parent: [ OrganBaseArmRight, OrganProstheticBase ]
+  name: right gorilla arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_gorilla_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_gorilla_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandGorillaRight
+  parent: [ OrganBaseHandRight, OrganProstheticBase ]
+  name: right gorilla hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_gorilla_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_gorilla_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - WeaponGauntletGorillaCyber
+    - WeaponPistolCHIMPCyber
+    - AnomalyScannerCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandRight
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmGorillaRight
+  parent: DetachedBody
+  name: right gorilla arm
+  description: A machine arm with its hand, a research arm. Its hand keeps a G.O.R.I.L.L.A. gauntlet, a C.H.I.M.P. handcannon and an anomaly scanner. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmGorillaRight
+    - OrganProstheticHandGorillaRight

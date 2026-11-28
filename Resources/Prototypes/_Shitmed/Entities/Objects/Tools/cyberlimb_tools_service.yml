@@ -1,0 +1,130 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Entities/Objects/Tools/cyberlimb.yml: persephone and angel) // Inferus
+# Botany tools and medical tools for the cybernetic hands. They extend the normal items, only the sprite and the tag change.
+# Left out for now: the integrated reagent grinder, the autoinjectors (the injector modes differ in Inferus) and the bigger solution of the dropper.
+
+- type: entity
+  parent: HydroponicsToolMiniHoe
+  id: CyberToolMiniHoe
+  name: mini hoe cybernetic arm attachment
+  description: It's used for removing weeds or scratching your back.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: minihoe
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: HydroponicsToolClippers
+  id: CyberToolClippers
+  name: plant clippers cybernetic arm attachment
+  description: A tool used to take samples from plants.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: clippers
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: HydroponicsToolScythe
+  id: CyberToolScythe
+  name: scythe cybernetic arm attachment
+  description: A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: scythe
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: HydroponicsToolHatchet
+  id: CyberToolHatchet
+  name: hatchet cybernetic arm attachment
+  description: A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: hatchet
+  - type: Tag
+    tags:
+    - CyberHandItem
+    - BotanyHatchet
+
+- type: entity
+  parent: HydroponicsToolSpade
+  id: CyberToolSpade
+  name: spade cybernetic arm attachment
+  description: A small tool for digging and moving dirt.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: spade
+  - type: Tag
+    tags:
+    - CyberHandItem
+    - BotanyShovel
+
+- type: entity
+  parent: Dropper
+  id: CyberToolDropper
+  name: hydraulic pipette cybernetic arm attachment
+  description: State-of-the-art hydraulic dropper built into a cybernetic arm.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: dropper
+      map: [ "enum.SolutionContainerLayers.Base" ]
+    - state: dropper1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: AdvancedJetInjector
+  id: AdvancedJetInjectorCyber
+  name: cyber jet injector
+  description: A pristine, fashionable, high quality injector. Now integrated into your arm!
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: jetinjector
+      map: [ "enum.SolutionContainerLayers.Base" ]
+    - state: autoinjector-fill-1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: DefibrillatorCompact
+  id: DefibrillatorCyber
+  name: cyber defibrillator
+  description: Arm-mounted device that can save lives, and act as a weapon in a pinch. It takes an ordinary power cell.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: defibrillator
+    - state: defibrillator-ready
+      map: [ "enum.ToggleableVisuals.Layer" ]
+      visible: false
+      shader: unshaded
+  - type: Tag
+    tags:
+    - CyberHandItem

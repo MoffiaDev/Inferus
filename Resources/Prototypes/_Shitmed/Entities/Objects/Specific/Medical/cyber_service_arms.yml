@@ -1,0 +1,291 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Body/Parts/cyberlimbs.yml: persephone and angel) // Inferus
+# The tool lists are Starlight's minus the items that are not ported yet (see cyberlimb_tools_service.yml).
+
+- type: entity
+  id: OrganProstheticArmPersephoneLeft
+  parent: [ OrganBaseArmLeft, OrganProstheticBase ]
+  name: left persephone arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_persephone_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_persephone_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandPersephoneLeft
+  parent: [ OrganBaseHandLeft, OrganProstheticBase ]
+  name: left persephone hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_persephone_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_persephone_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - CyberToolMiniHoe
+    - CyberToolClippers
+    - CyberToolDropper
+    - CyberToolHatchet
+    - CyberToolScythe
+    - CyberToolSpade
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandLeft
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmPersephoneLeft
+  parent: DetachedBody
+  name: left persephone arm
+  description: A machine arm with its hand, a botany arm. Its hand keeps a mini hoe, plant clippers, a hydraulic pipette, a hatchet, a scythe and a spade. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmPersephoneLeft
+    - OrganProstheticHandPersephoneLeft
+
+- type: entity
+  id: OrganProstheticArmPersephoneRight
+  parent: [ OrganBaseArmRight, OrganProstheticBase ]
+  name: right persephone arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_persephone_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_persephone_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandPersephoneRight
+  parent: [ OrganBaseHandRight, OrganProstheticBase ]
+  name: right persephone hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_persephone_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_persephone_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - CyberToolMiniHoe
+    - CyberToolClippers
+    - CyberToolDropper
+    - CyberToolHatchet
+    - CyberToolScythe
+    - CyberToolSpade
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandRight
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmPersephoneRight
+  parent: DetachedBody
+  name: right persephone arm
+  description: A machine arm with its hand, a botany arm. Its hand keeps a mini hoe, plant clippers, a hydraulic pipette, a hatchet, a scythe and a spade. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmPersephoneRight
+    - OrganProstheticHandPersephoneRight
+
+- type: entity
+  id: OrganProstheticArmAngelLeft
+  parent: [ OrganBaseArmLeft, OrganProstheticBase ]
+  name: left angel arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_angel_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_angel_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandAngelLeft
+  parent: [ OrganBaseHandLeft, OrganProstheticBase ]
+  name: left angel hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_angel_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_angel_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - AdvancedJetInjectorCyber
+    - DefibrillatorCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandLeft
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmAngelLeft
+  parent: DetachedBody
+  name: left angel arm
+  description: A machine arm with its hand, a medical arm. Its hand keeps a jet injector and a defibrillator. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmAngelLeft
+    - OrganProstheticHandAngelLeft
+
+- type: entity
+  id: OrganProstheticArmAngelRight
+  parent: [ OrganBaseArmRight, OrganProstheticBase ]
+  name: right angel arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_angel_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_angel_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandAngelRight
+  parent: [ OrganBaseHandRight, OrganProstheticBase ]
+  name: right angel hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_angel_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_angel_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - AdvancedJetInjectorCyber
+    - DefibrillatorCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandRight
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmAngelRight
+  parent: DetachedBody
+  name: right angel arm
+  description: A machine arm with its hand, a medical arm. Its hand keeps a jet injector and a defibrillator. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmAngelRight
+    - OrganProstheticHandAngelRight
