@@ -56,6 +56,8 @@
     - id: PlushieLizardJobPsychologist
       prob: 0.02
 
+# inferus - todo: add surgeon lockers
+
 - type: entity
   parent: LockerMedical
   id: LockerMedicalFilled

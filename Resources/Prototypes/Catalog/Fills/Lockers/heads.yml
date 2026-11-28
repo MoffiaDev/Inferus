@@ -213,6 +213,8 @@
     children:
     - id: ClothingEyesHudMedical
     - id: ClothingBeltMedicalFilled
+    - !type:NestedSelector # Inferus - surgery
+      tableId: FillSurgeryToolkit
     - id: HandheldCrewMonitor
     - id: Hypospray
     - id: MedTekCartridge

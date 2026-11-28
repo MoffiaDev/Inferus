@@ -53,7 +53,7 @@
   parent: CrateSurgery
   id: CrateMedicalSurgery
   name: surgical supplies crate
-  description: Surgical instruments.
+  description: Surgical instruments for surgical deeds. Portabellum Pharmaceuticals is not responsible for malpractice.
   components:
   - type: EntityTableContainerFill
     containers:
@@ -65,6 +65,10 @@
         - id: Drill
         - id: Saw
         - id: Hemostat
+        - id: Bonesetter # Inferus
+        - id: BoneTreatmentGel # Inferus
+          amount: 2 # Inferus
+        - id: ClothingHandsGlovesLatex # Inferus
         - id: ClothingMaskSterile
 
 - type: entity

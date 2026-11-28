@@ -1,0 +1,15 @@
+# Inferus - everything a surgeon needs for the Shitmed surgeries, in one table so lockers and crates stay in step.
+# The Bonesetter and the bone gel are for the bone surgeries, the sterile mask and gloves are the PPE every step asks for.
+- type: entityTable
+  id: FillSurgeryToolkit
+  table: !type:AllSelector
+    children:
+    - id: Scalpel
+    - id: Retractor
+    - id: Hemostat
+    - id: Cautery
+    - id: Saw
+    - id: Bonesetter
+    - id: BoneTreatmentGel
+    - id: ClothingMaskSterile
+    - id: ClothingHandsGlovesLatex
