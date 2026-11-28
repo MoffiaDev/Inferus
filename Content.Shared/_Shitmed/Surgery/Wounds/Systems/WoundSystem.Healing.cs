@@ -51,7 +51,7 @@ public sealed partial class WoundSystem
             var healable = new List<Entity<WoundComponent>>();
             foreach (var wound in GetWoundableWounds(limb, limb.Comp2))
             {
-                if (!wound.Comp.IsScar && wound.Comp.CanBeHealed && wound.Comp.WoundSeverityPoint > 0)
+                if (!wound.Comp.IsScar && wound.Comp.CanBeHealed && wound.Comp.WoundSeverityPoint > 0 && !IsHealBlocked(limb, wound))
                     healable.Add(wound);
             }
 

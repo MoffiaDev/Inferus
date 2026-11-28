@@ -65,21 +65,6 @@ public sealed partial class BoneSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnWoundableDamaged(Entity<BoneComponent> bone, ref WoundableDamagedEvent args)
-    {
-        if (_net.IsClient
-            || args.Amount < bone.Comp.MinimumDamage
-            || !bone.Comp.DamageFactors.TryGetValue(args.DamageType, out var factor))
-            return;
-
-        var chance = Math.Min(1f, args.Amount.Float() / bone.Comp.FullChanceDamage);
-        if (!_random.Prob(chance))
-            return;
-
-        ApplyBoneDamage(bone, FixedPoint2.New(args.Amount.Float() * factor));
-    }
-
-    [SubscribeLocalEvent]
     public void RestoreBones(EntityUid body)
     {
         if (_net.IsClient)
@@ -162,12 +147,16 @@ public sealed partial class BoneSystem : EntitySystem
         if (newIntegrity == comp.BoneIntegrity)
             return false;
 
+        var oldIntegrity = comp.BoneIntegrity;
         comp.BoneIntegrity = newIntegrity;
 
         var oldSeverity = comp.BoneSeverity;
         var newSeverity = GetSeverity(comp);
         comp.BoneSeverity = newSeverity;
         Dirty(bone);
+
+        var changed = new BoneIntegrityChangedEvent(bone, oldIntegrity, newIntegrity);
+        RaiseLocalEvent(bone.Owner, ref changed);
 
         if (newSeverity == oldSeverity)
             return true;

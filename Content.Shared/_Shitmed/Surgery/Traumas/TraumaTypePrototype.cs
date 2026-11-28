@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Ported from Goob-Station (Content.Shared/_Shitmed/Surgery/Traumas/TraumaTypePrototype.cs) // Inferus
-// Inferus - the Causes field is not carried over yet. TraumaCause/TraumaChance depend on Goob's BodyPart, Bone,
-// Nerve and organ-integrity code, so they arrive with the trauma system.
+// Inferus - Causes name limbs by organ category instead of BodyPartType.
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -68,6 +67,12 @@ public sealed partial class TraumaTypePrototype : IPrototype
     /// </summary>
     [DataField]
     public SpriteSpecifier? Icon;
+
+    /// <summary>
+    /// What can inflict this trauma, read by the trauma system and the explosion cause system.
+    /// </summary>
+    [DataField]
+    public List<TraumaCause>? Causes;
 }
 
 /// <summary>

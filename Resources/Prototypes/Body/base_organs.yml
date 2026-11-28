@@ -405,6 +405,8 @@
   - type: Input
     context: "ghost"
   - type: Brain
+  - type: OrganDeathTrauma # Inferus
+    trauma: Braindeath # Inferus - a brain that fails causes brain death
   - type: InputMover
   - type: Examiner
   - type: BlockMovement

@@ -3,6 +3,7 @@
 // Inferus - hits on the torso and head hurt the organs inside. A failed organ is lost to the body (it counts like a removed one for the
 // vital organs, eyes, ears and lungs) until surgery repairs it.
 using System.Linq;
+using Content.Shared._Shitmed.Surgery.Traumas;
 using Content.Shared._Shitmed.Surgery.Wounds;
 using Content.Shared._Shitmed.Surgery.Wounds.Systems;
 using Content.Shared.Body;
@@ -34,6 +35,7 @@ public sealed partial class OrganDamageSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private WoundSystem _wounds = default!;
+    [Dependency] private BodySystem _body = default!;
 
     private TimeSpan _nextHeal;
 
@@ -68,35 +70,21 @@ public sealed partial class OrganDamageSystem : EntitySystem
         EnsureComp<OrganDamageComponent>(ent);
     }
 
-    [SubscribeLocalEvent]
-    private void OnWoundableDamaged(Entity<ParentOrganComponent> limb, ref WoundableDamagedEvent args)
+    /// <summary>
+    /// Sets every internal organ of a body back to full integrity.
+    /// </summary>
+    public void RestoreOrgans(EntityUid body)
     {
-        if (_net.IsClient || args.Amount < MinimumDamage)
+        if (_net.IsClient)
             return;
 
-        var chance = Math.Min(1f, args.Amount.Float() / FullChanceDamage);
-        if (!_random.Prob(chance))
-            return;
-
-        var candidates = new List<Entity<OrganDamageComponent>>();
-        foreach (var child in limb.Comp.Children)
+        foreach (var organ in _body.EnumerateOrgans<OrganDamageComponent>(body).ToList())
         {
-            EntityUid uid = child;
-            if (HasComp<InternalChildOrganComponent>(uid)
-                && TryComp<OrganDamageComponent>(uid, out var damage)
-                && damage.DamageFactors.ContainsKey(args.DamageType))
-                candidates.Add((uid, damage));
+            SetIntegrity((organ.Owner, organ.Comp2), organ.Comp2.IntegrityCap);
         }
-
-        if (candidates.Count == 0)
-            return;
-
-        var organ = _random.Pick(candidates);
-        var amount = FixedPoint2.New(args.Amount.Float() * organ.Comp.DamageFactors[args.DamageType]);
-        ApplyDamage(organ, amount);
     }
 
-    public bool ApplyDamage(Entity<OrganDamageComponent> organ, FixedPoint2 amount)
+        public bool ApplyDamage(Entity<OrganDamageComponent> organ, FixedPoint2 amount)
     {
         return amount > 0 && SetIntegrity(organ, organ.Comp.Integrity - amount);
     }
@@ -113,12 +101,16 @@ public sealed partial class OrganDamageSystem : EntitySystem
         if (newIntegrity == comp.Integrity)
             return false;
 
+        var oldIntegrity = comp.Integrity;
         comp.Integrity = newIntegrity;
 
         var oldSeverity = comp.Severity;
         var newSeverity = GetSeverity(comp);
         comp.Severity = newSeverity;
         Dirty(organ);
+
+        var changed = new OrganIntegrityChangedEvent(organ, oldIntegrity, newIntegrity);
+        RaiseLocalEvent(organ.Owner, ref changed);
 
         if (newSeverity == oldSeverity)
             return true;
