@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Inferus - any surgical step poisons the patient when nobody around them wears a sterile mask and sterile gloves.
-// This is on top of the incision damage in SurgerySystem.Effects.cs, which hits as soon as anyone around is missing their gear.
+// Wearing the gear is checked in SurgerySystem.Effects.cs (HasPpe).
 using Content.Shared._Shitmed.Surgery.Operations;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;

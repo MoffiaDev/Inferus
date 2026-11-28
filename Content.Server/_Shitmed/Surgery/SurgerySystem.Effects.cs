@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-// Inferus - the effects and conditions of the limb, bone and wound surgeries, and the sterile check of the incision.
+// Inferus - the effects and conditions of the limb, bone and wound surgeries, and the sterile gear check.
 using System.Linq;
 using Content.Shared._Shitmed.Surgery.Operations;
 using Content.Shared._Shitmed.Surgery.Traumas;
