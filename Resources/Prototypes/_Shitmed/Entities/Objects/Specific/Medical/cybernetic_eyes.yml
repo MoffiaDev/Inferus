@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Inferus - cybernetic eyes. The setup of the eyes is the one of the human eyes, with the toughness of the other cybernetic organs.
+# An EMP switches them off, which blinds the body until it wears off.
+- type: entity
+  id: OrganCyberneticEyes
+  parent: [ OrganBaseEyes, OrganCyberneticBase, OrganHumanExternal ]
+  name: cybernetic eyes
+  description: Synthetic eyes. Hard to damage, but an EMP leaves them blind for a while.
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Mobs/Customization/eyes.rsi
+  - type: EyeBlinking
+    eyelidsSprite: /Textures/Mobs/Species/Human/parts.rsi
+  - type: Appearance

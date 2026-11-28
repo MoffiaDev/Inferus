@@ -1,0 +1,90 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Inferus - the medical techfab prints cybernetic organs once the Cybernetic Organs technology is researched.
+- type: latheRecipe
+  abstract: true
+  id: BaseCyberneticOrganRecipe
+  completetime: 6
+  materials:
+    Steel: 250
+    Plastic: 250
+    Glass: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: OrganCyberneticHeart
+  result: OrganCyberneticHeart
+  materials:
+    Steel: 300
+    Plastic: 300
+    Glass: 100
+    Silver: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: OrganCyberneticLungs
+  result: OrganCyberneticLungs
+  materials:
+    Steel: 300
+    Plastic: 300
+    Glass: 100
+    Silver: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: OrganCyberneticLiver
+  result: OrganCyberneticLiver
+  materials:
+    Steel: 250
+    Plastic: 250
+    Glass: 100
+    Silver: 50
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: OrganCyberneticKidneys
+  result: OrganCyberneticKidneys
+  materials:
+    Steel: 250
+    Plastic: 250
+    Glass: 100
+    Silver: 50
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: OrganCyberneticStomach
+  result: OrganCyberneticStomach
+  materials:
+    Steel: 250
+    Plastic: 250
+    Glass: 100
+    Silver: 50
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: OrganCyberneticEars
+  result: OrganCyberneticEars
+  materials:
+    Steel: 200
+    Plastic: 200
+    Glass: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: OrganCyberneticEyes
+  result: OrganCyberneticEyes
+  materials:
+    Steel: 300
+    Plastic: 300
+    Glass: 200
+    Silver: 100
+
+- type: latheRecipePack
+  id: CyberneticOrgans
+  recipes:
+  - OrganCyberneticHeart
+  - OrganCyberneticLungs
+  - OrganCyberneticLiver
+  - OrganCyberneticKidneys
+  - OrganCyberneticStomach
+  - OrganCyberneticEars
+  - OrganCyberneticEyes

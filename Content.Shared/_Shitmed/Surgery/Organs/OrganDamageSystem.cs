@@ -6,6 +6,7 @@ using System.Linq;
 using Content.Shared._Shitmed.Surgery.Wounds;
 using Content.Shared._Shitmed.Surgery.Wounds.Systems;
 using Content.Shared.Body;
+using Content.Shared.Emp; // Inferus
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
@@ -126,7 +127,7 @@ public sealed partial class OrganDamageSystem : EntitySystem
         {
             // A failed organ is lost to the body, a repaired one is back.
             if ((oldSeverity == OrganSeverity.Failed || newSeverity == OrganSeverity.Failed) && organComp.Category is { } category)
-                _wounds.SetOrganLost(body, category, newSeverity == OrganSeverity.Failed);
+                _wounds.SetOrganLost(body, category, newSeverity == OrganSeverity.Failed || HasComp<EmpDisabledComponent>(organ)); // Inferus - an EMP keeps a machine organ off
 
             if (_net.IsServer && newSeverity > oldSeverity)
             {

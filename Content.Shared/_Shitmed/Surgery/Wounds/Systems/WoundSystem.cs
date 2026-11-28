@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Adapted from Goob-Station (Content.Shared/_Shitmed/Surgery/Wounds/Systems/WoundSystem*.cs) // Inferus
 // Inferus - woundables are organs (see OrganComponent / OrganRelationSystem) instead of BodyPartComponent entities.
-// Healing over time, bleeding, destruction (dismemberment), traumas, pain and the visual layer come in later stages.
+// Bleeding, destruction (dismemberment), bones and pain are in the other WoundSystem partials.
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._Shitmed.Surgery.Wounds.Components;
@@ -458,7 +458,7 @@ public sealed partial class WoundSystem : EntitySystem
     /// <summary>
     /// A wound prototype is an entity prototype whose ID is the damage type it represents and that has a <see cref="WoundComponent"/>.
     /// </summary>
-        private bool IsWoundPrototypeValid(string protoId)
+    private bool IsWoundPrototypeValid(string protoId)
     {
         if (_validWoundTypes.TryGetValue(protoId, out var valid))
             return valid;

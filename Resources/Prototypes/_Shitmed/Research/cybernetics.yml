@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Inferus - unlocks the cybernetic organ recipes of the medical techfab.
+- type: technology
+  id: CyberneticOrgans
+  name: research-technology-cybernetic-organs
+  icon:
+    sprite: Mobs/Species/Human/organs.rsi
+    state: heart-on
+  discipline: CivilianServices
+  tier: 3
+  cost: 15000
+  position: 5,5
+  technologyPrerequisites:
+  - MechanizedTreatment
+  recipeUnlocks:
+  - OrganCyberneticHeart
+  - OrganCyberneticLungs
+  - OrganCyberneticLiver
+  - OrganCyberneticKidneys
+  - OrganCyberneticStomach
+  - OrganCyberneticEars
+  - OrganCyberneticEyes

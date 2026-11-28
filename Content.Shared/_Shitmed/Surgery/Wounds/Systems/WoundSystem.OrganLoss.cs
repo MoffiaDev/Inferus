@@ -3,6 +3,7 @@
 using Content.Shared._Shitmed.Surgery.Organs;
 using Content.Shared._Shitmed.Surgery.Wounds.Components;
 using Content.Shared.Body;
+using Content.Shared.Emp; // Inferus
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Shitmed.Surgery.Wounds.Systems;
@@ -31,10 +32,11 @@ public sealed partial class WoundSystem
     }
 
     /// <summary>
-    /// A failed organ stays lost when it is put into a body, until it is repaired.
+    /// A failed organ stays lost when it is put into a body, until it is repaired. So does a machine organ an EMP switched off, until it wears off.
     /// </summary>
     private bool IsOrganFailed(EntityUid organ)
     {
-        return TryComp<OrganDamageComponent>(organ, out var damage) && damage.Severity == OrganSeverity.Failed;
+        return HasComp<EmpDisabledComponent>(organ) // Inferus
+            || TryComp<OrganDamageComponent>(organ, out var damage) && damage.Severity == OrganSeverity.Failed;
     }
 }

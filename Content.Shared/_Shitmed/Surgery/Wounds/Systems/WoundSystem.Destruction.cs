@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Adapted from Goob-Station (Content.Shared/_Shitmed/Surgery/Wounds/Systems/WoundSystem.Destruction.cs) // Inferus
 // Inferus - a limb is amputated through DetachableOrganSystem, which moves the organ and every organ below it into a detached body.
-// Bleeding, dropped items, sounds and the throw of the limb come with later stages.
 using System.Linq;
 using Content.Shared._Shitmed.Surgery.Operations; // Inferus
 using Content.Shared._Shitmed.Surgery.Wounds.Components;

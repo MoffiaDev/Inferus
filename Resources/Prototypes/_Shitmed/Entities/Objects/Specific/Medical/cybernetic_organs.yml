@@ -9,6 +9,7 @@
   components:
   - type: Sprite
     color: "#9fb4cc"
+  - type: CyberneticOrgan
   - type: OrganDamage
     integrityCap: 100
     integrity: 100
