@@ -1,0 +1,502 @@
+# Inferus - taking internal organs out and putting them back in. All of it needs the incision fully open.
+# Removing: hemostat. Implanting: no tool, the organ is held in the active hand.
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractAppendix
+  name: remove the appendix
+  components:
+  - type: SurgeryStep
+    pain: 20
+    tool:
+    - type: Hemostat
+  - type: SurgeryExtractOrganStep
+    category: Appendix
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractAppendix
+  name: remove the appendix
+  components:
+  - type: Surgery
+    priority: 30
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepExtractAppendix
+  - type: SurgeryOrganCondition
+    category: Appendix
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepImplantAppendix
+  name: implant the appendix
+  components:
+  - type: SurgeryStep
+    pain: 15
+  - type: SurgeryImplantOrganStep
+    category: Appendix
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantAppendix
+  name: implant the appendix
+  components:
+  - type: Surgery
+    priority: 31
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepImplantAppendix
+  - type: SurgeryOrganCondition
+    category: Appendix
+    present: false
+    host: Torso
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractLungs
+  name: remove the lungs
+  components:
+  - type: SurgeryStep
+    pain: 20
+    tool:
+    - type: Hemostat
+  - type: SurgeryExtractOrganStep
+    category: Lungs
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractLungs
+  name: remove the lungs
+  components:
+  - type: Surgery
+    priority: 32
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepExtractLungs
+  - type: SurgeryOrganCondition
+    category: Lungs
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepImplantLungs
+  name: implant the lungs
+  components:
+  - type: SurgeryStep
+    pain: 15
+  - type: SurgeryImplantOrganStep
+    category: Lungs
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantLungs
+  name: implant the lungs
+  components:
+  - type: Surgery
+    priority: 33
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepImplantLungs
+  - type: SurgeryOrganCondition
+    category: Lungs
+    present: false
+    host: Torso
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractHeart
+  name: remove the heart
+  components:
+  - type: SurgeryStep
+    pain: 20
+    tool:
+    - type: Hemostat
+  - type: SurgeryExtractOrganStep
+    category: Heart
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractHeart
+  name: remove the heart
+  components:
+  - type: Surgery
+    priority: 34
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepExtractHeart
+  - type: SurgeryOrganCondition
+    category: Heart
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepImplantHeart
+  name: implant the heart
+  components:
+  - type: SurgeryStep
+    pain: 15
+  - type: SurgeryImplantOrganStep
+    category: Heart
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantHeart
+  name: implant the heart
+  components:
+  - type: Surgery
+    priority: 35
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepImplantHeart
+  - type: SurgeryOrganCondition
+    category: Heart
+    present: false
+    host: Torso
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractStomach
+  name: remove the stomach
+  components:
+  - type: SurgeryStep
+    pain: 20
+    tool:
+    - type: Hemostat
+  - type: SurgeryExtractOrganStep
+    category: Stomach
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractStomach
+  name: remove the stomach
+  components:
+  - type: Surgery
+    priority: 36
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepExtractStomach
+  - type: SurgeryOrganCondition
+    category: Stomach
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepImplantStomach
+  name: implant the stomach
+  components:
+  - type: SurgeryStep
+    pain: 15
+  - type: SurgeryImplantOrganStep
+    category: Stomach
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantStomach
+  name: implant the stomach
+  components:
+  - type: Surgery
+    priority: 37
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepImplantStomach
+  - type: SurgeryOrganCondition
+    category: Stomach
+    present: false
+    host: Torso
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractLiver
+  name: remove the liver
+  components:
+  - type: SurgeryStep
+    pain: 20
+    tool:
+    - type: Hemostat
+  - type: SurgeryExtractOrganStep
+    category: Liver
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractLiver
+  name: remove the liver
+  components:
+  - type: Surgery
+    priority: 38
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepExtractLiver
+  - type: SurgeryOrganCondition
+    category: Liver
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepImplantLiver
+  name: implant the liver
+  components:
+  - type: SurgeryStep
+    pain: 15
+  - type: SurgeryImplantOrganStep
+    category: Liver
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantLiver
+  name: implant the liver
+  components:
+  - type: Surgery
+    priority: 39
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepImplantLiver
+  - type: SurgeryOrganCondition
+    category: Liver
+    present: false
+    host: Torso
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractKidneys
+  name: remove the kidneys
+  components:
+  - type: SurgeryStep
+    pain: 20
+    tool:
+    - type: Hemostat
+  - type: SurgeryExtractOrganStep
+    category: Kidneys
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractKidneys
+  name: remove the kidneys
+  components:
+  - type: Surgery
+    priority: 40
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepExtractKidneys
+  - type: SurgeryOrganCondition
+    category: Kidneys
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepImplantKidneys
+  name: implant the kidneys
+  components:
+  - type: SurgeryStep
+    pain: 15
+  - type: SurgeryImplantOrganStep
+    category: Kidneys
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantKidneys
+  name: implant the kidneys
+  components:
+  - type: Surgery
+    priority: 41
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepImplantKidneys
+  - type: SurgeryOrganCondition
+    category: Kidneys
+    present: false
+    host: Torso
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractBrain
+  name: remove the brain
+  components:
+  - type: SurgeryStep
+    pain: 20
+    tool:
+    - type: Hemostat
+  - type: SurgeryExtractOrganStep
+    category: Brain
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractBrain
+  name: remove the brain
+  components:
+  - type: Surgery
+    priority: 42
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepExtractBrain
+  - type: SurgeryOrganCondition
+    category: Brain
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepImplantBrain
+  name: implant the brain
+  components:
+  - type: SurgeryStep
+    pain: 15
+  - type: SurgeryImplantOrganStep
+    category: Brain
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantBrain
+  name: implant the brain
+  components:
+  - type: Surgery
+    priority: 43
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepImplantBrain
+  - type: SurgeryOrganCondition
+    category: Brain
+    present: false
+    host: Head
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractEyes
+  name: remove the eyes
+  components:
+  - type: SurgeryStep
+    pain: 20
+    tool:
+    - type: Hemostat
+  - type: SurgeryExtractOrganStep
+    category: Eyes
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractEyes
+  name: remove the eyes
+  components:
+  - type: Surgery
+    priority: 44
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepExtractEyes
+  - type: SurgeryOrganCondition
+    category: Eyes
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepImplantEyes
+  name: implant the eyes
+  components:
+  - type: SurgeryStep
+    pain: 15
+  - type: SurgeryImplantOrganStep
+    category: Eyes
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantEyes
+  name: implant the eyes
+  components:
+  - type: Surgery
+    priority: 45
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepImplantEyes
+  - type: SurgeryOrganCondition
+    category: Eyes
+    present: false
+    host: Head
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractTongue
+  name: remove the tongue
+  components:
+  - type: SurgeryStep
+    pain: 20
+    tool:
+    - type: Hemostat
+  - type: SurgeryExtractOrganStep
+    category: Tongue
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractTongue
+  name: remove the tongue
+  components:
+  - type: Surgery
+    priority: 46
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepExtractTongue
+  - type: SurgeryOrganCondition
+    category: Tongue
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepImplantTongue
+  name: implant the tongue
+  components:
+  - type: SurgeryStep
+    pain: 15
+  - type: SurgeryImplantOrganStep
+    category: Tongue
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantTongue
+  name: implant the tongue
+  components:
+  - type: Surgery
+    priority: 47
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepImplantTongue
+  - type: SurgeryOrganCondition
+    category: Tongue
+    present: false
+    host: Head
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractEars
+  name: remove the ears
+  components:
+  - type: SurgeryStep
+    pain: 20
+    tool:
+    - type: Hemostat
+  - type: SurgeryExtractOrganStep
+    category: Ears
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractEars
+  name: remove the ears
+  components:
+  - type: Surgery
+    priority: 48
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepExtractEars
+  - type: SurgeryOrganCondition
+    category: Ears
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepImplantEars
+  name: implant the ears
+  components:
+  - type: SurgeryStep
+    pain: 15
+  - type: SurgeryImplantOrganStep
+    category: Ears
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantEars
+  name: implant the ears
+  components:
+  - type: Surgery
+    priority: 49
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepImplantEars
+  - type: SurgeryOrganCondition
+    category: Ears
+    present: false
+    host: Head
