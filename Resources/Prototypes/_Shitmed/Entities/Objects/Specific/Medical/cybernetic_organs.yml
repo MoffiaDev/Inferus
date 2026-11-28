@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Inferus - cybernetic internal organs. They sit in the same organ category as the organic one, so the implant surgery takes them,
+# and they work like it. They take more to damage, shrug off cuts, and do not heal on their own: only surgery mends them.
+# The sprite of the organic organ is used, tinted, since there is no art for them.
+- type: entity
+  id: OrganCyberneticBase
+  abstract: true
+  parent: OrganSpriteHumanInternal
+  components:
+  - type: Sprite
+    color: "#9fb4cc"
+  - type: OrganDamage
+    integrityCap: 100
+    integrity: 100
+    naturalHealing: 0
+    thresholds:
+      Healthy: 70
+      Bruised: 35
+      Damaged: 1
+      Failed: 0
+    damageFactors:
+      Blunt: 0.25
+      Slash: 0.1
+      Piercing: 0.2
+
+- type: entity
+  id: OrganCyberneticHeart
+  parent: [ OrganBaseHeart, OrganCyberneticBase, OrganHumanMetabolizer ]
+  name: cybernetic heart
+  description: A mechanical heart that pumps without ever tiring. It shrugs off blows an organic one would not. Vulnerable to EMPs.
+
+- type: entity
+  id: OrganCyberneticLungs
+  parent: [ OrganBaseLungs, OrganCyberneticBase, OrganHumanMetabolizer ]
+  name: cybernetic lungs
+  description: A pair of synthetic lungs. Lung cancer has been reduced by 0.0064% because of their invention!
+
+- type: entity
+  id: OrganCyberneticLiver
+  parent: [ OrganBaseLiver, OrganCyberneticBase, OrganHumanMetabolizer ]
+  name: cybernetic liver
+  description: A synthetic liver that filters the blood without tiring.
+
+- type: entity
+  id: OrganCyberneticKidneys
+  parent: [ OrganBaseKidneys, OrganCyberneticBase, OrganHumanMetabolizer ]
+  name: cybernetic kidneys
+  description: Synthetic kidneys. They keep the blood clean and are hard to damage.
+
+- type: entity
+  id: OrganCyberneticStomach
+  parent: [ OrganBaseStomach, OrganCyberneticBase, OrganHumanMetabolizer ]
+  name: cybernetic stomach
+  description: A synthetic stomach. It digests as well just as the real one and is far sturdier.
+
+- type: entity
+  id: OrganCyberneticEars
+  parent: [ OrganBaseEars, OrganCyberneticBase, OrganHumanMetabolizer ]
+  name: cybernetic ears
+  description: Synthetic ears. Like hearing aids, but without the hassle! Hard to damage!
