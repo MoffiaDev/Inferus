@@ -100,28 +100,6 @@
     Glass: 100
     Silver: 100
 
-- type: latheRecipe
-  parent: BaseCyberneticOrganRecipe
-  id: ProstheticLegLeft
-  result: ProstheticLegLeft
-  completetime: 10
-  materials:
-    Steel: 500
-    Plastic: 300
-    Glass: 100
-    Silver: 100
-
-- type: latheRecipe
-  parent: BaseCyberneticOrganRecipe
-  id: ProstheticLegRight
-  result: ProstheticLegRight
-  completetime: 10
-  materials:
-    Steel: 500
-    Plastic: 300
-    Glass: 100
-    Silver: 100
-
 - type: latheRecipePack
   id: CyberneticOrgans
   recipes:
@@ -138,5 +116,3 @@
   recipes:
   - ProstheticArmLeft
   - ProstheticArmRight
-  - ProstheticLegLeft
-  - ProstheticLegRight

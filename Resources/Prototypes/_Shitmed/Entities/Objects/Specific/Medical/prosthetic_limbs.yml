@@ -1,25 +1,31 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
-# Inferus - prosthetic limbs. The organs are sturdier than flesh (1.5 times the integrity) and look like the human limbs, since there is no art
-# for them. The item is a severed limb that the reattach surgery takes: the arm and hand, or the leg and foot, with the torso as the part to attach to.
+# Inferus - prosthetic arms. The organs are sturdier than flesh (1.5 times the integrity) and use the cybernetic limb sprites ported from Starlight,
+# an EMP switches them off for a while. The item is a severed limb that the reattach surgery takes: the arm and hand, with the torso as the part to attach to.
+# There are no cybernetic legs for now. The code for them (slowing the body while an EMP has a leg off) is in CyberneticOrganSystem.
 - type: entity
   id: OrganProstheticBase
   abstract: true
   parent: OrganBase
   components:
-  - type: Sprite
-    sprite: Mobs/Species/Human/parts.rsi
-  - type: VisualOrgan
-    data:
-      sprite: Mobs/Species/Human/parts.rsi
   - type: VisualOrganMarkings
     markingData:
       group: Human
+  - type: CyberneticOrgan
+    markLost: false
+    empDamage: 0
 
 - type: entity
   id: OrganProstheticArmLeft
   parent: [ OrganBaseArmLeft, OrganProstheticBase ]
   name: prosthetic left arm
   components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_arm
   - type: Woundable
     integrity: 120
     integrityCap: 120
@@ -35,6 +41,13 @@
   parent: [ OrganBaseArmRight, OrganProstheticBase ]
   name: prosthetic right arm
   components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_arm
   - type: Woundable
     integrity: 120
     integrityCap: 120
@@ -50,6 +63,13 @@
   parent: [ OrganBaseHandLeft, OrganProstheticBase ]
   name: prosthetic left hand
   components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_hand
   - type: Woundable
     integrity: 90
     integrityCap: 90
@@ -65,66 +85,13 @@
   parent: [ OrganBaseHandRight, OrganProstheticBase ]
   name: prosthetic right hand
   components:
-  - type: Woundable
-    integrity: 90
-    integrityCap: 90
-    thresholds:
-      Minor: 75
-      Moderate: 60
-      Severe: 45
-      Critical: 27
-      Mangled: 0
-
-- type: entity
-  id: OrganProstheticLegLeft
-  parent: [ OrganBaseLegLeft, OrganProstheticBase ]
-  name: prosthetic left leg
-  components:
-  - type: Woundable
-    integrity: 120
-    integrityCap: 120
-    thresholds:
-      Minor: 105
-      Moderate: 75
-      Severe: 38
-      Critical: 15
-      Mangled: 0
-
-- type: entity
-  id: OrganProstheticLegRight
-  parent: [ OrganBaseLegRight, OrganProstheticBase ]
-  name: prosthetic right leg
-  components:
-  - type: Woundable
-    integrity: 120
-    integrityCap: 120
-    thresholds:
-      Minor: 105
-      Moderate: 75
-      Severe: 38
-      Critical: 15
-      Mangled: 0
-
-- type: entity
-  id: OrganProstheticFootLeft
-  parent: [ OrganBaseFootLeft, OrganProstheticBase ]
-  name: prosthetic left foot
-  components:
-  - type: Woundable
-    integrity: 90
-    integrityCap: 90
-    thresholds:
-      Minor: 75
-      Moderate: 60
-      Severe: 45
-      Critical: 27
-      Mangled: 0
-
-- type: entity
-  id: OrganProstheticFootRight
-  parent: [ OrganBaseFootRight, OrganProstheticBase ]
-  name: prosthetic right foot
-  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_hand
   - type: Woundable
     integrity: 90
     integrityCap: 90
@@ -150,20 +117,6 @@
     - OrganProstheticHandLeft
 
 - type: entity
-  id: ProstheticLegLeft
-  parent: DetachedBody
-  name: prosthetic left leg
-  description: A machine leg with its foot. Attach it to the torso of a patient who has lost that limb, with the same surgery that reattaches a severed one.
-  categories: [ ]
-  components:
-  - type: DetachedLimb
-  - type: ProstheticLimb
-    attachCategory: Torso
-    organs:
-    - OrganProstheticLegLeft
-    - OrganProstheticFootLeft
-
-- type: entity
   id: ProstheticArmRight
   parent: DetachedBody
   name: prosthetic right arm
@@ -176,17 +129,3 @@
     organs:
     - OrganProstheticArmRight
     - OrganProstheticHandRight
-
-- type: entity
-  id: ProstheticLegRight
-  parent: DetachedBody
-  name: prosthetic right leg
-  description: A machine leg with its foot. Attach it to the torso of a patient who has lost that limb, with the same surgery that reattaches a severed one.
-  categories: [ ]
-  components:
-  - type: DetachedLimb
-  - type: ProstheticLimb
-    attachCategory: Torso
-    organs:
-    - OrganProstheticLegRight
-    - OrganProstheticFootRight
