@@ -1,0 +1,51 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Entities/Objects/Tools/cyberlimb.yml: StampCyber) // Inferus
+
+- type: entity
+  id: StampCyber
+  parent: BaseItem
+  name: cybernetic multistamp
+  description: The bad boy can fit so many (3) stamps in it!
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: multistamp
+    - state: stamp
+      color: '#ffffff'
+  - type: ItemSlots
+    slots:
+      stamp_slot_1:
+        name: stamp-slot-component-slot-name-stamp
+        whitelist:
+          components:
+          - Stamp
+        blacklist:
+          components:
+          - Multistamp
+      stamp_slot_2:
+        name: stamp-slot-component-slot-name-stamp
+        whitelist:
+          components:
+          - Stamp
+        blacklist:
+          components:
+          - Multistamp
+      stamp_slot_3:
+        name: stamp-slot-component-slot-name-stamp
+        whitelist:
+          components:
+          - Stamp
+        blacklist:
+          components:
+          - Multistamp
+  - type: ContainerContainer
+    containers:
+      stamp_slot_1: !type:ContainerSlot
+      stamp_slot_2: !type:ContainerSlot
+      stamp_slot_3: !type:ContainerSlot
+  - type: Stamp
+  - type: Multistamp
+  - type: Tag
+    tags:
+    - CyberHandItem

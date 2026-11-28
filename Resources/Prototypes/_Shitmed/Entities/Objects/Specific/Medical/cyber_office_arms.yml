@@ -50,6 +50,7 @@
     items:
     - PenCyber
     - FilingCabinetCyber
+    - StampCyber
   - type: LimbItemDeployer
     action: ActionToggleCyberHandLeft
     sound:
@@ -120,6 +121,7 @@
     items:
     - PenCyber
     - FilingCabinetCyber
+    - StampCyber
   - type: LimbItemDeployer
     action: ActionToggleCyberHandRight
     sound:
