@@ -1,0 +1,206 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Entities/Objects/Tools/cyberlimb.yml and .../Weapons/Guns/cyberlimb.yml) // Inferus
+# The holorestrainer, the radcaster, the freeze ray and the vials of the cybernetic hands.
+# Starlight draws the freeze ray as a hitscan, here it is a laser bolt that does cold damage, since Inferus has no such hitscan prototype.
+
+- type: entity
+  parent: BaseItem
+  id: HoloRestrainerCyber
+  name: holorestrainer
+  description: Creates solid, but temporary holographic cuffs.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    state: holorestrainer
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot { }
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        blacklist:
+          tags:
+          - MechReactor
+  - type: HoloItem
+    itemPrototype: HandcuffsHolographic
+    chargeUse: 90
+    requiredComponents:
+    - Cuffable
+  - type: UseDelay
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  name: holocuffs
+  id: HandcuffsHolographic
+  parent: Handcuffs
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    state: holorestrainer_powered
+  - type: TemporaryHologram
+    lifetime: 180
+  - type: Handcuff
+    cuffedRSI: Objects/Misc/handcuffs.rsi
+    bodyIconState: body-overlay
+    mustBeUsedFromHand: false
+
+- type: entity
+  id: RadcasterCyber
+  parent: BaseWeaponBatterySmall
+  name: cybernetic radcaster
+  description: This seems a little unsafe...
+  components:
+  - type: Tag
+    tags:
+    - CyberHandItem
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: radcaster
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: radcaster-mag-unshaded-1
+      map: [ "enum.GunVisualLayers.MagUnshaded" ]
+      shader: unshaded
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
+    cameraRecoilScalar: 0.1
+    projectileSpeed: 2.0
+  - type: BatteryAmmoProvider
+    proto: RadOrb
+    fireCost: 1000
+  - type: BatterySelfRecharger
+    autoRechargeRate: 100
+  - type: MagazineVisuals
+    magState: radcaster-mag
+    steps: 2
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: FreezeRayCyber
+  parent: BaseWeaponBatterySmall
+  name: cybernetic freeze ray
+  description: Brr...! Cold!
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+    cameraRecoilScalar: 0.1
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    state: freeze_ray
+  - type: BatterySelfRecharger
+    autoRechargeRate: 100
+  - type: BatteryAmmoProvider
+    proto: FreezeRay
+    fireCost: 1000
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: BaseBullet
+  id: RadOrb
+  name: radiation orb
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: PointLight
+    enabled: true
+    color: "#38c23f"
+    radius: 2.0
+    energy: 7.0
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: bluespace
+      shader: unshaded
+    color: "#80c000"
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 20
+    impactEffect: BulletImpactEffectDisabler
+    ignoreShooter: false
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Reflective
+    reflective:
+    - Energy
+
+- type: entity
+  parent: BulletLaser
+  id: FreezeRay
+  name: freeze ray
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#66ccff"
+  - type: Sprite
+    color: "#66ccff"
+  - type: Projectile
+    damage:
+      types:
+        Heat: 0
+        Cold: 20
+
+- type: entity
+  id: VialCyber
+  parent: ChemistryEmptyVial
+  name: cybernetic vial
+  description: Fluid storage, integrated right into your arm!
+  components:
+  - type: Tag
+    tags:
+    - CyberHandItem
+    - Vial
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: cyber_vial
+    - state: cyber_vial-1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: cyber_vial-
+
+- type: entity
+  id: VialCyberEmpty
+  parent: VialCyber
+  suffix: Empty
+
+- type: entity
+  id: VialCyberWater
+  parent: VialCyber
+  suffix: Water
+  description: Fluid storage, integrated right into your arm! This one slowly draws water from the air.
+  components:
+  - type: SolutionRegeneration
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 0.5
+
+- type: entity
+  id: VialCyberBlood
+  parent: VialCyber
+  suffix: Blood
+  description: Fluid storage, integrated right into your arm! This one slowly draws blood from... somewhere. It does not seem to be yours..?
+  components:
+  - type: SolutionRegeneration
+    generated:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 0.5

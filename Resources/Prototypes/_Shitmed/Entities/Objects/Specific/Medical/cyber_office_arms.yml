@@ -189,6 +189,9 @@
   - type: LimbItemStorage
     items:
     - NodeScannerCyber
+    - RadcasterCyber
+    - FreezeRayCyber
+    - VialCyberEmpty
   - type: LimbItemDeployer
     action: ActionToggleCyberHandLeft
     sound:
@@ -258,6 +261,9 @@
   - type: LimbItemStorage
     items:
     - NodeScannerCyber
+    - RadcasterCyber
+    - FreezeRayCyber
+    - VialCyberEmpty
   - type: LimbItemDeployer
     action: ActionToggleCyberHandRight
     sound:

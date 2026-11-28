@@ -189,6 +189,7 @@
   - type: LimbItemStorage
     items:
     - MeleeWeaponCyberHerakles
+    - HoloRestrainerCyber
   - type: LimbItemDeployer
     action: ActionToggleCyberHandLeft
     sound:
@@ -258,6 +259,7 @@
   - type: LimbItemStorage
     items:
     - MeleeWeaponCyberHerakles
+    - HoloRestrainerCyber
   - type: LimbItemDeployer
     action: ActionToggleCyberHandRight
     sound:

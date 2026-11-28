@@ -1,0 +1,87 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Inferus - tending with the tools that Goob-Station has and Inferus had no steps for. The hemostat and the cautery keep their own steps in wounds.yml.
+# Stitches close the cuts and bruises quicker than the hemostat does, the tending tool does every kind of wound.
+- type: entity
+  parent: BaseToolSurgery
+  id: MedicalStitches
+  name: medical stitches
+  description: A fine, curved needle with a length of absorbable polyglycolide suture thread.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/stitches.rsi
+    state: stitches
+  - type: Stitches
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepStitchWounds
+  name: stitch the cuts and bruises
+  components:
+  - type: SurgeryStep
+    pain: 10
+    tool:
+    - type: Stitches
+  - type: SurgeryRepeatableStep
+  - type: SurgeryTendWoundsStep
+    types:
+    - Blunt
+    - Slash
+    - Piercing
+    amount: 30
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryStitchWounds
+  name: stitch cuts and bruises
+  components:
+  - type: Surgery
+    priority: 19
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepStitchWounds
+  - type: SurgeryWoundedCondition
+    types:
+    - Blunt
+    - Slash
+    - Piercing
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepTendAnyWounds
+  name: tend the wounds
+  components:
+  - type: SurgeryStep
+    pain: 10
+    tool:
+    - type: Tending
+  - type: SurgeryRepeatableStep
+  - type: SurgeryTendWoundsStep
+    types:
+    - Blunt
+    - Slash
+    - Piercing
+    - Heat
+    - Cold
+    - Shock
+    - Caustic
+    amount: 20
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryTendAnyWounds
+  name: tend wounds
+  components:
+  - type: Surgery
+    priority: 22
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepTendAnyWounds
+  - type: SurgeryWoundedCondition
+    types:
+    - Blunt
+    - Slash
+    - Piercing
+    - Heat
+    - Cold
+    - Shock
+    - Caustic

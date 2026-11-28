@@ -514,7 +514,7 @@ namespace Content.Shared.Cuffs
                 return true;
             }
 
-            if (!_hands.CanDrop(user, handcuff))
+            if (!(TryComp<HandcuffComponent>(handcuff, out var mustHoldCuffs) && !mustHoldCuffs.MustBeUsedFromHand) && !_hands.CanDrop(user, handcuff)) // Inferus - holographic cuffs do not have to be droppable
             {
                 _popup.PopupEntity(Loc.GetString("handcuff-component-cannot-drop-cuffs", ("target", Identity.Name(target, EntityManager, user))), user, user);
                 return false;

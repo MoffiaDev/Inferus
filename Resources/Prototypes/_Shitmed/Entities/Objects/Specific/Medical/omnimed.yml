@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Ported from Goob-Station (Resources/Prototypes/_Shitmed/Entities/Objects/Specific/Medical/surgery.yml: OmnimedTool) // Inferus
 # The omnitool does every step that has a tool in Inferus: scalpel, retractor, hemostat, cautery, drill, bone saw, bone setter and bone gel.
-# Left out because Inferus has no such steps: tweezers, tending and stitches, and the clothing bypass of the Gorlex version (SurgeryIgnoreClothing).
+# Left out: the clothing bypass of the Gorlex version (SurgeryIgnoreClothing). The tweezers have no step in Inferus yet.
 
 - type: entity
   name: surgical omnitool
@@ -23,6 +23,9 @@
   - type: BoneSaw
   - type: BoneSetter
   - type: BoneGel
+  - type: Tweezers
+  - type: Tending
+  - type: Stitches
 
 - type: entity
   parent: [ OmnimedTool, BaseSyndicateContraband ]
@@ -58,4 +61,10 @@
   - type: BoneSetter
     speed: 10
   - type: BoneGel
+    speed: 10
+  - type: Tweezers
+    speed: 10
+  - type: Tending
+    speed: 10
+  - type: Stitches
     speed: 10

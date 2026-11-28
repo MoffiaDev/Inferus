@@ -60,6 +60,12 @@ public sealed partial class HandcuffComponent : Component
     public bool Used;
 
     /// <summary>
+    /// Inferus - Starlight's holographic cuffs. If false the cuffs can be used without being held in a hand.
+    /// </summary>
+    [DataField]
+    public bool MustBeUsedFromHand = true; // Inferus
+
+    /// <summary>
     ///     The path of the RSI file used for the player cuffed overlay.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
