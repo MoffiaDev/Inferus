@@ -1,0 +1,281 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Body/Parts/cyberlimbs.yml: scribe and investigator) // Inferus
+# The tool lists are Starlight's minus the items that are not ported (see cyberlimb_tools_office.yml).
+
+- type: entity
+  id: OrganProstheticArmScribeLeft
+  parent: [ OrganBaseArmLeft, OrganProstheticBase ]
+  name: left scribe arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_scribe_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_scribe_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandScribeLeft
+  parent: [ OrganBaseHandLeft, OrganProstheticBase ]
+  name: left scribe hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_scribe_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_scribe_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - PenCyber
+    - FilingCabinetCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandLeft
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmScribeLeft
+  parent: DetachedBody
+  name: left scribe arm
+  description: A machine arm with its hand, an office arm. Its hand keeps a pen and a file keeper for documents. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmScribeLeft
+    - OrganProstheticHandScribeLeft
+
+- type: entity
+  id: OrganProstheticArmScribeRight
+  parent: [ OrganBaseArmRight, OrganProstheticBase ]
+  name: right scribe arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_scribe_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_scribe_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandScribeRight
+  parent: [ OrganBaseHandRight, OrganProstheticBase ]
+  name: right scribe hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_scribe_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_scribe_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - PenCyber
+    - FilingCabinetCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandRight
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmScribeRight
+  parent: DetachedBody
+  name: right scribe arm
+  description: A machine arm with its hand, an office arm. Its hand keeps a pen and a file keeper for documents. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmScribeRight
+    - OrganProstheticHandScribeRight
+
+- type: entity
+  id: OrganProstheticArmInvestigatorLeft
+  parent: [ OrganBaseArmLeft, OrganProstheticBase ]
+  name: left investigator arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_investigator_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_investigator_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandInvestigatorLeft
+  parent: [ OrganBaseHandLeft, OrganProstheticBase ]
+  name: left investigator hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_investigator_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_investigator_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - NodeScannerCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandLeft
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmInvestigatorLeft
+  parent: DetachedBody
+  name: left investigator arm
+  description: A machine arm with its hand, an investigator arm. Its hand keeps a node scanner. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmInvestigatorLeft
+    - OrganProstheticHandInvestigatorLeft
+
+- type: entity
+  id: OrganProstheticArmInvestigatorRight
+  parent: [ OrganBaseArmRight, OrganProstheticBase ]
+  name: right investigator arm
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_investigator_arm
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_investigator_arm
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticHandInvestigatorRight
+  parent: [ OrganBaseHandRight, OrganProstheticBase ]
+  name: right investigator hand
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_investigator_hand
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_investigator_hand
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+  - type: ContainerContainer
+  - type: LimbItemStorage
+    items:
+    - NodeScannerCyber
+  - type: LimbItemDeployer
+    action: ActionToggleCyberHandRight
+    sound:
+      path: /Audio/_Shitmed/Medical/Cyber/deploy.ogg
+    handWhitelist:
+      tags:
+      - CyberHandItem
+
+- type: entity
+  id: ProstheticArmInvestigatorRight
+  parent: DetachedBody
+  name: right investigator arm
+  description: A machine arm with its hand, an investigator arm. Its hand keeps a node scanner. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticArmInvestigatorRight
+    - OrganProstheticHandInvestigatorRight

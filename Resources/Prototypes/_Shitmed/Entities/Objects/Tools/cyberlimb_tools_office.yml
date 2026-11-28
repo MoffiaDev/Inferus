@@ -1,0 +1,73 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Entities/Objects/Tools/cyberlimb.yml: scribe and investigator) // Inferus
+# Only the items that Inferus has the parents for. Left out: the multistamp, the printer (it needs a document lathe pack), the holorestrainer
+# (needs HoloItem), the vials (the solution syntax differs), the radcaster and the freeze ray (their projectiles do not exist in Inferus).
+
+- type: entity
+  id: PenCyber
+  parent: Pen
+  name: cybernetic pen
+  description: The pen of the future.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: pen
+  - type: Tag
+    tags:
+    - Write
+    - Pen
+    - CyberHandItem
+
+- type: entity
+  id: FilingCabinetCyber
+  parent: [ BaseItem, BaseBagOpenClose ]
+  name: cybernetic file keeper
+  description: Keeping all your forms organised since 2524!
+  components:
+  - type: Tag
+    tags:
+    - CyberHandItem
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: cabinet
+    - state: cabinet_open
+      map: [ "openLayer" ]
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 12
+    soundHit:
+      collection: MetalSlam
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,4,3
+    whitelist:
+      tags:
+      - Document
+  - type: Appearance
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+
+- type: entity
+  id: NodeScannerCyber
+  parent: NodeScanner
+  name: cybernetic node scanner
+  description: A node scanner, for scanning your science rocks!
+  components:
+  - type: Tag
+    tags:
+    - CyberHandItem
+  - type: Sprite
+    sprite: _Shitmed/Objects/Tools/cyberling.rsi
+    layers:
+    - state: node_scanner

@@ -1,0 +1,118 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Entities/Objects/Weapons/Melee/cyberlimb.yml and .../Shields/cyberlimb.yml: bulwark and mantis blade) // Inferus
+# The bulwark shield extends the energy shield of Inferus. The chainsword and the mantis blade are the Starlight definitions, without the parts Inferus lacks.
+# The chainsword is also a bone saw, five times as fast as an ordinary one (Starlight had 0.2 as a duration multiplier).
+
+- type: entity
+  parent: EnergyShield
+  id: EnergyShieldCyber
+  name: bulwark
+  description: The true shield for warriors, made out of hard-light materials making it lightweight and portable.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Weapons/Melee/cybershield.rsi
+    layers:
+    - state: cybershield-icon
+    - state: cybershield-on
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "shield" ]
+  - type: Item
+    size: Small
+    sprite: _Shitmed/Objects/Weapons/Melee/cybershield.rsi
+    heldPrefix: cybershield
+  - type: ToggleableVisuals
+    spriteLayer: shield
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  name: energy chainsword
+  parent: BaseMeleeWeaponEnergy
+  id: CyberEnergyChainsword
+  description: Slam this into the individual you wish to destroy, mentally and physically!
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Weapons/Melee/cyberchainsaw.rsi
+    layers:
+    - state: cyberchainsawoff
+    - state: cyberchainsaw
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Weapons/chainsaw.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Weapons/chainsaw.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        variation: 0.125
+    activatedDamage:
+      types:
+        Slash: 5
+        Heat: 5
+        Structural: 15
+  - type: MeleeWeapon
+    angle: 0
+    wideAnimationRotation: -135
+    attackRate: 4
+    autoAttack: true
+    damage:
+      types:
+        Blunt: 0.5
+  - type: Item
+    sprite: _Shitmed/Objects/Weapons/Melee/cyberchainsaw.rsi
+  - type: SurgeryTool
+  - type: BoneSaw
+    speed: 5
+    startSound:
+      path: /Audio/Weapons/chainsawwield.ogg
+    endSound:
+      path: /Audio/Weapons/chainsaw.ogg
+  - type: Reflect
+    reflectProb: 0.1
+  - type: Tag
+    tags:
+    - SurgeryTool
+    - CyberHandItem
+
+- type: entity
+  name: mantis blade
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: CyberMantisBlade
+  description: A sharp blade that extended from your own arm, time to burn down a corporation.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Weapons/Melee/cybermantisblade.rsi
+    state: cybermantisblade
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 2.4
+    autoAttack: false
+    damage:
+      types:
+        Slash: 16
+    soundHit:
+      path: /Audio/Weapons/block_metal1.ogg
+    soundNoDamage:
+      path: /Audio/Weapons/punchmiss.ogg
+    soundSwing:
+      path: /Audio/Weapons/punchmiss.ogg
+  - type: Reflect
+    reflectProb: 0.15
+  - type: Tool
+    qualities:
+    - Slicing
+  - type: Tag
+    tags:
+    - CyberHandItem

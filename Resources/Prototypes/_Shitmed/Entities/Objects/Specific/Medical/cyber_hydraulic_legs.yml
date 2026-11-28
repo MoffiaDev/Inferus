@@ -1,0 +1,81 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Body/Parts/cyberlimbs.yml: hydraulic legs) // Inferus
+# The hydraulic leg sprints at 3.4 against the normal 4.5 (0.756 of it), walks at the normal speed and is not hindered by shoes.
+# Starlight lets it carry heavy loads without slowing down (maxDensity 10000), Inferus has no such weight rule so only the speed is ported.
+# The cargo leg (storage) and the pilebunker leg (jump) are not ported.
+
+- type: entity
+  id: OrganProstheticLegHydraulicLeft
+  parent: [ OrganBaseLegLeft, OrganProstheticLegBase ]
+  name: left hydraulic cyber leg
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_leg_hydraulic
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_leg_hydraulic
+  - type: CyberneticLeg
+    sprintModifier: 0.756
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: ProstheticLegHydraulicLeft
+  parent: DetachedBody
+  name: left hydraulic cyber leg
+  description: A machine leg with its foot, suitable for moving heavy loads at near-normal speed. It sprints a little slower than a normal leg. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticLegHydraulicLeft
+    - OrganProstheticFootLeft
+
+- type: entity
+  id: OrganProstheticLegHydraulicRight
+  parent: [ OrganBaseLegRight, OrganProstheticLegBase ]
+  name: right hydraulic cyber leg
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_leg_hydraulic
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_leg_hydraulic
+  - type: CyberneticLeg
+    sprintModifier: 0.756
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: ProstheticLegHydraulicRight
+  parent: DetachedBody
+  name: right hydraulic cyber leg
+  description: A machine leg with its foot, suitable for moving heavy loads at near-normal speed. It sprints a little slower than a normal leg. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticLegHydraulicRight
+    - OrganProstheticFootRight

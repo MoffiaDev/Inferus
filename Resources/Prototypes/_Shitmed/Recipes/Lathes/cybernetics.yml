@@ -356,6 +356,172 @@
     Silver: 200
     Gold: 100
 
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmBulwarkLeft
+  result: ProstheticArmBulwarkLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmBulwarkRight
+  result: ProstheticArmBulwarkRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmMantisBladeLeft
+  result: ProstheticArmMantisBladeLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmMantisBladeRight
+  result: ProstheticArmMantisBladeRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmZeusLeft
+  result: ProstheticArmZeusLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmZeusRight
+  result: ProstheticArmZeusRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmHeraklesLeft
+  result: ProstheticArmHeraklesLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmHeraklesRight
+  result: ProstheticArmHeraklesRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmScribeLeft
+  result: ProstheticArmScribeLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmScribeRight
+  result: ProstheticArmScribeRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmInvestigatorLeft
+  result: ProstheticArmInvestigatorLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticArmInvestigatorRight
+  result: ProstheticArmInvestigatorRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticLegHydraulicLeft
+  result: ProstheticLegHydraulicLeft
+  completetime: 10
+  materials:
+    Steel: 700
+    Plastic: 300
+    Glass: 100
+    Silver: 200
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticLegHydraulicRight
+  result: ProstheticLegHydraulicRight
+  completetime: 10
+  materials:
+    Steel: 700
+    Plastic: 300
+    Glass: 100
+    Silver: 200
+
 - type: latheRecipePack
   id: CyberneticOrgans
   recipes:
@@ -394,3 +560,15 @@
   - ProstheticArmSpacerRight
   - ProstheticArmGorillaLeft
   - ProstheticArmGorillaRight
+  - ProstheticArmBulwarkLeft
+  - ProstheticArmBulwarkRight
+  - ProstheticArmZeusLeft
+  - ProstheticArmZeusRight
+  - ProstheticArmHeraklesLeft
+  - ProstheticArmHeraklesRight
+  - ProstheticArmScribeLeft
+  - ProstheticArmScribeRight
+  - ProstheticArmInvestigatorLeft
+  - ProstheticArmInvestigatorRight
+  - ProstheticLegHydraulicLeft
+  - ProstheticLegHydraulicRight
