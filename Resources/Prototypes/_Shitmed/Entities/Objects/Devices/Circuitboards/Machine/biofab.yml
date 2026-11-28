@@ -11,5 +11,4 @@
   - type: MachineBoard
     prototype: MedicalBiofabricator
     stackRequirements:
-      MatterBin: 2
       Manipulator: 2

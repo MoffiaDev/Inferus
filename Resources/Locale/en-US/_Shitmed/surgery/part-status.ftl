@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 shitmed-part-status-title = You check yourself over:
 shitmed-part-status-line = Your {$part}: {$status}.
-shitmed-part-status-fine = fine
+shitmed-part-status-fine = Fine
 shitmed-part-status-bone-damaged = Damaged
 shitmed-part-status-bone-cracked = Fractured
 shitmed-part-status-bone-broken = Broken
