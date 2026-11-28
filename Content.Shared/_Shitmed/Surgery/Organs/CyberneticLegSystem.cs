@@ -6,6 +6,7 @@
 using Content.Shared._Shitmed.Surgery.Wounds.Components;
 using Content.Shared.Body;
 using Content.Shared.Inventory;
+using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 
 namespace Content.Shared._Shitmed.Surgery.Organs;
@@ -16,8 +17,9 @@ public sealed partial class CyberneticLegSystem : EntitySystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private MovementSpeedModifierSystem _movement = default!;
 
+    // Inferus - on the movement component instead of the body, the cybernetic organ system already handles the speed event of the body
     [SubscribeLocalEvent]
-    private void OnRefreshSpeed(Entity<BodyComponent> body, ref RefreshMovementSpeedModifiersEvent args)
+    private void OnRefreshSpeed(Entity<MovementSpeedModifierComponent> body, ref RefreshMovementSpeedModifiersEvent args)
     {
         var legs = 0;
         var walk = 0f;
