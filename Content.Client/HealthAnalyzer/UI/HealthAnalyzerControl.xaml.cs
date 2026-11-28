@@ -126,7 +126,12 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             return;
 
         // Total Damage
-        DamageLabel.Text = _damageable.GetTotalDamage(target.Value).ToString();
+        // Inferus - shock has its own line under the total, and is not counted in it
+        var shock = _damageable.GetAllDamage(target.Value).DamageDict.GetValueOrDefault(new ProtoId<DamageTypePrototype>("OrganShock"));
+        DamageLabel.Text = (_damageable.GetTotalDamage(target.Value) - shock).ToString();
+        ShockTextLabel.Visible = shock > 0;
+        ShockLabel.Visible = shock > 0;
+        ShockLabel.Text = shock.ToString();
 
         // Alerts
         var showAlerts = unrevivable || bleeding;

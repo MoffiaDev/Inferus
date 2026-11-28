@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
+using Content.Shared._Shitmed.Surgery.Wounds.Components; // Inferus
 using Content.Shared._Goobstation.Grab; // Goobstation - Grab Intent
 using Content.Shared._Goobstation.GrabIntent; // Goobstation - Grab Intent
 using Content.Shared._Goobstation.MartialArts; // Goobstation - Martial Arts
@@ -331,7 +332,12 @@ public sealed partial class RespiratorSystem : EntitySystem
         if (ent.Comp.SuffocationCycles == 2)
             _adminLogger.Add(LogType.Asphyxiation, $"{ToPrettyString(ent):entity} started suffocating");
 
-        _damageableSys.ChangeDamage(ent.Owner, ent.Comp.Damage, interruptsDoAfters: false, ignoreResistances: true);
+        // Inferus - a body whose lungs were taken out suffocates five times as hard
+        var suffocation = ent.Comp.Damage;
+        if (TryComp<LostOrgansComponent>(ent, out var lostOrgans) && lostOrgans.Categories.Contains("Lungs"))
+            suffocation = suffocation * 5;
+
+        _damageableSys.ChangeDamage(ent.Owner, suffocation, interruptsDoAfters: false, ignoreResistances: true);
 
         if (ent.Comp.SuffocationCycles < ent.Comp.SuffocationCycleThreshold)
             return;

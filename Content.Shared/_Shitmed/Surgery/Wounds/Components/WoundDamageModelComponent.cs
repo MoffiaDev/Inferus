@@ -31,6 +31,18 @@ public sealed partial class WoundDamageModelComponent : Component
     public HashSet<ProtoId<OrganCategoryPrototype>> VitalLimbs = new() { "Head", "Torso" };
 
     /// <summary>
+    /// Inferus - organs the body cannot live without. Taking one out adds <see cref="VitalOrganDamage"/> of shock.
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<OrganCategoryPrototype>> VitalOrgans = new() { "Heart", "Brain" };
+
+    /// <summary>
+    /// Inferus - the shock added for every vital organ that was taken out. Keep it above the body's death threshold.
+    /// </summary>
+    [DataField]
+    public FixedPoint2 VitalOrganDamage = 300;
+
+    /// <summary>
     /// Shock damage added for every limb at the given severity.
     /// </summary>
     [DataField]
@@ -54,5 +66,5 @@ public sealed partial class WoundDamageModelComponent : Component
     /// The damage type shock damage is dealt as.
     /// </summary>
     [DataField]
-    public ProtoId<DamageTypePrototype> ShockDamageType = "Blunt";
+    public ProtoId<DamageTypePrototype> ShockDamageType = "OrganShock"; // Inferus - was "Blunt", which also gibbed headless bodies
 }

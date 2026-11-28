@@ -160,8 +160,10 @@ public sealed partial class RoomReverbSystem : EntitySystem
         if (!EnsureSlot())
             return;
 
-        if (wanted != _current)
-            Apply(wanted.Value);
+        // Inferus - the reverb is rebuilt when the ears are lost or put back
+        var muffled = HasLostEars();
+        if (wanted != _current || muffled != _muffled)
+            Apply(wanted.Value, muffled);
 
         if (!TryComp(_auxiliary, out AudioAuxiliaryComponent? slot))
             return;
@@ -296,18 +298,19 @@ public sealed partial class RoomReverbSystem : EntitySystem
         return true;
     }
 
-    private void Apply(ReverbSettings settings)
+    private void Apply(ReverbSettings settings, bool muffled = false) // Inferus
     {
         if (!_proto.TryIndex<AudioPresetPrototype>(settings.Preset, out var preset) ||
             !TryComp(_effect, out AudioEffectComponent? effect) ||
             !TryComp(_auxiliary, out AudioAuxiliaryComponent? auxiliary))
             return;
 
-        _audio.SetEffectPreset(_effect.Value, effect, Scale(preset, settings));
+        _audio.SetEffectPreset(_effect.Value, effect, Scale(preset, settings, muffled)); // Inferus
 
         // EFX copies the effect into the slot on assignment, so assign again after changing it.
         _audio.SetEffect(_auxiliary.Value, auxiliary, _effect.Value);
         _current = settings;
+        _muffled = muffled; // Inferus
         _applyCalls++;
     }
 
@@ -341,12 +344,12 @@ public sealed partial class RoomReverbSystem : EntitySystem
             Del(effect.Value);
     }
 
-    private static ReverbProperties Scale(AudioPresetPrototype preset, ReverbSettings settings) => new()
+    private static ReverbProperties Scale(AudioPresetPrototype preset, ReverbSettings settings, bool muffled) => new() // Inferus
     {
         Density = preset.Density,
         Diffusion = MathF.Max(preset.Diffusion, MinDiffusion),
         Gain = preset.Gain * settings.Amount,
-        GainHF = preset.GainHF,
+        GainHF = muffled ? MathF.Max(preset.GainHF * DeafReverbGainHF, 0.0001f) : preset.GainHF, // Inferus
         GainLF = preset.GainLF,
         DecayTime = Math.Clamp(preset.DecayTime * settings.DecayScale, 0.1f, 20f),
         DecayHFRatio = preset.DecayHFRatio,

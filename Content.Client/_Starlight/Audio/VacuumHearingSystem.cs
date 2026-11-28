@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Shitmed.Surgery.Wounds.Components; // Inferus
 using Content.Shared._Starlight.Sound;
 using Content.Shared.Audio;
 using Content.Shared.Inventory;
@@ -62,6 +63,10 @@ public sealed partial class VacuumHearingSystem : EntitySystem
 
     public float AmbienceOcclusionValue { get; private set; }
 
+    // Inferus - a body whose ears were taken out hears everything through a heavy low-pass filter, on top of the other muffles
+    public const float DeafOcclusion = 4f;
+    public float DeafOcclusionValue { get; private set; }
+
     public override void Initialize()
     {
         base.Initialize();
@@ -99,8 +104,14 @@ public sealed partial class VacuumHearingSystem : EntitySystem
             _wornHelmet = null;
         }
 
+        // Inferus - ears taken out
+        DeafOcclusionValue = TryComp(_player.LocalEntity, out LostOrgansComponent? lostOrgans) && lostOrgans.Categories.Contains("Ears")
+            ? DeafOcclusion
+            : 0f;
+
         AmbienceOcclusionValue = (HelmetOcclusionValue > 0f ? AmbienceHelmetOcclusion : 0f)
-            + (VacuumOcclusion * ListenerMuffleValue);
+            + (VacuumOcclusion * ListenerMuffleValue)
+            + DeafOcclusionValue; // Inferus
 
         _openSourcesNext.Clear();
         _ambientParentsNext.Clear();
@@ -175,7 +186,7 @@ public sealed partial class VacuumHearingSystem : EntitySystem
                 helmet = AmbienceHelmetOcclusion;
         }
 
-        return occlusion + helmet + (VacuumOcclusion * muffle);
+        return occlusion + helmet + (VacuumOcclusion * muffle) + DeafOcclusionValue; // Inferus
     }
 
     private bool IsOwnedBy(EntityUid uid, EntityUid owner)

@@ -1,0 +1,7 @@
+# Inferus - shock from badly hurt, missing or taken out limbs and organs. It is not part of any damage group, so it never shows as brute, burn
+# and so on, and it does not gib: the mob gib threshold only looks at blunt damage. It still counts towards crit and death.
+- type: damageType
+  id: OrganShock
+  name: damage-type-organ-shock
+  armorCoefficientPrice: 1
+  armorFlatPrice: 1

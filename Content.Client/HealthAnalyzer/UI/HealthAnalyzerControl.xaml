@@ -35,6 +35,8 @@
             <Label Name="BloodLabel" />
             <Label Text="{Loc 'health-analyzer-window-entity-damage-total-text'}" />
             <Label Name="DamageLabel" />
+            <Label Name="ShockTextLabel" Text="{Loc 'health-analyzer-window-entity-shock-total-text'}" Visible="False" /> <!-- Inferus -->
+            <Label Name="ShockLabel" Visible="False" /> <!-- Inferus -->
         </GridContainer>
     </BoxContainer>
 

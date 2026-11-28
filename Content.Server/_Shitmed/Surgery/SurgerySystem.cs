@@ -298,6 +298,12 @@ public sealed partial class SurgerySystem : EntitySystem
         if (!CheckTool(user, tool, step, out var matched, popup: true))
             return;
 
+        // Inferus - a step can turn down the held item before the do-after starts
+        var preCheck = new SurgeryStepPreCheckEvent(user, body, part, tool);
+        RaiseLocalEvent(stepEnt, ref preCheck);
+        if (preCheck.Cancelled)
+            return;
+
         var duration = step.Duration / Math.Max(0.1f, matched?.Speed ?? 1f);
         var ev = new SurgeryDoAfterEvent(msg.Surgery, msg.Step, msg.Part);
         var doAfter = new DoAfterArgs(EntityManager, user, duration, ev, body, target: body, used: tool == user ? null : tool)

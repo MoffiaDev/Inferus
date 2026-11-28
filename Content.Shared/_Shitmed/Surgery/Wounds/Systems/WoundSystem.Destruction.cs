@@ -52,8 +52,9 @@ public sealed partial class WoundSystem
     /// Tears a limb, and everything attached below it, off its body.
     /// </summary>
     /// <param name="limbUid">The limb organ to amputate.</param>
+    /// <param name="force">Cut it off even if the limb cannot be removed by damage, like the head. Inferus.</param>
     /// <returns>True if the limb was detached.</returns>
-    public bool TryAmputate(EntityUid limbUid)
+    public bool TryAmputate(EntityUid limbUid, bool force = false)
     {
         if (!TryComp<OrganComponent>(limbUid, out var organ)
             || !_woundableQuery.TryComp(limbUid, out var woundable)
@@ -62,7 +63,7 @@ public sealed partial class WoundSystem
 
         TryComp<WoundDamageModelComponent>(bodyUid, out var model);
 
-        if (!AmputateCore(model, null, (limbUid, organ, woundable)))
+        if (!AmputateCore(model, null, (limbUid, organ, woundable), force)) // Inferus
             return false;
 
         if (model != null)
@@ -74,10 +75,11 @@ public sealed partial class WoundSystem
     private bool AmputateCore(
         WoundDamageModelComponent? model,
         List<Entity<OrganComponent, WoundableComponent>>? woundables,
-        Entity<OrganComponent, WoundableComponent> limb)
+        Entity<OrganComponent, WoundableComponent> limb,
+        bool force = false) // Inferus
     {
         if (_net.IsClient
-            || !limb.Comp2.CanRemove
+            || (!limb.Comp2.CanRemove && !force) // Inferus
             || !_detachableQuery.HasComp(limb.Owner)
             || limb.Comp1.Body == null)
             return false;

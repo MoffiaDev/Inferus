@@ -68,7 +68,7 @@ public sealed partial class SurgerySystem
     [SubscribeLocalEvent]
     private void OnAmputateStep(Entity<SurgeryAmputateStepComponent> ent, ref SurgeryStepEvent args)
     {
-        _wounds.TryAmputate(args.Part);
+        _wounds.TryAmputate(args.Part, force: true); // Inferus - the condition already keeps the torso out
     }
 
     [SubscribeLocalEvent]
@@ -82,6 +82,7 @@ public sealed partial class SurgerySystem
     private void OnAmputableCondition(Entity<SurgeryAmputableConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (!HasComp<DetachableOrganComponent>(args.Part)
+            || !CanAmputateSurgically(args.Part) // Inferus
             || !TryComp<OrganComponent>(args.Part, out var organ)
             || organ.Body != args.Body)
             args.Cancelled = true;

@@ -70,11 +70,7 @@ public sealed partial class SurgerySystem
             return;
 
         var organ = args.Tool;
-        if (!TryComp<OrganComponent>(organ, out var organComp)
-            || organComp.Category != ent.Comp.Category
-            || !HasComp<InternalChildOrganComponent>(organ)
-            || !TryComp<ChildOrganComponent>(organ, out var child)
-            || child.Parent != null)
+        if (!IsOrganFor(organ, ent.Comp.Category))
         {
             _popup.PopupEntity(Loc.GetString("surgery-implant-wrong-organ"), args.Body, args.User, PopupType.SmallCaution);
             return;

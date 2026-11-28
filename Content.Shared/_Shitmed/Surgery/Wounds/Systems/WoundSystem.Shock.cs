@@ -45,6 +45,8 @@ public sealed partial class WoundSystem
             }
         }
 
+        shock += GetLostOrganShock(model, woundables); // Inferus - vital organs that were taken out
+
         if (shock <= 0)
             return;
 

@@ -1,4 +1,5 @@
 using Content.Client.Movement.Systems;
+using Content.Shared._ES.Viewcone.Components; // Inferus
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
@@ -51,7 +52,8 @@ namespace Content.Client.Eye.Blinding
 
             _blindableComponent = blindComp;
 
-            var blind = _blindableComponent.IsBlind;
+            // Inferus - a viewcone already closes in over a blind body, so the grey overlay would be drawn on top of it
+            var blind = _blindableComponent.IsBlind && !_entityManager.HasComponent<ESViewconeComponent>(playerEntity);
 
             if (!blind && _blindableComponent.LightSetup) // Turn FOV back on if we can see again
             {
