@@ -57,7 +57,7 @@ public sealed partial class HoloItemSystem : EntitySystem
             var hologram = SpawnAtPosition(proto, Transform(ent).Coordinates);
 
             // Inferus - the hologram goes away by itself, and when the cuffs come off
-+            EnsureComp<TemporaryHologramComponent>(hologram);
+            EnsureComp<TemporaryHologramComponent>(hologram);
 
             var ev = new AfterInteractEvent(args.User, hologram, target, args.ClickLocation, true);
             RaiseLocalEvent(hologram, ev);

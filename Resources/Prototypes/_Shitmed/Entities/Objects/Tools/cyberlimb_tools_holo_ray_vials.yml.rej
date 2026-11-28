@@ -1,9 +1,0 @@
-diff a/Resources/Prototypes/_Shitmed/Entities/Objects/Tools/cyberlimb_tools_holo_ray_vials.yml b/Resources/Prototypes/_Shitmed/Entities/Objects/Tools/cyberlimb_tools_holo_ray_vials.yml	(rejected hunks)
-@@ -1,6 +1,6 @@
-   - type: Sprite
-     sprite: _Shitmed/Objects/Tools/cyberling.rsi
-     state: holorestrainer_powered
--  - type: TimedDespawn
-+  - type: TemporaryHologram
-     lifetime: 180
-   - type: Handcuff
