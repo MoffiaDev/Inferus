@@ -351,6 +351,9 @@ public sealed partial class SurgerySystem : EntitySystem
         var stepEv = new SurgeryStepEvent(user, body, part, tool, surgery, stepEnt);
         RaiseLocalEvent(stepEnt, ref stepEv);
 
+        // Inferus - a repeatable step starts again by itself until it is done, so tending wounds is one click
+        args.Repeat = HasComp<SurgeryRepeatableStepComponent>(stepEnt) && !IsStepComplete(body, part, surgery, stepEnt);
+
         if (step.Pain > 0f && IsAwake(body))
         {
             var pain = EnsureComp<PainComponent>(body);

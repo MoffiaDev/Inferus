@@ -8,6 +8,7 @@
     pain: 10
     tool:
     - type: Hemostat
+  - type: SurgeryRepeatableStep
   - type: SurgeryTendWoundsStep
     types:
     - Blunt
@@ -40,6 +41,7 @@
     pain: 10
     tool:
     - type: Cautery
+  - type: SurgeryRepeatableStep
   - type: SurgeryTendWoundsStep
     types:
     - Heat
