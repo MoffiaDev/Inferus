@@ -45,11 +45,11 @@
       map: [ "blade" ]
   - type: ItemToggleMeleeWeapon
     activatedSoundOnHit:
-      path: /Audio/Weapons/chainsaw.ogg
+      path: /Audio/Weapons/chainsaw_rev.ogg
       params:
         variation: 0.250
     activatedSoundOnHitNoDamage:
-      path: /Audio/Weapons/chainsaw.ogg
+      path: /Audio/Weapons/chainsaw_rev.ogg
       params:
         variation: 0.250
         volume: -10
@@ -76,9 +76,9 @@
   - type: BoneSaw
     speed: 5
     startSound:
-      path: /Audio/Weapons/chainsawwield.ogg
+      path: /Audio/Weapons/chainsaw_pull.ogg
     endSound:
-      path: /Audio/Weapons/chainsaw.ogg
+      path: /Audio/Weapons/chainsaw_rev.ogg
   - type: Reflect
     reflectProb: 0.1
   - type: Tag

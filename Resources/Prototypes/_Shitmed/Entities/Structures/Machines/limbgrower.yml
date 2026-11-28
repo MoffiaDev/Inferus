@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ BaseLathe, BaseLatheWorkSoundsBio, BaseAutomatedMachine ]
+  id: MedicalBiofabricator
+  name: medical biofabricator
+  description: Produces organs and other organic matter that can be surgically grafted onto patients with biomass.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Structures/Machines/limbgrower.rsi
+    snapCardinals: true
+    layers:
+    - state: limbgrower_idleoff
+      map: [ "enum.LatheVisualLayers.IsRunning" ]
+  - type: Machine
+    board: MedicalBiofabMachineBoard
+  - type: MaterialStorage
+    ignoreColor: true
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+  - type: Lathe
+    idleState: limbgrower_idleoff
+    runningState: limbgrower_idleon
+    staticPacks:
+    - BiofabPartsStatic
+  - type: AutomationSlots
+    slots:
+    - !type:AutomatedMaterialStorage
+      input: AutomationSlotMaterials

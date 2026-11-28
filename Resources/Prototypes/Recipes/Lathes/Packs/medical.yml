@@ -82,6 +82,7 @@
 - type: latheRecipePack
   id: MedicalBoardsStatic
   recipes:
+  - MedicalBiofabMachineBoard # Inferus
   - ElectrolysisUnitMachineCircuitboard
   - CentrifugeMachineCircuitboard
   - ChemDispenserMachineCircuitboard

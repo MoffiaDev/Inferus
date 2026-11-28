@@ -21,6 +21,12 @@ public sealed partial class DoAfterComponent : Component
     [DataField]
     public Dictionary<ushort, DoAfter> DoAfters = new();
 
+    /// <summary>
+    /// Whether to raise <c>DoAfterEndedEvent</c> on the user after it ends.
+    /// </summary>
+    [DataField]
+    public bool RaiseEndedEvent; // Inferus - automation interactor
+
     // Used by obsolete async do afters
     public readonly Dictionary<ushort, TaskCompletionSource<DoAfterStatus>> AwaitedDoAfters = new();
 }

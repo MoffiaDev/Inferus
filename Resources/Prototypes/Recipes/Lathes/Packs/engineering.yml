@@ -92,3 +92,6 @@
   - TelecomServerCircuitboard
   - SMESAdvancedMachineCircuitboard
   - HolopadMachineCircuitboard
+  - RoboticArmCircuitboard # Inferus
+  - StorageBinCircuitboard # Inferus
+  - InteractorCircuitboard # Inferus

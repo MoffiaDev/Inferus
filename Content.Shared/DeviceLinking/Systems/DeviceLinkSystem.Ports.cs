@@ -123,4 +123,32 @@ public sealed partial class DeviceLinkSystem
 
         return Loc.GetString(proto.Name);
     }
+
+    // Inferus - automation slots
+    /// <summary>
+    /// Removes a sink port from an entity if present.
+    /// </summary>
+    [PublicAPI]
+    public void RemoveSinkPort(EntityUid uid, ProtoId<SinkPortPrototype> port)
+    {
+        if (!_deviceLinkSinkQuery.TryComp(uid, out var comp))
+            return;
+
+        if (comp.Ports.Remove(port))
+            DirtyField(uid, comp, nameof(DeviceLinkSinkComponent.Ports));
+    }
+
+    /// <summary>
+    /// Removes a source port from an entity if present.
+    /// </summary>
+    [PublicAPI]
+    public void RemoveSourcePort(EntityUid uid, ProtoId<SourcePortPrototype> port)
+    {
+        if (!_deviceLinkSourceQuery.TryComp(uid, out var comp))
+            return;
+
+        if (comp.Ports.Remove(port))
+            Dirty(uid, comp);
+    }
+    // End Inferus
 }

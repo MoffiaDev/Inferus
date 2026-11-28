@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: technology
+  id: Autodoc
+  name: research-technology-autodoc
+  icon:
+    sprite: _Shitmed/Structures/Machines/autodoc.rsi
+    state: idle
+  discipline: CivilianServices
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - AutodocCircuitboard
+  position: -2,7
+  technologyPrerequisites:
+  - MechanizedTreatment

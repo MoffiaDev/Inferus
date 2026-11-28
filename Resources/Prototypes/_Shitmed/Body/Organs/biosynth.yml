@@ -1,0 +1,79 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: OrganHumanHeart
+  id: BioSynthHeart
+  name: bio-synthetic heart
+  description: A bio-synthetic heart grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.
+
+- type: entity
+  parent: OrganHumanLiver
+  id: BioSynthLiver
+  name: bio-synthetic liver
+  description: A bio-synthetic liver grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.
+
+- type: entity
+  parent: OrganHumanLungs
+  id: BioSynthLungs
+  name: bio-synthetic lungs
+  description: A bio-synthetic lungs grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.
+
+- type: entity
+  parent: OrganHumanEyes
+  id: BioSynthEyes
+  name: bio-synthetic eyes
+  description: A bio-synthetic eyes grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.
+
+- type: entity
+  parent: OrganHumanHead
+  id: BioSynthHeadEmpty
+  name: bio-synthetic head
+  description: A bio-synthetic head grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.
+
+- type: entity
+  parent: OrganHumanArmLeft
+  id: BioSynthLeftArm
+  name: bio-synthetic left arm
+  description: A bio-synthetic left arm grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.
+
+- type: entity
+  parent: OrganHumanArmRight
+  id: BioSynthRightArm
+  name: bio-synthetic right arm
+  description: A bio-synthetic right arm grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.
+
+- type: entity
+  parent: OrganHumanHandLeft
+  id: BioSynthLeftHand
+  name: bio-synthetic left hand
+  description: A bio-synthetic left hand grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.
+
+- type: entity
+  parent: OrganHumanHandRight
+  id: BioSynthRightHand
+  name: bio-synthetic right hand
+  description: A bio-synthetic right hand grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.
+
+- type: entity
+  parent: OrganHumanLegLeft
+  id: BioSynthLeftLeg
+  name: bio-synthetic left leg
+  description: A bio-synthetic left leg grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.
+
+- type: entity
+  parent: OrganHumanLegRight
+  id: BioSynthRightLeg
+  name: bio-synthetic right leg
+  description: A bio-synthetic right leg grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.
+
+- type: entity
+  parent: OrganHumanFootLeft
+  id: BioSynthLeftFoot
+  name: bio-synthetic left foot
+  description: A bio-synthetic left foot grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.
+
+- type: entity
+  parent: OrganHumanFootRight
+  id: BioSynthRightFoot
+  name: bio-synthetic right foot
+  description: A bio-synthetic right foot grown in a biofabricator. It can be grafted onto any living organism and will adapt to its recipient.

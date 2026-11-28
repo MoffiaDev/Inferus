@@ -13,3 +13,9 @@
     state: operating_table
   - type: OperatingTable # Inferus
   - type: AmbientMusicMarkerMedical
+  - type: DeviceNetwork # Inferus
+    deviceNetId: Wired
+  - type: DeviceLinkSource # Inferus
+    range: 2
+    ports:
+    - OperatingTable

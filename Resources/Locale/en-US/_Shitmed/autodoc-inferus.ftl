@@ -1,0 +1,12 @@
+autodoc-organ-category-Head = Head
+autodoc-organ-category-Torso = Torso
+autodoc-organ-category-ArmLeft = Left arm
+autodoc-organ-category-ArmRight = Right arm
+autodoc-organ-category-HandLeft = Left hand
+autodoc-organ-category-HandRight = Right hand
+autodoc-organ-category-LegLeft = Left leg
+autodoc-organ-category-LegRight = Right leg
+autodoc-organ-category-FootLeft = Left foot
+autodoc-organ-category-FootRight = Right foot
+autodoc-error-missing-tool = no held item fits this step
+autodoc-error-step-invalid = this step can not be done right now
