@@ -304,7 +304,7 @@ public sealed partial class SurgerySystem : EntitySystem
         if (preCheck.Cancelled)
             return;
 
-        var duration = step.Duration / Math.Max(0.1f, matched?.Speed ?? 1f);
+        var duration = step.Duration / Math.Max(0.1f, matched?.Speed ?? 1f) / GetTableSpeed(body); // Inferus - operating table
         var ev = new SurgeryDoAfterEvent(msg.Surgery, msg.Step, msg.Part);
         var doAfter = new DoAfterArgs(EntityManager, user, duration, ev, body, target: body, used: tool == user ? null : tool)
         {

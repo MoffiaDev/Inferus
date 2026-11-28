@@ -48,7 +48,7 @@ public sealed partial class SurgerySystem
             return;
 
         var damage = new DamageSpecifier();
-        damage.DamageDict["Poison"] = UnsterileToxin;
+        damage.DamageDict["Poison"] = UnsterileToxin * GetTableToxin(args.Body); // Inferus - operating table
         _damageable.TryChangeDamage(args.Body, damage, ignoreResistances: true, interruptsDoAfters: false);
 
         _popup.PopupEntity(Loc.GetString("surgery-unsterile-toxin"), args.Body, args.User, PopupType.SmallCaution);
