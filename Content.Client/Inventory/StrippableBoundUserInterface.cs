@@ -186,6 +186,8 @@ namespace Content.Client.Inventory
                 }
             }
 
+            AddOrganStorageButtons(); // Inferus
+
             // snare-removal button. This is just the old button before the change to item slots. It is pretty out of place.
             if (EntMan.TryGetComponent<EnsnareableComponent>(Owner, out var snare) && _snare.IsEnsnared((Owner, snare)))
             {
