@@ -522,6 +522,52 @@
     Glass: 100
     Silver: 200
 
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticLegPilebunkerLeft
+  result: ProstheticLegPilebunkerLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 300
+    Glass: 100
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticLegPilebunkerRight
+  result: ProstheticLegPilebunkerRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 300
+    Glass: 100
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticLegCargoLeft
+  result: ProstheticLegCargoLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 300
+    Glass: 100
+    Silver: 200
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticLegCargoRight
+  result: ProstheticLegCargoRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 300
+    Glass: 100
+    Silver: 200
+
 - type: latheRecipePack
   id: CyberneticOrgans
   recipes:
@@ -572,3 +618,7 @@
   - ProstheticArmInvestigatorRight
   - ProstheticLegHydraulicLeft
   - ProstheticLegHydraulicRight
+  - ProstheticLegPilebunkerLeft
+  - ProstheticLegPilebunkerRight
+  - ProstheticLegCargoLeft
+  - ProstheticLegCargoRight
