@@ -18,6 +18,9 @@
       state: l_leg_hydraulic
   - type: CyberneticLeg
     sprintModifier: 0.756
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Woundable
     integrity: 120
     integrityCap: 120
@@ -56,6 +59,9 @@
       state: r_leg_hydraulic
   - type: CyberneticLeg
     sprintModifier: 0.756
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Woundable
     integrity: 120
     integrityCap: 120
