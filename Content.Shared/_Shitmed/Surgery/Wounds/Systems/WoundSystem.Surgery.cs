@@ -25,26 +25,6 @@ public sealed partial class WoundSystem
     }
 
     /// <summary>
-    /// Wounds a specific limb, as a hit on it would.
-    /// </summary>
-    public bool TryDamageLimb(EntityUid limb, string type, FixedPoint2 amount)
-    {
-        if (_net.IsClient
-            || amount <= 0
-            || !_woundableQuery.TryComp(limb, out var woundable)
-            || !TryComp<OrganComponent>(limb, out var organ)
-            || organ.Body is not { } body
-            || !TryInduceWound(limb, type, amount, out _, woundable))
-            return false;
-
-        var damaged = new WoundableDamagedEvent(type, amount);
-        RaiseLocalEvent(limb, ref damaged);
-
-        RefreshBodyDamage(body);
-        return true;
-    }
-
-    /// <summary>
     /// Heals wounds of the given damage types on a limb.
     /// </summary>
     /// <returns>How much was healed.</returns>
