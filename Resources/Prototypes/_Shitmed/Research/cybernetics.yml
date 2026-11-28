@@ -36,3 +36,9 @@
   recipeUnlocks:
   - ProstheticArmLeft
   - ProstheticArmRight
+  - ProstheticLegLeft
+  - ProstheticLegBudgetLeft
+  - ProstheticLegSpeedLeft
+  - ProstheticLegRight
+  - ProstheticLegBudgetRight
+  - ProstheticLegSpeedRight

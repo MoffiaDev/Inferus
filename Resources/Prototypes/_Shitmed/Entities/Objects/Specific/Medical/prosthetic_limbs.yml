@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
-# Inferus - prosthetic arms. The organs are sturdier than flesh (1.5 times the integrity) and use the cybernetic limb sprites ported from Starlight,
-# an EMP switches them off for a while. The item is a severed limb that the reattach surgery takes: the arm and hand, with the torso as the part to attach to.
-# There are no cybernetic legs for now. The code for them (slowing the body while an EMP has a leg off) is in CyberneticOrganSystem.
+# Inferus - cybernetic limbs ported from Starlight (Resources/Prototypes/_Starlight/Body/Parts/cyberlimbs.yml): arms with hands, and legs with feet.
+# The organs are sturdier than flesh (1.5 times the integrity) and an EMP switches them off for a while. The item is a severed limb that the reattach
+# surgery takes, with the torso as the part to attach to.
+# Legs: the plain cyber leg is 5% faster at a sprint, the budget leg has no bonus, the speed leg is 1.5 times as fast. Shoes hinder the bonus (CyberneticLeg).
 - type: entity
   id: OrganProstheticBase
   abstract: true
@@ -13,6 +14,16 @@
   - type: CyberneticOrgan
     markLost: false
     empDamage: 0
+
+- type: entity
+  id: OrganProstheticLegBase
+  abstract: true
+  parent: OrganProstheticBase
+  components:
+  - type: CyberneticOrgan
+    markLost: false
+    empDamage: 0
+    empSpeedModifier: 0.6
 
 - type: entity
   id: OrganProstheticArmLeft
@@ -103,6 +114,206 @@
       Mangled: 0
 
 - type: entity
+  id: OrganProstheticLegLeft
+  parent: [ OrganBaseLegLeft, OrganProstheticLegBase ]
+  name: prosthetic left leg
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_leg
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_leg
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+  - type: CyberneticLeg
+    sprintModifier: 1.05
+    shoeHinder: 0.1111
+
+- type: entity
+  id: OrganProstheticLegRight
+  parent: [ OrganBaseLegRight, OrganProstheticLegBase ]
+  name: prosthetic right leg
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_leg
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_leg
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+  - type: CyberneticLeg
+    sprintModifier: 1.05
+    shoeHinder: 0.1111
+
+- type: entity
+  id: OrganProstheticLegBudgetLeft
+  parent: [ OrganBaseLegLeft, OrganProstheticLegBase ]
+  name: budget prosthetic left leg
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_leg
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_leg
+  - type: Woundable
+    integrity: 100
+    integrityCap: 100
+    thresholds:
+      Minor: 87
+      Moderate: 62
+      Severe: 31
+      Critical: 12
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticLegBudgetRight
+  parent: [ OrganBaseLegRight, OrganProstheticLegBase ]
+  name: budget prosthetic right leg
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_leg
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_leg
+  - type: Woundable
+    integrity: 100
+    integrityCap: 100
+    thresholds:
+      Minor: 87
+      Moderate: 62
+      Severe: 31
+      Critical: 12
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticLegSpeedLeft
+  parent: [ OrganBaseLegLeft, OrganProstheticLegBase ]
+  name: prosthetic left speed leg
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/speedlegs.rsi
+    state: l_leg
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/speedlegs.rsi
+      state: l_leg
+  - type: CyberneticLeg
+    walkModifier: 1.5
+    sprintModifier: 1.5
+    shoeHinder: 0.1667
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticLegSpeedRight
+  parent: [ OrganBaseLegRight, OrganProstheticLegBase ]
+  name: prosthetic right speed leg
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/speedlegs.rsi
+    state: r_leg
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/speedlegs.rsi
+      state: r_leg
+  - type: CyberneticLeg
+    walkModifier: 1.5
+    sprintModifier: 1.5
+    shoeHinder: 0.1667
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticFootBase
+  abstract: true
+  parent: OrganProstheticBase
+  components:
+  - type: CyberneticOrgan
+    markLost: false
+    empDamage: 0
+    empSpeedModifier: 0.8
+
+- type: entity
+  id: OrganProstheticFootLeft
+  parent: [ OrganBaseFootLeft, OrganProstheticFootBase ]
+  name: prosthetic left foot
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_foot
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_foot
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+
+- type: entity
+  id: OrganProstheticFootRight
+  parent: [ OrganBaseFootRight, OrganProstheticFootBase ]
+  name: prosthetic right foot
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_foot
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_foot
+  - type: Woundable
+    integrity: 90
+    integrityCap: 90
+    thresholds:
+      Minor: 75
+      Moderate: 60
+      Severe: 45
+      Critical: 27
+      Mangled: 0
+
+- type: entity
   id: ProstheticArmLeft
   parent: DetachedBody
   name: prosthetic left arm
@@ -117,6 +328,48 @@
     - OrganProstheticHandLeft
 
 - type: entity
+  id: ProstheticLegLeft
+  parent: DetachedBody
+  name: prosthetic left leg
+  description: A machine leg with its foot that lets you sprint a little faster than the organic one. Shoes take most of that away.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticLegLeft
+    - OrganProstheticFootLeft
+
+- type: entity
+  id: ProstheticLegBudgetLeft
+  parent: DetachedBody
+  name: budget prosthetic left leg
+  description: A shoddy machine leg with its foot and no extra functionality.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticLegBudgetLeft
+    - OrganProstheticFootLeft
+
+- type: entity
+  id: ProstheticLegSpeedLeft
+  parent: DetachedBody
+  name: prosthetic left speed leg
+  description: A machine leg with its foot that moves you much faster, as long as you do not wear shoes.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticLegSpeedLeft
+    - OrganProstheticFootLeft
+
+- type: entity
   id: ProstheticArmRight
   parent: DetachedBody
   name: prosthetic right arm
@@ -129,3 +382,45 @@
     organs:
     - OrganProstheticArmRight
     - OrganProstheticHandRight
+
+- type: entity
+  id: ProstheticLegRight
+  parent: DetachedBody
+  name: prosthetic right leg
+  description: A machine leg with its foot that lets you sprint a little faster than the organic one. Shoes take most of that away.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticLegRight
+    - OrganProstheticFootRight
+
+- type: entity
+  id: ProstheticLegBudgetRight
+  parent: DetachedBody
+  name: budget prosthetic right leg
+  description: A shoddy machine leg with its foot and no extra functionality.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticLegBudgetRight
+    - OrganProstheticFootRight
+
+- type: entity
+  id: ProstheticLegSpeedRight
+  parent: DetachedBody
+  name: prosthetic right speed leg
+  description: A machine leg with its foot that moves you much faster, as long as you do not wear shoes.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticLegSpeedRight
+    - OrganProstheticFootRight

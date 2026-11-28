@@ -100,6 +100,72 @@
     Glass: 100
     Silver: 100
 
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticLegLeft
+  result: ProstheticLegLeft
+  completetime: 10
+  materials:
+    Steel: 500
+    Plastic: 300
+    Glass: 100
+    Silver: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticLegBudgetLeft
+  result: ProstheticLegBudgetLeft
+  completetime: 10
+  materials:
+    Steel: 300
+    Plastic: 200
+    Glass: 50
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticLegSpeedLeft
+  result: ProstheticLegSpeedLeft
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 300
+    Glass: 100
+    Silver: 200
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticLegRight
+  result: ProstheticLegRight
+  completetime: 10
+  materials:
+    Steel: 500
+    Plastic: 300
+    Glass: 100
+    Silver: 100
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticLegBudgetRight
+  result: ProstheticLegBudgetRight
+  completetime: 10
+  materials:
+    Steel: 300
+    Plastic: 200
+    Glass: 50
+
+- type: latheRecipe
+  parent: BaseCyberneticOrganRecipe
+  id: ProstheticLegSpeedRight
+  result: ProstheticLegSpeedRight
+  completetime: 10
+  materials:
+    Steel: 600
+    Plastic: 300
+    Glass: 100
+    Silver: 200
+    Gold: 100
+
 - type: latheRecipePack
   id: CyberneticOrgans
   recipes:
@@ -116,3 +182,9 @@
   recipes:
   - ProstheticArmLeft
   - ProstheticArmRight
+  - ProstheticLegLeft
+  - ProstheticLegBudgetLeft
+  - ProstheticLegSpeedLeft
+  - ProstheticLegRight
+  - ProstheticLegBudgetRight
+  - ProstheticLegSpeedRight
