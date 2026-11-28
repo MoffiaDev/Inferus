@@ -1,0 +1,194 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Body/Parts/cyberlimbs.yml: pilebunker and cargo legs) // Inferus
+# Pilebunker: a normal speed leg that gives the jump action (5 tiles, 15 second cooldown, off while an EMP has the leg).
+# Cargo: sprints at 0.9 of normal and has a storage of 2x3 that only the body can open. The footstep sounds of Starlight are not ported.
+
+- type: entity
+  id: OrganProstheticLegPilebunkerLeft
+  parent: [ OrganBaseLegLeft, OrganProstheticLegBase ]
+  name: left pilebunker leg
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_leg_pilebunker
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_leg_pilebunker
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+  - type: OrganJump
+  - type: OrganAction
+    action: ActionJumpPilebunkerLeg
+
+- type: entity
+  id: ProstheticLegPilebunkerLeft
+  parent: DetachedBody
+  name: left pilebunker leg
+  description: A machine leg with its foot, a leg that lets you jump short distances. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticLegPilebunkerLeft
+    - OrganProstheticFootLeft
+
+- type: entity
+  id: OrganProstheticLegPilebunkerRight
+  parent: [ OrganBaseLegRight, OrganProstheticLegBase ]
+  name: right pilebunker leg
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_leg_pilebunker
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_leg_pilebunker
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+  - type: OrganJump
+  - type: OrganAction
+    action: ActionJumpPilebunkerLeg
+
+- type: entity
+  id: ProstheticLegPilebunkerRight
+  parent: DetachedBody
+  name: right pilebunker leg
+  description: A machine leg with its foot, a leg that lets you jump short distances. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticLegPilebunkerRight
+    - OrganProstheticFootRight
+
+- type: entity
+  id: OrganProstheticLegCargoLeft
+  parent: [ OrganBaseLegLeft, OrganProstheticLegBase ]
+  name: left cargo leg
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_leg_cargo
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: l_leg_cargo
+  - type: CyberneticLeg
+    sprintModifier: 0.9
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+  - type: Storage
+    grid:
+    - 0,0,1,2
+    maxItemSize: Large
+    blacklist:
+      components:
+      - Organ
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: OrganStorage
+  - type: OrganAction
+    action: ActionOpenStorageLeftLeg
+
+- type: entity
+  id: ProstheticLegCargoLeft
+  parent: DetachedBody
+  name: left cargo leg
+  description: A machine leg with its foot, a leg with some built-in storage. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticLegCargoLeft
+    - OrganProstheticFootLeft
+
+- type: entity
+  id: OrganProstheticLegCargoRight
+  parent: [ OrganBaseLegRight, OrganProstheticLegBase ]
+  name: right cargo leg
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_leg_cargo
+  - type: VisualOrgan
+    data:
+      sprite: _Shitmed/Mobs/Species/Cyberlimbs/parts.rsi
+      state: r_leg_cargo
+  - type: CyberneticLeg
+    sprintModifier: 0.9
+  - type: Woundable
+    integrity: 120
+    integrityCap: 120
+    thresholds:
+      Minor: 105
+      Moderate: 75
+      Severe: 38
+      Critical: 15
+      Mangled: 0
+  - type: Storage
+    grid:
+    - 0,0,1,2
+    maxItemSize: Large
+    blacklist:
+      components:
+      - Organ
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: OrganStorage
+  - type: OrganAction
+    action: ActionOpenStorageRightLeg
+
+- type: entity
+  id: ProstheticLegCargoRight
+  parent: DetachedBody
+  name: right cargo leg
+  description: A machine leg with its foot, a leg with some built-in storage. Attach it to the torso of a patient who has lost that limb.
+  categories: [ ]
+  components:
+  - type: DetachedLimb
+  - type: ProstheticLimb
+    attachCategory: Torso
+    organs:
+    - OrganProstheticLegCargoRight
+    - OrganProstheticFootRight

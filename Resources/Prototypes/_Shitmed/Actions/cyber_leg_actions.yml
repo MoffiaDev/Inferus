@@ -1,0 +1,61 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Starlight (Resources/Prototypes/_Starlight/Actions/jump.yml and common.yml) // Inferus
+# The jump of the pilebunker leg and the storage of the cargo leg. Both are raised on the body, the storage one tells which leg it is.
+- type: entity
+  parent: BaseAction
+  id: ActionJumpPilebunkerLeg
+  name: Pilebunker jump
+  description: You jump at the selected direction.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    icon:
+      sprite: _Shitmed/Interface/Actions/actions_jump.rsi
+      state: jump
+  - type: TargetAction
+    checkCanAccess: false
+    range: 20
+  - type: WorldTargetAction
+    event: !type:OrganJumpEvent
+      distance: 5
+      sound:
+        path: /Audio/Weapons/block_metal1.ogg
+
+- type: entity
+  parent: BaseAction
+  id: ActionOpenStorageLeftLeg
+  name: Toggle storage leg
+  description: Opens or closes the storage of your left leg.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    useDelay: 1
+    raiseOnUser: true
+    icon:
+      sprite: Clothing/Back/Satchels/smuggler.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:OpenOrganStorageEvent
+      category: LegLeft
+
+- type: entity
+  parent: BaseAction
+  id: ActionOpenStorageRightLeg
+  name: Toggle storage leg
+  description: Opens or closes the storage of your right leg.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    useDelay: 1
+    raiseOnUser: true
+    icon:
+      sprite: Clothing/Back/Satchels/smuggler.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:OpenOrganStorageEvent
+      category: LegRight
