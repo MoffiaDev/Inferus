@@ -2,6 +2,7 @@
 // bleeding is worked out per limb from its wounds. A tourniquet on a limb takes that limb's share out of the body's bleeding.
 // The body keeps using the bloodstream's own bleed rate, this only changes how much of it leaks each tick.
 using System.Linq;
+using Content.Shared._Shitmed.Surgery.Operations; // Inferus
 using Content.Shared._Shitmed.Surgery.Pain;
 using Content.Shared._Shitmed.Surgery.Wounds.Components;
 using Content.Shared._Shitmed.Surgery.Wounds.Systems;
@@ -35,6 +36,11 @@ public sealed partial class LimbBleedingSystem : EntitySystem
     /// </summary>
     private const float BleedingThreshold = 2f;
 
+    /// <summary>
+    /// What a limb with an open incision counts as bleeding, until the vessels are clamped. // Inferus
+    /// </summary>
+    private const float OpenIncisionBleed = 3f;
+
     [Dependency] private INetManager _net = default!;
     [Dependency] private BodySystem _body = default!;
     [Dependency] private WoundSystem _wound = default!;
@@ -60,6 +66,10 @@ public sealed partial class LimbBleedingSystem : EntitySystem
 
             bleed += wound.Comp.WoundSeverityPoint.Float() * factor;
         }
+
+        // Inferus - an open incision bleeds until the vessels are clamped
+        if (HasComp<IncisionOpenComponent>(limb) && !HasComp<BleedersClampedComponent>(limb))
+            bleed += OpenIncisionBleed;
 
         return bleed;
     }
