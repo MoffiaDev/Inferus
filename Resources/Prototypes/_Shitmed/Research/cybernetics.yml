@@ -20,3 +20,21 @@
   - OrganCyberneticStomach
   - OrganCyberneticEars
   - OrganCyberneticEyes
+
+- type: technology
+  id: Prosthetics
+  name: research-technology-prosthetics
+  icon:
+    sprite: _Shitmed/Objects/Augments/arm.rsi
+    state: base
+  discipline: CivilianServices
+  tier: 3
+  cost: 15000
+  position: 6,5
+  technologyPrerequisites:
+  - MechanizedTreatment
+  recipeUnlocks:
+  - ProstheticArmLeft
+  - ProstheticArmRight
+  - ProstheticLegLeft
+  - ProstheticLegRight

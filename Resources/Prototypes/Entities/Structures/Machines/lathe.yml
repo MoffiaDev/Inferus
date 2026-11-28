@@ -488,6 +488,7 @@
     dynamicPacks:
     - Chemistry
     - CyberneticOrgans # Inferus
+    - Prosthetics # Inferus
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

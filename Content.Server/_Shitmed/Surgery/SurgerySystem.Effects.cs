@@ -107,7 +107,7 @@ public sealed partial class SurgerySystem
             return;
         }
 
-        if (detached.Parent != args.Part)
+        if (!CanAttachLimb(args.Tool, detached, limb, args.Body, args.Part)) // Inferus - a prosthetic fits any empty slot of its kind
         {
             RemComp<LimbReattachedComponent>(args.Part);
             _popup.PopupEntity(Loc.GetString("surgery-attach-wrong-limb"), args.Body, args.User, PopupType.SmallCaution);
@@ -166,9 +166,10 @@ public sealed partial class SurgerySystem
 
         var bodyCoordinates = Transform(args.Body).Coordinates;
         var query = EntityQueryEnumerator<DetachedLimbComponent, TransformComponent>();
-        while (query.MoveNext(out _, out var detached, out var xform))
+        while (query.MoveNext(out var tool, out var detached, out var xform))
         {
-            if (detached.Parent == args.Part && _transform.InRange(xform.Coordinates, bodyCoordinates, LimbRange))
+            if (detached.Limb is { } limb && CanAttachLimb(tool, detached, limb, args.Body, args.Part) // Inferus
+                && _transform.InRange(xform.Coordinates, bodyCoordinates, LimbRange))
                 return;
         }
 
