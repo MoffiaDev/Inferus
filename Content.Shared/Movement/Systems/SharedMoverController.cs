@@ -597,6 +597,15 @@ public abstract partial class SharedMoverController : VirtualController
             return sound != null;
         }
 
+        // Inferus - cybernetic legs have their own footstep sound, which the shoes do not change
+        var cyberStep = new Content.Shared._Shitmed.Surgery.Organs.GetCyberneticFootstepSoundEvent();
+        RaiseLocalEvent(uid, ref cyberStep);
+        if (cyberStep.Sound != null)
+        {
+            sound = cyberStep.Sound;
+            return true;
+        }
+
         if (_inventory.TryGetSlotEntity(uid, "shoes", out var shoes) &&
             FootstepModifierQuery.TryComp(shoes, out var modifier))
         {
