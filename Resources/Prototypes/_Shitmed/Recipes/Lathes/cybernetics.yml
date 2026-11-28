@@ -249,7 +249,7 @@
     Gold: 100
 
 - type: latheRecipe
-  parent: BaseCyberneticOrganRecipeProstheticArmRipperLeft
+  parent: BaseCyberneticOrganRecipe
   id: ProstheticArmRipperRight
   result: ProstheticArmRipperRight
   completetime: 10
