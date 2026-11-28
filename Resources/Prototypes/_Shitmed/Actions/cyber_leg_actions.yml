@@ -21,6 +21,7 @@
   - type: WorldTargetAction
     event: !type:OrganJumpEvent
       distance: 5
+      speed: 6 # Inferus: was the default 15, which crossed the 5 tiles in a third of a second
       sound:
         path: /Audio/Weapons/block_metal1.ogg
 

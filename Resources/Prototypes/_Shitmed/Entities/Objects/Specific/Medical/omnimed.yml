@@ -1,0 +1,61 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Ported from Goob-Station (Resources/Prototypes/_Shitmed/Entities/Objects/Specific/Medical/surgery.yml: OmnimedTool) // Inferus
+# The omnitool does every step that has a tool in Inferus: scalpel, retractor, hemostat, cautery, drill, bone saw, bone setter and bone gel.
+# Left out because Inferus has no such steps: tweezers, tending and stitches, and the clothing bypass of the Gorlex version (SurgeryIgnoreClothing).
+
+- type: entity
+  name: surgical omnitool
+  id: OmnimedTool
+  parent: BaseToolSurgery
+  description: A compact surgical omnitool conveniently packed like a Swiss Army knife.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/omnimed.rsi
+    state: omnimed
+  - type: Item
+    size: Normal
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/omnimed.rsi
+  - type: Scalpel
+  - type: Retractor
+  - type: Hemostat
+  - type: Cautery
+  - type: Drill
+  - type: BoneSaw
+  - type: BoneSetter
+  - type: BoneGel
+
+- type: entity
+  parent: [ OmnimedTool, BaseSyndicateContraband ]
+  id: OmnimedToolSyndie
+  name: gorlex surgical omnitool
+  description: A compact surgical omnitool conveniently packed like a Swiss Army knife, except that its user has probably violated a couple of Swiss conventions.
+  components:
+  - type: Sprite
+    state: evil
+  - type: Item
+    size: Small
+    heldPrefix: evil
+
+- type: entity
+  id: OmnimedToolDebug
+  parent: OmnimedToolSyndie
+  suffix: Admeme
+  name: experimental surgical omnitool
+  description: A beefed up version of the gorlex surgical omnitool, intended for use on CentComm's personnel, should they be hurt.
+  components:
+  - type: Scalpel
+    speed: 10
+  - type: Retractor
+    speed: 10
+  - type: Hemostat
+    speed: 10
+  - type: Cautery
+    speed: 10
+  - type: Drill
+    speed: 10
+  - type: BoneSaw
+    speed: 10
+  - type: BoneSetter
+    speed: 10
+  - type: BoneGel
+    speed: 10

@@ -568,6 +568,13 @@
     Glass: 100
     Silver: 200
 
+- type: latheRecipe
+  id: OmnimedTool
+  result: OmnimedTool
+  completetime: 4
+  materials:
+    Steel: 1800
+
 - type: latheRecipePack
   id: CyberneticOrgans
   recipes:
@@ -622,3 +629,4 @@
   - ProstheticLegPilebunkerRight
   - ProstheticLegCargoLeft
   - ProstheticLegCargoRight
+  - OmnimedTool
