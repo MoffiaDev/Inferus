@@ -41,3 +41,9 @@ public record struct BoneIntegrityChangedEvent(Entity<BoneComponent> Bone, Fixed
 /// </summary>
 [ByRefEvent]
 public record struct OrganIntegrityChangedEvent(Entity<OrganDamageComponent> Organ, FixedPoint2 OldIntegrity, FixedPoint2 NewIntegrity);
+
+/// <summary>
+/// Raised on a limb to collect the shock its traumas cause, WoundSystem adds it to the shock of the body.
+/// </summary>
+[ByRefEvent]
+public record struct GetTraumaShockEvent(FixedPoint2 Shock = default);

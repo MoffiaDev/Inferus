@@ -201,6 +201,12 @@
     walkModifier: 1.0
     sprintModifier: 1.0
   - type: Armor
+    traumaDeductions: # Inferus
+      Dismemberment: 0.3
+      OrganDamage: 0.3
+      BoneDamage: 0.3
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -230,6 +236,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
+    traumaDeductions: # Inferus
+      Dismemberment: 0.3
+      OrganDamage: 0.3
+      BoneDamage: 0.3
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -292,6 +304,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
+    traumaDeductions: # Inferus
+      Dismemberment: 0.3
+      OrganDamage: 0.3
+      BoneDamage: 0.3
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -323,6 +341,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: Armor
+    traumaDeductions: # Inferus
+      Dismemberment: 0.3
+      OrganDamage: 0.3
+      BoneDamage: 0.3
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -489,6 +513,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
+    traumaDeductions: # Inferus
+      Dismemberment: 0.3
+      OrganDamage: 0.3
+      BoneDamage: 0.3
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -564,6 +594,12 @@
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
     damageCoefficient: 0.75
   - type: Armor
+    traumaDeductions: # Inferus
+      Dismemberment: 0.5
+      OrganDamage: 0.5
+      BoneDamage: 0.5
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -626,6 +662,12 @@
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
     damageCoefficient: 0.6
   - type: Armor
+    traumaDeductions: # Inferus
+      Dismemberment: 0.5
+      OrganDamage: 0.5
+      BoneDamage: 0.5
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -668,6 +710,12 @@
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
     damageCoefficient: 0.6
   - type: Armor
+    traumaDeductions: # Inferus
+      Dismemberment: 0.6
+      OrganDamage: 0.6
+      BoneDamage: 0.6
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -704,6 +752,12 @@
     lowPressureMultiplier: 1000
   # - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten.
   - type: Armor
+    traumaDeductions: # prevents traumas at all (kinda) # Inferus
+      Dismemberment: 1
+      OrganDamage: 1
+      BoneDamage: 1
+      VeinsDamage: 1
+      NerveDamage: 1
     modifiers:
       coefficients:
         Blunt: 0.2
@@ -741,6 +795,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
+    traumaDeductions: # prevents traumas at all (kinda) # Inferus
+      Dismemberment: 1
+      OrganDamage: 1
+      BoneDamage: 1
+      VeinsDamage: 1
+      NerveDamage: 1
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -1022,6 +1082,12 @@
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
     damageCoefficient: 0.15 # Needs 21 hits with a disabler to stun :godo:
   - type: Armor
+    traumaDeductions: # prevents traumas at all (kinda) # Inferus
+      Dismemberment: 1
+      OrganDamage: 1
+      BoneDamage: 1
+      VeinsDamage: 1
+      NerveDamage: 1
     modifiers:
       coefficients:
         Blunt: 0.1 #best armor in the game

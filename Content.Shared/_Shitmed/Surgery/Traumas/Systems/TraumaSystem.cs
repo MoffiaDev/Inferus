@@ -8,7 +8,9 @@ using Content.Shared._Shitmed.Surgery.Organs;
 using Content.Shared._Shitmed.Surgery.Wounds;
 using Content.Shared._Shitmed.Surgery.Wounds.Components;
 using Content.Shared._Shitmed.Surgery.Wounds.Systems;
+using Content.Shared.Armor;
 using Content.Shared.Body;
+using Content.Shared.Inventory;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -34,6 +36,9 @@ public sealed partial class TraumaSystem : EntitySystem
     /// </summary>
     private const string HostWoundType = "Blunt";
 
+    private const float NerveShockFactor = 0.3f;
+    private static readonly FixedPoint2 NerveShockCap = 8;
+
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private INetManager _net = default!;
@@ -42,6 +47,7 @@ public sealed partial class TraumaSystem : EntitySystem
     [Dependency] private WoundSystem _wound = default!;
     [Dependency] private BoneSystem _bone = default!;
     [Dependency] private OrganDamageSystem _organDamage = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     private readonly record struct CauseEntry(ProtoId<TraumaTypePrototype> Id, TraumaTypePrototype Proto, WoundSeverityCause Cause);
 
@@ -60,6 +66,7 @@ public sealed partial class TraumaSystem : EntitySystem
         SubscribeLocalEvent<BoneComponent, BoneIntegrityChangedEvent>(OnBoneIntegrityChanged);
         SubscribeLocalEvent<OrganDamageComponent, OrganIntegrityChangedEvent>(OnOrganIntegrityChanged);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+        SubscribeLocalEvent<WoundableComponent, GetTraumaShockEvent>(OnGetTraumaShock);
 
         BuildCauseIndex();
     }
@@ -167,9 +174,72 @@ public sealed partial class TraumaSystem : EntitySystem
         var rolled = RollTraumas(target, inflicter, delta);
         foreach (var traumaType in rolled)
             ApplyTrauma(target, inflicter, traumaType, delta);
+
+        ApplyMangledTraumas(target, inflicter, delta);
     }
 
-    public List<ProtoId<TraumaTypePrototype>> RollTraumas(
+    /// <summary>
+    /// A wound that mangled its limb keeps hurting what is under it, with the severity scaled by the multiplier of each trauma type.
+    /// </summary>
+    private void ApplyMangledTraumas(
+        Entity<WoundableComponent> target,
+        Entity<TraumaInflicterComponent> inflicter,
+        FixedPoint2 severity)
+    {
+        if (inflicter.Comp.MangledMultipliers is not { Count: > 0 } multipliers
+            || !TryComp<WoundComponent>(inflicter, out var wound)
+            || wound.MangleSeverity == null
+            || !IsMangled(target))
+            return;
+
+        foreach (var (traumaType, multiplier) in multipliers)
+        {
+            if (multiplier <= 0 || !_prototype.TryIndex(traumaType, out var proto))
+                continue;
+
+            if (proto.Target == TraumaTarget.Bone && !HasComp<BoneComponent>(target))
+                continue;
+
+            ApplyTrauma(target, inflicter, traumaType, FixedPoint2.New(severity.Float() * multiplier.Float()));
+        }
+    }
+
+    private bool IsMangled(Entity<WoundableComponent> woundable)
+    {
+        foreach (var wound in _wound.GetWoundableWounds(woundable, woundable.Comp))
+        {
+            if (!wound.Comp.IsScar && wound.Comp.MangleSeverity is { } mangle && wound.Comp.WoundSeverity >= mangle)
+                return true;
+        }
+
+        return false;
+    }
+
+    public FixedPoint2 GetArmourChanceDeduction(
+        EntityUid body,
+        Entity<TraumaInflicterComponent> inflicter,
+        ProtoId<TraumaTypePrototype> traumaType,
+        ProtoId<OrganCategoryPrototype>? category)
+    {
+        var deduction = FixedPoint2.Zero;
+        foreach (var ent in _inventory.GetHandOrInventoryEntities(body, SlotFlags.WITHOUT_POCKET))
+        {
+            if (!TryComp<ArmorComponent>(ent, out var armour)
+                || !armour.TraumaDeductions.TryGetValue(traumaType, out var armourDeduction))
+                continue;
+
+            // Armour only makes a trauma rarer, unless the trauma type is allowed to be made likelier by it.
+            if (!inflicter.Comp.AllowArmourDeduction.Contains(traumaType) && armourDeduction >= 0)
+                continue;
+
+            if (armour.Coverage.Count == 0 || (category is { } cat && armour.Coverage.Contains(cat)))
+                deduction += armourDeduction;
+        }
+
+        return deduction;
+    }
+
+        public List<ProtoId<TraumaTypePrototype>> RollTraumas(
         Entity<WoundableComponent> target,
         Entity<TraumaInflicterComponent> inflicter,
         FixedPoint2 severity)
@@ -224,6 +294,7 @@ public sealed partial class TraumaSystem : EntitySystem
             return FixedPoint2.Zero;
 
         var deduction = target.Comp.TraumaDeductions.GetValueOrDefault(entry.Id, FixedPoint2.Zero);
+        deduction += GetArmourChanceDeduction(body, inflicter, entry.Id, CompOrNull<OrganComponent>(target)?.Category);
         var ev = new TraumaChanceDeductionEvent(severity, entry.Id, FixedPoint2.Zero);
         RaiseLocalEvent(target, ref ev);
         deduction += ev.ChanceDeduction;
@@ -483,7 +554,16 @@ public sealed partial class TraumaSystem : EntitySystem
         }
     }
 
-    private void OnBoneIntegrityChanged(Entity<BoneComponent> bone, ref BoneIntegrityChangedEvent args)
+    private void OnGetTraumaShock(Entity<WoundableComponent> limb, ref GetTraumaShockEvent args)
+    {
+        var shock = FixedPoint2.Zero;
+        foreach (var trauma in GetWoundableTraumas(limb.Owner, NerveDamage))
+            shock += FixedPoint2.New(trauma.Comp.TraumaSeverity.Float() * NerveShockFactor);
+
+        args.Shock += FixedPoint2.Min(shock, NerveShockCap);
+    }
+
+        private void OnBoneIntegrityChanged(Entity<BoneComponent> bone, ref BoneIntegrityChangedEvent args)
     {
         if (_net.IsClient || args.NewIntegrity < bone.Comp.IntegrityCap)
             return;
@@ -502,7 +582,7 @@ public sealed partial class TraumaSystem : EntitySystem
 
         if (args.NewIntegrity >= organ.Comp.IntegrityCap)
         {
-            if (TryGetBodyTraumas(body, out var traumas, OrganDamage))
+            if (TryGetBodyTraumas(body, out var traumas))
             {
                 foreach (var trauma in traumas.ToList())
                 {

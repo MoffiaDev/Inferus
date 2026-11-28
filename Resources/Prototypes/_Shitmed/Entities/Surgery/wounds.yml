@@ -21,6 +21,8 @@
   components:
   - type: Trauma
     traumaType: VeinsDamage
+  - type: TraumaBloodloss
+    amount: 0.3
 
 - type: entity
   id: NerveDamage

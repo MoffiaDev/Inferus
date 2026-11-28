@@ -1,0 +1,1 @@
+trauma-arm-fumble = Your injured arm gives out and you fumble!

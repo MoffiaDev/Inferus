@@ -1,3 +1,4 @@
+using Content.Shared._Shitmed.Surgery.Traumas; // Inferus
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
@@ -85,6 +86,8 @@ public partial class MobStateSystem
     private void ChangeState(EntityUid target, MobStateComponent component, MobState newState, EntityUid? origin = null)
     {
         var oldState = component.CurrentState;
+        if (oldState == MobState.Dead && HasComp<DebrainedComponent>(target)) // Inferus - a body without a brain stays dead
+            return;
         //make sure we are allowed to enter the new state
         if (oldState == newState) // funky
             return;

@@ -2,6 +2,7 @@
 // Adapted from Goob-Station (Content.Shared/_Shitmed/Surgery/Traumas/Systems/TraumaSystem.Bones.cs) // Inferus
 // ayyo the pizza here
 using System.Linq;
+using Content.Shared.Alert;
 using Content.Shared._Shitmed.Surgery.Wounds;
 using Content.Shared._Shitmed.Surgery.Wounds.Components;
 using Content.Shared.Body;
@@ -28,6 +29,7 @@ public sealed partial class BoneSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private BodySystem _body = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
 
@@ -135,7 +137,26 @@ public sealed partial class BoneSystem : EntitySystem
         count++;
     }
 
-    public bool ApplyBoneDamage(Entity<BoneComponent> bone, FixedPoint2 amount)
+    private static readonly ProtoId<AlertPrototype> BrokenBonesAlert = "BrokenBones";
+
+    /// <summary>
+    /// Shows the broken bones alert while any bone of the body is broken.
+    /// </summary>
+    private void UpdateBrokenBonesAlert(EntityUid body)
+    {
+        foreach (var limb in _body.EnumerateOrgans<BoneComponent>(body))
+        {
+            if (limb.Comp2.BoneSeverity != BoneSeverity.Broken)
+                continue;
+
+            _alerts.ShowAlert(body, BrokenBonesAlert);
+            return;
+        }
+
+        _alerts.ClearAlert(body, BrokenBonesAlert);
+    }
+
+        public bool ApplyBoneDamage(Entity<BoneComponent> bone, FixedPoint2 amount)
     {
         return amount > 0 && SetIntegrity(bone, bone.Comp.BoneIntegrity - amount);
     }
@@ -164,6 +185,7 @@ public sealed partial class BoneSystem : EntitySystem
         if (TryComp<OrganComponent>(bone, out var organ) && organ.Body is { } body)
         {
             _movementSpeed.RefreshMovementSpeedModifiers(body);
+            UpdateBrokenBonesAlert(body);
 
             if (_net.IsServer && newSeverity > oldSeverity)
             {

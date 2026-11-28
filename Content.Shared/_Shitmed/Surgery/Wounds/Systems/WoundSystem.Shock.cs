@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Inferus - shock damage from badly hurt or missing limbs. It is worked out from the limbs every time the body's damage is synced,
 // so it goes away on its own when the limb is treated, and it never sits in the body's own damage.
+using Content.Shared._Shitmed.Surgery.Traumas; // Inferus
 using Content.Shared._Shitmed.Surgery.Wounds.Components;
 using Content.Shared.Body;
 using Content.Shared.Damage;
@@ -22,6 +23,10 @@ public sealed partial class WoundSystem
         foreach (var limb in woundables)
         {
             var severity = limb.Comp2.WoundableSeverity;
+
+            var traumaShock = new GetTraumaShockEvent(); // Inferus - nerve damage
+            RaiseLocalEvent(limb.Owner, ref traumaShock);
+            shock += traumaShock.Shock;
 
             if (model.SeverityDamage.TryGetValue(severity, out var pain))
                 shock += pain;

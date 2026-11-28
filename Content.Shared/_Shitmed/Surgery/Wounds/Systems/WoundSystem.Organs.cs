@@ -1,8 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Inferus - what a body loses when an organ is taken out: vital organs add shock (and so can kill), missing eyes blind,
 // and the respirator reads the list for missing lungs.
+using Content.Shared._Shitmed.Surgery.Traumas; // Inferus
 using Content.Shared._Shitmed.Surgery.Wounds.Components;
 using Content.Shared.Body;
+using Content.Shared.Body.Components; // Inferus
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
@@ -27,6 +29,9 @@ public sealed partial class WoundSystem
         if (!lost.Categories.Add(category))
             return;
 
+        if (_net.IsServer && HasComp<BrainComponent>(args.Organ)) // Inferus - a body without a brain is debrained
+            EnsureComp<DebrainedComponent>(ent.Owner);
+
         Dirty(ent.Owner, lost);
         OnLostOrgansChanged(ent);
     }
@@ -41,6 +46,9 @@ public sealed partial class WoundSystem
             || IsOrganFailed(args.Organ) // Inferus - a failed organ stays lost until it is repaired
             || !lost.Categories.Remove(category))
             return;
+
+        if (_net.IsServer && HasComp<BrainComponent>(args.Organ)) // Inferus - a working brain is back
+            RemComp<DebrainedComponent>(ent.Owner);
 
         Dirty(ent.Owner, lost);
         OnLostOrgansChanged(ent);

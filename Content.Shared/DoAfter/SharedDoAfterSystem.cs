@@ -328,6 +328,11 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
         // TODO DO AFTER
         // Why does this tag exist? Just make this a bool on the component?
+        // Inferus - injured arms slow the user down
+        var delayEv = new Content.Shared._Shitmed.DoAfter.GetDoAfterDelayMultiplierEvent();
+        RaiseLocalEvent(args.User, delayEv);
+        args.Delay *= delayEv.Multiplier;
+
         if (args.Delay <= TimeSpan.Zero || _tag.HasTag(args.User, InstantDoAftersTag))
         {
             RaiseDoAfterEvents(doAfter, comp);

@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
+using Content.Shared._Shitmed.Surgery.Traumas; // Inferus
 using Content.Shared._Shitmed.Surgery.Wounds.Components; // Inferus
 using Content.Shared._Goobstation.Grab; // Goobstation - Grab Intent
 using Content.Shared._Goobstation.GrabIntent; // Goobstation - Grab Intent
@@ -93,7 +94,7 @@ public sealed partial class RespiratorSystem : EntitySystem
 
             UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
 
-            if (!_mobState.IsIncapacitated(uid)) // cannot breathe in crit.
+            if (!_mobState.IsIncapacitated(uid) && !HasComp<DebrainedComponent>(uid)) // cannot breathe in crit. // Inferus - and without a brain
             {
                 switch (respirator.Status)
                 {
@@ -336,6 +337,9 @@ public sealed partial class RespiratorSystem : EntitySystem
         var suffocation = ent.Comp.Damage;
         if (TryComp<LostOrgansComponent>(ent, out var lostOrgans) && lostOrgans.Categories.Contains("Lungs"))
             suffocation = suffocation * 5;
+
+        if (HasComp<DebrainedComponent>(ent)) // Inferus - a body without a brain suffocates harder
+            suffocation = suffocation * 4.5f;
 
         _damageableSys.ChangeDamage(ent.Owner, suffocation, interruptsDoAfters: false, ignoreResistances: true);
 

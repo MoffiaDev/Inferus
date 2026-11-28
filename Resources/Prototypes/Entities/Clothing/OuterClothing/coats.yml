@@ -66,6 +66,12 @@
   id: ClothingOuterArmorHoS
   components:
   - type: Armor
+    traumaDeductions: # Goobstation - # Inferus
+      Dismemberment: 0.2
+      OrganDamage: 0.2
+      BoneDamage: 0.2
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -80,6 +86,12 @@
   id: ClothingOuterArmorWarden
   components:
   - type: Armor
+    traumaDeductions: # Goobstation. # Inferus
+      Dismemberment: 0.2
+      OrganDamage: 0.2
+      BoneDamage: 0.2
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -228,6 +240,12 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/labcoat_cmo.rsi
   - type: Armor
+    traumaDeductions: # Goobstation # Inferus
+      Dismemberment: 0.1
+      OrganDamage: 0.1
+      BoneDamage: 0.1
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Slash: 0.95
@@ -355,6 +373,12 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/dogi.rsi
   - type: Armor
+    traumaDeductions: # Goobstation # Inferus
+      Dismemberment: 0.2
+      OrganDamage: 0.2
+      BoneDamage: 0.2
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -405,6 +429,12 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/brigmedic.rsi
   - type: Armor
+    traumaDeductions: # Goobstation # Inferus
+      Dismemberment: 0.2
+      OrganDamage: 0.2
+      BoneDamage: 0.2
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.8

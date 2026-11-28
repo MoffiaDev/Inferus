@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Adapted from Goob-Station (Content.Server/_Shitmed/Body/Systems/DebrainedSystem.cs) // Inferus
-// Inferus - without a brain the body falls down and can not stand or speak. Goob also stuns it and starts a delayed death,
-// and blocks reviving and breathing in base code, none of that is here.
+// Inferus - without a brain the body falls down and can not stand or speak, DebrainedMovementSystem keeps it from moving and MobStateSystem
+// from reviving. Goob also stuns it and starts a delayed death. A brain taken out of the body, or put back, is handled in WoundSystem.Organs,
+// because only one system can subscribe to the organ events of a body.
 using Content.Server.Popups;
 using Content.Shared._Shitmed.Surgery.Traumas;
 using Content.Shared.Speech;
